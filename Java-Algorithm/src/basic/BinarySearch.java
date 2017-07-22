@@ -1,7 +1,8 @@
 package basic;
 
 public class BinarySearch {
-	// the array must be sorted, find a x whether in the array and what's the position
+	// the array must be sorted, find a x whether in the array and what's the position,
+	 // 原理就是直接跳到中间 从中间向两边查找
 	public static void main(String[] args) {
 		int[] input = new int[] { 12, 23, 34, 45, 56, 67, 77, 89, 90 };
 	       System.out.println(search(input, 12));

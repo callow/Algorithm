@@ -13,11 +13,11 @@ public class BubbleSort {
 		System.out.println(Arrays.toString(input));
 	}
 	
-    public static void bubbleSort(int[] array) {  
+    public static void bubbleSort(int[] array) {
         int size = array.length;
         
         for (int i = size - 1; i > 0; i--) {  
-            for (int j = 0; j < i; j++) {  
+            for (int j = 0; j < i; j++) {
                 if (array[j] > array[j + 1]) {
                     exchangeElements(array, j, j + 1);// 相邻的两个换位置
                 }  

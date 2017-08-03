@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.Stack;
 
-public class Valid_parathesis {
+public class Valid_parathesis_20 {
 
 	public static void main(String[] args) {
 		String input = "{([])}[]{{{[()]()}{}}()}{}[][]()()()()()";

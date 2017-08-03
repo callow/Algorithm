@@ -5,7 +5,7 @@ package leetcode;
  * 
  *
  */
-public class Longest_common_prefix {
+public class Longest_common_prefix_14 {
 
 	public static void main(String[] args) {
 		String[] input = {"ca", "cc", "ccac", "cccq", "ccd"};

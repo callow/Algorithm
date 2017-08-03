@@ -18,7 +18,7 @@ public class Longest_common_prefix {
 	    int i = 1;
 	    while(i < strs.length) { // 遍历所有元素,从第二个开始遍历
 	        while(strs[i].indexOf(pre) != 0) { // 如果 pre 不是位于其他元素的前缀位置
-	            pre = pre.substring(0,pre.length()-1); // 则  pre 要变化
+	            pre = pre.substring(0,pre.length()-1); // 则  pre 要缩一下然后继续判断
 	        }
 	        i++; // 下一个元素
 	    }

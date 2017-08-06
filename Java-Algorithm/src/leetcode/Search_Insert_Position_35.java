@@ -24,7 +24,7 @@ public class Search_Insert_Position_35 {
     }
 	
 	 
-	// leetcode的解,有点看不懂 回来研究
+	// leetcode的解,这是一个二分法查找的具体实现，没必要
 	 public static int searchInsert2(int[] A, int target) {
         int low = 0, high = A.length-1;
         while(low <= high){

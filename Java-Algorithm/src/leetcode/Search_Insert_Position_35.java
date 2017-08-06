@@ -7,7 +7,7 @@ public class Search_Insert_Position_35 {
 	public static void main(String[] args) {
 		int[] input = {1,3,5,6};
 		int target = 2;
-		System.out.println(searchInsert2(input,target));
+		System.out.println(searchInsert(input,target));
 	
 	}
 	
@@ -22,22 +22,4 @@ public class Search_Insert_Position_35 {
         Arrays.sort(expand); // 给数组排序
         return Arrays.binarySearch(expand, target); // 获取某个元素出现的index
     }
-	
-	 
-	// leetcode的解,这是一个二分法查找的具体实现，没必要
-	 public static int searchInsert2(int[] A, int target) {
-        int low = 0, high = A.length-1;
-        while(low <= high){
-            int mid = (low + high)/2;
-            if(A[mid] == target) {
-            	return mid;
-            } else if(A[mid] > target) {
-            	high = mid - 1;
-            } else {
-            	low = mid + 1;
-            }
-        }
-        return low;
-	 }
-
 }

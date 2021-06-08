@@ -39,6 +39,18 @@ public class MinHeightBST {
 		build(array,tree,mid +1,end); // 右右右 不停构建右子树 对半再对半.... 前序遍历右子树
 		return tree;
 	}
+	
+	public static BST buildT(List<Integer> array, int start, int end) {
+		if (end < start) {
+			return null;
+		}
+		int mid = (start + end) / 2;
+		BST tree = new BST(array.get(mid));
+		
+		tree.setLeft(buildT(array,start,mid-1));
+		tree.setRight(buildT(array,mid+1,end));
+		return tree;
+	}
 
 
 }

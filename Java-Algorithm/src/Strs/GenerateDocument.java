@@ -1,7 +1,8 @@
+package Strs;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Strings {
+public class GenerateDocument {
 
 	public boolean generateDocument(String characters, String document) {
 		String[] chars = characters.split("");

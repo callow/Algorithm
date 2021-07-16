@@ -32,7 +32,7 @@ public class FindThreeLargestNum {
 		// 如果要更新第3个，则第2个第1个也要左移，
 		// 如果要更新第2个，则第1个也要左移。
 		// 如果要更新第1个，不用移动其他。
-		for (int i = 0; i < idx; i++) {
+		for (int i = 0; i <= idx; i++) {
 			if (i == idx) {
 				container[i] = num; // 更新自身
 			} else {

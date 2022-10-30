@@ -1,7 +1,0 @@
-二叉搜索树: 上比下小，左比右小 => 左小弟，右老大
-
-(average情况) Time complexity of BST Operations = O(logn) n 是Node的个数
-
-(worst情况)  Time complexity of BST Operations = O(n)
-
-

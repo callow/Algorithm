@@ -1,7 +1,7 @@
 package com.algo.util.common;
 
 import java.lang.reflect.Array;
-
+@SuppressWarnings("unchecked")
 public class CommonArrayUtil {
 
 	/**

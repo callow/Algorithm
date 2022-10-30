@@ -54,4 +54,52 @@ public class SortUtil {
 		}
 	}
 	
+	/**
+	 * 归并排序 O(N * logN) <br>
+	 *  - 准备一个help[], 左右谁小拷贝谁拷贝完往下移动.help[]填满后，拷贝会原数组完成排序。 <br>
+	 *  - 指针不回退 => O(N) <br>
+	 *  - 不停地分解，merge,分解，merge
+	 */
+	
+	public static void mergeSort(int[] arr) {
+		if (arr == null || arr.length < 2) {
+			return;
+		}
+		process(arr, 0, arr.length - 1);
+	}
+	
+	private static void process(int[] arr, int l, int r) {
+		if (l == r) { // base case , 相遇了
+			return;
+		}
+		int mid = l + ((r - l) / 2);
+		process(arr, l, mid);
+		process(arr, mid + 1, r);
+		merge(arr, l, mid, r);
+	}
+	
+	// merge = 谁小拷贝谁
+	private static void merge(int[] arr, int l, int m, int r) {
+		int[] help = new int[r-l +1];
+		int i = 0;
+		int p1 = l;
+		int p2 = m + 1;
+		
+		while(p1 <= m && p2 <= r) {
+			help[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
+		}
+		
+		// 要么p1越界了，要么p2越界了
+		while (p1 <= m) {
+			help[i++] = arr[p1++];
+		}
+		while (p2 <= r) {
+			help[i++] = arr[p2++];
+		}
+		
+		for (i = 0; i < help.length; i++) {
+			arr[l + i] = help[i];
+		}
+	}
+	
 }

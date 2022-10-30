@@ -9,9 +9,9 @@ public class LinklistUtil {
 	 * 反转单链表
 	 */
 	
-	public static Node reverse(Node head) {
-		Node pre = null;
-		Node next = null;
+	public static Node<Integer> reverse(Node<Integer> head) {
+		Node<Integer> pre = null;
+		Node<Integer> next = null;
 		while(head != null) {
 			next = head.next;
 			head.next = pre;
@@ -25,9 +25,9 @@ public class LinklistUtil {
 	 * 反转双链表
 	 */
 	
-	public static DoubleNode reverse(DoubleNode head) {
-		DoubleNode pre = null;
-		DoubleNode next = null;
+	public static DoubleNode<Integer> reverse(DoubleNode<Integer> head) {
+		DoubleNode<Integer> pre = null;
+		DoubleNode<Integer> next = null;
 		while (head != null) {
 			next = head.next;
 			head.next = pre;
@@ -42,15 +42,15 @@ public class LinklistUtil {
 	 * 删除元素
 	 */
 	
-	public static Node removeValue(Node head, int num) {
+	public static Node<Integer> removeValue(Node<Integer> head, int num) {
 		while(head != null) {
 			if (head.value != num) {
 				break;
 			}
 			head = head.next;
 		}
-		Node pre = head;
-		Node cur = head;
+		Node<Integer> pre = head;
+		Node<Integer> cur = head;
 		while(cur != null) {
 			if (cur.value == num) {
 				pre.next = cur.next;
@@ -61,4 +61,28 @@ public class LinklistUtil {
 		}
 		return head;
 	}
+	
+	/**
+	 * 生成一个链表写的Queue
+	 */
+	
+	public static Queue<Integer> getQueue() {
+		return new Queue<Integer>();
+	}
+	
+	/**
+	 * 生成一个链表写的Stack
+	 */
+	
+	public static Stack<Integer> getStack() {
+		return new Stack<Integer>();
+	}
+	/**
+	 * 生成一个链表写的双端队列
+	 */
+	
+	public static DoubleEndsQueue<Integer> DoubleEndsQueue() {
+		return new DoubleEndsQueue<Integer>();
+	}
+	
 }

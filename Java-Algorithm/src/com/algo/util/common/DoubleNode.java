@@ -1,12 +1,12 @@
 package com.algo.util.common;
 
-public class DoubleNode {
+public class DoubleNode<T> {
 
-	public int value;
-	public DoubleNode last;
-	public DoubleNode next;
+	public T value;
+	public DoubleNode<T> last;
+	public DoubleNode<T> next;
 
-	public DoubleNode(int data) {
+	public DoubleNode(T data) {
 		value = data;
 	}
 }

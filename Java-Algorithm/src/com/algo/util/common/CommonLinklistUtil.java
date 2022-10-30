@@ -9,16 +9,16 @@ public class CommonLinklistUtil {
 	 * 生成一个单链表
 	 */
 	
-	public static Node generateRandomLinkedList(int len, int value) {
+	public static Node<Integer> generateRandomLinkedList(int len, int value) {
 		int size = (int) (Math.random() * (len + 1));
 		if (size == 0) {
 			return null;
 		}
 		size--;
-		Node head = new Node((int) (Math.random() * (value + 1)));
-		Node pre = head;
+		Node<Integer> head = new Node<Integer>((int) (Math.random() * (value + 1)));
+		Node<Integer> pre = head;
 		while (size != 0) {
-			Node cur = new Node((int) (Math.random() * (value + 1)));
+			Node<Integer> cur = new Node<Integer>((int) (Math.random() * (value + 1)));
 			pre.next = cur;
 			pre = cur;
 			size--;
@@ -30,16 +30,16 @@ public class CommonLinklistUtil {
 	 * 生成一个双链表
 	 */
 	
-	public static DoubleNode generateRandomDoubleList(int len, int value) {
+	public static DoubleNode<Integer> generateRandomDoubleList(int len, int value) {
 		int size = (int) (Math.random() * (len + 1));
 		if (size == 0) {
 			return null;
 		}
 		size--;
-		DoubleNode head = new DoubleNode((int) (Math.random() * (value + 1)));
-		DoubleNode pre = head;
+		DoubleNode<Integer> head = new DoubleNode<Integer>((int) (Math.random() * (value + 1)));
+		DoubleNode<Integer> pre = head;
 		while (size != 0) {
-			DoubleNode cur = new DoubleNode((int) (Math.random() * (value + 1)));
+			DoubleNode<Integer> cur = new DoubleNode<Integer>((int) (Math.random() * (value + 1)));
 			pre.next = cur;
 			cur.last = pre;
 			pre = cur;
@@ -52,7 +52,7 @@ public class CommonLinklistUtil {
 	 * 单链表是否正确反转
 	 */
 	
-	public static boolean checkLinkedListReverse(List<Integer> origin, Node head) {
+	public static boolean checkLinkedListReverse(List<Integer> origin, Node<Integer> head) {
 		for (int i = origin.size() - 1; i >= 0; i--) {
 			if (!origin.get(i).equals(head.value)) {
 				return false;
@@ -66,7 +66,7 @@ public class CommonLinklistUtil {
 	 * 单链表的原始顺序
 	 */
 	
-	public static List<Integer> getLinkedListOriginOrder(Node head) {
+	public static List<Integer> getLinkedListOriginOrder(Node<Integer> head) {
 		List<Integer> ans = new ArrayList<>();
 		while (head != null) {
 			ans.add(head.value);
@@ -79,7 +79,7 @@ public class CommonLinklistUtil {
 	 * 双链表的原始顺序
 	 */
 	
-	public static List<Integer> getDoubleListOriginOrder(DoubleNode head) {
+	public static List<Integer> getDoubleListOriginOrder(DoubleNode<Integer> head) {
 		List<Integer> ans = new ArrayList<>();
 		while (head != null) {
 			ans.add(head.value);
@@ -92,8 +92,8 @@ public class CommonLinklistUtil {
 	 * 双链表是否正确反转
 	 */
 	
-	public static boolean checkDoubleListReverse(List<Integer> origin, DoubleNode head) {
-		DoubleNode end = null;
+	public static boolean checkDoubleListReverse(List<Integer> origin, DoubleNode<Integer> head) {
+		DoubleNode<Integer> end = null;
 		for (int i = origin.size() - 1; i >= 0; i--) {
 			if (!origin.get(i).equals(head.value)) {
 				return false;
@@ -109,4 +109,5 @@ public class CommonLinklistUtil {
 		}
 		return true;
 	}
+	
 }

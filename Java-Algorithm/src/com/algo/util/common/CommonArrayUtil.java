@@ -1,5 +1,7 @@
 package com.algo.util.common;
 
+import java.lang.reflect.Array;
+
 public class CommonArrayUtil {
 
 	/**
@@ -88,6 +90,10 @@ public class CommonArrayUtil {
 	
 	public static boolean hasOne(int[] arr) {
 		return arr != null && arr.length == 1;
+	}
+	
+	public static <T>  T[] getArray(Class<T> componentType,int length) {
+		return (T[]) Array.newInstance(componentType, length);
 	}
 	
 }

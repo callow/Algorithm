@@ -1,11 +1,11 @@
 package com.algo.util.common;
 
-public class Node {
+public class Node<T> {
 
-	public int value;
-	public Node next;
+	public T value;
+	public Node<T> next;
 
-	public Node(int data) {
+	public Node(T data) {
 		value = data;
 	}
 }

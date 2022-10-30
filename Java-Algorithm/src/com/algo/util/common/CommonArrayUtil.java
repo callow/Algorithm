@@ -1,4 +1,4 @@
-package com.algo.util;
+package com.algo.util.common;
 
 public class CommonArrayUtil {
 

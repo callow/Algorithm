@@ -1,6 +1,6 @@
 package com.algo.util.sort;
 
-import com.algo.util.CommonArrayUtil;
+import com.algo.util.common.CommonArrayUtil;
 
 public class SortUtil {
 	

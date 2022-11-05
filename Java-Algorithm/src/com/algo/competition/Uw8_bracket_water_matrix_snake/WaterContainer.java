@@ -1,4 +1,4 @@
-package com.algo.competition.w8_bracket_water_matrix_snake;
+package com.algo.competition.Uw8_bracket_water_matrix_snake;
 
 /**
  * 盛水最多的容器： https://leetcode.com/problems/container-with-most-water/

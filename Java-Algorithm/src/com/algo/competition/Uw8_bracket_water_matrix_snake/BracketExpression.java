@@ -1,4 +1,4 @@
-package com.algo.competition.w8_bracket_water_matrix_snake;
+package com.algo.competition.Uw8_bracket_water_matrix_snake;
 
 import java.util.LinkedList;
 
@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * 计算括号相关问题，比如化学方程式，加减法等。
  *
  */
-public class Bracket {
+public class BracketExpression {
 
 	/**
 	 * 实现一个带括号的计算器，可以计算+-* / 

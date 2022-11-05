@@ -96,4 +96,36 @@ public class CommonArrayUtil {
 		return (T[]) Array.newInstance(componentType, length);
 	}
 	
+	/**
+	 * 生成前缀和数组,加快计算区间累加问题 preSum[i] = arr[0...i]的合
+	 */
+	
+	public static long[] prefixSumArr(int[] arr) {
+		long[] preSum = new long[arr.length];
+		preSum[0] = arr[0];
+		for (int i = 1; i < arr.length; i++) {
+			preSum[i] = preSum[i - 1] + arr[i];
+		}
+		return preSum;
+	}
+	
+	/**
+	 * 求以i位置结尾的数组有多少子数组累加和落在【lower, uppper】上 ： <br>
+	 * 	 - 整体累加和 preSum(i)  <br>
+	 *   - 思维转换： 有多少以i结尾的 = （preSum(i) - 每个开头的前缀和）∈ [preSum(i) - uppper， preSum(i) - lower]
+	 */
+	
+	public static int countPostfixArrRange(int[] arr, int i, int lower, int upper) {
+		long [] preSum = prefixSumArr(arr);
+		long sumI = preSum[i];
+		int counter = 0;
+		for (int x = 0; x < i; x++) {
+			if (sumI - preSum[x] >= (sumI - upper) && sumI - preSum[x] <= (sumI - lower)) {
+				counter++;
+			}
+		}
+		return counter;
+		
+	}
+	
 }

@@ -1,8 +1,14 @@
 package com.algo.util.sort;
+
+import com.algo.util.common.CommonArrayUtil;
+
 /**
  * MergeSort 是分而治之思路， 砍一半， （左边总个数 + 右边总个数 + Merge过程中的总个数）
  * 
- * 关键代码都是在Merge，它把很多东西变成有序的，间接结出很多题目
+ * 关键代码都是在Merge，它把很多东西变成有序的，间接结出很多题目,反正Merge的过程也要左右两边的数都看一遍，且左右2边必须有序，因此利用了一下 <br>
+ * 
+ * - 左组中 关于右组中有多少个达标的 <br>
+ * - 右组中 关于左组中有多少个达标的 <br>
  *
  */
 
@@ -31,7 +37,9 @@ public class MergeSortUtil {
 		}
 		int mid = l + ((r - l) / 2);
 		// 最终的量 = 左边排序时产生的小合总量 + 右边排序时产生的小合总量 + Merge时产生的小合总量
-		return processSmallSum(arr, l, mid) + processSmallSum(arr, mid, r) + mergeSmallSum(arr, l, mid, r);
+		return processSmallSum(arr, l, mid) 
+			 + processSmallSum(arr, mid, r) 
+			 + mergeSmallSum(arr, l, mid, r);
 	}
 	private static int mergeSmallSum(int[] arr, int l, int m, int r) {
 		int[] help = new int[r - l + 1];
@@ -80,7 +88,9 @@ public class MergeSortUtil {
 		}
 		int mid = l + ((r - l) / 2);
 		// 左边你给我你的count + 右边你给我你的count + 合并起来给我一下count
-		return processCountRevPair(arr, l, mid) + processCountRevPair(arr, mid, r) + mergeCountRevPair(arr, l, mid, r);
+		return processCountRevPair(arr, l, mid) 
+			 + processCountRevPair(arr, mid, r) 
+			 + mergeCountRevPair(arr, l, mid, r);
 	}
 	
 	private static int mergeCountRevPair(int[] arr, int l, int m, int r) {
@@ -122,10 +132,12 @@ public class MergeSortUtil {
 			return 0;
 		}
 		int mid = l + ((r - l) / 2);
-		return processCountGreatNum(arr, l, mid) + processCountGreatNum(arr, mid, r) + mergeCountGreatNum(arr, l, mid, r);
+		return processCountGreatNum(arr, l, mid) 
+		     + processCountGreatNum(arr, mid, r) 
+		     + mergeCountGreatNum(arr, l, mid, r);
 	}
 	
-	public static int mergeCountGreatNum(int[] arr, int L, int m, int r) {
+	private static int mergeCountGreatNum(int[] arr, int L, int m, int r) {
 		// 左组： [L....M] 右组： [M+1....R]
 		int ans = 0;
 		// 目前囊括进来的数，是从[M+1, windowR)
@@ -151,6 +163,65 @@ public class MergeSortUtil {
 		}
 		for (i = 0; i < help.length; i++) {
 			arr[L + i] = help[i];
+		}
+		return ans;
+	}
+	
+	/**
+	 * 子数组累加和： 一个数组arr，2个位置 lower， upper, 有多少个子数组的累加和在【lower，upper】上
+	 *  https://leetcode.com/problems/count-of-range-sum/
+	 */
+	
+	public static int countSubArray(int[] nums, int lower, int upper) {
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+		long[] preSum = CommonArrayUtil.prefixSumArr(nums);
+		return processSubArray(preSum, 0, preSum.length - 1, lower, upper);
+	}
+	
+	private static int processSubArray(long[] sum, int l, int r, int lower, int upper) {
+		if (l == r) {
+			return sum[l] >= lower && sum[l] <= upper ? 1 : 0;
+		}
+		int m = l + ((r - l) / 2);
+		return processSubArray(sum, l, m, lower, upper) 
+			 + processSubArray(sum, m + 1, r, lower, upper) 
+			 + mergeSubArray(sum, l, m, r, lower, upper);
+	}
+	
+	private static int mergeSubArray(long[] arr, int l, int m, int r, int lower, int upper) {
+		int ans = 0;
+		int windowL = l;
+		int windowR = l;
+		// [windowL, windowR)
+		for (int i = m + 1; i <= r; i++) {
+			long min = arr[i] - upper;
+			long max = arr[i] - lower;
+			while (windowR <= m && arr[windowR] <= max) {
+				windowR++;
+			}
+			while (windowL <= m && arr[windowL] < min) {
+				windowL++;
+			}
+			// 因为窗口是【L,R),
+			ans += windowR - windowL;
+		}
+		long[] help = new long[r - l + 1];
+		int i = 0;
+		int p1 = l;
+		int p2 = m + 1;
+		while (p1 <= m && p2 <= r) {
+			help[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
+		}
+		while (p1 <= m) {
+			help[i++] = arr[p1++];
+		}
+		while (p2 <= r) {
+			help[i++] = arr[p2++];
+		}
+		for (i = 0; i < help.length; i++) {
+			arr[l + i] = help[i];
 		}
 		return ans;
 	}

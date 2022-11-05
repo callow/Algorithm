@@ -204,7 +204,7 @@ public class MergeSortUtil {
 			while (windowL <= m && arr[windowL] < min) {
 				windowL++;
 			}
-			// 因为窗口是【L,R),
+			// 因为窗口是【L,R), 所以R - L 就是个数
 			ans += windowR - windowL;
 		}
 		long[] help = new long[r - l + 1];

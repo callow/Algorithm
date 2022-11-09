@@ -5,7 +5,9 @@ import java.util.Queue;
 import java.util.Stack;
 
 import com.algo.util.common.CommonArrayUtil;
-
+/**
+ * n*log(n)
+ */
 public class QuickSortUtil {
 	/**
 	 * 

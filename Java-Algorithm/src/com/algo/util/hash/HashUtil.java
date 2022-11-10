@@ -1,5 +1,6 @@
 package com.algo.util.hash;
 
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
@@ -7,6 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.xml.bind.DatatypeConverter;
+
+import com.google.common.hash.Hashing;
 
 public class HashUtil {
 	
@@ -33,14 +36,16 @@ public class HashUtil {
 	}
 	
 	/**
-	 * 生成N种不同的Hash,提供给BoomFilter
+	 * 生成N种不同的HashValues,提供给BoomFilter : i * f1(hashvalue) + f2（hashvalue)
 	 */
 	
-	public Set<String> generateNDiffHashcode(String input, int n) {
-		Set<String> hashs = new HashSet<>(n);
-		for (int i =0; i < n; i++) {
-			
+	public Set<Long> generateNDiffHashcode(String input, int n) {
+		Set<Long> hashValues = new HashSet<>(n);
+		long f1 = Hashing.murmur3_128().newHasher().putString(input, Charset.defaultCharset()).hash().asLong();
+		long f2 = Hashing.crc32c().newHasher().putString(input, Charset.defaultCharset()).hash().asLong();
+		for (int i = 1; i <= n; i++) {
+			hashValues.add(i * f1 + f2);
 		}
-		return hashs;
+		return hashValues;
 	}
 }

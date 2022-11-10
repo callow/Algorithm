@@ -41,8 +41,8 @@ public class HashUtil {
 	
 	public Set<Long> generateNDiffHashcode(String input, int n) {
 		Set<Long> hashValues = new HashSet<>(n);
-		long f1 = Hashing.murmur3_128().newHasher().putString(input, Charset.defaultCharset()).hash().asLong();
-		long f2 = Hashing.crc32c().newHasher().putString(input, Charset.defaultCharset()).hash().asLong();
+		long f1 = Hashing.murmur3_128().hashString(input, Charset.defaultCharset()).asLong();
+		long f2 = Hashing.crc32c().hashString(input, Charset.defaultCharset()).asLong();
 		for (int i = 1; i <= n; i++) {
 			hashValues.add(i * f1 + f2);
 		}

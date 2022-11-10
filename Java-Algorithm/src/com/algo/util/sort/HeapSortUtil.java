@@ -11,7 +11,7 @@ public class HeapSortUtil {
 
 	// 堆排序额外空间复杂度O(1)
 	public static void heapSort(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return;
 		}
 		// O(N)
@@ -28,7 +28,7 @@ public class HeapSortUtil {
 	}
 	
 	/**
-	 * 向下看
+	 * 向下沉
 	 */
 	private static void heapify(int[] arr, int index, int heapSize) {
 		int left = index * 2 + 1;

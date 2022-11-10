@@ -6,6 +6,11 @@ import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnel;
 import com.google.common.hash.PrimitiveSink;
 
+/**
+ *  用于判断item 是否存在/不存在 
+ *
+ */
+
 @SuppressWarnings("serial")
 public class BloomFilterUtil {
 

@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/guava-31.1-jre.jar"/>
 	<classpathentry kind="lib" path="lib/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/hll-1.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

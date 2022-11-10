@@ -32,5 +32,15 @@ public class HashUtil {
 		return DatatypeConverter.printHexBinary(hash.digest(input.getBytes())).toUpperCase();
 	}
 	
+	/**
+	 * 生成N种不同的Hash,提供给BoomFilter
+	 */
 	
+	public Set<String> generateNDiffHashcode(String input, int n) {
+		Set<String> hashs = new HashSet<>(n);
+		for (int i =0; i < n; i++) {
+			
+		}
+		return hashs;
+	}
 }

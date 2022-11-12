@@ -6,11 +6,11 @@ import com.algo.util.heap.HeapUtil;
 /**
  * SPACE : O(1) <br>
  * Time: O(N*logN)
- *
+ * 
  */
 public class HeapSortUtil {
 
-	// ∂—≈≈–Ú∂ÓÕ‚ø’º‰∏¥‘”∂»O(1)
+	// ∂—≈≈–Ú∂ÓÕ‚ø’º‰∏¥‘”∂»O(1), 
 	public static void heapSort(int[] arr) {
 		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return;

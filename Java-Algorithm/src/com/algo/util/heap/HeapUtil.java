@@ -1,5 +1,7 @@
 package com.algo.util.heap;
 
+import java.util.PriorityQueue;
+
 import com.algo.util.common.CommonArrayUtil;
 
 /**
@@ -44,6 +46,33 @@ public class HeapUtil {
 			CommonArrayUtil.swap(arr, largestSon, i);
 			i = largestSon; // i来到较大孩子的位置，继续
 			leftSon = i * 2 + 1;
+		}
+	}
+	
+	/**
+	 * 几乎有序的数组arr, 每个元素i 往后k的小范围可能无序，对ARR它进行最优排序
+	 * @param arr
+	 * @param k : 无序的小范围，e.g k = 5
+	 */
+	
+	public static void sortedArrDistanceLessK(int[] arr, int k) {
+		if (k == 0) {
+			return;
+		}
+		// 默认小根堆
+		PriorityQueue<Integer> heap = new PriorityQueue<>();
+		int index = 0;
+		// 0...K-1
+		for (; index <= Math.min(arr.length - 1, k - 1); index++) { // 小根堆大小为K， 
+			heap.add(arr[index]);
+		}
+		int i = 0;
+		for (; index < arr.length; i++, index++) { // 加一个，弹一个，因为小根堆默认有序
+			heap.add(arr[index]);
+			arr[i] = heap.poll();
+		}
+		while (!heap.isEmpty()) { //最后的结尾边界
+			arr[i++] = heap.poll();
 		}
 	}
 	

@@ -3,7 +3,7 @@ package com.algo.util.heap;
 import com.algo.util.common.CommonArrayUtil;
 
 /**
- * 用Array可以表示完全二叉树，父节点要向下取整 : <br><br>
+ * 用Array可以表示完全二叉树，父节点要向下取整 二叉树高度Logn: <br><br>
  * 任何一个 i 位置 ： <br>
  *    它左孩子的位置 2i+1 <br> 
  *    它右孩子的位置 2i+2 <br>

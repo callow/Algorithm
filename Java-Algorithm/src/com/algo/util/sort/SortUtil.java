@@ -11,7 +11,7 @@ public class SortUtil {
 	 *   - 2 ~ n-1  找到最小值，在哪，swap放到2 位置上  <br>
 	 */
 	public static void selectionSort(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return;
 		}
 		for (int i =0; i < arr.length -1; i++) {
@@ -28,7 +28,7 @@ public class SortUtil {
 	 */
 	
 	public static void bubbleSort(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return;
 		}
 		
@@ -44,7 +44,7 @@ public class SortUtil {
 	 * 插入排序 O（N^2）
 	 */
 	public static void insertSort(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return;
 		}
 		for (int i = 1; i < arr.length; i++) {
@@ -62,7 +62,7 @@ public class SortUtil {
 	 */
 	
 	public static void mergeSort(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return;
 		}
 		process(arr, 0, arr.length - 1);

@@ -21,7 +21,7 @@ public class MergeSortUtil {
 	 */
 	
 	public static int smallSum(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return 0;
 		}
 		return processSmallSum(arr, 0, arr.length - 1);
@@ -72,7 +72,7 @@ public class MergeSortUtil {
 	 */
 	
 	public static int countReversePair(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return 0;
 		}
 		return processCountRevPair(arr, 0, arr.length - 1);
@@ -121,7 +121,7 @@ public class MergeSortUtil {
 	 *  - https://leetcode.com/problems/reverse-pairs/
 	 */
 	public static int countGreatNum (int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return 0;
 		}
 		return processCountGreatNum(arr, 0, arr.length - 1);
@@ -143,7 +143,7 @@ public class MergeSortUtil {
 		// 目前囊括进来的数，是从[M+1, windowR)
 		int windowR = m + 1;
 		for (int i = L; i <= m; i++) {
-			while (windowR <= r && (long) arr[i] > (long) arr[windowR] * 2) {
+			while (windowR <= r && arr[i] > (long) arr[windowR] * 2) {
 				windowR++;
 			}
 			ans += windowR - m - 1;
@@ -173,7 +173,7 @@ public class MergeSortUtil {
 	 */
 	
 	public static int countSubArray(int[] nums, int lower, int upper) {
-		if (nums == null || nums.length == 0) {
+		if (CommonArrayUtil.isEmpty(nums)) {
 			return 0;
 		}
 		long[] preSum = CommonArrayUtil.prefixSumArr(nums);

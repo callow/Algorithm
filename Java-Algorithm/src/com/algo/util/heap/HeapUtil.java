@@ -3,6 +3,7 @@ package com.algo.util.heap;
 import java.util.PriorityQueue;
 
 import com.algo.util.common.CommonArrayUtil;
+import com.algo.util.common.Line;
 
 /**
  * 用Array可以表示完全二叉树，父节点要向下取整 二叉树高度Logn: <br><br>
@@ -50,7 +51,7 @@ public class HeapUtil {
 	}
 	
 	/**
-	 * 几乎有序的数组arr, 每个元素i 往后k的小范围可能无序，对ARR它进行最优排序
+	 * 几乎有序的数组arr, 每个元素i 往后k的小范围可能无序，对Arr它进行排序
 	 * @param arr
 	 * @param k : 无序的小范围，e.g k = 5
 	 */
@@ -76,5 +77,32 @@ public class HeapUtil {
 		}
 	}
 	
+	/**
+	 * 最大线段重合问题 有n个[start,end], 哪个区域是重写最多区域，返回重叠数 O(nLogn)<br><br>
+	 * 
+	 * 
+	 */
+	
+	public static int getMaxDuplicates(int[][] m) {
+		// 以Start位置由小到大排序
+		Line[] lines = Line.fillAndSort(m);
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+		
+		int max = 0;
+		for (int i = 0; i < lines.length; i++) {
+			Line current = lines[i];
+			
+			// 将小根堆中<= start的全部Remove, minHeap.peek() 就是某个线段的End
+			while (!minHeap.isEmpty() && minHeap.peek() <= current.start) {
+				minHeap.poll();
+			}
+			// 然后把自己的end放入小根堆, 小根堆中有几个数就是答案, 解释： 如果重合区域以start作为左边界的话，有多少线段会穿越过start
+			minHeap.add(current.end);
+			
+			// 所有线段中筛选一遍最大的就是ans
+			max = Math.max(max, minHeap.size());
+		}
+		return max;
+	}
 	
 }

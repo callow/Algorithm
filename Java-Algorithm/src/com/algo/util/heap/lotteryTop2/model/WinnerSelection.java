@@ -8,10 +8,10 @@ import com.algo.util.heap.SuperHeap;
 
 public class WinnerSelection {
 
-	private HashMap<Integer, Customer> customers;
-	private SuperHeap<Customer> candidateHeap;
-	private SuperHeap<Customer> winnerHeap;
-	private int winnerLimit;
+	private HashMap<Integer, Customer> customers; // 用户ID对应什么Customer
+	private SuperHeap<Customer> candidateHeap; // 候选区的堆（大根堆） - 谁买的多谁排上面
+	private SuperHeap<Customer> winnerHeap; // 得奖区的堆（小根堆） - 谁买的少排最上面
+	private int winnerLimit; // 最多有几个得奖者
 	
 	
 	public WinnerSelection(int limit) {
@@ -21,7 +21,7 @@ public class WinnerSelection {
 		winnerLimit = limit;
 	}
 
-	// 当前处理i号事件，arr[i] -> id,  buyOrRefund
+	// 当前处理i号事件，用户：arr[i] -> id,  发生了什么： buyOrRefund
 	public void operate(int time, int id, boolean buyOrRefund) {
 		if (!buyOrRefund && !customers.containsKey(id)) {
 			return;
@@ -38,6 +38,7 @@ public class WinnerSelection {
 		if (c.buy == 0) {
 			customers.remove(id);
 		}
+		// 当前用户即不在候选区，也不在得奖区
 		if (!candidateHeap.contains(c) && !winnerHeap.contains(c)) {
 			if (winnerHeap.size() < winnerLimit) {
 				c.enterTime = time;
@@ -46,12 +47,14 @@ public class WinnerSelection {
 				c.enterTime = time;
 				candidateHeap.push(c);
 			}
+		// 当前用户在候选区
 		} else if (candidateHeap.contains(c)) {
-			if (c.buy == 0) {
+			if (c.buy == 0) { // 购买数是0,Logn
 				candidateHeap.remove(c);
-			} else {
+			} else { // 购买数不是0，但是肯定变化了 => 动态调整Logn
 				candidateHeap.resign(c);
 			}
+			// 当前用户在得奖区
 		} else {
 			if (c.buy == 0) {
 				winnerHeap.remove(c);

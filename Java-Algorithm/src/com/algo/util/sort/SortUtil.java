@@ -182,4 +182,24 @@ public class SortUtil {
 		}
 	}
 	
+	/**
+	 * 希尔排序： Time O(n^(1.3-2)) Space: O(1) <br><br>
+	 * 
+	 * 没有 O(n(logn))快，但是比O(n^2 ) 好太多
+	 * 
+	 */
+	
+	public static void shellSort(int[] arrays) {
+        for (int step = arrays.length / 2; step > 0; step /= 2) {
+            for (int i = step; i < arrays.length; i++) {
+                int j = i;
+                int temp = arrays[j];
+                while (j - step >= 0 && arrays[j - step] > temp) {
+                    arrays[j] = arrays[j - step];
+                    j = j - step;
+                }
+                arrays[j] = temp;
+            }
+        }
+    }
 }

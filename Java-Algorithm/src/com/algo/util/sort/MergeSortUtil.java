@@ -3,7 +3,7 @@ package com.algo.util.sort;
 import com.algo.util.common.CommonArrayUtil;
 
 /**
- * MergeSort 是分而治之思路， 砍一半， （左边总个数 + 右边总个数 + Merge过程中的总个数）
+ * MergeSort 是分而治之思路， 砍一半， （左边总个数 + 右边总个数 + Merge过程中的总个数） O(NLogn)
  * 
  * 关键代码都是在Merge，它把很多东西变成有序的，间接结出很多题目,反正Merge的过程也要左右两边的数都看一遍，且左右2边必须有序，因此利用了一下 <br>
  * 

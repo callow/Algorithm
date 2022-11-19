@@ -232,4 +232,23 @@ public class LinklistUtil {
 		
 	}
 	
+	/**
+	 * 2个可能有环可能无环的链表，如果相交，返回第一个相交节点 Space: O(1)
+	 */
+	
+	public static Node getIntersectNode(Node head1, Node head2) {
+		if (head1 == null || head2 == null) {
+			return null;
+		}
+		Node loop1 = LoopUtil.getEntryPoint(head1);
+		Node loop2 = LoopUtil.getEntryPoint(head2);
+		if (loop1 == null && loop2 == null) {
+			return LoopUtil.noLoopIntersection(head1, head2);
+		}
+		if (loop1 != null && loop2 != null) {
+			return LoopUtil.bothLoopIntersection(head1, loop1, head2, loop2);
+		}
+		return null;
+	}
+	
 }

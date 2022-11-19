@@ -3,6 +3,7 @@ package com.algo.util.linklist;
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.model.DoubleNode;
 import com.algo.util.common.model.Node;
+import com.algo.util.common.model.RandomNode;
 import com.algo.util.linklist.model.DoubleEndsQueue;
 import com.algo.util.linklist.model.Queue;
 import com.algo.util.linklist.model.Stack;
@@ -186,6 +187,48 @@ public class LinklistUtil {
 		return nodeArr[0];
 	}
 	
+	/**
+	 * 将一个带随机指针的节点复制一份，要求Space O(1) <br><br>
+	 * 思路： 克隆Node(n')挂在old节点的下一个
+	 */
 	
+	public static RandomNode copy(RandomNode head) {
+		if (head == null) {
+			return null;
+		}
+		RandomNode cur = head;
+		RandomNode next = null;
+		// 1 -> 2 -> 3 -> null
+		// 1 -> 1' -> 2 -> 2' -> 3 -> 3'
+		while (cur != null) {
+			next = cur.next;
+			cur.next = new RandomNode(cur.val); // 克隆节点挂在old节点的下一个
+			cur.next.next = next; // 原old节点下一个挂在克隆节点下一个
+			cur = next;
+		}
+		cur = head;
+		RandomNode copy = null;
+		// 1 1' 2 2' 3 3'
+		// 依次设置 1' 2' 3' random指针
+		while (cur != null) { // 一对一对的把random指针设置好
+			next = cur.next.next;
+			copy = cur.next;
+			copy.random = cur.random != null ? cur.random.next : null;
+			cur = next;
+		}
+		RandomNode res = head.next;
+		cur = head;
+		// 老 新 混在一起，next方向上，random正确
+		// next方向上，把新老链表分离
+		while (cur != null) {
+			next = cur.next.next;
+			copy = cur.next;
+			cur.next = next;
+			copy.next = next != null ? next.next : null;
+			cur = next;
+		}
+		return res;
+		
+	}
 	
 }

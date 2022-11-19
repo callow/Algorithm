@@ -1,6 +1,8 @@
 package com.algo.util.common;
 
 import java.lang.reflect.Array;
+
+import com.algo.util.common.model.Node;
 @SuppressWarnings("unchecked")
 public class CommonArrayUtil {
 
@@ -9,6 +11,12 @@ public class CommonArrayUtil {
 	 */
 	public static void swap(int[] arr, int i, int j) {
 		int tmp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = tmp;
+	}
+	
+	public static void swap(Node[] arr, int i, int j) {
+		Node tmp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = tmp;
 	}

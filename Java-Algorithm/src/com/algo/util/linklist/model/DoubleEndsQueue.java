@@ -1,4 +1,4 @@
-package com.algo.util.linklist;
+package com.algo.util.linklist.model;
 
 import com.algo.util.common.DoubleNode;
 

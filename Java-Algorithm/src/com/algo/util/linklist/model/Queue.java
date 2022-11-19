@@ -1,14 +1,14 @@
-package com.algo.util.linklist;
+package com.algo.util.linklist.model;
 
 /**
  * 
- * 使用双链表实现Stack
+ * 使用双链表实现Queue
  *
  */
-public class Stack<T> {
+public class Queue<T> {
 	private DoubleEndsQueue<T> queue;
 
-	public Stack() {
+	public Queue() {
 		queue = new DoubleEndsQueue<T>();
 	}
 
@@ -16,11 +16,12 @@ public class Stack<T> {
 		queue.addFromHead(value);
 	}
 
-	public T pop() {
-		return queue.popFromHead();
+	public T poll() {
+		return queue.popFromBottom();
 	}
 
 	public boolean isEmpty() {
 		return queue.isEmpty();
 	}
+
 }

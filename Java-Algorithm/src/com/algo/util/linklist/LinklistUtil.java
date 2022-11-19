@@ -178,28 +178,14 @@ public class LinklistUtil {
 			cur = cur.next;
 		}
 		// 已经完成放入数组，现在开始分区，即在数组中排序
-		partition(nodeArr, num);
+		CommonArrayUtil.partition(nodeArr, num);
 		for (i = 1; i != nodeArr.length; i++) {
 			nodeArr[i - 1].next = nodeArr[i]; // 追加next指针一路给到Node[0]
 		}
 		nodeArr[i - 1].next = null;
 		return nodeArr[0];
-		
 	}
 	
-	private static void partition(Node<Integer>[] nodeArr, int pivot) {
-		int small = -1;
-		int big = nodeArr.length;
-		int index = 0;
-		while (index != big) {
-			if (nodeArr[index].value < pivot) {
-				CommonArrayUtil.swap(nodeArr, ++small, index++);
-			} else if (nodeArr[index].value == pivot) {
-				index++;
-			} else {
-				CommonArrayUtil.swap(nodeArr, --big, index);
-			}
-		}
-	}
+	
 	
 }

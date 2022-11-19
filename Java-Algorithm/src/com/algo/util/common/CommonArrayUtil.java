@@ -22,6 +22,27 @@ public class CommonArrayUtil {
 	}
 	
 	/**
+	 * 对数组进行partiton, pivot放中间， < pivot放左边， > pivot 放右边
+	 * @param nodeArr
+	 * @param pivot
+	 */
+	public static void partition(Node<Integer>[] nodeArr, int pivot) {
+		int small = -1;
+		int big = nodeArr.length;
+		int index = 0;
+		while (index != big) {
+			if (nodeArr[index].value < pivot) {
+				CommonArrayUtil.swap(nodeArr, ++small, index++);
+			} else if (nodeArr[index].value == pivot) {
+				index++;
+			} else {
+				CommonArrayUtil.swap(nodeArr, --big, index);
+			}
+		}
+	}
+	
+	
+	/**
 	 * 拷贝，产生一个新数组
 	 */
 	

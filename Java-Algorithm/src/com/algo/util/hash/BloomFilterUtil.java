@@ -1,6 +1,6 @@
 package com.algo.util.hash;
 
-import com.algo.util.common.Student;
+import com.algo.util.common.model.Student;
 import com.google.common.base.Charsets;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnel;

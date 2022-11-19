@@ -1,7 +1,7 @@
 package com.algo.util.linklist;
 
-import com.algo.util.common.DoubleNode;
-import com.algo.util.common.Node;
+import com.algo.util.common.model.DoubleNode;
+import com.algo.util.common.model.Node;
 import com.algo.util.linklist.model.DoubleEndsQueue;
 import com.algo.util.linklist.model.Queue;
 import com.algo.util.linklist.model.Stack;

@@ -1,6 +1,6 @@
 package com.algo.util.linklist.model;
 
-import com.algo.util.common.DoubleNode;
+import com.algo.util.common.model.DoubleNode;
 
 /**
  * 

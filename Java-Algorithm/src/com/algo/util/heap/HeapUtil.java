@@ -3,7 +3,7 @@ package com.algo.util.heap;
 import java.util.PriorityQueue;
 
 import com.algo.util.common.CommonArrayUtil;
-import com.algo.util.common.Line;
+import com.algo.util.common.model.Line;
 
 /**
  * 用Array可以表示完全二叉树，父节点要向下取整 二叉树高度Logn: <br><br>

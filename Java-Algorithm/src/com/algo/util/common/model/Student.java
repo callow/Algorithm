@@ -1,4 +1,4 @@
-package com.algo.util.common;
+package com.algo.util.common.model;
 
 public class Student{
     private String name;

@@ -3,6 +3,9 @@ package com.algo.util.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.algo.util.common.model.DoubleNode;
+import com.algo.util.common.model.Node;
+
 public class CommonLinklistUtil {
 
 	/**

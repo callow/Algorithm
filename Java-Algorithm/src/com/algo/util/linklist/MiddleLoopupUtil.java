@@ -13,7 +13,7 @@ import com.algo.util.common.model.Node;
  *
  */
 @SuppressWarnings("rawtypes")
-public class FastSlowPointerUtil {
+public class MiddleLoopupUtil {
 
 	/**
 	 * 基数长度返回中点，偶数长度返回上中点

@@ -1,4 +1,4 @@
-package com.algo.util.heap;
+package com.algo.util.heap.model;
 
 import java.util.ArrayList;
 import java.util.Comparator;

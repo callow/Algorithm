@@ -1,4 +1,4 @@
-package com.algo.util.trie;
+package com.algo.util.trie.model;
 
 import java.util.HashMap;
 import java.util.Map;

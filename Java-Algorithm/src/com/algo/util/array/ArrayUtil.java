@@ -1,5 +1,7 @@
 package com.algo.util.array;
 
+import com.algo.util.array.model.Queue;
+
 public class ArrayUtil {
 
 	/**

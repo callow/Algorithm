@@ -1,4 +1,4 @@
-package com.algo.util.queue;
+package com.algo.util.queue.model;
 
 import java.util.LinkedList;
 import java.util.Queue;

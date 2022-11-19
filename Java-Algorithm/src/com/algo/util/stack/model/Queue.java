@@ -1,4 +1,4 @@
-package com.algo.util.stack;
+package com.algo.util.stack.model;
 
 import java.util.Stack;
 /**

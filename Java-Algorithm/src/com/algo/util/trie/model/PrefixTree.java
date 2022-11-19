@@ -1,4 +1,5 @@
-package com.algo.util.trie;
+package com.algo.util.trie.model;
+
 /**
  * 
  * 前缀树/字典树： prefix tree = trie, 字符在路上，不是在节点上，路可以复用。  Time: O(m) ~m是最长字符串长度<br><br>

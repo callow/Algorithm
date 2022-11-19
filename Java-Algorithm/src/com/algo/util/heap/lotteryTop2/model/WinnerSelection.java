@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.algo.util.heap.SuperHeap;
+import com.algo.util.heap.model.SuperHeap;
 
 public class WinnerSelection {
 

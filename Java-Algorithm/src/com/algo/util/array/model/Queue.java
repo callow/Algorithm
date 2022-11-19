@@ -1,4 +1,4 @@
-package com.algo.util.array;
+package com.algo.util.array.model;
 
 import com.algo.util.common.CommonArrayUtil;
 

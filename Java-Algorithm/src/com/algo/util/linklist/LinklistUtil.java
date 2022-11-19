@@ -189,7 +189,8 @@ public class LinklistUtil {
 	
 	/**
 	 * 将一个带随机指针的节点复制一份，要求Space O(1) <br><br>
-	 * 思路： 克隆Node(n')挂在old节点的下一个
+	 * 思路： 克隆Node(n')挂在old节点的下一个， 最后设置完random指针，然后断开无用的node <br>
+	 * https://leetcode.com/problems/copy-list-with-random-pointer/
 	 */
 	
 	public static RandomNode copy(RandomNode head) {

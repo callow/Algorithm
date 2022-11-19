@@ -26,7 +26,7 @@ public class BinaryTreeIterateUtil {
 	}
 	
 	/**
-	 * 先序序列化
+	 * 先序序列化  { null, 1, null, 2, null}
 	 */
 	
 	public static Queue<String> preSerialize(BTNode head) {
@@ -83,26 +83,8 @@ public class BinaryTreeIterateUtil {
 	}
 	
 	/**
-	 * 中序序列化 { null, 1, null, 2, null}
+	 * 中序序列化 不可能 因为有歧义
 	 */
-	
-	public static Queue<String> inSerial(BTNode head) {
-		Queue<String> ans = new LinkedList<>();
-		ins(head, ans);
-		return ans;
-	}
-
-	private static void ins(BTNode head, Queue<String> ans) {
-		if (head == null) {
-			ans.add(null);
-		} else {
-			ins(head.left, ans);
-			ans.add(String.valueOf(head.value));
-			ins(head.right, ans);
-		}
-	}
-	
-	
 	
 	
 	//-------------------------------------------------------------------------------------------------
@@ -170,7 +152,7 @@ public class BinaryTreeIterateUtil {
 	// --------------------------------------------------------------------------------------
 	
 	/**
-	 * 按层遍历 : = Q宽
+	 * 按层遍历打印 : = Q宽
 	 */
 	
 	public static void level(BTNode head) {
@@ -189,6 +171,72 @@ public class BinaryTreeIterateUtil {
 				queue.add(cur.right);
 			}
 		}
+	}
+	
+	/**
+	 * 按层序列化
+	 */
+	
+	public static Queue<String> levelSerialize(BTNode head) {
+		Queue<String> ans = new LinkedList<>();
+		if (head == null) {
+			ans.add(null);
+		} else {
+			ans.add(String.valueOf(head.value));
+			Queue<BTNode> queue = new LinkedList<>();
+			queue.add(head);
+			while (!queue.isEmpty()) {
+				head = queue.poll(); // head 父   子
+				if (head.left != null) {
+					ans.add(String.valueOf(head.left.value));
+					queue.add(head.left);
+				} else {
+					ans.add(null);
+				}
+				if (head.right != null) {
+					ans.add(String.valueOf(head.right.value));
+					queue.add(head.right);
+				} else {
+					ans.add(null);
+				}
+			}
+		}
+		return ans;
+	}
+	
+	/**
+	 * 反序列化-按曾
+	 */
+	
+	public static BTNode levelDeserialize(Queue<String> levelList) {
+		if (levelList == null || levelList.size() == 0) {
+			return null;
+		}
+		BTNode head = generateNode(levelList.poll());
+		Queue<BTNode> queue = new LinkedList<>();
+		if (head != null) {
+			queue.add(head);
+		}
+		BTNode node = null;
+		while (!queue.isEmpty()) {
+			node = queue.poll();
+			node.left = generateNode(levelList.poll());
+			node.right = generateNode(levelList.poll());
+			if (node.left != null) {
+				queue.add(node.left);
+			}
+			if (node.right != null) {
+				queue.add(node.right);
+			}
+		}
+		return head;
+	}
+	
+	private static BTNode generateNode(String val) {
+		if (val == null) {
+			return null;
+		}
+		return new BTNode(Integer.valueOf(val));
 	}
 	
 }

@@ -9,6 +9,7 @@ import java.util.Queue;
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.common.model.BTNode;
 import com.algo.util.common.model.NTNode;
+import com.algo.util.common.model.PTNode;
 /**
  * 
  * 二叉树的而行为一定要递归来解决
@@ -128,4 +129,37 @@ public class BinaryTreeUtil {
 		return max;
 	}
 	
+	/**
+	 * 找到带父指针的2叉树的后继节点,后继节点： 中序遍历中当前节点的下一个结点<br><br>
+	 * 
+	 * X有右树： successor = 右树中最左的孩子. <br>
+	 * X无右树： Look up until 不是自己父的右孩子，即左孩子，则那个节点就是x后继<br>
+	 * 若都没有，即全树的最右的那个节点找后继，它的后继= null
+	 */
+	
+	public static PTNode getSuccessor(PTNode node) {
+		if (node == null) {
+			return node;
+		}
+		if (node.right != null) {
+			return getLeftmost(node.right);
+		} else { // 无右子树
+			PTNode parent = node.parent;
+			while (parent != null && parent.right == node) { // 当前节点是其父亲节点右孩子
+				node = parent;
+				parent = node.parent;
+			}
+			return parent;
+		}
+	}
+	
+	private static PTNode getLeftmost(PTNode node) {
+		if (node == null) {
+			return node;
+		}
+		while (node.left != null) {
+			node = node.left;
+		}
+		return node;
+	}
 }

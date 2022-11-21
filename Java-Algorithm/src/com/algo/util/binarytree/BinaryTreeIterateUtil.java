@@ -7,7 +7,9 @@ import java.util.Stack;
 import com.algo.util.common.model.BTNode;
 
 /**
- * 二叉树遍历/序列化工具类
+ * 二叉树遍历/序列化工具类<br><br>
+ * 前中后序+按层遍历和序列化
+ * 
  *
  */
 public class BinaryTreeIterateUtil {

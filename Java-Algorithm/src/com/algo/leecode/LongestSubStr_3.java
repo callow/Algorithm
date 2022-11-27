@@ -11,7 +11,7 @@ public class LongestSubStr_3 {
 
 	/**
 	 * 最长字串O(N)： abcabcbb
-	 * 		滑动窗口: left: 上一次出现a字母的下一个位置， right: 现在a字母的位置 -> 所以a'+1 ~ a 就是要收集答案了.
+	 * 		滑动窗口: left: 上一次出现a字母的下一个位置， right: 现在a字母的位置 -> 所以a'+1 ~ a 就是要收集答案了. 移动i 即右侧窗口 O(n), 收集左边的答案
 	 * 		Map反向索引
 	 * 		标准ascii码字符集共有128个编码<br>
 	 * 			int[26] for Letters 'a' - 'z' or 'A' - 'Z' <br>

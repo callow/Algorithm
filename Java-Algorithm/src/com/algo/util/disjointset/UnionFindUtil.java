@@ -92,4 +92,12 @@ public class UnionFindUtil {
 		return ans;
 	}
 	
+	/**
+	 *  并行计算并查集，中国地图每一cm^2 有水 1 陆地 0 ,求有多少个湖泊。需要并行计算。只需要计算边界。<br>
+	 *  看并查集最后一节
+	 */
+	
+	public static int parallismUnionFind() {
+		return -1;
+	}
 }

@@ -128,6 +128,40 @@ public class SortUtil {
 			}
 		}
 	}
+	/**
+	 * 可以接受负数地计数排序 
+	 */
+	
+    public static void countingSort(int[] arr) {
+    	if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
+			return;
+		}
+    	
+        int i, j, max = -1; 
+        int[] values;
+        //get the highest absolute value to determine the size of the array 
+        for (i = 0; i < arr.length; i++)
+            if (Math.abs(arr[i]) > max) max = Math.abs(arr[i]);
+        //create double the max size array
+        values = new int[max*2 + 1];
+
+        //when reaching a value make a shift of max size            
+        for (i = 0; i < arr.length; i++)
+            values[arr[i]+max]++;
+
+        i = 0; j = values.length - 1;
+        while (i < arr.length)
+        {
+            if (values[j] > 0)
+            {
+                values[j]--;
+                //shift back when putting in the sorted array
+                arr[i] = j-max;
+                i++;
+            }
+            else j--;
+        }
+    }
 	
 	
 	/**

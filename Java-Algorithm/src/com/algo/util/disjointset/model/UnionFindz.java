@@ -1,7 +1,10 @@
 package com.algo.util.disjointset.model;
 /**
  * 
- * 使用数组实现并查集，构造器接收： m行 n列
+ * 使用数组实现并查集，构造器接收： m行 n列 <br>
+ * 但是这个并查集有个问题当数据量特别大e.g m = 1亿, n = 1亿 而元素1的位置很少，在构造器里面都初始化出来太浪费，
+ *   因此可以用Map代替，有需要的时候再计算<br>
+ *  e.g UnionFindr
  */
 
 public class UnionFindz {

@@ -27,4 +27,14 @@ public class CommonStringUtil {
 		}
 		return res;
 	} 
+	
+	public static  StringBuilder manacherString2(String str) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("#");
+        for (int i = 0; i < str.length(); i++) {
+            stringBuilder.append(str.charAt(i));
+            stringBuilder.append("#");
+        }
+        return stringBuilder;
+	} 
 }

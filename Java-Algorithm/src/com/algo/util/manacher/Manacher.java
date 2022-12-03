@@ -72,6 +72,34 @@ public class Manacher {
 		return max - 1;
 	}
 	
-	
-	
+	public static String maxStr(String s) {
+
+        StringBuilder stringBuilder =  CommonStringUtil.manacherString2(s);
+        int R = 0;
+        int C = 0;
+        //求len中的最大
+        int answer = 0;
+        //answer最大时的中心
+        int index = 0;
+        int pArr[] = new int[stringBuilder.length() ];
+        for (int i = 1; i < stringBuilder.length(); i++) {
+        	pArr[i] = R > i ? Math.min(pArr[2 * C - i], R - i) : 1;
+			while (i + pArr[i] < stringBuilder.length() && i - pArr[i] > -1) {
+				if (stringBuilder.charAt(i + pArr[i]) == stringBuilder.charAt(i - pArr[i]))
+					pArr[i]++;
+				else {
+					break;
+				}
+			}
+            if(pArr[i] + i > R) {
+                R = pArr[i] + i;
+                C = i;
+            }
+            if(pArr[i] > answer) {
+                answer = pArr[i];
+                index = i;
+            }
+        }
+        return stringBuilder.substring(index - answer + 1, index + answer).replace("#", "");
+    }
 }

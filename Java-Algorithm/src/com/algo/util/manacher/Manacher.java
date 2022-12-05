@@ -22,8 +22,8 @@ import com.algo.util.common.CommonStringUtil;
  */
 public class Manacher {
 
-	public static int maxLen(String s) {
-		if (s == null || s.length() == 0) {
+	public static int maxPalindromicLen(String s) {
+		if (CommonStringUtil.isEmpty(s)) {
 			return 0;
 		}
 		// "12132" -> "#1#2#1#3#2#"
@@ -72,8 +72,16 @@ public class Manacher {
 		return max - 1;
 	}
 	
-	public static String maxStr(String s) {
-
+	/**
+	 * 原始串的结尾位置(x) = 处理串的结尾位置 - 1 / 2 <br>
+	 * maxPalindromicLen 长度又已知<br>
+	 * 因此subString()一下就知道了
+	 */
+	
+	public static String maxPalindromicStr(String s) {
+		if (CommonStringUtil.isEmpty(s)) { 
+			return null;
+		}
         StringBuilder stringBuilder =  CommonStringUtil.manacherString2(s);
         int R = 0;
         int C = 0;
@@ -102,4 +110,48 @@ public class Manacher {
         }
         return stringBuilder.substring(index - answer + 1, index + answer).replace("#", "");
     }
+	
+	/**
+	 * 在一个字符串末尾加字符串，让整体变成回文 / 必须包含最后一个字符时，最长回文串多长<br><br>
+	 * 
+	 * 思路： 把前面不是回文的部分逆序，添加到原字符串末尾即可。<br>
+	 * 
+	 */
+	
+	public static String makePalindromicStr(String s) {
+		if (CommonStringUtil.isEmpty(s)) { 
+			return null;
+		}
+		char[] str = CommonStringUtil.manacherString(s);;
+		int[] pArr = new int[str.length];
+		int C = -1;
+		int R = -1;
+		int maxContainsEnd = -1;
+		for (int i = 0; i != str.length; i++) {
+			pArr[i] = R > i ? Math.min(pArr[2 * C - i], R - i) : 1;
+			while (i + pArr[i] < str.length && i - pArr[i] > -1) {
+				if (str[i + pArr[i]] == str[i - pArr[i]])
+					pArr[i]++;
+				else {
+					break;
+				}
+			}
+			if (i + pArr[i] > R) {
+				R = i + pArr[i];
+				C = i;
+			}
+			if (R == str.length) {
+				maxContainsEnd = pArr[i];
+				break;
+			}
+		}
+		char[] res = new char[s.length() - maxContainsEnd + 1];
+		for (int i = 0; i < res.length; i++) {
+			res[res.length - 1 - i] = str[i * 2 + 1];
+		}
+		return String.valueOf(res);
+	}
+	
+	
+	
 }

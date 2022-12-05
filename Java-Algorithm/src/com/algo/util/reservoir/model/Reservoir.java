@@ -9,16 +9,25 @@ public class Reservoir {
 	private int N; // 有N个求
 	private int count; 
 
+	/**
+	 * 初始化蓄水池
+	 */
 	public Reservoir(int capacity) {
 		bag = new int[capacity];
 		N = capacity;
 		count = 0;
 	}
 
+	/**
+	 * 随机0 ~ 1
+	 */
 	private int rand(int max) {
 		return (int) (Math.random() * max) + 1;
 	}
 
+	/**
+	 * 这里每个号码 进袋子的概率均等
+	 */
 	public void add(int num) {
 		count++;
 		if (count <= N) {
@@ -29,7 +38,9 @@ public class Reservoir {
 			}
 		}
 	}
-
+	/**
+	 * 抽样获取答案
+	 */
 	public int[] sampling() {
 		int[] ans = new int[N];
 		for (int i = 0; i < N; i++) {

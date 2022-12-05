@@ -41,4 +41,16 @@ public class CommonStringUtil {
 	public static boolean isEmpty(String s) {
 		return s == null || s.length() == 0;
 	}
+	
+	public static boolean isEqual(String a, String b) {
+		if (a == null && b == null) {
+			return true;
+		} else {
+			if (a == null || b == null) {
+				return false;
+			} else {
+				return a.equals(b);
+			}
+		}
+	}
 }

@@ -1,7 +1,9 @@
 package com.algo.util.binarytree;
 
+import com.algo.util.binarytree.model.HappynessInfo;
 import com.algo.util.binarytree.model.TreeDP;
 import com.algo.util.common.model.BTNode;
+import com.algo.util.common.model.NTNode;
 /**
  * 
  * 二叉树递归套路： 利用树形DP ~ O(N)
@@ -86,5 +88,26 @@ public class AdvancedBinaryTreeUtil {
 		}
 		return TreeDP.goSubBSTSize(head).maxBSTSubtreeSize;
 		
+	}
+	
+	/**
+		求 A 和 B的最低公共祖先？<br><br>
+		1. 汇聚点与X无关/X不是答案：  (汇聚点已经在X的左数/右树汇聚完了!) or (X下面缺A或B)<br>
+		2. 汇聚点与X有关/X是答案：  X下面发现了A和B全部<br>
+	 */
+	public static BTNode lowestAncestor(BTNode head, BTNode a, BTNode b) {
+		return TreeDP.findAncestor(head, a, b).ans;
+	}
+	
+	/**
+	 * 一个N叉树表示一个公司的层级关系，现在发请柬邀请参加舞会，上下级不可以同时邀请，如何发让整个误会开心值最高？<br><br>
+	 * 1. x 来时： (x自己的快乐值 + x所有下级在自己不来时候的最大快乐值)<br>
+	 * 2. x 不来： (0 + Max(x所有下级在自己来时候的最大快乐值,x所有下级在自己不来时候的最大快乐值)) 因为下级可以爱来不来<br>
+	 * 3. 返回： Max(1,2)
+	 */
+	
+	public static int gainMaxHappyness(NTNode boss) {
+		HappynessInfo allInfo = TreeDP.gainHappyness(boss);
+		return Math.max(allInfo.no, allInfo.yes);
 	}
 }

@@ -1,6 +1,7 @@
 package com.algo.util.binarytree.model;
 
 import com.algo.util.common.model.BTNode;
+import com.algo.util.common.model.NTNode;
 /**
  * 
  * 树形DP
@@ -181,5 +182,49 @@ public class TreeDP {
 			}
 		}
 		return new BSTSizeInfo(Math.max(p1, Math.max(p2, p3)), allSize, max, min);
+	}
+	
+	
+	public static AncestorInfo findAncestor(BTNode x, BTNode a, BTNode b) {
+		if (x == null) {
+			return new AncestorInfo(false, false, null);
+		}
+		AncestorInfo leftInfo = findAncestor(x.left, a, b);
+		AncestorInfo rightInfo = findAncestor(x.right, a, b);
+		
+		boolean findA = (x == a) || leftInfo.findA || rightInfo.findA;
+		boolean findB = (x == b) || leftInfo.findB || rightInfo.findB;
+		
+		BTNode ans = null;
+		if (leftInfo.ans != null) { // 左树上找到汇聚点了，则整棵树的汇聚点就是它
+			ans = leftInfo.ans; 
+		} else if (rightInfo.ans != null) { // 右树上找到汇聚点了，则整棵树的汇聚点就是它
+			ans = rightInfo.ans;
+		} else {
+			if (findA && findB) { // x 下面找到A 和 B了，左右树也没有单独的汇聚点，则答案就是X
+				ans = x;
+			}
+		}
+		return new AncestorInfo(findA, findB, ans);
+	}
+	
+	/**
+	 * val = 开心值 <br>
+	 * children = 下属们
+	 */
+	public static HappynessInfo gainHappyness(NTNode employee) {
+		if (employee == null) {
+			return new HappynessInfo(0, 0);
+		}
+		int no = 0; // x 不来
+		int yes = employee.val; // x 来
+		for (NTNode subordinate : employee.children) {
+			HappynessInfo subordinateHappylessInfo = gainHappyness(subordinate);
+			
+			no += Math.max(subordinateHappylessInfo.no, subordinateHappylessInfo.yes);
+			yes += subordinateHappylessInfo.no;
+
+		}
+		return new HappynessInfo(no, yes);
 	}
 }

@@ -1,4 +1,4 @@
-package com.algo.util.binarytree.model;
+package com.algo.util.common.treemodel;
 
 import com.algo.util.common.model.BTNode;
 

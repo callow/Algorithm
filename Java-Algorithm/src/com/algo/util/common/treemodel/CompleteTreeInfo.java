@@ -1,4 +1,4 @@
-package com.algo.util.binarytree.model;
+package com.algo.util.common.treemodel;
 
 public class CompleteTreeInfo {
 	public boolean isFull; // ÊÇ·ñÊÇÂú2²æÊ÷

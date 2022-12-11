@@ -2,6 +2,14 @@ package com.algo.util.binarytree.model;
 
 import com.algo.util.common.model.BTNode;
 import com.algo.util.common.model.NTNode;
+import com.algo.util.common.treemodel.AncestorInfo;
+import com.algo.util.common.treemodel.BSTSizeInfo;
+import com.algo.util.common.treemodel.BalancedTreeInfo;
+import com.algo.util.common.treemodel.CompleteTreeInfo;
+import com.algo.util.common.treemodel.FullTreeInfo;
+import com.algo.util.common.treemodel.HappynessInfo;
+import com.algo.util.common.treemodel.MaxDistanceInfo;
+import com.algo.util.common.treemodel.SearchTreeInfo;
 /**
  * 
  * Ê÷ÐÎDP

@@ -1,9 +1,9 @@
 package com.algo.util.binarytree;
 
-import com.algo.util.binarytree.model.HappynessInfo;
 import com.algo.util.binarytree.model.TreeDP;
 import com.algo.util.common.model.BTNode;
 import com.algo.util.common.model.NTNode;
+import com.algo.util.common.treemodel.HappynessInfo;
 /**
  * 
  * 二叉树递归套路： 利用树形DP ~ O(N)

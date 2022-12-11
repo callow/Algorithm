@@ -1,4 +1,4 @@
-package com.algo.util.binarytree.model;
+package com.algo.util.common.treemodel;
 
 public class SearchTreeInfo {
 	public boolean isBST;

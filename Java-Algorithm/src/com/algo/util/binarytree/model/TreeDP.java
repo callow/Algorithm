@@ -8,6 +8,13 @@ import com.algo.util.common.model.BTNode;
  */
 public class TreeDP {
 
+	/**
+	 * 1. 左树Full && 右树Full  && 左高 = 右高 => x 为头的整棵树是Complete<br>
+	 * 2. 左Complete && 右Full && 左高 = 右高 + 1<br>
+	 * 3. 左树Full && 右树Full  && 左高 = 右高 + 1<br>
+	 * 4. 左Full && 右Complete && 左高 = 右高<br>
+	 */
+	
 	public static CompleteTreeInfo goComplete(BTNode X) {
 		if (X == null) {
 			return new CompleteTreeInfo(true, true, 0);

@@ -66,7 +66,7 @@ public class GraphUtil {
 	}
 	
 	/**
-	 * 多种方式生成拓扑序,图的方式可能不一样，请自己做转化<br><br>
+	 * 多种方式生成图的拓扑序,图的输入方式可能不一样，请自己做转化<br><br>
 	 * 1. DFS: by frequency 和 by depth<br>
 	 * 2. BFS: by in<br>
 	 */
@@ -79,5 +79,6 @@ public class GraphUtil {
 		GraphTopologyAdaptor.topologyOrderByInByDepth(nodes);
 		GraphTopologyAdaptor.topologyOrderByIn(nodes);
 	}
+	
 	
 }

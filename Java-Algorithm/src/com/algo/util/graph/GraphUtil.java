@@ -88,7 +88,7 @@ public class GraphUtil {
 	 * 最小生成树 => MST
 	 */
 	public static Set<Edge> minimumSpanningTree(Graph graph) {
-		//MinimumSpanningTreeAdpator.prim(graph);
+		// MinimumSpanningTreeAdpator.prim(graph);
 		return MinimumSpanningTreeAdpator.kruskal(graph);
 	}
 	
@@ -97,6 +97,7 @@ public class GraphUtil {
 	 */
 	
 	public static Map<Node, Integer> getMinimuDistancesMap(Node head, int size){
+		// DijkstraAdaptor.dijkstraNative(head);
 		return DijkstraAdaptor.dijkstra(head, size);
 		
 	}

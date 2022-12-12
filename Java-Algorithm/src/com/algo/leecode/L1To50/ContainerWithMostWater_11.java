@@ -1,4 +1,4 @@
-package com.algo.leecode;
+package com.algo.leecode.L1To50;
 
 import com.algo.competition.w8_bracket_water_matrix_snake.WaterContainer;
 

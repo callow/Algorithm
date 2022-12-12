@@ -1,4 +1,4 @@
-package com.algo.leecode;
+package com.algo.leecode.L1To50;
 
 public class zigzagConversion_6 {
 	

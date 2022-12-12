@@ -19,7 +19,7 @@ public class DijkstraAdaptor {
 	public static Map<Node, Integer> dijkstra(Node head, int size) {
 		SuperHeadForDijkstra nodeHeap = new SuperHeadForDijkstra(size);
 		nodeHeap.addOrUpdateOrIgnore(head, 0); // ¶ÑÉÏµ÷Õû£º O£¨logn£©
-		HashMap<Node, Integer> result = new HashMap<>();
+		Map<Node, Integer> result = new HashMap<>();
 		while (!nodeHeap.isEmpty()) {
 			NodeRecord record = nodeHeap.pop();
 			Node cur = record.node;

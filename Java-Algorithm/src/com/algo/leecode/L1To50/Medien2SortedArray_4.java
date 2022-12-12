@@ -1,4 +1,4 @@
-package com.algo.leecode;
+package com.algo.leecode.L1To50;
 
 import com.algo.util.sort.SortUtil;
 

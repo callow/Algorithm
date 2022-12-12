@@ -23,6 +23,7 @@ public class MinimumSpanningTreeAdpator {
 	 * 贪心： 权重从小到大依次看，当前边不会形成环则保留，否则舍弃，跑完后的集合就是MST<br>
 	 * 1. 一开始每个点都是自己的集合（并查集）<br>
 	 * 2. 判断是否有环，即并查集是否2个node在一个集合中
+	 * 3. 适合边比较少的情况，比较多的话会卡
 	 */
 	public static Set<Edge> kruskal(Graph graph) {
 		UnionFind<Node> disjointSet = new UnionFind<Node>(new ArrayList<>(graph.nodes.values()));
@@ -48,7 +49,7 @@ public class MinimumSpanningTreeAdpator {
 	 * 2. 选择权重最小那个边，看看是否回形成环
 	 * 3. 如果会，则考察次小的边，如果不会，要了这个边，将该边指向的点加入到点集中
 	 * 4. 当所有点都被选取，MST成型
-	 * 
+	 *
 	 */
 	public static Set<Edge> prim(Graph graph) {
 		// 解锁的边进入小根堆

@@ -3,12 +3,16 @@ package com.algo.util.graph;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
 import com.algo.util.common.model.DirectedGraphNode;
+import com.algo.util.graph.adaptor.DijkstraAdaptor;
 import com.algo.util.graph.adaptor.GraphTopologyAdaptor;
+import com.algo.util.graph.adaptor.MinimumSpanningTreeAdpator;
+import com.algo.util.graph.model.Edge;
 import com.algo.util.graph.model.Graph;
 import com.algo.util.graph.model.Node;
 
@@ -80,5 +84,20 @@ public class GraphUtil {
 		GraphTopologyAdaptor.topologyOrderByIn(nodes);
 	}
 	
+	/**
+	 * 最小生成树 => MST
+	 */
+	public static Set<Edge> minimumSpanningTree(Graph graph) {
+		MinimumSpanningTreeAdpator.prim(graph);
+		return MinimumSpanningTreeAdpator.kruskal(graph);
+	}
 	
+	/**
+	 * 生成以Head出发到每个点的最短距离的Map
+	 */
+	
+	public static Map<Node, Integer> getMinimuDistances(Node head, int size){
+		return DijkstraAdaptor.dijkstra(head, size);
+		
+	}
 }

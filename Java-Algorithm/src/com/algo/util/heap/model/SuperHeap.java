@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *  加强堆： <br><br>
@@ -12,8 +13,8 @@ import java.util.List;
  *
  */
 public class SuperHeap<T> {
-	private ArrayList<T> heap; // 动态数组
-	private HashMap<T, Integer> indexMap; // 反向索引，就是对象放在数组中的什么位置！
+	private List<T> heap; // 动态数组
+	private Map<T, Integer> indexMap; // 反向索引，就是对象放在数组中的什么位置！
 	private int heapSize;
 	private Comparator<? super T> comp;
 

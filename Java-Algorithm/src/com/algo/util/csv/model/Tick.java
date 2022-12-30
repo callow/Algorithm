@@ -9,7 +9,7 @@ public class Tick {
 	private BigDecimal open;
 	private String symbol;
 	private long timestamp;
-	private int volume;
+	private long volume;
 	
 	public BigDecimal getClose() {
 		return close;
@@ -47,10 +47,10 @@ public class Tick {
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
-	public int getVolume() {
+	public long getVolume() {
 		return volume;
 	}
-	public void setVolume(int volume) {
+	public void setVolume(long volume) {
 		this.volume = volume;
 	}
 	

@@ -20,6 +20,12 @@ public class CSVUtil {
 	
 	public static final String[] HEADERS = {"close", "high", "low", "open","symbol","timestamp","volume"};
 	
+	
+	public static void main(String[] args) {
+		writeCSV(readCSV("src/com/algo/util/csv/live_tb_chart_D1.csv"),"src/com/algo/util/csv/ticks-out.csv");
+	}
+	
+	
 	public static List<Tick> readCSV(String filePath) {
 		List<Tick> ticks = new ArrayList<>();
 		try(Reader in = new FileReader(filePath)) {
@@ -32,7 +38,7 @@ public class CSVUtil {
 				tick.setOpen(new BigDecimal(record.get("open")));
 				tick.setSymbol(record.get("symbol"));
 				tick.setTimestamp(Long.valueOf(record.get("timestamp")));
-				tick.setVolume(Integer.valueOf(record.get("volume")));
+				tick.setVolume(Long.valueOf(record.get("volume")));
 				ticks.add(tick);
 			}
 		} catch (IOException e) {
@@ -45,7 +51,7 @@ public class CSVUtil {
 	    try (FileWriter out = new FileWriter(name);CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(HEADERS))) {
 	    	ticks.forEach(i -> {
 	    		try {
-					printer.printRecord(i.getClose(), i.getHigh(),i.getLow(),i.getOpen(),i.getSymbol(),i.getTimestamp(),i.getVolume());
+					printer.printRecord(i.getClose(), i.getHigh(),i.getLow(),i.getOpen(),i.getSymbol(),i.getTimestamp() * 1000 - 7200000,i.getVolume());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -55,7 +61,5 @@ public class CSVUtil {
 		}
 	}
 	
-	public static void main(String[] args) {
-		writeCSV(readCSV(""),"test.csv");
-	}
+
 }

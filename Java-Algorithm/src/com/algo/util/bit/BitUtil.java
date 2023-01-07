@@ -109,5 +109,12 @@ public class BitUtil {
 		}
 		return answer;
 	}
+	
+	/**
+	 * ÅĞ¶Ï×îÄ©Î²ÊÇ·ñÓĞ1
+	 */
+	public static boolean hasOneAtEnd(int num) {
+		return (num & 1) != 0;
+	}
 
 }

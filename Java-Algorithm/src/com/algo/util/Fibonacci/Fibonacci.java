@@ -1,4 +1,4 @@
-package com.algo.util.Fibonacci.model;
+package com.algo.util.Fibonacci;
 
 /**
  * 

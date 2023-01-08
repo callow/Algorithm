@@ -1,7 +1,5 @@
 package com.algo.util.Fibonacci;
 
-import com.algo.util.Fibonacci.model.QuickExponential;
-
 /**
  * 
  * 斐波那契数列(严格递推式)： F(n) = F(n-1) + F(n-2)<br><br>

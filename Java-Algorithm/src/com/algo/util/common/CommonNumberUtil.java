@@ -32,7 +32,7 @@ public class CommonNumberUtil {
 	/**
 	 * 2维矩阵相乘
 	 */
-	public static int[][] product2D(int[][] a, int[][] b) {
+	public static int[][] matrixMultiply(int[][] a, int[][] b) {
 		int n = a.length;
 		int m = b[0].length;
 		int k = a[0].length; // a的列数同时也是b的行数

@@ -36,7 +36,7 @@ public class Fibonacci {
 		// [ 1, 0 ]
 		int[][] base = {{ 1, 1 }, { 1, 0 }};
 		
-		int[][] res = QuickExponential.matrix2DQuickPower(base, n - 2); // 求 base ^ n-2
+		int[][] res = QuickExponential.run(base, n - 2); // 求 base ^ n-2
 		return res[0][0] + res[1][0];  
 	}
 	

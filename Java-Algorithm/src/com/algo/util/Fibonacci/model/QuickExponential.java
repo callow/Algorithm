@@ -23,7 +23,7 @@ public class QuickExponential {
 	 * 
 	 */
 	
-	public static int matrix1DQuickPower(int m, int p) {
+	public static int run(int m, int p) {
 		// 生成单位阵： 1
         int res = 1;
         
@@ -40,7 +40,7 @@ public class QuickExponential {
 	/**
 	 * 2维矩阵，快速幂
 	 */
-	public static int[][] matrix2DQuickPower(int[][] m, int p) {
+	public static int[][] run(int[][] m, int p) {
 		//           (1,0)
 		// 生成单位阵: (0,1)
 		int[][] res = new int[m.length][m[0].length];
@@ -51,12 +51,11 @@ public class QuickExponential {
 		int[][] t = m; // 矩阵1次方
 		for (; p != 0; p >>= 1) { // p右移，擦去末尾1
 			if (BitUtil.hasOneAtEnd(p)) {
-				res = CommonNumberUtil.product2D(res, t);
+				res = CommonNumberUtil.matrixMultiply(res, t);
 			}
-			t = CommonNumberUtil.product2D(t, t);
+			t = CommonNumberUtil.matrixMultiply(t, t);
 		}
 		return res;
 	}
-	
 	
 }

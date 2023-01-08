@@ -14,7 +14,7 @@ import com.algo.util.Fibonacci.model.QuickExponential;
 public class RecurrenceFormulaUtil {
 	
 	/**
-	 * N年后的多少牛 / 兔子生兔子有多少兔子/ 等等 <br><br>
+	 * N年后的多少牛？ / 兔子生兔子有多少兔子/ 等等 <br><br>
 	 * 
 	 * 第一年有一头母球A， 以后每年每只母牛都会生一直母牛，每只小牛会3年成熟，母牛不会死，求N年后有多少牛？<br>
 	 * 
@@ -46,5 +46,27 @@ public class RecurrenceFormulaUtil {
 		
 		int[][] res = QuickExponential.run(base, n - 3);
 		return 3 * res[0][0] + 2 * res[1][0] + res[2][0];
+	}
+	
+	
+	/**
+	 *  达标字符串的数量 ： 一个数N， 一个0/1组成的Str, 一个长度N的Str中， 0左边紧挨着1 / 没有0 = <b>达标</b> , 有多少达标Str? <br><br>
+	 *  通过观察： 
+	 *  N：1，2，3，4，5，6 
+	 *    1，2，3，4，5，13 // 初始项是1，2的Fibonacci(原生的Fib: 1、1、2、3、5、8、13),因此矩阵有些许区别
+	 *  解： F(N) = F(N-1) + F(N-2)
+	 *  
+	 */
+	
+	public static int qualifiedStr(int n) {
+		if (n < 1) {
+			return 0;
+		}
+		if (n == 1 || n == 2) {
+			return 1;
+		}
+		int[][] base = {{ 1, 1 }, { 1, 0 }};
+		int[][] res = QuickExponential.run(base, n - 2); // 求 base ^ n-2
+		return 2 * res[0][0] + res[1][0];  
 	}
 }

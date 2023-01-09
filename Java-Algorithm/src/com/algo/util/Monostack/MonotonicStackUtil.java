@@ -3,6 +3,7 @@ package com.algo.util.Monostack;
 import java.util.Stack;
 
 import com.algo.util.common.CommonArrayUtil;
+import com.algo.util.common.MatrixUtil;
 
 public class MonotonicStackUtil {
 	
@@ -33,7 +34,7 @@ public class MonotonicStackUtil {
 	}
 	
 	/**
-	 * 一个arr表示histogram,求最大长方形面积？<br><br>
+	 * 一个arr表示histogram,求最大长方形面积？O(n)<br><br>
 	 * 
 	 * https://leetcode.com/problems/largest-rectangle-in-histogram<br>
 	 * 
@@ -68,13 +69,14 @@ public class MonotonicStackUtil {
 	}
 	
 	/**
-	 *  0/1组成的Matrix, 返回里面1组成最大的矩形？<br><br>
+	 *  0/1组成的Matrix, 返回里面1组成最大的矩形？O(n^2)<br><br>
+	 *  把每行作为底，以此底作为直方图时的最大矩形，遍历一遍矩阵O(n^2)就可以了<br>
 	 *  
-	 *  思路： 
+	 *  思路： 压缩Matrix -> 变成上题的histogram, 然后解
 	 *  
 	 */
 	public static int maxMatrix(int[][] matrix) {
-		return 0;
-		
+		return MatrixUtil.isEmpty(matrix) ? 0 
+				: MatrixUtil.condenseToHistogram(matrix,0);
 	}
 }

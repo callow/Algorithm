@@ -1,13 +1,25 @@
 package com.algo.util.common;
 
+import com.algo.util.Monostack.MonotonicStackUtil;
+
 public class MatrixUtil {
 	
+	/**
+	 * 将矩阵压缩成直方图数组,并在压缩过程中，求出里面最大面积的矩形<br>
+	 * 使用单调栈来求maxHistogram
+	 */
 	
+	public static int condenseToHistogram(int[][] matrix, int maxArea) {
+		int[] height = new int[matrix[0].length];
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
+				height[j] = matrix[i][j] == '0' ? 0 : height[j] + 1;
+			}
+			maxArea = Math.max(MonotonicStackUtil.maxHistogram(height), maxArea);
+		}
+		return maxArea;
+	}
 	
-	
-	
-	
-
 	/**
 	 * 2维矩阵相乘
 	 */
@@ -24,5 +36,9 @@ public class MatrixUtil {
 			}
 		}
 		return ans;
+	}
+	
+	public static boolean isEmpty(int[][] matrix) {
+		return matrix == null || matrix.length == 0 || matrix[0].length == 0;
 	}
 }

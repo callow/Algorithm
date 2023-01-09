@@ -157,4 +157,20 @@ public class CommonArrayUtil {
 		
 	}
 	
+	/**
+	 * 生成前缀和数组,方便求范围的和 ： <br>
+	 * 
+	 * 求 i ~ j的累加和 = sum[j] - sum[i-1]
+	 */
+	
+	public static int[] generateSumArray(int[] arr) {
+		int size = arr.length;
+		int[] sums = new int[size];
+		sums[0] = arr[0];
+		for (int i = 1; i < size; i++) {
+			sums[i] = sums[i - 1] + arr[i];
+		}
+		return sums;
+	}
+		
 }

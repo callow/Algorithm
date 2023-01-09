@@ -1,7 +1,7 @@
 package com.algo.util.Fibonacci;
 
 import com.algo.util.bit.BitUtil;
-import com.algo.util.common.CommonNumberUtil;
+import com.algo.util.common.MatrixUtil;
 
 /**
  * 
@@ -51,9 +51,9 @@ public class QuickExponential {
 		int[][] t = m; // 矩阵1次方
 		for (; p != 0; p >>= 1) { // p右移，擦去末尾1
 			if (BitUtil.hasOneAtEnd(p)) {
-				res = CommonNumberUtil.matrixMultiply(res, t);
+				res = MatrixUtil.multiple(res, t);
 			}
-			t = CommonNumberUtil.matrixMultiply(t, t);
+			t = MatrixUtil.multiple(t, t);
 		}
 		return res;
 	}

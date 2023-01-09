@@ -69,14 +69,26 @@ public class MonotonicStackUtil {
 	}
 	
 	/**
-	 *  0/1组成的Matrix, 返回里面1组成最大的矩形？O(n^2)<br><br>
+	 *  0/1组成的Matrix, 返回里面1组成最大的矩形1的个数？O(n^2)<br><br>
 	 *  把每行作为底，以此底作为直方图时的最大矩形，遍历一遍矩阵O(n^2)就可以了<br>
-	 *  
+	 *  https://leetcode.com/problems/maximal-rectangle/<br>
 	 *  思路： 压缩Matrix -> 变成上题的histogram, 然后解
 	 *  
 	 */
 	public static int maxMatrix(int[][] matrix) {
 		return MatrixUtil.isEmpty(matrix) ? 0 
 				: MatrixUtil.condenseToHistogram(matrix,0);
+	}
+	
+	
+	/**
+	 *  0/1组成的Matrix, 返回里面1组成的子矩形个数？<br><br>
+	 *  https://leetcode.com/problems/count-submatrices-with-all-ones<br>
+	 */
+	
+	public static int noOfSubMatrix(int[][] matrix) {
+		
+		
+		return 0;
 	}
 }

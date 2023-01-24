@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+import com.algo.util.binarytree.model.Morris;
 import com.algo.util.common.model.BTNode;
 
 /**
@@ -25,6 +26,13 @@ public class BinaryTreeIterateUtil {
 		System.out.println(head.value);
 		preOrder(head.left);
 		preOrder(head.right);
+	}
+	
+	public static void preOrder2(BTNode head) { // O(1) - Space
+		if (head == null) {
+			return;
+		}
+		Morris.transverse(head, "pre");
 	}
 	
 	/**
@@ -84,6 +92,13 @@ public class BinaryTreeIterateUtil {
 		inOrder(head.right);
 	}
 	
+	public static void inOrder2(BTNode head) {
+		if (head == null) {
+			return;
+		}
+		Morris.transverse(head, "in");
+	}
+	
 	/**
 	 * 中序序列化 不可能 因为有歧义
 	 */
@@ -102,6 +117,13 @@ public class BinaryTreeIterateUtil {
 		posOrder(head.left);
 		posOrder(head.right);
 		System.out.println(head.value);
+	}
+	
+	public static void posOrder2(BTNode head) {
+		if (head == null) {
+			return;
+		}
+		Morris.transverse(head, "pos");
 	}
 	
 	/**

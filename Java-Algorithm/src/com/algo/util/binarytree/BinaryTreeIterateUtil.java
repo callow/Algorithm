@@ -28,7 +28,7 @@ public class BinaryTreeIterateUtil {
 		preOrder(head.right);
 	}
 	
-	public static void preOrder2(BTNode head) { // O(1) - Space
+	public static void preOrderMorris(BTNode head) { // O(1) - Space
 		if (head == null) {
 			return;
 		}
@@ -92,7 +92,7 @@ public class BinaryTreeIterateUtil {
 		inOrder(head.right);
 	}
 	
-	public static void inOrder2(BTNode head) {
+	public static void inOrderMorris(BTNode head) {
 		if (head == null) {
 			return;
 		}
@@ -119,7 +119,7 @@ public class BinaryTreeIterateUtil {
 		System.out.println(head.value);
 	}
 	
-	public static void posOrder2(BTNode head) {
+	public static void posOrderMorris(BTNode head) {
 		if (head == null) {
 			return;
 		}

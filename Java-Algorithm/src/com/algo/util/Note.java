@@ -7,5 +7,9 @@ package com.algo.util;
  * 根据数据量猜解法
  */
 public class Note {
+	
+	/**
+	 * 面试的时候，只要有想法，絮絮叨叨自言自语念出来。不要等准备好了再说话
+	 */
 
 }

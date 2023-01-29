@@ -8,4 +8,17 @@ public class DP {
 	 * 
 	 * 
 	 */
+	
+	public static void main(String[] args) {
+
+		  int[] a = new int[18750000];
+
+		  long star = System.currentTimeMillis();
+
+		  for (int i = 0; i < a.length; i++) {}
+
+		      System.out.println(System.currentTimeMillis()- star); // 4 ms
+
+		}
+
 }

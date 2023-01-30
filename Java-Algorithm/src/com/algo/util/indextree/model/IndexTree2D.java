@@ -1,4 +1,7 @@
 package com.algo.util.indextree.model;
+
+import com.algo.util.bit.BitUtil;
+
 //https://leetcode.com/problems/range-sum-query-2d-mutable
 //下标从1开始！
 public class IndexTree2D {
@@ -24,8 +27,8 @@ public class IndexTree2D {
 
 	private int sum(int row, int col) {
 		int sum = 0;
-		for (int i = row + 1; i > 0; i -= i & (-i)) {
-			for (int j = col + 1; j > 0; j -= j & (-j)) {
+		for (int i = row + 1; i > 0; i -= BitUtil.rightMostOne(i)) {
+			for (int j = col + 1; j > 0; j -= BitUtil.rightMostOne(j)) {
 				sum += tree[i][j];
 			}
 		}
@@ -38,8 +41,8 @@ public class IndexTree2D {
 		}
 		int add = val - nums[row][col];
 		nums[row][col] = val;
-		for (int i = row + 1; i <= N; i += i & (-i)) {
-			for (int j = col + 1; j <= M; j += j & (-j)) {
+		for (int i = row + 1; i <= N; i += BitUtil.rightMostOne(i)) {
+			for (int j = col + 1; j <= M; j += BitUtil.rightMostOne(j)) {
 				tree[i][j] += add;
 			}
 		}

@@ -48,6 +48,11 @@ public class IndexTree2D {
 		}
 	}
 
+	/**
+	 * 
+	 * @param row1, col1 左上角行列
+	 * @param row2， col2 右下角行列
+	 */
 	public int sumRegion(int row1, int col1, int row2, int col2) {
 		if (N == 0 || M == 0) {
 			return 0;

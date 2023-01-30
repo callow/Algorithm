@@ -1,4 +1,7 @@
 package com.algo.util.indextree;
+
+import com.algo.util.indextree.model.IndexTree2D;
+
 /**
  * 使用前缀和数组，可以O（1）的到L ~ R的Σ。但是如果把数字改动，前缀和数组会大量更新。因此使用Segment Tree可以，但是IndexTree可以推到2维 3维，线段树不行。<br>
  * 
@@ -17,4 +20,17 @@ package com.algo.util.indextree;
  */
 public class IndexTreeUtil {
 	
+	
+	
+	/**
+	 * 求 二维Matrix中 (3,3) ~ (4,4) 围成的方形的累加和：<br>
+	 * Index Tree 2D 默认是从1 ~ ...的累加和，那么如果矩形在中间 则：<br>
+	 * 
+	 * help[4,4] - help[4,2] - help[2,4] + help[2,2]
+	 * 
+	 */
+	public static int sum(int[][] matrix) {
+		IndexTree2D indexTree = new IndexTree2D(matrix);
+		return indexTree.sumRegion(3, 3, 4, 4);
+	}
 }

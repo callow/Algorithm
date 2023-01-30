@@ -15,7 +15,7 @@ import org.psjava.goods.GoodSegmentTreeFactory;
 import com.algo.util.segmenttree.model.MaxSegmentTree;
 
 /**
- * O（Log(N)）<br>
+ * O（Log(N)） 解决是区间查询和区间更新的问题<br>
  * 线段树用途：  Arr[1 ~ 200] 加 6 /  Arr[1 ~ 200] -> 6 /  Σ[1 ~ 200] <br>
  * 1. 区间的统一增加add<br>
  * 2. 区间的统一更新update<br>

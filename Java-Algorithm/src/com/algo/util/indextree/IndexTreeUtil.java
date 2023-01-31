@@ -29,7 +29,7 @@ public class IndexTreeUtil {
 	 * help[4,4] - help[4,2] - help[2,4] + help[2,2]
 	 * 
 	 */
-	public static int sum(int[][] matrix) {
+	public static int sumMatrix(int[][] matrix) {
 		IndexTree2D indexTree = new IndexTree2D(matrix);
 		return indexTree.sumRegion(3, 3, 4, 4);
 	}

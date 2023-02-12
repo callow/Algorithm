@@ -25,8 +25,10 @@ package com.algo.util.orderedlist;
 	 * / \
 	 *S   F
 	 *
-   注： x为头 右树上最左结点，一点过是 整棵树距离x最近且比x大的
+   注： x为头 右树上最左结点，一点过是 整棵树距离x最近且比x大的.
  */ 
-public class Desc {
+public class Notes {
+	
+	
 
 }

@@ -1,7 +1,5 @@
 package com.algo.util.orderedlist.avltree;
 
-import com.algo.util.orderedlist.avltree.model.AVLNode;
-
 /**
  * 
  * AVL : 做完搜索二叉树平衡性的调整后，自带了一个补丁.<br>
@@ -18,6 +16,23 @@ import com.algo.util.orderedlist.avltree.model.AVLNode;
  * 
  */
 public class AVLTreeMap<K extends Comparable<K>, V> {
+	
+	
+	public static class AVLNode<K extends Comparable<K>, V> {
+		public K k;
+		public V v;
+		public AVLNode<K, V> l;
+		public AVLNode<K, V> r;
+		public int h;
+
+		public AVLNode(K key, V value) {
+			k = key;
+			v = value;
+			h = 1;
+		}
+	}
+	
+	
 	private AVLNode<K, V> root;
 	private int size;
 

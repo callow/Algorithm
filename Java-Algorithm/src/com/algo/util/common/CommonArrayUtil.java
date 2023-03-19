@@ -21,6 +21,12 @@ public class CommonArrayUtil {
 		arr[j] = tmp;
 	}
 	
+	public static void swap(char[] chs, int i, int j) {
+		char tmp = chs[i];
+		chs[i] = chs[j];
+		chs[j] = tmp;
+	}
+	
 	/**
 	 * 对数组进行partiton, pivot放中间， < pivot放左边， > pivot 放右边
 	 * @param nodeArr

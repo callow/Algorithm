@@ -20,18 +20,16 @@ public class DPUtil {
 	 *  打印String的全部子序列,子序列不需要连续
 	 */
 	
-	public static void printSubsequence(String s) {
-		List<String> answers =  new DPRecursive().subsequence(s);
-		answers.stream().forEach(System.out::println);
+	public static List<String> getAllSubsequence(String s) {
+		return new DPRecursive().subsequence(s);
 	}
 	
 	/**
 	 *  打印String的全排列 = 排列组合 = 顺序不同算一种
 	 */
 	
-	public static void printPermutation(String s) {
-		List<String> answers =  new DPRecursive().permutation(s);
-		answers.stream().forEach(System.out::println);
+	public static List<String> getAllPermutation(String s) {
+		return new DPRecursive().permutation(s);
 	}
 	
 	/**
@@ -47,6 +45,15 @@ public class DPUtil {
 		stack.push(i);
 		StackUtil.popBottom(stack);
 	}
+	
+	/**
+	 * 打印n对所有有效括号组合,lc22
+	 */
+	public static List<String> getAllBrackets(int n) {
+		return new DPRecursive().getAllBrackets(n); 
+	}
+	
+
 	
 	
 }

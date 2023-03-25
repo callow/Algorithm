@@ -18,5 +18,22 @@ public class DPGrid implements DPService {
 	public List<String> permutation(String n) {return null;}
 	@Override
 	public List<String> getAllBrackets(int n) {return null;}
+	
+	@Override
+	public Integer uniquePaths(int row, int col) {
+        int[] dp = new int[row];
+
+        for(int i = 0; i < row; i++){ // fill 1st col = 1
+            dp[i] = 1;
+        }
+
+        for(int j = 1; j < col; j++){
+            for(int i = 1; i < row; i++){
+                dp[i] = dp[i] + dp[i - 1];
+            }
+        }
+
+        return dp[row - 1]; // row of paths
+	}
 
 }

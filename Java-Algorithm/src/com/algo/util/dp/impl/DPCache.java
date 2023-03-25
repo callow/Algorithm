@@ -18,5 +18,7 @@ public class DPCache implements DPService {
 	public List<String> permutation(String n) {return null;}
 	@Override
 	public List<String> getAllBrackets(int n) {return null;}
+	@Override
+	public Integer uniquePaths(int m, int n) {return null;}
 
 }

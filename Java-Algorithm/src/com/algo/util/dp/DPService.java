@@ -8,4 +8,5 @@ public interface DPService {
 	public List<String> subsequence(String n);
 	public List<String> permutation(String n);
 	public List<String> getAllBrackets(int n);
+	public Integer uniquePaths(int m, int n);
 }

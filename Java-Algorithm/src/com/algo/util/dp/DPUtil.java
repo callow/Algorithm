@@ -3,6 +3,7 @@ package com.algo.util.dp;
 import java.util.List;
 import java.util.Stack;
 
+import com.algo.util.dp.impl.DPGrid;
 import com.algo.util.dp.impl.DPRecursive;
 import com.algo.util.stack.StackUtil;
 
@@ -53,7 +54,13 @@ public class DPUtil {
 		return new DPRecursive().getAllBrackets(n); 
 	}
 	
-
-	
+	/**
+	 * 
+	 * m * n 棋盘，从左上角去右下角有多少条路
+	 * 
+	 */
+	public static int uniquePaths(int m, int n) {
+		return new DPGrid().uniquePaths(m, n);
+	}
 	
 }

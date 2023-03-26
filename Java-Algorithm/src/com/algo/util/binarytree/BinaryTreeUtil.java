@@ -162,4 +162,19 @@ public class BinaryTreeUtil {
 		}
 		return node;
 	}
+
+	/**
+	 * ·´×ª¶þ²æÊ÷
+	 */
+		
+   public BTNode invertTree(BTNode root) {
+        if (root != null ) {
+            invertTree(root.left);
+            invertTree(root.right);
+            BTNode temp = root.right;
+            root.right  = root.left;
+            root.left = temp;
+        }
+        return root;
+    }
 }

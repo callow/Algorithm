@@ -53,5 +53,30 @@ public class DPGrid implements DPService {
 		}
 		return dp[start][K];
 	}
+	
+	// ±©Á¦µÝ¹é¸ÄÐ´
+	@Override
+	public Integer drawCardGame(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int N = arr.length;
+		int[][] fmap = new int[N][N];
+		int[][] gmap = new int[N][N];
+		for (int i = 0; i < N; i++) {
+			fmap[i][i] = arr[i];
+		}
+		for (int startCol = 1; startCol < N; startCol++) {
+			int L = 0;
+			int R = startCol;
+			while (R < N) {
+				fmap[L][R] = Math.max(arr[L] + gmap[L + 1][R], arr[R] + gmap[L][R - 1]);
+				gmap[L][R] = Math.min(fmap[L + 1][R], fmap[L][R - 1]);
+				L++;
+				R++;
+			}
+		}
+		return Math.max(fmap[0][N - 1], gmap[0][N - 1]);
+	}
 
 }

@@ -69,6 +69,14 @@ public class DPUtil {
 	 *   *     ~
 	 */
 	public static int uniqueWays(int n, int start, int aim, int k) {
-		return  new DPGrid().uniqueWays(n, start, aim, k);
+		return new DPGrid().uniqueWays(n, start, aim, k);
+	}
+	
+	/**
+	 * 一堆扑克，N个位置，2人先后两端拿牌 总数大的赢。返回获胜者的分数？ 
+	 */
+	
+	public static int drawCardGame(int[] arr) {
+		return new DPGrid().drawCardGame(arr);
 	}
 }

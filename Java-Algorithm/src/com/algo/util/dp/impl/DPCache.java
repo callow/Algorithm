@@ -62,4 +62,54 @@ public class DPCache implements DPService {
 		return ans;
 
 	}
+	@Override
+	public Integer drawCardGame(int[] arr) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		int N = arr.length;
+		int[][] fmap = new int[N][N];
+		int[][] gmap = new int[N][N];
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				fmap[i][j] = -1;
+				gmap[i][j] = -1;
+			}
+		}
+		int first = f2(arr, 0, arr.length - 1, fmap, gmap);
+		int second = g2(arr, 0, arr.length - 1, fmap, gmap);
+		return Math.max(first, second);
+	}
+	
+	// arr[L..R]，先手获得的最好分数返回
+	public static int f2(int[] arr, int L, int R, int[][] fmap, int[][] gmap) {
+		if (fmap[L][R] != -1) {
+			return fmap[L][R];
+		}
+		int ans = 0;
+		if (L == R) {
+			ans = arr[L];
+		} else {
+			int p1 = arr[L] + g2(arr, L + 1, R, fmap, gmap);
+			int p2 = arr[R] + g2(arr, L, R - 1, fmap, gmap);
+			ans = Math.max(p1, p2);
+		}
+		fmap[L][R] = ans;
+		return ans;
+	}
+
+	// // arr[L..R]，后手获得的最好分数返回
+	public static int g2(int[] arr, int L, int R, int[][] fmap, int[][] gmap) {
+		if (gmap[L][R] != -1) {
+			return gmap[L][R];
+		}
+		int ans = 0;
+		if (L != R) {
+			int p1 = f2(arr, L + 1, R, fmap, gmap); // 对手拿走了L位置的数
+			int p2 = f2(arr, L, R - 1, fmap, gmap); // 对手拿走了R位置的数
+			ans = Math.min(p1, p2);
+		}
+		gmap[L][R] = ans;
+		return ans;
+	}
 }

@@ -27,7 +27,7 @@ public class DPRecursive implements DPService {
 	 * ---      ---    ---
 	 * from      to    other
 	 */
-	public void func(int N, String from, String to, String other) {
+	private void func(int N, String from, String to, String other) {
 		if (N == 1) { // base case
 			System.out.println("Move 1 from " + from + " to " + to);
 		} else {
@@ -74,7 +74,7 @@ public class DPRecursive implements DPService {
 		return ans;
 	}
 	
-	public static void g(char[] str, int index, List<String> ans) {
+	private static void g(char[] str, int index, List<String> ans) {
 		if (index == str.length) {
 			ans.add(String.valueOf(str));
 		} else {
@@ -123,6 +123,27 @@ public class DPRecursive implements DPService {
 		      return 1;
 		}
 		return uniquePaths(row - 1, col) + uniquePaths(row, col - 1); // move down + move right
+	}
+
+	@Override
+	public Integer uniqueWays(int N, int start, int aim, int K) {
+		if (N < 2 || start < 1 || start > N || aim < 1 || aim > N || K < 1) {
+			return -1;
+		}
+		return go(start, K, aim, N);
+	}
+	//(cur,rest)
+	private static int go(int cur, int rest, int aim, int N) {
+		if (rest == 0) { // 如果已经不需要走了，走完了！
+			return cur == aim ? 1 : 0;
+		}
+		if (cur == 1) { // 1 -> 2 , 最左侧
+			return go(2, rest - 1, aim, N);
+		}
+		if (cur == N) { // N-1 <- N， 最右侧
+			return go(N - 1, rest - 1, aim, N);
+		}
+		return go(cur - 1, rest - 1, aim, N) + go(cur + 1, rest - 1, aim, N); //中间，既可以往左 又可以往右
 	}
 
 }

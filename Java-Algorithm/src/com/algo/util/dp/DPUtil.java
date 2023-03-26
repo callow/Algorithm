@@ -63,4 +63,12 @@ public class DPUtil {
 		return new DPGrid().uniquePaths(m, n);
 	}
 	
+	/**
+	 * 一维一共有n个位置 机器人从start*只走k步到aim~有多少方法
+	 * 1 2 3 4 5 6 7 = N
+	 *   *     ~
+	 */
+	public static int uniqueWays(int n, int start, int aim, int k) {
+		return  new DPGrid().uniqueWays(n, start, aim, k);
+	}
 }

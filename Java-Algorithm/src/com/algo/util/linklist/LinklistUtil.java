@@ -251,4 +251,18 @@ public class LinklistUtil {
 		return null;
 	}
 	
+	/**
+	 * 找到链表中点位置，快慢指针，快指针走完，慢指针刚好是中点位置 
+	 */
+	
+	public static Node getMiddlePointForward(Node head) {
+		Node slow = head;
+		Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+	}
+	
 }

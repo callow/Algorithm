@@ -79,4 +79,12 @@ public class DPUtil {
 	public static int drawCardGame(int[] arr) {
 		return new DPGrid().drawCardGame(arr);
 	}
+	
+	/**
+	 * 背包问题： w : 货物重量， v : 货物价值， bag: 背包容量 
+	 */
+	
+	public static int knapsackMaxValue(int[] w, int[] v, int bag) {
+		return new DPGrid().knapsackMaxValue(w, v, bag);
+	}
 }

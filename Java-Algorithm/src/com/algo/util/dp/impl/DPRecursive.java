@@ -176,5 +176,10 @@ public class DPRecursive implements DPService {
 		return Math.min(p1, p2);
 	}
 
+	@Override
+	public int knapsackMaxValue(int[] w, int[] v, int bag) {
+		return 0;
+	}
+
 
 }

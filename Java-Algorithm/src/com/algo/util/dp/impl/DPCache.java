@@ -112,4 +112,8 @@ public class DPCache implements DPService {
 		gmap[L][R] = ans;
 		return ans;
 	}
+	@Override
+	public int knapsackMaxValue(int[] w, int[] v, int bag) {
+		return 0;
+	}
 }

@@ -11,4 +11,5 @@ public interface DPService {
 	public Integer uniquePaths(int m, int n);
 	public Integer uniqueWays(int N, int start, int aim, int K);
 	public Integer drawCardGame(int[] arr);
+	public int knapsackMaxValue(int[] w, int[] v, int bag);
 }

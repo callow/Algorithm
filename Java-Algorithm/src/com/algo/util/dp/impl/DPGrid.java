@@ -78,5 +78,10 @@ public class DPGrid implements DPService {
 		}
 		return Math.max(fmap[0][N - 1], gmap[0][N - 1]);
 	}
+	@Override
+	public int knapsackMaxValue(int[] w, int[] v, int bag) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

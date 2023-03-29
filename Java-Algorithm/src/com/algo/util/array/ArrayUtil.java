@@ -40,5 +40,23 @@ public class ArrayUtil {
 		return result.toArray(new int[result.size()][2]); // 将ArrayList变成数组的方法
 	}
 	
+	/**
+	 * 找到最长的连续的1的长度
+	 */
+	
+    public int findMaxConsecutiveOnes(int[] nums) {
+    	int count = 0;
+    	int max = 0;
+    	for(int i = 0; i < nums.length; i++) {
+        	if (nums[i] == 1) {
+        		count++;
+        	} else {
+        		max = Math.max(max, count);
+        		count = 0;
+        	}
+    	}
+    	return Math.max(max, count);
+    }
+	
 	
 }

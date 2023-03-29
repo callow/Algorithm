@@ -28,5 +28,19 @@ public class CommonNumberUtil {
 		}
 		return res;
 	}
+	
+	/**
+	 * 
+	 * 数字有几位
+	 */
+	
+	public static int countDigits(int num) {
+	    int count = 0;
+	    while (num != 0) {
+	      num /= 10;
+	      ++count;
+	    }
+	    return count;
+	}
 		
 }

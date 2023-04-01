@@ -44,7 +44,7 @@ public class ArrayUtil {
 	 * 找到最长的连续的1的长度
 	 */
 	
-    public int findMaxConsecutiveOnes(int[] nums) {
+    public static int findMaxConsecutiveOnes(int[] nums) {
     	int count = 0;
     	int max = 0;
     	for(int i = 0; i < nums.length; i++) {
@@ -58,7 +58,21 @@ public class ArrayUtil {
     	return Math.max(max, count);
     }
     
-    
-	
+    /**
+     * 检查数组中是否有元素是我的2倍 
+     */
+    public static boolean hasElement2TimesThanMe(int[] arr) {
+       List<Integer> copy = new ArrayList<>();
+ 	   for (int i =0; i < arr.length; i++) {
+ 		   copy.add(arr[i] * 2);
+ 	   }
+ 	   
+ 	   for (int i =0; i < arr.length; i++) {
+ 		   if (copy.contains(arr[i]) && i != copy.indexOf(arr[i])) {
+ 			   return true;
+ 		   }
+ 	   }
+ 	   return false;
+    }
 	
 }

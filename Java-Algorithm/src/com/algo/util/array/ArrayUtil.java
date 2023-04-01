@@ -74,5 +74,32 @@ public class ArrayUtil {
  	   }
  	   return false;
     }
+    
+    /**
+     * 是山形数组 
+     */
+    
+    public static boolean isMountainArray(int[] arr) {
+		if (arr.length < 3) {
+			return false;
+		}
+		int turningPoint = -1;
+        for (int i = 1; i < arr.length; i++) {
+        	if (arr[i] == arr[i-1]) {
+        		return false;
+        	}
+        	if (turningPoint != -1 && arr[i] > arr[i-1]) {
+        		return false;
+        	}
+        	
+        	if (arr[i] < arr[i-1]) {
+        		turningPoint = i-1;
+        	}
+        	if (turningPoint == 0) {
+        		return false;
+        	}
+        }
+        return turningPoint == -1 ? false : true;
+    }
 	
 }

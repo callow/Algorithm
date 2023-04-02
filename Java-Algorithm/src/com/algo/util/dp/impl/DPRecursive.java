@@ -178,7 +178,30 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int knapsackMaxValue(int[] w, int[] v, int bag) {
-		return 0;
+		if ( w == null || v == null || w.length == 0 || v.length != w.length) {
+			return 0;
+		}
+		
+		return process(w, v, 0, bag); // 尝试函数
+	}
+	// 从index往后自由选择， 返回最大的价值
+	private int process(int[] w, int[] v, int index, int bag) {
+		if (bag < 0) { 
+			return -1; // 无效的货物选择
+		}
+		if(index == w.length) {
+			return 0;
+		}
+		int no = process(w,v,index+1,bag); // 不要当前货
+		
+		int yes = 0;// 要当前货
+		int check = process(w,v,index+1, bag-w[index]);  // 检查背包是否爆炸
+		if (check != -1) {
+			yes = v[index] + check;
+		}
+		
+		return Math.max(no, yes);
+		
 	}
 
 

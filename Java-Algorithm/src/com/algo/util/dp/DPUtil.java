@@ -82,6 +82,7 @@ public class DPUtil {
 	
 	/**
 	 * 背包问题： w : 货物重量， v : 货物价值， bag: 背包容量 
+	 * 从左往右，[要 or 不要]
 	 */
 	
 	public static int knapsackMaxValue(int[] w, int[] v, int bag) {

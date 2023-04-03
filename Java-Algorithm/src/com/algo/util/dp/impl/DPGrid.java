@@ -11,31 +11,41 @@ import com.algo.util.dp.DPService;
 public class DPGrid implements DPService {
 
 	@Override
-	public void hanoi(int n) {}
+	public void hanoi(int n) {
+	}
+
 	@Override
-	public List<String> subsequence(String n) {return null;}
+	public List<String> subsequence(String n) {
+		return null;
+	}
+
 	@Override
-	public List<String> permutation(String n) {return null;}
+	public List<String> permutation(String n) {
+		return null;
+	}
+
 	@Override
-	public List<String> getAllBrackets(int n) {return null;}
-	
+	public List<String> getAllBrackets(int n) {
+		return null;
+	}
+
 	@Override
 	public Integer uniquePaths(int row, int col) {
-        int[] dp = new int[row];
+		int[] dp = new int[row];
 
-        for(int i = 0; i < row; i++){ // fill 1st col = 1
-            dp[i] = 1;
-        }
+		for (int i = 0; i < row; i++) { // fill 1st col = 1
+			dp[i] = 1;
+		}
 
-        for(int j = 1; j < col; j++){
-            for(int i = 1; i < row; i++){
-                dp[i] = dp[i] + dp[i - 1];
-            }
-        }
+		for (int j = 1; j < col; j++) {
+			for (int i = 1; i < row; i++) {
+				dp[i] = dp[i] + dp[i - 1];
+			}
+		}
 
-        return dp[row - 1]; // row of paths
+		return dp[row - 1]; // row of paths
 	}
-	
+
 	// (cur,rest)
 	@Override
 	public Integer uniqueWays(int N, int start, int aim, int K) {
@@ -53,7 +63,7 @@ public class DPGrid implements DPService {
 		}
 		return dp[start][K];
 	}
-	
+
 	// ±©Á¦µÝ¹é¸ÄÐ´
 	@Override
 	public Integer drawCardGame(int[] arr) {
@@ -78,10 +88,25 @@ public class DPGrid implements DPService {
 		}
 		return Math.max(fmap[0][N - 1], gmap[0][N - 1]);
 	}
+
+	// index > 0 ~ N
+	// rest > -1 ~ bag
 	@Override
 	public int knapsackMaxValue(int[] w, int[] v, int bag) {
-		// TODO Auto-generated method stub
-		return 0;
+		int N = w.length;
+		int[][] dp = new int[N + 1][bag + 1];
+		for (int index = N - 1; index >= 0; index--) { // row from bottom up
+			for (int rest = 0; rest <= bag; rest++) {
+				int p1 = dp[index + 1][rest];
+				int p2 = 0;
+				int next = rest - w[index] < 0 ? -1 : dp[index + 1][rest - w[index]];
+				if (next != -1) {
+					p2 = v[index] + next;
+				}
+				dp[index][rest] = Math.max(p1, p2);
+			}
+		}
+		return dp[0][bag];
 	}
 
 }

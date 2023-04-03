@@ -109,4 +109,10 @@ public class DPGrid implements DPService {
 		return dp[0][bag];
 	}
 
+	@Override
+	public int convertNumToLetter(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

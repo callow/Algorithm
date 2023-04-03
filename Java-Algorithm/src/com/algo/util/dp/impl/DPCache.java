@@ -11,23 +11,36 @@ import com.algo.util.dp.DPService;
 public class DPCache implements DPService {
 
 	@Override
-	public void hanoi(int n) {}
+	public void hanoi(int n) {
+	}
+
 	@Override
-	public List<String> subsequence(String n) {return null;}
+	public List<String> subsequence(String n) {
+		return null;
+	}
+
 	@Override
-	public List<String> permutation(String n) {return null;}
+	public List<String> permutation(String n) {
+		return null;
+	}
+
 	@Override
-	public List<String> getAllBrackets(int n) {return null;}
+	public List<String> getAllBrackets(int n) {
+		return null;
+	}
+
 	@Override
-	public Integer uniquePaths(int m, int n) {return null;}
-	
+	public Integer uniquePaths(int m, int n) {
+		return null;
+	}
+
 	@Override
 	public Integer uniqueWays(int N, int start, int aim, int K) {
-		
+
 		if (N < 2 || start < 1 || start > N || aim < 1 || aim > N || K < 1) {
 			return -1;
 		}
-		
+
 		int[][] dp = new int[N + 1][K + 1];
 		for (int i = 0; i <= N; i++) {
 			for (int j = 0; j <= K; j++) {
@@ -40,7 +53,7 @@ public class DPCache implements DPService {
 		// N+1 * K+1
 		return go(start, K, aim, N, dp);
 	}
-	
+
 	// cur 范: 1 ~ N
 	// rest 范：0 ~ K
 	public static int go(int cur, int rest, int aim, int N, int[][] dp) {
@@ -62,6 +75,7 @@ public class DPCache implements DPService {
 		return ans;
 
 	}
+
 	@Override
 	public Integer drawCardGame(int[] arr) {
 		if (arr == null || arr.length == 0) {
@@ -80,7 +94,7 @@ public class DPCache implements DPService {
 		int second = g2(arr, 0, arr.length - 1, fmap, gmap);
 		return Math.max(first, second);
 	}
-	
+
 	// arr[L..R]，先手获得的最好分数返回
 	public static int f2(int[] arr, int L, int R, int[][] fmap, int[][] gmap) {
 		if (fmap[L][R] != -1) {
@@ -112,8 +126,14 @@ public class DPCache implements DPService {
 		gmap[L][R] = ans;
 		return ans;
 	}
+
 	@Override
 	public int knapsackMaxValue(int[] w, int[] v, int bag) {
+		return 0;
+	}
+
+	@Override
+	public int convertNumToLetter(String str) {
 		return 0;
 	}
 }

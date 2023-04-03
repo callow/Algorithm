@@ -12,20 +12,15 @@ import com.algo.util.dp.DPService;
  */
 public class DPRecursive implements DPService {
 
-	@Override 
+	@Override
 	public void hanoi(int n) {
 		if (n > 0) {
 			func(n, "left", "right", "mid");
 		}
 	}
-	
+
 	/**
-	 * 总目标： 1 ~ N  在 from 去 to , 另一个 other
-	 * 1        
-	 * 2
-	 * N
-	 * ---      ---    ---
-	 * from      to    other
+	 * 总目标： 1 ~ N 在 from 去 to , 另一个 other 1 2 N --- --- --- from to other
 	 */
 	private void func(int N, String from, String to, String other) {
 		if (N == 1) { // base case
@@ -37,7 +32,6 @@ public class DPRecursive implements DPService {
 		}
 	}
 
-	
 	@Override
 	public List<String> subsequence(String s) {
 		char[] str = s.toCharArray();
@@ -73,7 +67,7 @@ public class DPRecursive implements DPService {
 		g(str, 0, ans);
 		return ans;
 	}
-	
+
 	private static void g(char[] str, int index, List<String> ans) {
 		if (index == str.length) {
 			ans.add(String.valueOf(str));
@@ -93,34 +87,35 @@ public class DPRecursive implements DPService {
 	@Override
 	public List<String> getAllBrackets(int n) {
 		List<String> result = new ArrayList<>();
-    	generate(result,"", n, n);
-        return result;
+		generate(result, "", n, n);
+		return result;
 	}
-    /**
-     * 
-     * @param curr: 当前组合结果
-     * @param left : 左括号还剩几个
-     * @param right： 右括号还剩几个
-     */
-    public static void generate(List<String> result, String curr, int left, int right) {
-    	if(left == 0 && right == 0) { // 结束
-    		result.add(curr);
-    		return;
-    	}
-    	
-    	if (left > 0) { // 加左括号
-    		generate(result, curr + "(", left - 1,right);
-    	}
-    	
-    	if (right > left) { // 加右括号
-    		generate(result, curr + ")", left,right -1);
-    	}
-    }
+
+	/**
+	 * 
+	 * @param curr:  当前组合结果
+	 * @param left   : 左括号还剩几个
+	 * @param right： 右括号还剩几个
+	 */
+	public static void generate(List<String> result, String curr, int left, int right) {
+		if (left == 0 && right == 0) { // 结束
+			result.add(curr);
+			return;
+		}
+
+		if (left > 0) { // 加左括号
+			generate(result, curr + "(", left - 1, right);
+		}
+
+		if (right > left) { // 加右括号
+			generate(result, curr + ")", left, right - 1);
+		}
+	}
 
 	@Override
 	public Integer uniquePaths(int row, int col) {
 		if (row == 1 || col == 1) {
-		      return 1;
+			return 1;
 		}
 		return uniquePaths(row - 1, col) + uniquePaths(row, col - 1); // move down + move right
 	}
@@ -132,7 +127,8 @@ public class DPRecursive implements DPService {
 		}
 		return go(start, K, aim, N);
 	}
-	//(cur,rest)
+
+	// (cur,rest)
 	private static int go(int cur, int rest, int aim, int N) {
 		if (rest == 0) { // 如果已经不需要走了，走完了！
 			return cur == aim ? 1 : 0;
@@ -143,7 +139,7 @@ public class DPRecursive implements DPService {
 		if (cur == N) { // N-1 <- N， 最右侧
 			return go(N - 1, rest - 1, aim, N);
 		}
-		return go(cur - 1, rest - 1, aim, N) + go(cur + 1, rest - 1, aim, N); //中间，既可以往左 又可以往右
+		return go(cur - 1, rest - 1, aim, N) + go(cur + 1, rest - 1, aim, N); // 中间，既可以往左 又可以往右
 	}
 
 	@Override
@@ -155,7 +151,7 @@ public class DPRecursive implements DPService {
 		int second = g1(arr, 0, arr.length - 1);
 		return Math.max(first, second);
 	}
-	
+
 	// arr[L..R]，先手获得的最好分数返回
 	public static int f1(int[] arr, int L, int R) {
 		if (L == R) {
@@ -178,31 +174,49 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int knapsackMaxValue(int[] w, int[] v, int bag) {
-		if ( w == null || v == null || w.length == 0 || v.length != w.length) {
+		if (w == null || v == null || w.length == 0 || v.length != w.length) {
 			return 0;
 		}
-		
+
 		return process(w, v, 0, bag); // 尝试函数
 	}
+
 	// 从index往后自由选择， 返回最大的价值
 	private int process(int[] w, int[] v, int index, int bag) {
-		if (bag < 0) { 
+		if (bag < 0) {
 			return -1; // 无效的货物选择
 		}
-		if(index == w.length) {
+		if (index == w.length) {
 			return 0;
 		}
-		int no = process(w,v,index+1,bag); // 不要当前货
-		
+		int no = process(w, v, index + 1, bag); // 不要当前货
+
 		int yes = 0;// 要当前货
-		int check = process(w,v,index+1, bag-w[index]);  // 检查背包是否爆炸
+		int check = process(w, v, index + 1, bag - w[index]); // 检查背包是否爆炸
 		if (check != -1) {
 			yes = v[index] + check;
 		}
-		
+
 		return Math.max(no, yes);
-		
+
 	}
 
+	@Override
+	public int convertNumToLetter(String str) {
+		if (str == null || str.length() == 0) {
+			return 0;
+		}
+		return process(str.toCharArray(), 0);
+	}
+
+	private int process(char[] str, int i) {
+		if (i == str.length) {
+			return 1;
+		}
+		if (str[i] == '0') {
+
+		}
+		return 1;
+	}
 
 }

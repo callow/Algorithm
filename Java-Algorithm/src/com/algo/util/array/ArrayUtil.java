@@ -70,7 +70,7 @@ public class ArrayUtil {
 			if (nums[right] == 0) {
 				numOfZero++;
 			}
-			while(numOfZero > 1) {
+			while (numOfZero > 1) {
 				if (nums[left++] == 0) {
 					numOfZero--;
 				}
@@ -155,6 +155,24 @@ public class ArrayUtil {
 			}
 		}
 		return counter;
+	}
+
+	/**
+	 * 找出倒数第3大的数字
+	 */
+
+	public static int findthirdMaxNum(int[] nums) {
+		Arrays.sort(nums);
+		int counter = 1;
+		List<Integer> answer = new ArrayList<>();
+		answer.add(nums[0]);
+		for (int i = 1; i < nums.length; i++) {
+			if (nums[i] != nums[i - 1]) {
+				counter++;
+				answer.add(nums[i]);
+			}
+		}
+		return counter < 3 ? answer.get(counter - 1) : answer.get(counter - 3);
 	}
 
 }

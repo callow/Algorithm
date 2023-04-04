@@ -59,6 +59,15 @@ public class ArrayUtil {
 	}
 
 	/**
+	 * 
+	 * valid state: one or one 0, invalid state: two zeros
+	 * 
+	 * @return
+	 */
+	public static int findMaxConsecutiveOnesAllowFlip1Zero(int[] nums) {
+	}
+
+	/**
 	 * 检查数组中是否有元素是我的2倍
 	 */
 	public static boolean hasElement2TimesThanMe(int[] arr) {

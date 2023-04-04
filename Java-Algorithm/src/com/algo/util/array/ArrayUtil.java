@@ -65,6 +65,19 @@ public class ArrayUtil {
 	 * @return
 	 */
 	public static int findMaxConsecutiveOnesAllowFlip1Zero(int[] nums) {
+		int numOfZero = 0, max = 0;
+		for (int left = 0, right = 0; right < nums.length; right++) {
+			if (nums[right] == 0) {
+				numOfZero++;
+			}
+			while(numOfZero > 1) {
+				if (nums[left++] == 0) {
+					numOfZero--;
+				}
+			}
+			max = Math.max(max, right - left + 1);
+		}
+		return max;
 	}
 
 	/**

@@ -114,7 +114,7 @@ public class BinarySearchUtil {
 	 */
 	public static int guessNumber(int num) {
 		int l = 1;
-		int r = Integer.MAX_VALUE - 1;
+		int r = Integer.MAX_VALUE;
 		int mid = 0;
 
 		while (l < r) {

@@ -2,6 +2,7 @@ package com.algo.util.dp.impl;
 
 import java.util.List;
 
+import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
 
 /**
@@ -109,10 +110,29 @@ public class DPGrid implements DPService {
 		return dp[0][bag];
 	}
 
+	/**
+	 * 递归中，i 位置依赖i+1和i+2位置，因此从右往左填dp表
+	 */
+
 	@Override
-	public int convertNumToLetter(String str) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int convertNumToLetter(String s) {
+		if (CommonStringUtil.isEmpty(s)) {
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		int N = str.length;
+		int[] dp = new int[N + 1];
+		dp[N] = 1;
+		for (int i = N - 1; i >= 0; i--) {
+			if (str[i] != '0') {
+				int ways = dp[i + 1];
+				if (i + 1 < str.length && (str[i] - '0') * 10 + str[i + 1] - '0' < 27) {
+					ways += dp[i + 2];
+				}
+				dp[i] = ways;
+			}
+		}
+		return dp[0];
 	}
 
 }

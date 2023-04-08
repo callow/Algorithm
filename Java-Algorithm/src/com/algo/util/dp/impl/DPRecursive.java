@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.algo.util.common.CommonArrayUtil;
+import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
 
 /**
@@ -203,20 +204,31 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int convertNumToLetter(String str) {
-		if (str == null || str.length() == 0) {
+		if (CommonStringUtil.isEmpty(str)) {
 			return 0;
 		}
 		return process(str.toCharArray(), 0);
 	}
 
+	// str[0..i-1]转化无需过问, str[i.....]去转化，返回有多少种转化方法，一个可变参数，一维表
 	private int process(char[] str, int i) {
 		if (i == str.length) {
 			return 1;
 		}
+		// 之前的决定有问题
 		if (str[i] == '0') {
 
 		}
-		return 1;
+
+		// 可能性1：i单转， 去i+1继续
+		int ways = process(str, i + 1);
+
+		// 可能性2：i 与 i+1 共同转，去i+2继续
+		if (i + 1 < str.length && (str[i] - '0') * 10 + str[i + 1] - '0' < 27) {
+			ways += process(str, i + 2);
+		}
+
+		return ways;
 	}
 
 }

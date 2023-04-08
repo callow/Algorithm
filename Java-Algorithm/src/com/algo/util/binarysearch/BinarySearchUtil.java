@@ -156,7 +156,7 @@ public class BinarySearchUtil {
 			mid = l + ((r - l) / 2);
 			if (arr[mid] == num) {
 				return mid;
-			} else if (arr[mid] > arr[l]) {
+			} else if (arr[mid] >= arr[l]) {
 				if (num >= arr[l] && num < arr[mid]) {
 					r = mid - 1;
 				} else {

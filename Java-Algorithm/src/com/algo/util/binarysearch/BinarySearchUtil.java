@@ -110,6 +110,38 @@ public class BinarySearchUtil {
 	}
 
 	/**
+	 * 局部最小
+	 */
+	public static int localMaximum(int[] unsortArr) { // leecode 162
+		if (CommonArrayUtil.isEmpty(unsortArr)) {
+			return -1;
+		}
+		// 去头找
+		if (CommonArrayUtil.hasOne(unsortArr) || unsortArr[0] > unsortArr[1]) {
+			return 0;
+		}
+		// 去尾找
+		if (unsortArr[unsortArr.length - 1] > unsortArr[unsortArr.length - 2]) {
+			return unsortArr.length - 1;
+		}
+
+		// 去中间找
+		int l = 1;
+		int r = unsortArr.length - 2;
+		int mid = 0;
+
+		while (l < r) {
+			mid = (l + r) / 2;
+			if (unsortArr[mid] > unsortArr[mid + 1]) { // 11（mid） > 2
+				r = mid; // go to left
+			} else {
+				l = mid + 1;
+			}
+		}
+		return l;
+	}
+
+	/**
 	 * 猜数字游戏：大了，小了 对了！
 	 */
 	public static int guessNumber(int num) {

@@ -3,6 +3,7 @@ package com.algo.util.dp;
 import java.util.List;
 import java.util.Stack;
 
+import com.algo.util.dp.impl.DPCache;
 import com.algo.util.dp.impl.DPGrid;
 import com.algo.util.dp.impl.DPRecursive;
 import com.algo.util.stack.StackUtil;
@@ -71,7 +72,7 @@ public class DPUtil {
 	}
 
 	/**
-	 * 一堆扑克，N个位置，2人先后两端拿牌 总数大的赢。返回获胜者的分数？
+	 * 一堆扑克，N个位置，2人先后两端拿牌 总数大的赢。返回获胜者的分数？ 范围尝试模型，L~R范围
 	 */
 
 	public static int drawCardGame(int[] arr) {
@@ -98,6 +99,14 @@ public class DPUtil {
 	 * 有一些贴纸，无穷张，可以剪切，最少需要多少张，可以拼出target
 	 */
 	public static int findMinStickerstoSpellTarget(String[] stickers, String target) {
-		return new DPGrid().minStickersToSpellWords(stickers, target);
+		return new DPCache().minStickersToSpellWords(stickers, target);
+	}
+
+	/**
+	 * 最长公共子序列
+	 */
+
+	public int longestCommonSubsequence(String str1, String str2) {
+		return new DPGrid().longestCommonSubsequence(str1, str2);
 	}
 }

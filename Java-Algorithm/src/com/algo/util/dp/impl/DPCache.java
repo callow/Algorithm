@@ -197,4 +197,10 @@ public class DPCache implements DPService {
 		cache.put(t, ans);
 		return ans;
 	}
+
+	@Override
+	public int longestCommonSubsequence(String str1, String str2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

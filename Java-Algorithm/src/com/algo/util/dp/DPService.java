@@ -23,4 +23,6 @@ public interface DPService {
 	public int convertNumToLetter(String str);
 
 	public int minStickersToSpellWords(String[] stickers, String target);
+
+	public int longestCommonSubsequence(String str1, String str2);
 }

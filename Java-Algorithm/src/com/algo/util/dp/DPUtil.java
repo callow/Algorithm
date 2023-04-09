@@ -103,7 +103,9 @@ public class DPUtil {
 	}
 
 	/**
-	 * 最长公共子序列
+	 * 最长公共子序列.
+	 * 
+	 * 样本对应模型 ： 以最后一个字符作为考量
 	 */
 
 	public int longestCommonSubsequence(String str1, String str2) {

@@ -16,4 +16,17 @@ public class StringUtil {
 		}
 		return tree.countPrefix(prefix);
 	}
+
+	/**
+	 * 
+	 * 统计String中每种字符出现的频率,字符必修是小写
+	 */
+	public static int[] getLetterFrequency(String str) {
+		char[] s1 = str.toCharArray();
+		int[] count = new int[26];
+		for (char cha : s1) {
+			count[cha - 'a']++;
+		}
+		return count;
+	}
 }

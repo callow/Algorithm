@@ -231,4 +231,45 @@ public class DPRecursive implements DPService {
 		return ways;
 	}
 
+	@Override
+	public int minStickersToSpellWords(String[] stickers, String target) {
+		int ans = process(stickers, target);
+		return ans == Integer.MAX_VALUE ? -1 : ans;
+	}
+
+	private int process(String[] stickers, String target) {
+		if (CommonStringUtil.isEmpty(target)) {
+			return 0;
+		}
+		int min = Integer.MAX_VALUE;
+		for (String first : stickers) {
+			String rest = minus(target, first); // 使用一张贴纸 剪完后剩下的target
+			if (rest.length() != target.length()) { // 如果剪完没有任何变化，= 使用当前贴纸没有减少任何字符，继续
+				min = process(stickers, rest);
+			}
+		}
+		return min + (min == Integer.MAX_VALUE ? 0 : 1); // + 1 加上first
+	}
+
+	private String minus(String target, String sticker) {
+		char[] s1 = target.toCharArray();
+		char[] s2 = sticker.toCharArray();
+		int[] count = new int[26];
+		for (char cha : s1) {
+			count[cha - 'a']++; // 统计String中每种字符出现的频率
+		}
+		for (char cha : s2) {
+			count[cha - 'a']--; // s2中再去减
+		}
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < 26; i++) {
+			if (count[i] > 0) {
+				for (int j = 0; j < count[i]; j++) {
+					builder.append((char) (i + 'a'));
+				}
+			}
+		}
+		return builder.toString();
+	}
+
 }

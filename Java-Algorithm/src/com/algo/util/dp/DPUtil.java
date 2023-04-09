@@ -91,6 +91,13 @@ public class DPUtil {
 	 * str只含有数字字符0~9, 0=A,2=B... 25=Z 返回多少种转化方案
 	 */
 	public static int convertNumToLetter(String str) {
-		return 0;
+		return new DPGrid().convertNumToLetter(str);
+	}
+
+	/**
+	 * 有一些贴纸，无穷张，可以剪切，最少需要多少张，可以拼出target
+	 */
+	public static int findMinStickerstoSpellTarget(String[] stickers, String target) {
+		return new DPGrid().minStickersToSpellWords(stickers, target);
 	}
 }

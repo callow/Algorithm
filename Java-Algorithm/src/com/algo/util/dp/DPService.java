@@ -21,4 +21,6 @@ public interface DPService {
 	public int knapsackMaxValue(int[] w, int[] v, int bag);
 
 	public int convertNumToLetter(String str);
+
+	public int minStickersToSpellWords(String[] stickers, String target);
 }

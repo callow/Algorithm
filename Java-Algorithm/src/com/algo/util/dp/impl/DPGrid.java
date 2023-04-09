@@ -137,7 +137,6 @@ public class DPGrid implements DPService {
 
 	@Override
 	public int minStickersToSpellWords(String[] stickers, String target) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

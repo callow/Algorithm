@@ -1,6 +1,8 @@
 package com.algo.util.dp.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.algo.util.dp.DPService;
 
@@ -139,7 +141,60 @@ public class DPCache implements DPService {
 
 	@Override
 	public int minStickersToSpellWords(String[] stickers, String target) {
-		// TODO Auto-generated method stub
-		return 0;
+		int N = stickers.length;
+		// 关键优化(用词频2维数组表替代贴纸数组)
+		int[][] counts = new int[N][26];
+		for (int i = 0; i < N; i++) {
+			char[] str = stickers[i].toCharArray();
+			for (char cha : str) {
+				counts[i][cha - 'a']++;
+			}
+		}
+		Map<String, Integer> cache = new HashMap<>();
+		cache.put("", 0);
+		int ans = process(counts, target, cache);
+		return ans == Integer.MAX_VALUE ? -1 : ans;
+	}
+
+	// stickers[i] 数组，当初i号贴纸的字符统计 int[][] stickers -> 所有的贴纸
+	// 每一种贴纸都有无穷张
+	// 返回搞定target的最少张数
+	// 最少张数
+	private int process(int[][] stickers, String t, Map<String, Integer> cache) {
+		if (cache.containsKey(t)) {
+			return cache.get(t);
+		}
+		// target做出词频统计
+		// target aabbc 2 2 1..
+		// 0 1 2..
+		char[] target = t.toCharArray();
+		int[] tcounts = new int[26];
+		for (char cha : target) {
+			tcounts[cha - 'a']++;
+		}
+		int N = stickers.length;
+		int min = Integer.MAX_VALUE;
+		for (int i = 0; i < N; i++) {
+			// 尝试第一张贴纸是谁
+			int[] sticker = stickers[i];
+
+			// 最关键的优化(重要的剪枝!这一步也是贪心!)
+			if (sticker[target[0] - 'a'] > 0) {
+				StringBuilder builder = new StringBuilder();
+				for (int j = 0; j < 26; j++) {
+					if (tcounts[j] > 0) {
+						int nums = tcounts[j] - sticker[j];
+						for (int k = 0; k < nums; k++) {
+							builder.append((char) (j + 'a'));
+						}
+					}
+				}
+				String rest = builder.toString();
+				min = Math.min(min, process(stickers, rest, cache));
+			}
+		}
+		int ans = min + (min == Integer.MAX_VALUE ? 0 : 1);
+		cache.put(t, ans);
+		return ans;
 	}
 }

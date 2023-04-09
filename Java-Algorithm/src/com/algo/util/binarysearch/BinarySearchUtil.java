@@ -110,7 +110,7 @@ public class BinarySearchUtil {
 	}
 
 	/**
-	 * 局部最小
+	 * 局部最大
 	 */
 	public static int localMaximum(int[] unsortArr) { // leecode 162
 		if (CommonArrayUtil.isEmpty(unsortArr)) {
@@ -203,6 +203,33 @@ public class BinarySearchUtil {
 
 		}
 		return -1;
+	}
+
+	/**
+	 * 在旋转数组中寻找最小值, mid与头/尾比较
+	 */
+	public static int findMinInRotatedArray(int[] nums) {
+		if (CommonArrayUtil.hasOne(nums) || CommonArrayUtil.hasNoRotation(nums)) { // no rotation
+			return nums[0];
+		}
+
+		int l = 0;
+		int r = nums.length - 1;
+		int mid = 0;
+
+		while (l < r) {
+			mid = l + (r - l) / 2;
+			if (nums[mid] > nums[mid + 1]) {
+				return nums[mid + 1];
+			} else if (nums[mid - 1] > nums[mid]) {
+				return nums[mid];
+			} else if (nums[mid] > nums[0]) { // mid in left side
+				l = mid + 1;
+			} else {
+				r = mid - 1;
+			}
+		}
+		return Integer.MAX_VALUE;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.algo.util.binarysearch;
 
+import java.util.List;
+
 import com.algo.util.common.CommonArrayUtil;
 
 public class BinarySearchUtil {
@@ -284,6 +286,20 @@ public class BinarySearchUtil {
 		}
 
 		return -1;
+	}
+
+	/**
+	 * 用logn的时间确定target在的模糊位置边界，因为right = right * 2 所以是logn
+	 */
+	public static int[] findFuzzyBoundary(List<Integer> infiniteStream, int target) {
+
+		// search boundaries
+		int left = 0, right = 1;
+		while (infiniteStream.get(right) < target) {
+			left = right;
+			right <<= 1;
+		}
+		return new int[] { left, right };
 	}
 
 }

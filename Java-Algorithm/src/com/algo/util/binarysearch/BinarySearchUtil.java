@@ -302,4 +302,29 @@ public class BinarySearchUtil {
 		return new int[] { left, right };
 	}
 
+	/**
+	 * 是否是平方数
+	 */
+	public static boolean isPerfectSquare(int num) {
+		if (num < 2) {
+			return true;
+		}
+
+		long l = 2;
+		long r = num / 2;
+		long mid = 0;
+		while (l <= r) {
+			mid = l + (r - l) / 2;
+			if (Math.pow(mid, 2) == num) {
+				return true;
+			}
+			if (Math.pow(mid, 2) > num) {
+				r = mid - 1;
+			} else {
+				l = mid + 1;
+			}
+		}
+		return false;
+	}
+
 }

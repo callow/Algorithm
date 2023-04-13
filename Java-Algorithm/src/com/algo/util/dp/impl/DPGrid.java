@@ -145,4 +145,9 @@ public class DPGrid implements DPService {
 		return 0;
 	}
 
+	@Override
+	public int longestPalindromeSubsequence(String input) {
+		return 0;
+	}
+
 }

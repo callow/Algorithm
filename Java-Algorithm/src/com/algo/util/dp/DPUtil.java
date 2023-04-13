@@ -111,4 +111,13 @@ public class DPUtil {
 	public int longestCommonSubsequence(String str1, String str2) {
 		return new DPGrid().longestCommonSubsequence(str1, str2);
 	}
+
+	/**
+	 * 最长回文子序列. = longestCommonSubsequence(str1,reverse(str))
+	 * 
+	 * 范围尝试模型 ： 在乎讨论开头 和 结尾
+	 */
+	public int longestPalindromeSubsequence(String input) {
+		return new DPGrid().longestPalindromeSubsequence(input);
+	}
 }

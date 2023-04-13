@@ -363,4 +363,28 @@ public class DPRecursive implements DPService {
 		}
 	}
 
+	@Override
+	public int longestPalindromeSubsequence(String s) {
+		if (CommonStringUtil.isEmpty(s)) {
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		return process(str, 0, str.length - 1);
+	}
+
+	// str[L..R]最长回文子序列长度返回
+	public static int process(char[] str, int L, int R) {
+		if (L == R) {
+			return 1;
+		}
+		if (L == R - 1) {
+			return str[L] == str[R] ? 2 : 1;
+		}
+		int p1 = process(str, L + 1, R - 1); // 最长回文子序列，即不以L开头，也不以R结尾 => 两边缩小范围
+		int p2 = process(str, L, R - 1); // 最长回文子序列，以L开头，不以R结尾 => 右边缩小范围
+		int p3 = process(str, L + 1, R); // 最长回文子序列，不以L开头，以R结尾 => 左边缩小范围
+		int p4 = str[L] != str[R] ? 0 : (2 + process(str, L + 1, R - 1)); // 最长回文子序列，即以L开头，又以R结尾 =》 L == R才可以
+		return Math.max(Math.max(p1, p2), Math.max(p3, p4));
+	}
+
 }

@@ -25,4 +25,6 @@ public interface DPService {
 	public int minStickersToSpellWords(String[] stickers, String target);
 
 	public int longestCommonSubsequence(String str1, String str2);
+
+	public int longestPalindromeSubsequence(String input);
 }

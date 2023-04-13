@@ -202,4 +202,9 @@ public class DPCache implements DPService {
 	public int longestCommonSubsequence(String str1, String str2) {
 		return 0;
 	}
+
+	@Override
+	public int longestPalindromeSubsequence(String input) {
+		return 0;
+	}
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
 
 /**
@@ -204,7 +205,29 @@ public class DPCache implements DPService {
 	}
 
 	@Override
-	public int longestPalindromeSubsequence(String input) {
-		return 0;
+	public int longestPalindromeSubsequence(String s) {
+		if (CommonStringUtil.isEmpty(s)) {
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		int n = str.length;
+		int[][] dp = new int[n][n]; // L <= R, 因此表的左半边没用.
+		dp[n - 1][n - 1] = 1;
+
+		for (int i = 0; i < n - 1; i++) {
+			dp[i][i] = 1; // base case 1: l = r => 1 对角线 1
+			dp[i][i + 1] = str[i] == str[i + 1] ? 2 : 1; // base case 2
+		}
+
+		for (int L = n - 3; L >= 0; L--) {
+			for (int R = L + 2; R < n; R++) {
+				int p1 = dp[L + 1][R - 1];
+				int p2 = dp[L][R - 1];
+				int p3 = dp[L + 1][R];
+				int p4 = str[L] != str[R] ? 0 : (2 + dp[L + 1][R - 1]);
+				dp[L][R] = Math.max(Math.max(p1, p2), Math.max(p3, p4));
+			}
+		}
+		return dp[0][n - 1];
 	}
 }

@@ -146,8 +146,30 @@ public class DPGrid implements DPService {
 	}
 
 	@Override
-	public int longestPalindromeSubsequence(String input) {
-		return 0;
+	public int longestPalindromeSubsequence(String s) {
+		if (CommonStringUtil.isEmpty(s)) {
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		int N = str.length;
+		int[][] dp = new int[N][N];
+		dp[N - 1][N - 1] = 1;
+		for (int i = 0; i < N - 1; i++) {
+			dp[i][i] = 1;
+			dp[i][i + 1] = str[i] == str[i + 1] ? 2 : 1;
+		}
+		for (int L = N - 3; L >= 0; L--) {
+			for (int R = L + 2; R < N; R++) {
+				// int p1 = dp[L + 1][R - 1]; 因为 p2 > p1, p3 > p1 因此 p1就不需要比了
+				int p2 = dp[L][R - 1];
+				int p3 = dp[L + 1][R];
+				dp[L][R] = Math.max(p2, p3);
+				if (str[L] == str[R]) {
+					dp[L][R] = Math.max(dp[L][R], 2 + dp[L + 1][R - 1]); // P4
+				}
+			}
+		}
+		return dp[0][N - 1];
 	}
 
 }

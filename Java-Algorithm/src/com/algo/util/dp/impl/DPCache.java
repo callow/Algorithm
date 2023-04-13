@@ -233,7 +233,6 @@ public class DPCache implements DPService {
 
 	@Override
 	public int horseJumpMethods(int a, int b, int k) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

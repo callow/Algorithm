@@ -174,8 +174,32 @@ public class DPGrid implements DPService {
 
 	@Override
 	public int horseJumpMethods(int a, int b, int k) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int[][][] dp = new int[10][9][k + 1];
+		dp[a][b][0] = 1;
+		for (int rest = 1; rest <= k; rest++) {
+			for (int x = 0; x < 10; x++) {
+				for (int y = 0; y < 9; y++) {
+					int ways = pick(dp, x + 2, y + 1, rest - 1);
+					ways += pick(dp, x + 1, y + 2, rest - 1);
+					ways += pick(dp, x - 1, y + 2, rest - 1);
+					ways += pick(dp, x - 2, y + 1, rest - 1);
+					ways += pick(dp, x - 2, y - 1, rest - 1);
+					ways += pick(dp, x - 1, y - 2, rest - 1);
+					ways += pick(dp, x + 1, y - 2, rest - 1);
+					ways += pick(dp, x + 2, y - 1, rest - 1);
+					dp[x][y][rest] = ways;
+				}
+			}
+		}
+		return dp[0][0][k];
+	}
+
+	public int pick(int[][][] dp, int x, int y, int rest) {
+		if (x < 0 || x > 9 || y < 0 || y > 8) { // 越界就返回0，否则就去拿
+			return 0;
+		}
+		return dp[x][y][rest];
 	}
 
 }

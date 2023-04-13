@@ -108,7 +108,7 @@ public class DPUtil {
 	 * 样本对应模型 ： 以最后一个字符作为考量
 	 */
 
-	public int longestCommonSubsequence(String str1, String str2) {
+	public static int longestCommonSubsequence(String str1, String str2) {
 		return new DPGrid().longestCommonSubsequence(str1, str2);
 	}
 
@@ -117,7 +117,7 @@ public class DPUtil {
 	 * 
 	 * 范围尝试模型 ： 在乎讨论开头 和 结尾
 	 */
-	public int longestPalindromeSubsequence(String input) {
+	public static int longestPalindromeSubsequence(String input) {
 		return new DPGrid().longestPalindromeSubsequence(input);
 	}
 
@@ -125,7 +125,17 @@ public class DPUtil {
 	 * 10 * 9 棋盘，象棋马 从(0,0)位置 跳k步 到(a,b)位置 有多少种方法？
 	 *
 	 */
-	public int horseJumpMethods(int a, int b, int k) {
+	public static int horseJumpMethods(int a, int b, int k) {
 		return new DPGrid().horseJumpMethods(a, b, k);
 	}
+
+	/**
+	 * arr[1,3,4,..] : 代表每一个咖啡机冲一杯咖啡的时间. n个人需要喝咖啡，只能用咖啡机来制造咖啡. 喝咖啡用0s. 一台洗杯机
+	 * a秒洗完，自然挥发要b秒。所有人喝完又洗完至少多久？
+	 */
+
+	public static int minCoffeeTime(int[] arr, int n, int a, int b) {
+		return new DPGrid().minCoffeeTime(arr, n, a, b);
+	}
+
 }

@@ -235,4 +235,10 @@ public class DPCache implements DPService {
 	public int horseJumpMethods(int a, int b, int k) {
 		return 0;
 	}
+
+	@Override
+	public int minCoffeeTime(int[] arr, int n, int a, int b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

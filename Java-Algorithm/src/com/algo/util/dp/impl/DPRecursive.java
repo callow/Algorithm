@@ -2,10 +2,13 @@ package com.algo.util.dp.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
+import com.algo.util.dp.model.CoffeeMachine;
+import com.algo.util.dp.model.CoffeeMachineComparator;
 
 /**
  * 
@@ -411,6 +414,23 @@ public class DPRecursive implements DPService {
 		ways += jump(x + 1, y - 2, rest - 1, a, b);
 		ways += jump(x + 2, y - 1, rest - 1, a, b);
 		return ways;
+	}
+
+	@Override
+	public int minCoffeeTime(int[] arr, int n, int a, int b) {
+		PriorityQueue<CoffeeMachine> heap = new PriorityQueue<CoffeeMachine>(new CoffeeMachineComparator());
+		for (int i = 0; i < arr.length; i++) {
+			heap.add(new CoffeeMachine(0, arr[i]));
+		}
+		int[] drinks = new int[n]; // 员工喝完时间
+		for (int i = 0; i < n; i++) {
+			CoffeeMachine cur = heap.poll();
+			cur.timePoint += cur.workTime;
+			drinks[i] = cur.timePoint;
+			heap.add(cur);
+		}
+
+		return 0;
 	}
 
 }

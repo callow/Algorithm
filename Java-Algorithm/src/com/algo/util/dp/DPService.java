@@ -29,4 +29,6 @@ public interface DPService {
 	public int longestPalindromeSubsequence(String input);
 
 	public int horseJumpMethods(int a, int b, int k);
+
+	public int minCoffeeTime(int[] arr, int n, int a, int b);
 }

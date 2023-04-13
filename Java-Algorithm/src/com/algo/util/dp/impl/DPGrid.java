@@ -202,4 +202,10 @@ public class DPGrid implements DPService {
 		return dp[x][y][rest];
 	}
 
+	@Override
+	public int minCoffeeTime(int[] arr, int n, int a, int b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

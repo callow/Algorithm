@@ -27,4 +27,6 @@ public interface DPService {
 	public int longestCommonSubsequence(String str1, String str2);
 
 	public int longestPalindromeSubsequence(String input);
+
+	public int horseJumpMethods(int a, int b, int k);
 }

@@ -387,4 +387,30 @@ public class DPRecursive implements DPService {
 		return Math.max(Math.max(p1, p2), Math.max(p3, p4));
 	}
 
+	@Override
+	public int horseJumpMethods(int a, int b, int k) {
+		return jump(0, 0, k, a, b);
+	}
+
+	// 当前在(x,y) 还剩 rest 步，目标(a,b)
+	public static int jump(int x, int y, int rest, int a, int b) {
+		if (x < 0 || x > 9 || y < 0 || y > 8) { // 跳出棋盘了
+			return 0;
+		}
+		if (rest == 0) { // 完成了
+			return (x == a && y == b) ? 1 : 0;
+		}
+
+		// 任何点都有8个方向的走法
+		int ways = jump(x + 2, y + 1, rest - 1, a, b);
+		ways += jump(x + 1, y + 2, rest - 1, a, b);
+		ways += jump(x - 1, y + 2, rest - 1, a, b);
+		ways += jump(x - 2, y + 1, rest - 1, a, b);
+		ways += jump(x - 2, y - 1, rest - 1, a, b);
+		ways += jump(x - 1, y - 2, rest - 1, a, b);
+		ways += jump(x + 1, y - 2, rest - 1, a, b);
+		ways += jump(x + 2, y - 1, rest - 1, a, b);
+		return ways;
+	}
+
 }

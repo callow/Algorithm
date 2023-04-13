@@ -120,4 +120,12 @@ public class DPUtil {
 	public int longestPalindromeSubsequence(String input) {
 		return new DPGrid().longestPalindromeSubsequence(input);
 	}
+
+	/**
+	 * 10 * 9 棋盘，象棋马 从(0,0)位置 跳k步 到(a,b)位置 有多少种方法？
+	 *
+	 */
+	public int horseJumpMethods(int a, int b, int k) {
+		return new DPGrid().horseJumpMethods(a, b, k);
+	}
 }

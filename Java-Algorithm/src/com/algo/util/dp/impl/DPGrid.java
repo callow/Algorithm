@@ -160,7 +160,7 @@ public class DPGrid implements DPService {
 		}
 		for (int L = N - 3; L >= 0; L--) {
 			for (int R = L + 2; R < N; R++) {
-				// int p1 = dp[L + 1][R - 1]; 因为 p2 > p1, p3 > p1 因此 p1就不需要比了
+				// int p1 = dp[L + 1][R - 1]; 因为 p2 > p1, p3 > p1 因此 p1就不需要比max了
 				int p2 = dp[L][R - 1];
 				int p3 = dp[L + 1][R];
 				dp[L][R] = Math.max(p2, p3);
@@ -170,6 +170,12 @@ public class DPGrid implements DPService {
 			}
 		}
 		return dp[0][N - 1];
+	}
+
+	@Override
+	public int horseJumpMethods(int a, int b, int k) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

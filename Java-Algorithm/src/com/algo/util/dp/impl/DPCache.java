@@ -230,4 +230,10 @@ public class DPCache implements DPService {
 		}
 		return dp[0][n - 1];
 	}
+
+	@Override
+	public int horseJumpMethods(int a, int b, int k) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

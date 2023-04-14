@@ -132,6 +132,8 @@ public class DPUtil {
 	/**
 	 * arr[1,3,4,..] : 代表每一个咖啡机冲一杯咖啡的时间. n个人需要喝咖啡，只能用咖啡机来制造咖啡. 喝咖啡用0s. 一台洗杯机
 	 * a秒洗完，自然挥发要b秒。所有人喝完又洗完至少多久？
+	 * 
+	 * 业务限制模型：可变参数不可以直接得到变化范围,人为估出来，e.g : free
 	 */
 
 	public static int minCoffeeTime(int[] arr, int n, int a, int b) {

@@ -418,7 +418,7 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int minCoffeeTime(int[] arr, int n, int a, int b) {
-		PriorityQueue<CoffeeMachine> heap = new PriorityQueue<CoffeeMachine>(new CoffeeMachineComparator());
+		PriorityQueue<CoffeeMachine> heap = new PriorityQueue<CoffeeMachine>(new CoffeeMachineComparator()); // 小根堆
 		for (int i = 0; i < arr.length; i++) {
 			heap.add(new CoffeeMachine(0, arr[i]));
 		}
@@ -427,10 +427,31 @@ public class DPRecursive implements DPService {
 			CoffeeMachine cur = heap.poll();
 			cur.timePoint += cur.workTime;
 			drinks[i] = cur.timePoint;
-			heap.add(cur);
+			heap.add(cur); // 更新小根堆
 		}
 
-		return 0;
+		return bestTime(drinks, a, b, 0, 0);
+	}
+
+	// drinks 所有杯子可以开始洗的时间
+	// wash 单杯洗干净的时间（串行）
+	// air 挥发干净的时间(并行)
+	// free 洗的机器什么时候可用/空闲 -可变参数
+	// drinks[index.....]都变干净，最早的结束时间（返回）
+	public int bestTime(int[] drinks, int wash, int evaporate, int index, int free) {
+		if (index == drinks.length) {
+			return 0;
+		}
+		// index号杯子 去wash
+		int selfWashTimePoint = Math.max(drinks[index], free) + wash; // 杯子喝完时间，和咖啡机空余的时间谁大谁决定什么时间开始洗 => max
+		int restWashTimePoint = bestTime(drinks, wash, evaporate, index + 1, selfWashTimePoint);
+		int p1 = Math.max(selfWashTimePoint, restWashTimePoint);
+
+		// index号杯子 去evaporate
+		int selfEvaporateTimePoint = drinks[index] + evaporate;
+		int restEvaporateTimePoint = bestTime(drinks, wash, evaporate, index + 1, free);
+		int p2 = Math.max(selfEvaporateTimePoint, restEvaporateTimePoint);
+		return Math.min(p1, p2);
 	}
 
 }

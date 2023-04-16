@@ -169,6 +169,34 @@ public class MatrixUtil {
 
 	}
 
+	/**
+	 * 生成 Pascal's triangle -> 杨辉三角 <br>
+	 * 
+	 * 严格表结构填充
+	 */
+
+	public static List<List<Integer>> pascalTriangle(int numRows) {
+		List<List<Integer>> triangle = new ArrayList<List<Integer>>();
+
+		triangle.add(new ArrayList<>());
+		triangle.get(0).add(1);
+
+		for (int row = 1; row < numRows; row++) {
+			List<Integer> cur = new ArrayList<>();
+			List<Integer> prev = triangle.get(row - 1);
+
+			cur.add(1);
+			for (int j = 1; j < row; j++) {
+				cur.add(prev.get(j - 1) + prev.get(j));
+			}
+			cur.add(1);
+
+			triangle.add(cur);
+		}
+
+		return triangle;
+	}
+
 	public static boolean isEmpty(int[][] matrix) {
 		return matrix == null || matrix.length == 0 || matrix[0].length == 0;
 	}

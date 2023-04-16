@@ -120,6 +120,55 @@ public class MatrixUtil {
 
 	}
 
+	/**
+	 * 内螺旋遍历，返回内螺旋序： <br>
+	 * move right: (row, col + 1) <br>
+	 * move downwards: (row + 1, col) <br>
+	 * move left: (row, col - 1)<br>
+	 * move upwards: (row - 1, col)<br>
+	 */
+	public static List<Integer> spiralOrder(int[][] matrix) {
+		List<Integer> result = new ArrayList<>();
+		int rows = matrix.length, columns = matrix[0].length;
+		int up = 0, down = rows - 1, left = 0, right = columns - 1; // index
+
+		// direction : right -> down -> left -> up
+		while (result.size() < rows * columns) {
+
+			// right
+			for (int col = left; col <= right; col++) {
+				result.add(matrix[up][col]);
+			}
+
+			// down
+			for (int row = up + 1; row <= down; row++) {
+				result.add(matrix[row][right]);
+			}
+
+			if (up != down) {
+				// left.
+				for (int col = right - 1; col >= left; col--) {
+					result.add(matrix[down][col]);
+				}
+			}
+
+			if (left != right) {
+				// up
+				for (int row = down - 1; row > up; row--) {
+					result.add(matrix[row][left]);
+				}
+			}
+
+			// finish one round
+			left++;
+			right--;
+			up++;
+			down--;
+		}
+		return result;
+
+	}
+
 	public static boolean isEmpty(int[][] matrix) {
 		return matrix == null || matrix.length == 0 || matrix[0].length == 0;
 	}

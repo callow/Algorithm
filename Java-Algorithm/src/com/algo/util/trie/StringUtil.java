@@ -6,6 +6,8 @@ import com.algo.util.trie.model.PrefixTree;
 
 public class StringUtil {
 
+	public static final String EMPTY = "";
+
 	/**
 	 * 数一下Prefix开头字符串个数
 	 */
@@ -28,5 +30,27 @@ public class StringUtil {
 			count[cha - 'a']++;
 		}
 		return count;
+	}
+
+	/**
+	 * 寻找最长公共前缀 = 字典树最深处
+	 */
+
+	public static String getLongestCommontPrefix(String[] strs) {
+		if (strs.length == 0) {
+			return EMPTY;
+		}
+		String prefix = strs[0]; // first element
+		for (int i = 1; i < strs.length; i++) {
+
+			while (strs[i].indexOf(prefix) != 0) { // 当符合时，继续判断prefix, prefix不合格时退出
+				prefix = prefix.substring(0, prefix.length() - 1);
+				if (prefix.isEmpty()) {
+					return EMPTY;
+				}
+			}
+		}
+		return prefix;
+
 	}
 }

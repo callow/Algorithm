@@ -176,7 +176,7 @@ public class ArrayUtil {
 	}
 
 	/**
-	 * 给数组组成的整数+1，然后再返回数组,进位 -> [1,2,4] -> [1,2,5]
+	 * 数组转成整数，给数组组成的整数+1，然后再转回成数组,进位 -> [1,2,4] -> [1,2,5]
 	 */
 	public static int[] plusOne(int[] d) {
 		int[] digits = new int[d.length + 1];
@@ -194,6 +194,40 @@ public class ArrayUtil {
 			return d;
 		}
 		return digits;
+	}
+
+	/**
+	 * 数组 2 2组队，挑出每组最小，加起来的和最大，打印这种组合
+	 */
+	public static int arrayPairSum(int[] nums) {
+		Arrays.sort(nums);
+		int sum = 0;
+		for (int i = nums.length - 1; i > 0; i = i - 2) {
+			int groupMin = Math.min(nums[i], nums[i - 1]);
+			sum += groupMin;
+		}
+		return sum;
+	}
+
+	/**
+	 * 从numbers中找到能加出target的2个位置，下标从1开始
+	 */
+
+	public int[] twoSum(int[] numbers, int target) {
+		int low = 0;
+		int high = numbers.length - 1;
+		while (low < high) {
+			int sum = numbers[low] + numbers[high];
+
+			if (sum == target) {
+				return new int[] { low + 1, high + 1 };
+			} else if (sum > target) {
+				high--;
+			} else {
+				low++;
+			}
+		}
+		return new int[] { 0, 0 };
 	}
 
 }

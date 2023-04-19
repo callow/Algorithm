@@ -3,9 +3,9 @@ package com.algo.util.common;
 public class CommonStringUtil {
 
 	/**
-	 *  生成大量空格
+	 * 生成大量空格
 	 */
-	
+
 	public static String getSpace(int num) {
 		String space = " ";
 		StringBuffer buf = new StringBuffer("");
@@ -14,10 +14,11 @@ public class CommonStringUtil {
 		}
 		return buf.toString();
 	}
+
 	/**
 	 * 生成Manacher char[], 即将原String以#分割的char[] : 1#2#3#8#7#g#j#c...
 	 */
-	
+
 	public static char[] manacherString(String str) {
 		char[] charArr = str.toCharArray();
 		char[] res = new char[str.length() * 2 + 1];
@@ -26,22 +27,41 @@ public class CommonStringUtil {
 			res[i] = (i & 1) == 0 ? '#' : charArr[index++];
 		}
 		return res;
-	} 
-	
-	public static  StringBuilder manacherString2(String str) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("#");
-        for (int i = 0; i < str.length(); i++) {
-            stringBuilder.append(str.charAt(i));
-            stringBuilder.append("#");
-        }
-        return stringBuilder;
-	} 
-	
+	}
+
+	/**
+	 * 
+	 * 反转String数组
+	 * 
+	 */
+	public static void reverseString(char[] s) {
+		int i = 0;
+		int j = s.length - 1;
+		while (i < j) {
+			CommonArrayUtil.swap(s, i, j);
+			i++;
+			j--;
+		}
+	}
+
+	/**
+	 * 生成manacher串 用于manacher算法
+	 */
+
+	public static StringBuilder manacherString2(String str) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("#");
+		for (int i = 0; i < str.length(); i++) {
+			stringBuilder.append(str.charAt(i));
+			stringBuilder.append("#");
+		}
+		return stringBuilder;
+	}
+
 	public static boolean isEmpty(String s) {
 		return s == null || s.length() == 0;
 	}
-	
+
 	public static boolean isEqual(String a, String b) {
 		if (a == null && b == null) {
 			return true;

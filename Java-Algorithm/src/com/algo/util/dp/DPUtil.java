@@ -140,4 +140,15 @@ public class DPUtil {
 		return new DPGrid().minCoffeeTime(arr, n, a, b);
 	}
 
+	/**
+	 * 机器人从Matrix 左上 -> 右下，返回路径最小和。<br>
+	 * 
+	 * 数组压缩技巧！
+	 * 
+	 */
+
+	public static int minPathSum(int[][] matrix) {
+		return new DPGrid().minPathSum(matrix);
+	}
+
 }

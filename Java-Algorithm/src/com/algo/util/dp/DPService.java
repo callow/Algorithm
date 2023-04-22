@@ -31,4 +31,6 @@ public interface DPService {
 	public int horseJumpMethods(int a, int b, int k);
 
 	public int minCoffeeTime(int[] arr, int n, int a, int b);
+
+	public int minPathSum(int[][] matrix);
 }

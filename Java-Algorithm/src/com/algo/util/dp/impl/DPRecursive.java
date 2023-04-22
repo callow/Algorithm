@@ -454,4 +454,9 @@ public class DPRecursive implements DPService {
 		return Math.min(p1, p2);
 	}
 
+	@Override
+	public int minPathSum(int[][] matrix) {
+		return 0;
+	}
+
 }

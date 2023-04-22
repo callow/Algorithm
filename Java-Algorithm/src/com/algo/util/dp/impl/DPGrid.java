@@ -247,4 +247,37 @@ public class DPGrid implements DPService {
 		return dp[0][0];
 	}
 
+	/**
+	 * 申请一个二维数组 dp[][] 有点浪费，其实可以用一维数组dp[] = 数组压缩 <br>
+	 * 
+	 */
+	@Override
+	public int minPathSum(int[][] m) {
+		if (m == null || m.length == 0 || m[0] == null || m[0].length == 0) {
+			return 0;
+		}
+		int row = m.length;
+		int col = m[0].length;
+		int[] dp = new int[col];
+		dp[0] = m[0][0];
+
+		// 先填第0行的值
+		for (int j = 1; j < col; j++) {
+			dp[j] = dp[j - 1] + m[0][j];
+		}
+
+		// 滚动dp[] 自我更新：
+		for (int i = 1; i < row; i++) {
+			dp[0] += m[i][0]; // dp[0] -> 从dp[上一行][0] -> 更新去 dp[这一行][0]
+
+			for (int j = 1; j < col; j++) {
+				int left = dp[j - 1]; // dp[这一行][j-1] 左侧的值
+				int up = dp[j]; // dp[上一行][j] 上侧的值
+
+				dp[j] = Math.min(left, up) + m[i][j];
+			}
+		}
+		return dp[col - 1];
+	}
+
 }

@@ -91,6 +91,23 @@ public class CommonArrayUtil {
 	}
 
 	/**
+	 * 随机生成2维数组
+	 */
+
+	public static int[][] generateRandomMatrix(int rowSize, int colSize) {
+		if (rowSize < 0 || colSize < 0) {
+			return null;
+		}
+		int[][] result = new int[rowSize][colSize];
+		for (int i = 0; i != result.length; i++) {
+			for (int j = 0; j != result[0].length; j++) {
+				result[i][j] = (int) (Math.random() * 100);
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * 比较2个数组是否相等
 	 */
 

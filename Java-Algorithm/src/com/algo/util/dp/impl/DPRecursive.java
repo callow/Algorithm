@@ -418,7 +418,7 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int minCoffeeTime(int[] arr, int n, int a, int b) {
-		PriorityQueue<CoffeeMachine> heap = new PriorityQueue<CoffeeMachine>(new CoffeeMachineComparator()); // 小根堆
+		PriorityQueue<CoffeeMachine> heap = new PriorityQueue<>(new CoffeeMachineComparator()); // 小根堆
 		for (int i = 0; i < arr.length; i++) {
 			heap.add(new CoffeeMachine(0, arr[i]));
 		}

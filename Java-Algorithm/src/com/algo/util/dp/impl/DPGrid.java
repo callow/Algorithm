@@ -1,9 +1,12 @@
 package com.algo.util.dp.impl;
 
 import java.util.List;
+import java.util.PriorityQueue;
 
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
+import com.algo.util.dp.model.CoffeeMachine;
+import com.algo.util.dp.model.CoffeeMachineComparator;
 
 /**
  * 
@@ -204,7 +207,44 @@ public class DPGrid implements DPService {
 
 	@Override
 	public int minCoffeeTime(int[] arr, int n, int a, int b) {
-		return 0;
+		PriorityQueue<CoffeeMachine> heap = new PriorityQueue<>(new CoffeeMachineComparator());
+		for (int i = 0; i < arr.length; i++) {
+			heap.add(new CoffeeMachine(0, arr[i]));
+		}
+		int[] drinks = new int[n];
+		for (int i = 0; i < n; i++) {
+			CoffeeMachine cur = heap.poll();
+			cur.timePoint += cur.workTime;
+			drinks[i] = cur.timePoint;
+			heap.add(cur);
+		}
+		return bestTime(drinks, a, b);
+	}
+
+	private int bestTime(int[] drinks, int wash, int air) {
+		int N = drinks.length;
+		int maxFree = 0;
+		for (int i = 0; i < drinks.length; i++) {
+			maxFree = Math.max(maxFree, drinks[i]) + wash;
+		}
+		int[][] dp = new int[N + 1][maxFree + 1];
+		for (int index = N - 1; index >= 0; index--) {
+			for (int free = 0; free <= maxFree; free++) {
+				int selfClean1 = Math.max(drinks[index], free) + wash;
+				if (selfClean1 > maxFree) {
+					break; // 因为后面的也都不用填了
+				}
+				// index号杯子 决定洗
+				int restClean1 = dp[index + 1][selfClean1];
+				int p1 = Math.max(selfClean1, restClean1);
+				// index号杯子 决定挥发
+				int selfClean2 = drinks[index] + air;
+				int restClean2 = dp[index + 1][free];
+				int p2 = Math.max(selfClean2, restClean2);
+				dp[index][free] = Math.min(p1, p2);
+			}
+		}
+		return dp[0][0];
 	}
 
 }

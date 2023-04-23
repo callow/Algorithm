@@ -3,6 +3,7 @@ package com.algo.util.dp.impl;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
 import com.algo.util.dp.model.CoffeeMachine;
@@ -300,6 +301,31 @@ public class DPGrid implements DPService {
 				int withIndex = (rest - coins[index] >= 0 ? dp[index + 1][rest - coins[index]] : 0);
 
 				dp[index][rest] = withoutIndex + withIndex;
+			}
+		}
+		return dp[0][target];
+	}
+
+	/**
+	 * ________[*] [^] <br>
+	 * [d] [c] [b] [a] <br>
+	 * 
+	 * [^] = [d] + [c] + [b] + [a] 优化成 [^] = [*] + [a] ，不需要遍历了
+	 */
+	@Override
+	public int coinWaysNoLimit(int[] coins, int target) {
+		if (CommonArrayUtil.isEmpty(coins)) {
+			return 0;
+		}
+		int N = coins.length;
+		int[][] dp = new int[N + 1][target + 1];
+		dp[N][0] = 1;
+		for (int index = N - 1; index >= 0; index--) {
+			for (int rest = 0; rest <= target; rest++) {
+				dp[index][rest] = dp[index + 1][rest]; // 我下方格子
+				if (rest - coins[index] >= 0) {
+					dp[index][rest] += dp[index][rest - coins[index]]; // 我自己行左侧
+				}
 			}
 		}
 		return dp[0][target];

@@ -35,4 +35,6 @@ public interface DPService {
 	public int minPathSum(int[][] matrix);
 
 	public int coinWays(int[] coins, int target);
+
+	public int coinWaysNoLimit(int[] coins, int target);
 }

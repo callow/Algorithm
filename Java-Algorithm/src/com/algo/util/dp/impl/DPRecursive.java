@@ -479,4 +479,24 @@ public class DPRecursive implements DPService {
 		}
 	}
 
+	@Override
+	public int coinWaysNoLimit(int[] coins, int target) {
+		if (CommonArrayUtil.isEmpty(coins)) {
+			return 0;
+		}
+		return go(coins, 0, target);
+	}
+
+	// arr[index....] 所有的面值，每一个面值都可以任意选择张数，组成正好rest这么多钱，方法数多少？
+	public static int go(int[] coins, int index, int rest) {
+		if (index == coins.length) { // 没钱了
+			return rest == 0 ? 1 : 0;
+		}
+		int ways = 0;
+		for (int zhang = 0; zhang * coins[index] <= rest; zhang++) {
+			ways += go(coins, index + 1, rest - (zhang * coins[index]));
+		}
+		return ways;
+	}
+
 }

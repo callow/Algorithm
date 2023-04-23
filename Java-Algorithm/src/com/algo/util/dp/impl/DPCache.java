@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
 
@@ -276,5 +277,27 @@ public class DPCache implements DPService {
 	@Override
 	public int coinWays(int[] coins, int target) {
 		return 0;
+	}
+
+	@Override
+	public int coinWaysNoLimit(int[] coins, int target) {
+		if (CommonArrayUtil.isEmpty(coins)) {
+			return 0;
+		}
+		int N = coins.length;
+		int[][] dp = new int[N + 1][target + 1];
+		dp[N][0] = 1;
+		for (int index = N - 1; index >= 0; index--) {
+			for (int rest = 0; rest <= target; rest++) {
+				int ways = 0;
+
+				// 填写每一个格子竟然需要写一个for循环 = 枚举， 坑爹
+				for (int zhang = 0; zhang * coins[index] <= rest; zhang++) {
+					ways += dp[index + 1][rest - (zhang * coins[index])];
+				}
+				dp[index][rest] = ways;
+			}
+		}
+		return dp[0][target];
 	}
 }

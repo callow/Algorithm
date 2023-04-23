@@ -282,8 +282,27 @@ public class DPGrid implements DPService {
 
 	@Override
 	public int coinWays(int[] coins, int target) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (target == 0) {
+			return 1;
+		}
+		int N = coins.length;
+		int[][] dp = new int[N + 1][target + 1];
+		dp[N][0] = 1;
+
+		// index 都依赖index+1位置，因此是从下往上
+		for (int index = N - 1; index >= 0; index--) {
+			for (int rest = 0; rest <= target; rest++) {
+
+				// process(coins, index + 1, rest);
+				int withoutIndex = dp[index + 1][rest];
+
+				// process(coins, index + 1, rest - coins[index]);
+				int withIndex = (rest - coins[index] >= 0 ? dp[index + 1][rest - coins[index]] : 0);
+
+				dp[index][rest] = withoutIndex + withIndex;
+			}
+		}
+		return dp[0][target];
 	}
 
 }

@@ -230,4 +230,23 @@ public class ArrayUtil {
 		return new int[] { 0, 0 };
 	}
 
+	/**
+	 * 返回累加和子数组 >= target的最小长度，没有返回0
+	 */
+	public static int minSubArrayLen(int target, int[] nums) {
+		int left = 0;
+		int n = nums.length;
+		int sum = 0;
+		int answer = Integer.MAX_VALUE;
+		for (int i = 0; i < n; i++) {
+			sum += nums[i];
+			while (sum >= target) {
+				answer = Math.min(answer, (i + 1) - left);
+				sum -= nums[left++];
+			}
+		}
+		return answer != Integer.MAX_VALUE ? answer : 0;
+
+	}
+
 }

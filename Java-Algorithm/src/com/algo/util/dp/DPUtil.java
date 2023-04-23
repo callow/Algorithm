@@ -163,7 +163,7 @@ public class DPUtil {
 	}
 
 	/**
-	 * 用手头的coins组成target有多少种方式, 每个面值不同，每个面值无数张 [1,2,4,6,8,9] -> 113
+	 * 用手头的coins组成target有多少种方式, 每个面值不同，每个面值无数（infinite）张 [1,2,4,6,8,9] -> 113
 	 */
 	public static int coinWaysNoLimit(int[] coins, int target) {
 		return new DPGrid().coinWays(coins, target);

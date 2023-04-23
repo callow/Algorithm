@@ -182,7 +182,8 @@ public class DPUtil {
 	 * N * M 的棋盘，醉汉在 (row,col) 处要走k步，走出棋盘即死亡，返回k步后生存的概率.
 	 * 
 	 * 总样本： 4^k <br>
-	 * 生存概率： 生存点 / 总样本
+	 * 生存概率： 生存点 / 总样本 <br>
+	 * 象棋跳马问题
 	 */
 	public static double chessBoardSurvive(int row, int col, int k, int N, int M) {
 		return new DPGrid().chessBoardSurvive(row, col, k, N, M);

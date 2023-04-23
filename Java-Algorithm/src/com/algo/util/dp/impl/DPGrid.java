@@ -359,8 +359,30 @@ public class DPGrid implements DPService {
 
 	@Override
 	public double chessBoardSurvive(int row, int col, int k, int N, int M) {
-		// TODO Auto-generated method stub
-		return 0;
+		long[][][] dp = new long[N][M][k + 1];
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				dp[i][j][0] = 1;
+			}
+		}
+		for (int rest = 1; rest <= k; rest++) {
+			for (int r = 0; r < N; r++) {
+				for (int c = 0; c < M; c++) {
+					dp[r][c][rest] = pick(dp, N, M, r - 1, c, rest - 1);
+					dp[r][c][rest] += pick(dp, N, M, r + 1, c, rest - 1);
+					dp[r][c][rest] += pick(dp, N, M, r, c - 1, rest - 1);
+					dp[r][c][rest] += pick(dp, N, M, r, c + 1, rest - 1);
+				}
+			}
+		}
+		return dp[row][col][k] / Math.pow(4, k);
+	}
+
+	public long pick(long[][][] dp, int N, int M, int r, int c, int rest) {
+		if (r < 0 || r == N || c < 0 || c == M) {
+			return 0;
+		}
+		return dp[r][c][rest];
 	}
 
 }

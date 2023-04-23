@@ -1,7 +1,5 @@
 package com.algo.util.resource;
 
-import java.io.IOException;
-
 /**
  * Hash分流文件，Map Reduce
  *
@@ -15,7 +13,7 @@ public class HashSplitUtil {
 	 * UInt = 4 bytes , Map<UInt,UInt> = 4 * 2 = 8 byte
 	 * 
 	 */
-	public static int getMostFrequentNumIn1GMemory(long fourBillion) throws IOException {
+	public static int getMostFrequentNumIn1GMemory(long fourBillion) {
 
 		// 1G / 8 byte ≈ 装1亿条记录
 		long record1GMemory = 1000000000;
@@ -34,8 +32,18 @@ public class HashSplitUtil {
 			topFrequency = Math.max(topFrequency, i);
 			System.out.println("Most frequent num: " + topFrequency);
 		}
-
 		return topFrequency;
+	}
+
+	/**
+	 * 
+	 * 32位无符号整数[0,42亿]，有一个包含40亿无符号整数大文件，使用1G内存，找出未出现的数？<br>
+	 * 
+	 * UInt = 4 bytes , Map<UInt,UInt> = 4 * 2 = 8 byte
+	 * 
+	 */
+	public static long geMissingNumsIn1GMemory(long fourBillion) {
+		return 0;
 	}
 
 }

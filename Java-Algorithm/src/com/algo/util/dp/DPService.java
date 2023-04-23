@@ -33,4 +33,6 @@ public interface DPService {
 	public int minCoffeeTime(int[] arr, int n, int a, int b);
 
 	public int minPathSum(int[][] matrix);
+
+	public int coinWays(int[] coins, int target);
 }

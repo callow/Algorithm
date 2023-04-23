@@ -155,4 +155,11 @@ public class DPUtil {
 		return new DPGrid().minPathSum(matrix);
 	}
 
+	/**
+	 * 用手头的coins组成target有多少种方式?
+	 */
+	public static int coinWays(int[] coins, int target) {
+		return new DPGrid().coinWays(coins, target);
+	}
+
 }

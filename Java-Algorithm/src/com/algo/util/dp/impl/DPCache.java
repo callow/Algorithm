@@ -272,4 +272,10 @@ public class DPCache implements DPService {
 		}
 		return dp[row - 1][col - 1]; // 返回右下角的值
 	}
+
+	@Override
+	public int coinWays(int[] coins, int target) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

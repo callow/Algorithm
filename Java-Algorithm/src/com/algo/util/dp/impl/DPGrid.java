@@ -280,4 +280,10 @@ public class DPGrid implements DPService {
 		return dp[col - 1];
 	}
 
+	@Override
+	public int coinWays(int[] coins, int target) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

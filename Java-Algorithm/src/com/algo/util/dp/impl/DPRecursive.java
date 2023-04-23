@@ -459,4 +459,24 @@ public class DPRecursive implements DPService {
 		return 0;
 	}
 
+	@Override
+	public int coinWays(int[] coins, int target) {
+		return process(coins, 0, target);
+	}
+
+	// index -> 0 ~ coins
+	// rest -> 0 ~ target
+	public int process(int[] coins, int index, int rest) {
+		if (rest < 0) {
+			return 0;
+		}
+		if (index == coins.length) { // 没钱了！
+			return rest == 0 ? 1 : 0;
+		} else {
+			int withoutIndex = process(coins, index + 1, rest); // 没要index位置的钱方法数
+			int withIndex = process(coins, index + 1, rest - coins[index]); // 要index位置的钱方法数
+			return withoutIndex + withIndex;
+		}
+	}
+
 }

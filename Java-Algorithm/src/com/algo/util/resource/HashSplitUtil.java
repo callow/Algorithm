@@ -32,9 +32,10 @@ public class HashSplitUtil {
 		int topFrequency = 0;
 		for (int i = 0; i < files; i++) {
 			topFrequency = Math.max(topFrequency, i);
-			System.out.println("Most frequenct num: " + topFrequency);
+			System.out.println("Most frequent num: " + topFrequency);
 		}
 
 		return topFrequency;
 	}
+
 }

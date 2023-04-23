@@ -12,6 +12,10 @@ import javax.xml.bind.DatatypeConverter;
 
 import com.google.common.hash.Hashing;
 
+/**
+ * 
+ * 所有的HashCode都是16进制的整型！
+ */
 public class HashUtil {
 
 	/**
@@ -40,8 +44,7 @@ public class HashUtil {
 	 */
 
 	public static long getHashValue(String algorithm, String input) throws NoSuchAlgorithmException {
-		MessageDigest hash = MessageDigest.getInstance(algorithm);
-		return new BigInteger(hash.digest(input.getBytes())).longValue();
+		return new BigInteger(getHashCode(algorithm, input), 16).longValue();
 	}
 
 	/**

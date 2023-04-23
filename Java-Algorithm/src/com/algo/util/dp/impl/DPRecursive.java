@@ -522,10 +522,31 @@ public class DPRecursive implements DPService {
 		return ways;
 	}
 
+	/**
+	 * 走完一步如果还在棋盘中就获得一点生存点，返回总的生存点数
+	 */
+
 	@Override
-	public int chessBoardSurvive(int row, int col, int k, int N, int M) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double chessBoardSurvive(int row, int col, int k, int N, int M) {
+		return process(row, col, k, N, M) / Math.pow(4, k);
+	}
+
+	private long process(int row, int col, int rest, int N, int M) {
+
+		// 越界直接死
+		if (row < 0 || row == N || col < 0 || col == M) {
+			return 0;
+		}
+		// 还在棋盘中！
+		if (rest == 0) {
+			return 1;
+		}
+		// 还在棋盘中！还有步数要走
+		long up = process(row - 1, col, rest - 1, N, M);
+		long down = process(row + 1, col, rest - 1, N, M);
+		long left = process(row, col - 1, rest - 1, N, M);
+		long right = process(row, col + 1, rest - 1, N, M);
+		return up + down + left + right;
 	}
 
 }

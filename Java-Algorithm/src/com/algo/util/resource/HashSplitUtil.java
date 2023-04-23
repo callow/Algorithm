@@ -28,7 +28,7 @@ public class HashSplitUtil {
 			System.out.println("Send to file : " + i % files);
 		}
 
-		// 在每个文件中依次求词频最高的。< 1G内存, Reduce
+		// 在每个文件中依次求词频最高的。< 1G内存,每次算完文件清空内存 Reduce
 		int topFrequency = 0;
 		for (int i = 0; i < files; i++) {
 			topFrequency = Math.max(topFrequency, i);

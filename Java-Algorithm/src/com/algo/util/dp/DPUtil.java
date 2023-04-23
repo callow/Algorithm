@@ -169,4 +169,12 @@ public class DPUtil {
 		return new DPGrid().coinWays(coins, target);
 	}
 
+	/**
+	 * 用手头的coins组成target有多少种方式, 面值可以相同，面值相同认为是相同? [1,1,1,2,2,2] = 3张1元，3张2元->
+	 * Target: 25
+	 */
+	public static int coinWaysSameValue(int[] coins, int target) {
+		return new DPGrid().coinWaysSameValue(coins, target);
+	}
+
 }

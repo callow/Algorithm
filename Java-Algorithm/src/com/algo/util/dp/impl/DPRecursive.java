@@ -9,6 +9,7 @@ import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
 import com.algo.util.dp.model.CoffeeMachine;
 import com.algo.util.dp.model.CoffeeMachineComparator;
+import com.algo.util.dp.model.Info;
 
 /**
  * 
@@ -495,6 +496,28 @@ public class DPRecursive implements DPService {
 		int ways = 0;
 		for (int zhang = 0; zhang * coins[index] <= rest; zhang++) {
 			ways += go(coins, index + 1, rest - (zhang * coins[index]));
+		}
+		return ways;
+	}
+
+	@Override
+	public int coinWaysSameValue(int[] coins, int target) {
+		if (CommonArrayUtil.isEmpty(coins) || target < 0) {
+			return 0;
+		}
+		Info info = Info.getInfo(coins);
+		return run(info.coins, info.zhangs, 0, target);
+	}
+
+	// coins 面值数组，正数且去重
+	// zhangs 每种面值对应的张数
+	public int run(int[] coins, int[] zhangs, int index, int rest) {
+		if (index == coins.length) {
+			return rest == 0 ? 1 : 0;
+		}
+		int ways = 0;
+		for (int zhang = 0; zhang * coins[index] <= rest && zhang <= zhangs[index]; zhang++) {
+			ways += run(coins, zhangs, index + 1, rest - (zhang * coins[index]));
 		}
 		return ways;
 	}

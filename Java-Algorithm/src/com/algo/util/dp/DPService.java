@@ -37,4 +37,6 @@ public interface DPService {
 	public int coinWays(int[] coins, int target);
 
 	public int coinWaysNoLimit(int[] coins, int target);
+
+	public int coinWaysSameValue(int[] coins, int target);
 }

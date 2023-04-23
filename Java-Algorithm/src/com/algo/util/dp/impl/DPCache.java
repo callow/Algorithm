@@ -300,4 +300,10 @@ public class DPCache implements DPService {
 		}
 		return dp[0][target];
 	}
+
+	@Override
+	public int coinWaysSameValue(int[] coins, int target) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

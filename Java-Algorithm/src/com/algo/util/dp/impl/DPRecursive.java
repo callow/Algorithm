@@ -522,4 +522,10 @@ public class DPRecursive implements DPService {
 		return ways;
 	}
 
+	@Override
+	public int chessBoardSurvive(int row, int col, int k, int N, int M) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

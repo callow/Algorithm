@@ -177,4 +177,12 @@ public class DPUtil {
 		return new DPGrid().coinWaysSameValue(coins, target);
 	}
 
+	/**
+	 * 
+	 * N * M 的棋盘，醉汉在 (row,col) 处要走k步，走出棋盘即死亡，返回k步后生存的概率.
+	 */
+	public static int chessBoardSurvive(int row, int col, int k, int N, int M) {
+		return new DPGrid().chessBoardSurvive(row, col, k, N, M);
+	}
+
 }

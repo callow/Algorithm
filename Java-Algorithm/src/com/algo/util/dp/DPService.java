@@ -39,4 +39,6 @@ public interface DPService {
 	public int coinWaysNoLimit(int[] coins, int target);
 
 	public int coinWaysSameValue(int[] coins, int target);
+
+	public int chessBoardSurvive(int row, int col, int k, int N, int M);
 }

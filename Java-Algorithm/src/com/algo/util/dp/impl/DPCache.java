@@ -324,4 +324,10 @@ public class DPCache implements DPService {
 		}
 		return dp[0][target];
 	}
+
+	@Override
+	public int chessBoardSurvive(int row, int col, int k, int N, int M) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

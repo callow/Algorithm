@@ -8,6 +8,7 @@ import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
 import com.algo.util.dp.model.CoffeeMachine;
 import com.algo.util.dp.model.CoffeeMachineComparator;
+import com.algo.util.dp.model.Info;
 
 /**
  * 
@@ -332,9 +333,28 @@ public class DPGrid implements DPService {
 	}
 
 	@Override
-	public int coinWaysSameValue(int[] coins, int target) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int coinWaysSameValue(int[] arr, int target) {
+		if (CommonArrayUtil.isEmpty(arr) || target < 0) {
+			return 0;
+		}
+		Info info = Info.getInfo(arr);
+		int[] coins = info.coins;
+		int[] zhangs = info.zhangs;
+		int N = coins.length;
+		int[][] dp = new int[N + 1][target + 1];
+		dp[N][0] = 1;
+		for (int index = N - 1; index >= 0; index--) {
+			for (int rest = 0; rest <= target; rest++) {
+				dp[index][rest] = dp[index + 1][rest];
+				if (rest - coins[index] >= 0) {
+					dp[index][rest] += dp[index][rest - coins[index]];
+				}
+				if (rest - coins[index] * (zhangs[index] + 1) >= 0) {
+					dp[index][rest] -= dp[index + 1][rest - coins[index] * (zhangs[index] + 1)];
+				}
+			}
+		}
+		return dp[0][target];
 	}
 
 }

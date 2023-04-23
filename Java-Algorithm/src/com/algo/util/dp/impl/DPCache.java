@@ -7,6 +7,7 @@ import java.util.Map;
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
+import com.algo.util.dp.model.Info;
 
 /**
  * 傻缓存 = 记忆化搜索 = 从顶向下的动态规划
@@ -302,8 +303,25 @@ public class DPCache implements DPService {
 	}
 
 	@Override
-	public int coinWaysSameValue(int[] coins, int target) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int coinWaysSameValue(int[] arr, int target) {
+		if (CommonArrayUtil.isEmpty(arr) || target < 0) {
+			return 0;
+		}
+		Info info = Info.getInfo(arr);
+		int[] coins = info.coins;
+		int[] zhangs = info.zhangs;
+		int N = coins.length;
+		int[][] dp = new int[N + 1][target + 1];
+		dp[N][0] = 1;
+		for (int index = N - 1; index >= 0; index--) {
+			for (int rest = 0; rest <= target; rest++) {
+				int ways = 0;
+				for (int zhang = 0; zhang * coins[index] <= rest && zhang <= zhangs[index]; zhang++) {
+					ways += dp[index + 1][rest - (zhang * coins[index])];
+				}
+				dp[index][rest] = ways;
+			}
+		}
+		return dp[0][target];
 	}
 }

@@ -28,7 +28,9 @@ import java.util.Arrays;
  * 计算机不可以用原码计算，会有问题，计算机用的是补码计算的！ 1 = true, 0 = false : <br>
  * 1 & 1 = 1, 0 | 1 = 1, 0 ^ 1 = 1, 1 ^ 1 = 0
  * 
- * arithmetic right shift: >> 右移最高符号位不变<br>
+ * left shift: << = 乘法 => 29 << k = 29 * 2^k, 29 * 6 = 29 *(( a << 2 ) + ( a <<
+ * 1 ))<br>
+ * arithmetic right shift: >> 右移最高符号位不变 = 除法<br>
  * logical right shift: >>> 右移左侧填0
  *
  */

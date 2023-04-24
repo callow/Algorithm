@@ -179,14 +179,26 @@ public class DPUtil {
 
 	/**
 	 * 
-	 * N * M 的棋盘，醉汉在 (row,col) 处要走k步，走出棋盘即死亡，返回k步后生存的概率.
+	 * N * M 的棋盘，醉汉在 (row,col) 处要走k步，走出棋盘即死亡，返回k步后生存的概率？
 	 * 
 	 * 总样本： 4^k <br>
 	 * 生存概率： 生存点 / 总样本 <br>
-	 * 象棋跳马问题
+	 * 象棋跳马问题3维dp
 	 */
 	public static double chessBoardSurvive(int row, int col, int k, int N, int M) {
 		return new DPGrid().chessBoardSurvive(row, col, k, N, M);
+	}
+
+	/**
+	 * 怪兽N滴血，英雄每次砍[0~M]滴血，求K次砍之后砍死的概率？
+	 * 
+	 * 总可能性：(M+1)^k <br>
+	 * 砍死概率：砍死次数 / 总可能性 <br>
+	 * 
+	 */
+
+	public static double killMonster(int N, int M, int K) {
+		return new DPGrid().killMonster(N, M, K);
 	}
 
 }

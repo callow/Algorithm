@@ -549,4 +549,33 @@ public class DPRecursive implements DPService {
 		return up + down + left + right;
 	}
 
+	@Override
+	public double killMonster(int N, int M, int K) {
+		if (N < 1 || M < 1 || K < 1) {
+			return 0;
+		}
+		long all = (long) Math.pow(M + 1, K);
+		long kill = chop(K, M, N);
+		return (double) kill / (double) all;
+	}
+
+	// 怪兽还剩hp点血
+	// 每次的伤害在[0~M]范围上
+	// 还有times次可以砍
+	// 返回砍死的情况数！
+	public static long chop(int ktimes, int M, int hp) {
+		if (ktimes == 0) {
+			return hp <= 0 ? 1 : 0;
+		}
+		if (hp <= 0) {
+			return (long) Math.pow(M + 1, ktimes);
+		}
+		long ways = 0;
+		for (int i = 0; i <= M; i++) { // 砍掉1，2，3，4 M 滴血全都试一遍
+			int rest = hp - i; // 剩余血量
+			ways += chop(ktimes - 1, M, rest);
+		}
+		return ways;
+	}
+
 }

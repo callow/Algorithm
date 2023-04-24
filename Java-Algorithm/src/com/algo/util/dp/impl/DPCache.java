@@ -329,4 +329,30 @@ public class DPCache implements DPService {
 	public double chessBoardSurvive(int row, int col, int k, int N, int M) {
 		return 0;
 	}
+
+	@Override
+	public double killMonster(int N, int M, int K) {
+		if (N < 1 || M < 1 || K < 1) {
+			return 0;
+		}
+		long all = (long) Math.pow(M + 1, K);
+		long[][] dp = new long[K + 1][N + 1];
+		dp[0][0] = 1;
+		for (int times = 1; times <= K; times++) { // 还有多少刀可以砍
+			dp[times][0] = (long) Math.pow(M + 1, times); // 已经 <=0 血了剩下砍的是在鞭尸，继续展开time次
+			for (int hp = 1; hp <= N; hp++) {
+				long ways = 0;
+				for (int i = 0; i <= M; i++) {
+					if (hp - i >= 0) {
+						ways += dp[times - 1][hp - i];
+					} else {
+						ways += (long) Math.pow(M + 1, times - 1); // 怪兽血量< 0 但是还剩times-1次，直接获得 M+1^times-1生存点
+					}
+				}
+				dp[times][hp] = ways;
+			}
+		}
+		long kill = dp[K][N];
+		return (double) kill / (double) all;
+	}
 }

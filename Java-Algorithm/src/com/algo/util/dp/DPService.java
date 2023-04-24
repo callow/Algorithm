@@ -41,4 +41,6 @@ public interface DPService {
 	public int coinWaysSameValue(int[] coins, int target);
 
 	public double chessBoardSurvive(int row, int col, int k, int N, int M);
+
+	public double killMonster(int N, int M, int K);
 }

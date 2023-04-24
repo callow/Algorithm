@@ -385,4 +385,10 @@ public class DPGrid implements DPService {
 		return dp[r][c][rest];
 	}
 
+	@Override
+	public double killMonster(int N, int M, int K) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -201,4 +201,11 @@ public class DPUtil {
 		return new DPGrid().killMonster(N, M, K);
 	}
 
+	/**
+	 * 整数拆分问题：3 裂开，后面不能小于前面的：1+1+1， 2+1 不可以：1，2
+	 */
+	public static int splitNumberWays(int n) {
+		return new DPGrid().splitNumberWays(n);
+	}
+
 }

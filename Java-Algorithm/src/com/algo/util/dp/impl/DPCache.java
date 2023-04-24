@@ -355,4 +355,10 @@ public class DPCache implements DPService {
 		long kill = dp[K][N];
 		return (double) kill / (double) all;
 	}
+
+	@Override
+	public int splitNumberWays(int n) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

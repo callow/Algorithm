@@ -43,4 +43,6 @@ public interface DPService {
 	public double chessBoardSurvive(int row, int col, int k, int N, int M);
 
 	public double killMonster(int N, int M, int K);
+
+	public int splitNumberWays(int n);
 }

@@ -388,7 +388,8 @@ public class DPGrid implements DPService {
 	/**
 	 * 范围优化观察格子规律来凑：<br>
 	 * ∵ dp[5][10] = dp[4][10~3] <br>
-	 * ∴ dp[4][11~4] = dp[5][10] + dp[4][11] - dp[4][3]
+	 * ∴ dp[4][11~4] = dp[5][10] + dp[4][11] - dp[4][3] <br>
+	 * ∴ dp[i][j] = dp[i][j-1] + dp[i-1][j] - dp[i-1][j-1-M]
 	 */
 	@Override
 	public double killMonster(int N, int M, int K) {

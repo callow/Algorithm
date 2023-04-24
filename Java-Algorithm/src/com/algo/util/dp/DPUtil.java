@@ -194,7 +194,7 @@ public class DPUtil {
 	 * 
 	 * 总可能性：(M+1)^k <br>
 	 * 砍死概率：砍死次数 / 总可能性 <br>
-	 * 
+	 * 斜率优化问题：动态规划带枚举的
 	 */
 
 	public static double killMonster(int N, int M, int K) {

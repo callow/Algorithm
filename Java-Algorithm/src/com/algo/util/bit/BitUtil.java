@@ -3,6 +3,35 @@ package com.algo.util.bit;
 import java.math.BigInteger;
 import java.util.Arrays;
 
+/**
+ * 
+ * Octal(8进制) 有8位: 0, 1, 2, 3, 4, 5, 6, and 7 <br>
+ * - 转2进制，3个bit一组 ： 101|110|010 = 562(8)
+ * 
+ * Hexadecimal(16进制) 有16位: in addition to 0 to 9, there are A, B, C, D, E, F, 对应
+ * 10, 11, 12, 13, 14, 15 in decimal<br>
+ * 
+ * - 转2进制，4个bit一组: 1|0111|0010 = 172(16)
+ * 
+ * original code: 原码 = 符号位(0/1) + 机器码的实际值的绝对值 = 00001010 = 10, 10001010 = -10
+ * <br>
+ * 
+ * inverse code： 反码 = 从原码来，正数： original code = inverse code, 负数：flip
+ * 除符号位的所有位10001010->11110101<br>
+ * 
+ * complement code： 补码 = 从反码来，正数： complement code = original code = inverse
+ * code， 负数：反码+1， 10001010(原) -> 11110101(反) -> 11110110(补) <br>
+ * 
+ * machine number： 机器码(010010) <br>
+ * truth value :实际值. 10001010(机器码) = 138 但是实际值 = -10 因为最高位1是符号位
+ * 
+ * 计算机不可以用原码计算，会有问题，计算机用的是补码计算的！ 1 = true, 0 = false : <br>
+ * 1 & 1 = 1, 0 | 1 = 1, 0 ^ 1 = 1, 1 ^ 1 = 0
+ * 
+ * arithmetic right shift: >> 右移最高符号位不变<br>
+ * logical right shift: >>> 右移左侧填0
+ *
+ */
 public class BitUtil {
 
 	/**

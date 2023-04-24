@@ -197,6 +197,33 @@ public class MatrixUtil {
 		return triangle;
 	}
 
+	/**
+	 * 提取 Pascal's triangle -> 杨辉三角 的第nth行<br>
+	 * 
+	 */
+	public static List<Integer> getRow(int rowIndex) {
+		List<Integer> pre = new ArrayList<>();
+		pre.add(1);
+		if (rowIndex == 0) {
+			return pre;
+		}
+		List<Integer> cur = new ArrayList<>();
+		for (int row = 1; row <= rowIndex; row++) {
+
+			cur.add(1);
+			for (int j = 1; j < row; j++) {
+				cur.add(pre.get(j - 1) + pre.get(j));
+			}
+			cur.add(1);
+			if (row != rowIndex) {
+				pre.clear();
+				pre.addAll(cur);
+				cur.clear();
+			}
+		}
+		return cur;
+	}
+
 	public static boolean isEmpty(int[][] matrix) {
 		return matrix == null || matrix.length == 0 || matrix[0].length == 0;
 	}

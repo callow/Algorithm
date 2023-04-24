@@ -584,7 +584,7 @@ public class DPRecursive implements DPService {
 			return 0;
 		}
 		if (n == 1) {
-			return 1;
+			return 1; // 1种拆分方式
 		}
 		return process(1, n);
 	}
@@ -596,7 +596,7 @@ public class DPRecursive implements DPService {
 		if (rest == 0) {
 			return 1;
 		}
-		if (pre > rest) {
+		if (pre > rest) { // 3,2 走不通
 			return 0;
 		}
 		int ways = 0;

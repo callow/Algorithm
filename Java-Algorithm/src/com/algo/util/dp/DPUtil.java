@@ -202,7 +202,7 @@ public class DPUtil {
 	}
 
 	/**
-	 * 整数拆分问题：3 裂开，后面不能小于前面的：1+1+1， 2+1 不可以：1，2
+	 * 拉马努金-整数拆分问题：3 裂开，后面不能小于前面的：1+1+1， 1+2 不可以：2+1 不可以降序拆分
 	 */
 	public static int splitNumberWays(int n) {
 		return new DPGrid().splitNumberWays(n);

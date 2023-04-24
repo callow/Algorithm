@@ -385,10 +385,32 @@ public class DPGrid implements DPService {
 		return dp[r][c][rest];
 	}
 
+	/**
+	 * 范围优化观察格子规律来凑：<br>
+	 * ∵ dp[5][10] = dp[4][10~3] <br>
+	 * ∴ dp[4][11~4] = dp[5][10] + dp[4][11] - dp[4][3]
+	 */
 	@Override
 	public double killMonster(int N, int M, int K) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (N < 1 || M < 1 || K < 1) {
+			return 0;
+		}
+		long all = (long) Math.pow(M + 1, K);
+		long[][] dp = new long[K + 1][N + 1];
+		dp[0][0] = 1;
+		for (int times = 1; times <= K; times++) {
+			dp[times][0] = (long) Math.pow(M + 1, times);
+			for (int hp = 1; hp <= N; hp++) {
+				dp[times][hp] = dp[times][hp - 1] + dp[times - 1][hp];
+				if (hp - 1 - M >= 0) {
+					dp[times][hp] -= dp[times - 1][hp - 1 - M];
+				} else {
+					dp[times][hp] -= Math.pow(M + 1, times - 1);
+				}
+			}
+		}
+		long kill = dp[K][N];
+		return (double) kill / (double) all;
 	}
 
 }

@@ -194,7 +194,7 @@ public class DPUtil {
 	 * 
 	 * 总可能性：(M+1)^k <br>
 	 * 砍死概率：砍死次数 / 总可能性 <br>
-	 * 斜率优化问题：动态规划带枚举的
+	 * 斜率优化问题：动态规划带枚举的,优化掉枚举
 	 */
 
 	public static double killMonster(int N, int M, int K) {
@@ -202,7 +202,8 @@ public class DPUtil {
 	}
 
 	/**
-	 * 拉马努金-整数拆分问题：3 裂开，后面不能小于前面的：1+1+1， 1+2 不可以：2+1 不可以降序拆分
+	 * 拉马努金-整数拆分问题：3 裂开，后面不能小于前面的：1+1+1， 1+2 不可以：2+1 不可以降序拆分<br>
+	 * 斜率优化
 	 */
 	public static int splitNumberWays(int n) {
 		return new DPGrid().splitNumberWays(n);

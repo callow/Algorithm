@@ -41,7 +41,7 @@ import java.util.Arrays;
  * OR operation properties: a | 0 = a, a | (∼a) = −1<br>
  * XOR operation properties: a ^ 0 = a, a ^ a = 0 <br>
  * a & (a−1) = 将最后的1变为0 <br>
- * a & (-a) = a & (∼(a−1)) = 只保留最后一个1 <br>
+ * a & (-a) = a & (∼(a−1)) = 只保留最右侧的1 <br>
  * 
  * 
  */
@@ -74,7 +74,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * 数 1 的数量
+	 * 数 1 的数量(Hamming weight - 码重)
 	 */
 
 	public static int countOnes(int num) {
@@ -179,7 +179,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * 2进制 -> 7进制
+	 * 2进制 -> 7进制 = num 不停的 / 7 , 将余数反向组合即可
 	 */
 	public static String convertToBase7(int num) {
 		return Integer.toString(num, 7);

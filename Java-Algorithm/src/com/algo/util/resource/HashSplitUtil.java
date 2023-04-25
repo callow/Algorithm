@@ -41,8 +41,27 @@ public class HashSplitUtil {
 	 * 
 	 * UInt = 4 bytes , Map<UInt,UInt> = 4 * 2 = 8 byte
 	 * 
+	 * 使用位图bitmap：8 bits = 1Byte, 1 出现过， 0 没出现过
+	 * 
 	 */
 	public static long geMissingNumsIn1GMemory(long fourBillion) {
+
+		// 比如准备一个长度为10的int数组
+		int[] arr = new int[10]; // 32bits * 10 = 320bits
+
+		// 如果第ith bit位置是106
+		int i = 106;
+
+		// 则106th bit在int[] 种的位置是3：arr[3]
+		int arrLoc = i / 32;
+
+		// 看看这个106th bit在arr[3]第10位 ：
+		int bitLoc = i % 32;
+
+		// 提取出那一位上的状态
+		int status = (arr[arrLoc] & (1 << bitLoc)) == 0 ? 0 : 1;
+
+		// 这个数组种二进制种0的位置就是没出现的数字
 		return 0;
 	}
 

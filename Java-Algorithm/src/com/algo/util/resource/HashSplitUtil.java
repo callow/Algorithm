@@ -62,6 +62,15 @@ public class HashSplitUtil {
 		int status = (arr[arrLoc] & (1 << bitLoc)) == 0 ? 0 : 1;
 
 		// 这个数组种二进制种0的位置就是没出现的数字
+		return status;
+	}
+
+	/**
+	 * 32位无符号整数[0,42亿]，有一个包含40亿无符号整数大文件，使用3KB内存，找出1个未出现的数？
+	 */
+
+	public static long geMissingNumsIn3KBMemory(long fourBillion) {
+		// for loop
 		return 0;
 	}
 

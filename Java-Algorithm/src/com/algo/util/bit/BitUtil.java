@@ -178,4 +178,11 @@ public class BitUtil {
 		return x.toString(2);
 	}
 
+	/**
+	 * 2进制 -> 7进制
+	 */
+	public static String convertToBase7(int num) {
+		return Integer.toString(num, 7);
+	}
+
 }

@@ -416,8 +416,24 @@ public class DPGrid implements DPService {
 
 	@Override
 	public int splitNumberWays(int n) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (n < 0) {
+			return 0;
+		}
+		if (n == 1) {
+			return 1;
+		}
+		int[][] dp = new int[n + 1][n + 1];
+		for (int pre = 1; pre <= n; pre++) {
+			dp[pre][0] = 1;
+			dp[pre][pre] = 1;
+		}
+		for (int pre = n - 1; pre >= 1; pre--) {
+			for (int rest = pre + 1; rest <= n; rest++) {
+				dp[pre][rest] = dp[pre + 1][rest];
+				dp[pre][rest] += dp[pre][rest - pre];
+			}
+		}
+		return dp[1][n];
 	}
 
 }

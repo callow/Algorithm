@@ -5,39 +5,50 @@ import java.util.Arrays;
 
 /**
  * 
- * Octal(8½øÖÆ) ÓĞ8Î»: 0, 1, 2, 3, 4, 5, 6, and 7 <br>
- * - ×ª2½øÖÆ£¬3¸öbitÒ»×é £º 101|110|010 = 562(8)
+ * Octal(8è¿›åˆ¶) æœ‰8ä½: 0, 1, 2, 3, 4, 5, 6, and 7 <br>
+ * - è½¬2è¿›åˆ¶ï¼Œ3ä¸ªbitä¸€ç»„ ï¼š 101|110|010 = 562(8)
  * 
- * Hexadecimal(16½øÖÆ) ÓĞ16Î»: in addition to 0 to 9, there are A, B, C, D, E, F, ¶ÔÓ¦
+ * Hexadecimal(16è¿›åˆ¶) æœ‰16ä½: in addition to 0 to 9, there are A, B, C, D, E, F, å¯¹åº”
  * 10, 11, 12, 13, 14, 15 in decimal<br>
  * 
- * - ×ª2½øÖÆ£¬4¸öbitÒ»×é: 1|0111|0010 = 172(16)
+ * - è½¬2è¿›åˆ¶ï¼Œ4ä¸ªbitä¸€ç»„: 1|0111|0010 = 172(16)
  * 
- * original code: Ô­Âë = ·ûºÅÎ»(0/1) + »úÆ÷ÂëµÄÊµ¼ÊÖµµÄ¾ø¶ÔÖµ = 00001010 = 10, 10001010 = -10
+ * original code: åŸç  = ç¬¦å·ä½(0/1) + æœºå™¨ç çš„å®é™…å€¼çš„ç»å¯¹å€¼ = 00001010 = 10, 10001010 = -10
  * <br>
  * 
- * inverse code£º ·´Âë = ´ÓÔ­ÂëÀ´£¬ÕıÊı£º original code = inverse code, ¸ºÊı£ºflip
- * ³ı·ûºÅÎ»µÄËùÓĞÎ»10001010->11110101<br>
+ * inverse codeï¼š åç  = ä»åŸç æ¥ï¼Œæ­£æ•°ï¼š original code = inverse code, è´Ÿæ•°ï¼šflip
+ * é™¤ç¬¦å·ä½çš„æ‰€æœ‰ä½10001010->11110101<br>
  * 
- * complement code£º ²¹Âë = ´Ó·´ÂëÀ´£¬ÕıÊı£º complement code = original code = inverse
- * code£¬ ¸ºÊı£º·´Âë+1£¬ 10001010(Ô­) -> 11110101(·´) -> 11110110(²¹) <br>
+ * complement codeï¼š è¡¥ç  = ä»åç æ¥ï¼Œæ­£æ•°ï¼š complement code = original code = inverse
+ * codeï¼Œ è´Ÿæ•°ï¼šåç +1ï¼Œ 10001010(åŸ) -> 11110101(å) -> 11110110(è¡¥) <br>
  * 
- * machine number£º »úÆ÷Âë(010010) <br>
- * truth value :Êµ¼ÊÖµ. 10001010(»úÆ÷Âë) = 138 µ«ÊÇÊµ¼ÊÖµ = -10 ÒòÎª×î¸ßÎ»1ÊÇ·ûºÅÎ»
+ * machine numberï¼š æœºå™¨ç (010010) <br>
+ * truth value :å®é™…å€¼. 10001010(æœºå™¨ç ) = 138 ä½†æ˜¯å®é™…å€¼ = -10 å› ä¸ºæœ€é«˜ä½1æ˜¯ç¬¦å·ä½
  * 
- * ¼ÆËã»ú²»¿ÉÒÔÓÃÔ­Âë¼ÆËã£¬»áÓĞÎÊÌâ£¬¼ÆËã»úÓÃµÄÊÇ²¹Âë¼ÆËãµÄ£¡ 1 = true, 0 = false : <br>
+ * è®¡ç®—æœºä¸å¯ä»¥ç”¨åŸç è®¡ç®—ï¼Œä¼šæœ‰é—®é¢˜ï¼Œè®¡ç®—æœºç”¨çš„æ˜¯è¡¥ç è®¡ç®—çš„ï¼ 1 = true, 0 = false : <br>
  * 1 & 1 = 1, 0 | 1 = 1, 0 ^ 1 = 1, 1 ^ 1 = 0
  * 
- * left shift: << = ³Ë·¨ => 29 << k = 29 * 2^k, 29 * 6 = 29 *(( a << 2 ) + ( a <<
+ * left shift: << = ä¹˜æ³• => 29 << k = 29 * 2^k, 29 * 6 = 29 *(( a << 2 ) + ( a <<
  * 1 ))<br>
- * arithmetic right shift: >> ÓÒÒÆ×î¸ß·ûºÅÎ»²»±ä = ³ı·¨<br>
- * logical right shift: >>> ÓÒÒÆ×ó²àÌî0
- *
+ * arithmetic right shift: >> å³ç§»æœ€é«˜ç¬¦å·ä½ä¸å˜ = é™¤æ³•<br>
+ * logical right shift: >>> å³ç§»å·¦ä¾§å¡«0
+ * 
+ * 
+ * Idempotent law: a & a = a, a | a = a <br>
+ * De Morgan's Law: ~(a & b) = (~a) | (~b), ~(a | b) = (~a) & (~b) <br>
+ * Negative operation properties: -1 = ~0, -a = ~(aâˆ’1) <br>
+ * AND operation properties: a & 0 = 0, a & (-1) = a, a & ( âˆ¼a)=0 <br>
+ * OR operation properties: a | 0 = a, a | (âˆ¼a) = âˆ’1<br>
+ * XOR operation properties: a ^ 0 = a, a ^ a = 0 <br>
+ * a & (aâˆ’1) = å°†æœ€åçš„1å˜ä¸º0 <br>
+ * a & (-a) = a & (âˆ¼(aâˆ’1)) = åªä¿ç•™æœ€åä¸€ä¸ª1 <br>
+ * 
+ * 
  */
 public class BitUtil {
 
 	/**
-	 * ½»»»Êı×éÖĞ2¸öÊı£¬ = CommonArrayUtil.swap()
+	 * äº¤æ¢æ•°ç»„ä¸­2ä¸ªæ•°ï¼Œ = CommonArrayUtil.swap()
 	 */
 	public static void swap(int[] arr, int i, int j) {
 		arr[i] = arr[i] ^ arr[j];
@@ -47,7 +58,7 @@ public class BitUtil {
 
 	/**
 	 * 
-	 * num ÔÚ i Î»ÖÃÊÇ·ñÊÇ 1.
+	 * num åœ¨ i ä½ç½®æ˜¯å¦æ˜¯ 1.
 	 */
 
 	public static boolean isOneAtIndex(int num, int i) {
@@ -55,7 +66,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * ÌáÈ¡¶ş½øÖÆÖĞ×îÓÒ²àµÄ1£º num & (-num) »ò num & (~num +1)
+	 * æå–äºŒè¿›åˆ¶ä¸­æœ€å³ä¾§çš„1ï¼š num & (-num) æˆ– num & (~num +1)
 	 */
 
 	public static int rightMostOne(int num) {
@@ -63,7 +74,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * Êı 1 µÄÊıÁ¿
+	 * æ•° 1 çš„æ•°é‡
 	 */
 
 	public static int countOnes(int num) {
@@ -77,7 +88,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * ´òÓ¡¶ş½øÖÆ
+	 * æ‰“å°äºŒè¿›åˆ¶
 	 */
 
 	public static void print(int num) {
@@ -88,7 +99,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * Ä³¸öÊı³öÏÖ»ùÊı´Î£¬ÆäËû¶¼ÊÇÅ¼Êı´Î£¬ ÕÒµ½Ëü : ^ »á½«ÏàÍ¬Êı/Å¼Êı´ÎÏûµô
+	 * æŸä¸ªæ•°å‡ºç°åŸºæ•°æ¬¡ï¼Œå…¶ä»–éƒ½æ˜¯å¶æ•°æ¬¡ï¼Œ æ‰¾åˆ°å®ƒ : ^ ä¼šå°†ç›¸åŒæ•°/å¶æ•°æ¬¡æ¶ˆæ‰
 	 */
 
 	public static int findOddOnce(int[] arr) {
@@ -100,11 +111,11 @@ public class BitUtil {
 	}
 
 	/**
-	 * Ä³2¸öÊı³öÏÖ»ùÊı´Î£¬ÆäËû¶¼ÊÇÅ¼Êı´Î£¬ ÕÒµ½ËüÃÇ.
+	 * æŸ2ä¸ªæ•°å‡ºç°åŸºæ•°æ¬¡ï¼Œå…¶ä»–éƒ½æ˜¯å¶æ•°æ¬¡ï¼Œ æ‰¾åˆ°å®ƒä»¬.
 	 */
 
 	public static int[] findOddTwice(int[] arr) {
-		int eorMix = BitUtil.findOddOnce(arr); // 2ÖÖÊıµÄ»ìºÏeor,
+		int eorMix = BitUtil.findOddOnce(arr); // 2ç§æ•°çš„æ··åˆeor,
 		int rightMostOne = BitUtil.rightMostOne(eorMix);
 		int onlyOne = 0;
 		for (int i = 0; i < arr.length; i++) {
@@ -116,8 +127,8 @@ public class BitUtil {
 	}
 
 	/**
-	 * ÓĞÒ»ÖÖÊı³öÏÖK´Î£¬ÆäËû¶¼ÊÇM´Î£¬ÕÒµ½K´ÎµÄÕâ¸öÊı¡£ <br>
-	 * - ÈôÄ³Ò»Î»Ö»º¬ÓĞ³öÏÖM´ÎµÄÊı£¬Ôò sum£¨bit£© % m ±ØÈ»µÈÓÚ 0
+	 * æœ‰ä¸€ç§æ•°å‡ºç°Kæ¬¡ï¼Œå…¶ä»–éƒ½æ˜¯Mæ¬¡ï¼Œæ‰¾åˆ°Kæ¬¡çš„è¿™ä¸ªæ•°ã€‚ <br>
+	 * - è‹¥æŸä¸€ä½åªå«æœ‰å‡ºç°Mæ¬¡çš„æ•°ï¼Œåˆ™ sumï¼ˆbitï¼‰ % m å¿…ç„¶ç­‰äº 0
 	 */
 
 	public static int findKM(int[] arr, int k, int m) {
@@ -128,29 +139,29 @@ public class BitUtil {
 			}
 		}
 
-		// Õâ23¸öÊıÖĞµÄ32Î»Í³¼ÆºÍ [5, 12, 17, 23, 12, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
+		// è¿™23ä¸ªæ•°ä¸­çš„32ä½ç»Ÿè®¡å’Œ [5, 12, 17, 23, 12, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
 		// 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17]
 		System.out.println(Arrays.toString(sumHelper));
 
 		int answer = 0;
 		for (int i = 0; i < 32; i++) {
 			sumHelper[i] %= m;
-			if (sumHelper[i] != 0) { // ËµÃ÷ÕâÎ»ÓĞKµÄÎ»£¡
-				answer |= 1 << i; // ±êÉÏ1
+			if (sumHelper[i] != 0) { // è¯´æ˜è¿™ä½æœ‰Kçš„ä½ï¼
+				answer |= 1 << i; // æ ‡ä¸Š1
 			}
 		}
 		return answer;
 	}
 
 	/**
-	 * ÅĞ¶Ï×îÄ©Î²ÊÇ·ñÓĞ1
+	 * åˆ¤æ–­æœ€æœ«å°¾æ˜¯å¦æœ‰1
 	 */
 	public static boolean hasOneAtEnd(int num) {
 		return (num & 1) != 0;
 	}
 
 	/**
-	 * ¶ş½øÖÆ×ÖÏà¼Ó£º "1001" + "1100"
+	 * äºŒè¿›åˆ¶å­—ç›¸åŠ ï¼š "1001" + "1100"
 	 */
 	public static String addBinary(String a, String b) {
 		BigInteger x = new BigInteger(a, 2);
@@ -158,9 +169,9 @@ public class BitUtil {
 		BigInteger zero = new BigInteger("0", 2);
 		BigInteger carry, answer;
 
-		while (y.compareTo(zero) != 0) { // y = ½øÎ»£¬²»Í£µÄ½øÎ»
-			answer = x.xor(y); // ÎŞ½øÎ»Ïà¼Ó£º answer = x^y
-			carry = x.and(y).shiftLeft(1); // Ê×´Î½øÎ»µÄÎ»ÖÃ£ºcarry = (x & y) << 1
+		while (y.compareTo(zero) != 0) { // y = è¿›ä½ï¼Œä¸åœçš„è¿›ä½
+			answer = x.xor(y); // æ— è¿›ä½ç›¸åŠ ï¼š answer = x^y
+			carry = x.and(y).shiftLeft(1); // é¦–æ¬¡è¿›ä½çš„ä½ç½®ï¼šcarry = (x & y) << 1
 			x = answer;
 			y = carry;
 		}

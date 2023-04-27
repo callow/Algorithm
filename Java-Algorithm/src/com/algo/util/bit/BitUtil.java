@@ -180,6 +180,9 @@ public class BitUtil {
 		return x.toString(2);
 	}
 
+	/**
+	 * 不用+ 实现加法
+	 */
 	public static int sum(int x, int y) {
 		int carry = 0;
 		int answer = 0;

@@ -67,6 +67,8 @@ public class BitUtil {
 
 	/**
 	 * 提取二进制中最右侧的1： num & (-num) 或 num & (~num +1)
+	 * 
+	 * e.g: 0001000
 	 */
 
 	public static int rightMostOne(int num) {
@@ -183,6 +185,24 @@ public class BitUtil {
 	 */
 	public static String convertToBase7(int num) {
 		return Integer.toString(num, 7);
+	}
+
+	/**
+	 * 反转bits
+	 */
+
+	public static int reverseBits(int n) {
+		int result = 0;
+		int power = 31;
+		while (power >= 0) {
+			// 将最后一位放到result的前面
+			result += (n & 1) << power;
+			// n 右移一位，继续提取最后一位
+			n = n >> 1;
+			// 同时幂也- 1来配合n
+			power--;
+		}
+		return result;
 	}
 
 }

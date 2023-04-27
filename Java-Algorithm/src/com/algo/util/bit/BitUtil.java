@@ -180,6 +180,18 @@ public class BitUtil {
 		return x.toString(2);
 	}
 
+	public static int sum(int x, int y) {
+		int carry = 0;
+		int answer = 0;
+		while (y != 0) {
+			answer = x ^ y;
+			carry = (x & y) << 1;
+			x = answer;
+			y = carry;
+		}
+		return x;
+	}
+
 	/**
 	 * 2进制 -> 7进制 = num 不停的 / 7 , 将余数反向组合即可
 	 */

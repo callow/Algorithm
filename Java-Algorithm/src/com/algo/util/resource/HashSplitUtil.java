@@ -1,6 +1,7 @@
 package com.algo.util.resource;
 
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Hash分流文件，Map Reduce
@@ -105,6 +106,21 @@ public class HashSplitUtil {
 		}
 
 		return medianLoc;
+	}
+
+	/**
+	 * 10G的数字文件，给5G内存，将其排序
+	 */
+	public static int sortBigFile(long file) {
+
+		// 大根堆统计最小数的词频
+		PriorityQueue<Integer> min3 = new PriorityQueue<>();
+
+		// 遍历min3,然后输出到新文件，
+
+		// 继续遍历原10G文件继续找最小的3个 >= min3
+
+		return min3.size();
 	}
 
 }

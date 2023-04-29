@@ -1,5 +1,7 @@
 package com.algo.util.resource;
 
+import java.util.List;
+
 /**
  * Hash分流文件，Map Reduce
  *
@@ -72,6 +74,37 @@ public class HashSplitUtil {
 	public static long geMissingNumsIn3KBMemory(long fourBillion) {
 		// for loop
 		return 0;
+	}
+
+	/**
+	 * 一个100亿URL的大文件，每个URL = 64B, 找出其中所有重复的URL, 允许失误率
+	 */
+
+	public static List<String> findDuplicateURLsFrom10Billion(List<String> input) {
+		// 布隆过滤器
+		return input;
+	}
+
+	/**
+	 * 无符号Int， 42亿， 现在有40亿个无符号整数，最多使用3KB内存，如何找到40亿个数的中位数？
+	 */
+	public static int findMedianFrom4Billion(long input) {
+		// 3KB能装512个数
+		int[] container = new int[512];
+
+		// 每个container里面统计固定的词频数字：
+		// i= 1 => 统计 1 - 1亿
+		// i= 2 => 统计 1亿 - 2亿
+		// 中位数则位于第20亿的区间， 然后在那个区间找中位数
+		long counter = 0;
+		int medianLoc = 0;
+		for (int i : container) {
+			if (counter == 200000000L) {
+				medianLoc = i;
+			}
+		}
+
+		return medianLoc;
 	}
 
 }

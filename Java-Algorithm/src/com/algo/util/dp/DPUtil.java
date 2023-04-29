@@ -209,4 +209,11 @@ public class DPUtil {
 		return new DPGrid().splitNumberWays(n);
 	}
 
+	/**
+	 * 拆分arr成2个，使其累加和最接近
+	 */
+	public static int splitArrSum(int[] arr) {
+		return new DPGrid().splitArrSum(arr);
+	}
+
 }

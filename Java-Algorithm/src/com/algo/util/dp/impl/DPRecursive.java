@@ -606,4 +606,33 @@ public class DPRecursive implements DPService {
 		return ways;
 	}
 
+	@Override
+	public int splitArrSum(int[] arr) {
+
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
+			return 0;
+		}
+		int sum = 0; // 累加和
+		for (int num : arr) {
+			sum += num;
+		}
+		return trigger(arr, 0, sum / 2);
+	}
+
+	// arr[i...]可以自由选择，请返回累加和(较小的那个集合)尽量接近rest，但不能超过rest的情况下，最接近的累加和是多少？
+	public static int trigger(int[] arr, int i, int rest) {
+		if (i == arr.length) {
+			return 0;
+		} else { // 还有数，arr[i]这个数
+			// 可能性1，不使用arr[i]
+			int p1 = trigger(arr, i + 1, rest);
+			// 可能性2，要使用arr[i]
+			int p2 = 0;
+			if (arr[i] <= rest) {
+				p2 = arr[i] + trigger(arr, i + 1, rest - arr[i]);
+			}
+			return Math.max(p1, p2);
+		}
+	}
+
 }

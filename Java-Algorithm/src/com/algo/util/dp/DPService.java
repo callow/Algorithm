@@ -45,4 +45,6 @@ public interface DPService {
 	public double killMonster(int N, int M, int K);
 
 	public int splitNumberWays(int n);
+
+	public int splitArrSum(int[] arr);
 }

@@ -390,4 +390,10 @@ public class DPCache implements DPService {
 	public int splitArrSumSizeHalf(int[] arr) {
 		return 0;
 	}
+
+	@Override
+	public int nQueens(int n) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

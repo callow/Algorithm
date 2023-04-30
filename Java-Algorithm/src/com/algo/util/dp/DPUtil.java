@@ -238,4 +238,12 @@ public class DPUtil {
 		return new DPGrid().splitArrSumSizeHalf(arr);
 	}
 
+	/**
+	 * 
+	 * N皇后问题，N*N的棋盘上摆放N个Queen, 横竖斜不能共线，给一个N= 1，2，3，4， ？, 求几种摆法
+	 */
+	public static int nQueens(int n) {
+		return new DPCache().nQueens(n);
+	}
+
 }

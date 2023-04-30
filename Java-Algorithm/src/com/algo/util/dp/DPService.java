@@ -49,4 +49,6 @@ public interface DPService {
 	public int splitArrSum(int[] arr);
 
 	public int splitArrSumSizeHalf(int[] arr);
+
+	public int nQueens(int n);
 }

@@ -673,4 +673,10 @@ public class DPRecursive implements DPService {
 		}
 	}
 
+	@Override
+	public int nQueens(int n) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -631,7 +631,7 @@ public class DPRecursive implements DPService {
 			if (arr[i] <= rest) {
 				p2 = arr[i] + trigger(arr, i + 1, rest - arr[i]);
 			}
-			return Math.max(p1, p2);
+			return Math.max(p1, p2); // 可能性1和2谁更大 = 谁更加接近rest ， 就选谁
 		}
 	}
 
@@ -669,7 +669,7 @@ public class DPRecursive implements DPService {
 			if (next != -1) {
 				p2 = arr[i] + next;
 			}
-			return Math.max(p1, p2);
+			return Math.max(p1, p2); // 可能性1和2谁更大 = 谁更加接近rest ， 就选谁
 		}
 	}
 

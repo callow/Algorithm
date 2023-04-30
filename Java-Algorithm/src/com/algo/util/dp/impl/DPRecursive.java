@@ -637,7 +637,40 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int splitArrSumSizeHalf(int[] arr) {
-		return 0;
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
+			return 0;
+		}
+		int sum = 0;
+		for (int num : arr) {
+			sum += num;
+		}
+		if ((arr.length & 1) == 0) { // 如果是偶数
+			return trigger(arr, 0, arr.length / 2, sum / 2);
+		} else { // 如果是基数：2种选择，返回最接近的Max
+			return Math.max(trigger(arr, 0, arr.length / 2, sum / 2), trigger(arr, 0, arr.length / 2 + 1, sum / 2));
+		}
+	}
+
+	// arr[i....]自由选择，挑选的个数一定要是picks个，累加和<=rest, 离rest最近的返回
+	public static int trigger(int[] arr, int i, int picks, int rest) {
+		if (i == arr.length) { // 没数的时候，正好剩余挑的格式收0个才有效
+			return picks == 0 ? 0 : -1;
+		} else {
+
+			// 不使用arr[i]这个数
+			int p1 = trigger(arr, i + 1, picks, rest);
+
+			// 就是要使用arr[i]这个数
+			int p2 = -1;
+			int next = -1;
+			if (arr[i] <= rest) {
+				next = trigger(arr, i + 1, picks - 1, rest - arr[i]);
+			}
+			if (next != -1) {
+				p2 = arr[i] + next;
+			}
+			return Math.max(p1, p2);
+		}
 	}
 
 }

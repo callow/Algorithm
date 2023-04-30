@@ -438,7 +438,7 @@ public class DPGrid implements DPService {
 
 	@Override
 	public int splitArrSum(int[] arr) {
-		if (arr == null || arr.length < 2) {
+		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {
 			return 0;
 		}
 		int sum = 0;

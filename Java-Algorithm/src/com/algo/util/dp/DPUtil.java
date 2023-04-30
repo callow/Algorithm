@@ -8,6 +8,21 @@ import com.algo.util.dp.impl.DPGrid;
 import com.algo.util.dp.impl.DPRecursive;
 import com.algo.util.stack.StackUtil;
 
+/**
+ * 1. 可变参数不可以超越整形： f(int[] arr, int i) <br>
+ * 2. 如果违反，只能是1维： f(String input) - 贴纸问题 <br>
+ * 3. 2的最优解只能是记忆化搜索 <br>
+ * 
+ * 提醒作用的4种模型： <br>
+ * 
+ * - 从左往右尝试模型：要和不要 <br>
+ * - 范围尝试模型 <br>
+ * - 多样本位置全对应的尝试模型 <br>
+ * - 寻找业务限制的尝试模型：<br>
+ * 
+ * 
+ *
+ */
 public class DPUtil {
 
 	/**

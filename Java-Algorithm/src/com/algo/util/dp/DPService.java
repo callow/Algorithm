@@ -47,4 +47,6 @@ public interface DPService {
 	public int splitNumberWays(int n);
 
 	public int splitArrSum(int[] arr);
+
+	public int splitArrSumSizeHalf(int[] arr);
 }

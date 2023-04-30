@@ -216,4 +216,11 @@ public class DPUtil {
 		return new DPGrid().splitArrSum(arr);
 	}
 
+	/**
+	 * 拆分arr成2个，使其累加和最接近, 总数是偶数：均分，总数是基数：相差1
+	 */
+	public static int splitArrSumSizeHalf(int[] arr) {
+		return new DPGrid().splitArrSumSizeHalf(arr);
+	}
+
 }

@@ -463,4 +463,9 @@ public class DPGrid implements DPService {
 		return dp[0][sum];
 	}
 
+	@Override
+	public int splitArrSumSizeHalf(int[] arr) {
+		return 0;
+	}
+
 }

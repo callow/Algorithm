@@ -385,4 +385,9 @@ public class DPCache implements DPService {
 	public int splitArrSum(int[] arr) {
 		return 0;
 	}
+
+	@Override
+	public int splitArrSumSizeHalf(int[] arr) {
+		return 0;
+	}
 }

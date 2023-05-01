@@ -240,7 +240,13 @@ public class DPUtil {
 
 	/**
 	 * 
-	 * N皇后问题，N*N的棋盘上摆放N个Queen, 横竖斜不能共线，给一个N= 1，2，3，4， ？, 求几种摆法
+	 * N皇后问题，N*N的棋盘上摆放N个Queen, 横竖斜不能共线，给一个N= 1，2，3，4， ？, 求几种摆法? <br>
+	 * 
+	 * 解： 规定一行只填一个皇后 => 无需检查皇后共行了 <br>
+	 * 
+	 * A(x,y), B(d,q)-> y=q // 共列 , |d-x| = |q-y| // 共斜线
+	 * 
+	 * 
 	 */
 	public static int nQueens(int n) {
 		return new DPCache().nQueens(n);

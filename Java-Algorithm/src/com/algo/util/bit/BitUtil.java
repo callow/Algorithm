@@ -223,7 +223,8 @@ public class BitUtil {
 	}
 
 	/**
-	 * 获取N位格雷码 ： 格雷码/循环二进制单位距离码 <br>
+	 * 获取N位格雷码 ： 格雷码/循环二进制单位距离码,https://leetcode.com/problems/gray-code/editorial/
+	 * <br>
 	 * 规律1： 竖着看，每一位组都是对称的: <br>
 	 * 000 <br>
 	 * 001 <br>

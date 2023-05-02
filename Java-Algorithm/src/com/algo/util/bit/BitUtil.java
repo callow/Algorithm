@@ -1,7 +1,9 @@
 package com.algo.util.bit;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 
@@ -216,6 +218,33 @@ public class BitUtil {
 			n = n >> 1;
 			// 同时幂也- 1来配合n
 			power--;
+		}
+		return result;
+	}
+
+	/**
+	 * 获取N位格雷码 ： 格雷码/循环二进制单位距离码 <br>
+	 * 规律1： 竖着看，每一位组都是对称的: <br>
+	 * 000 <br>
+	 * 001 <br>
+	 * 011 <br>
+	 * 010 <br>
+	 * 110 <br>
+	 * 111 <br>
+	 * 101 <br>
+	 * 100 <br>
+	 * 第0位：0110循环对称， 第1位：00111100循环对称，依次类推
+	 * 
+	 * 规律2: grayCode = index ^ index/2 (此题用的就是规律2做出了的)
+	 */
+	public static List<Integer> getGrayCode(int n) { // e.g : n = 3
+
+		List<Integer> result = new ArrayList<>();
+		// there are 2 ^ n numbers in the Gray code sequence. n = 3 时 总共List种有8个数字
+		int seqLength = 1 << n;
+		for (int i = 0; i < seqLength; i++) {
+			int num = i ^ i >> 1; // index ^ index/2
+			result.add(num);
 		}
 		return result;
 	}

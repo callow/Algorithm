@@ -250,4 +250,23 @@ public class BitUtil {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 区间与操作：Brian Kernighan Algorithm<br>
+	 * 
+	 * 公共前缀 = 区间与操作的和
+	 * 
+	 * 利用BK算法，找出2数的公共前缀 : <br>
+	 * 
+	 * 当与操作对number 和 number-1时，最右侧一位bit会被清除reset(从1变成0) -> number呈几何速度缩小，从r -> l
+	 */
+	public static int rangeBitwiseAnd(int l, int r) {
+		while (l < r) {
+			// turn off rightmost 1-bit
+			r &= (r - 1);
+		}
+		// 这时的r < l了，然后我们使用& 来提取公共前缀
+		return l & r;
+	}
+
 }

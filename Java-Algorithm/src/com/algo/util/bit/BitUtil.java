@@ -254,7 +254,9 @@ public class BitUtil {
 	 * 
 	 * 区间与操作：Brian Kernighan Algorithm<br>
 	 * 
-	 * 公共前缀 = 区间与操作的和
+	 * 区间与操作的和 = <b>公共前缀与和</b>
+	 * 
+	 * https://leetcode.com/problems/bitwise-and-of-numbers-range/editorial/
 	 * 
 	 * 利用BK算法，找出2数的公共前缀 : <br>
 	 * 
@@ -267,6 +269,7 @@ public class BitUtil {
 		}
 		// 这时的r < l了，然后我们使用& 来提取公共前缀
 		return l & r;
+
 	}
 
 }

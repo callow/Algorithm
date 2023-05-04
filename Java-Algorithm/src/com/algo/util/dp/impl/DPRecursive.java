@@ -675,8 +675,49 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int nQueens(int n) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (n < 1) {
+			return 0;
+		}
+		int[] record = new int[n];
+		return put(0, record, n);
+	}
+
+	/**
+	 * 共N-1行,当前来到i行,在此行尝试所有列放quene保证所有皇后不打架。<br>
+	 * 之前的皇后存在record, record[x] = y // 之前的第x行的皇后放在y列<br>
+	 * 返回：不关心i行以上，i..后续有多少合理的方法数
+	 */
+
+	public int put(int i, int[] record, int n) {
+		if (i == n) { // 终止了，之前做过的决定 就发现了一个有效方法
+			return 1;
+		}
+		int res = 0;
+		// i行的皇后，放哪一列呢？j列，
+		for (int j = 0; j < n; j++) {
+			if (isValid(record, i, j)) {
+				record[i] = j;
+				res += put(i + 1, record, n);
+			}
+		}
+		return res;
+	}
+
+	// A(x,y), B(d,q)-> y=q // 共列 , |d-x| = |q-y| // 共斜线
+
+	/**
+	 * A(x,y), B(d,q) <br>
+	 * y = q // 共列 <br>
+	 * |d-x| = |q-y| // 共斜线
+	 */
+	boolean isValid(int[] record, int i, int j) {
+		// 0..i-1
+		for (int k = 0; k < i; k++) {
+			if (j == record[k] || Math.abs(record[k] - j) == Math.abs(i - k)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

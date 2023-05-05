@@ -35,7 +35,7 @@ public class GameUtil {
 	/**
 	 * 只有1堆石子n个，每次拿1~m个，谁把最后一个拿走谁赢 <br>
 	 * true = 先手赢<br>
-	 * 解：先手要维持 m+1的倍数
+	 * 解：先手要维持 m+1的倍数, 因为先手每次都会拿n % (m + 1) != 0 的余数，这样就赢了
 	 * 
 	 */
 	public static boolean bash(int m, int n) {
@@ -55,7 +55,8 @@ public class GameUtil {
 			return "后手";
 		}
 
-		int diff = Math.max(a, b) - Math.min(a, b); // a与b的差值 = 1堆
+		// 因为a==b游戏就结束了后手赢，那么我们把 (a与b的差值 看成 1堆)，差值没有了的时候就是局点了
+		int diff = Math.max(a, b) - Math.min(a, b);
 		return bash(m, diff) ? "先手" : "后手"; // 谁先把差值消除
 
 	}

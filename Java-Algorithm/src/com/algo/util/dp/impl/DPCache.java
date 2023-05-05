@@ -393,7 +393,46 @@ public class DPCache implements DPService {
 
 	@Override
 	public int nQueens(int n) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (n < 1 || n > 32) {
+			return 0;
+		}
+		// 如果你是13皇后问题，limit 最右13个1，其他都是0
+		// 32皇后： -1 = 1....1 (32个1)
+		// 4皇后： 1 << 4 -1 = 00010000 - 1 = 000001111
+		int limit = n == 32 ? -1 : (1 << n) - 1;
+		return put(limit, 0, 0, 0);
+	}
+
+	/**
+	 * e.g: 7皇后问题 <br>
+	 * limit : 0....0 1 1 1 1 1 1 1<br>
+	 * 之前皇后的列影响：colLimit<br>
+	 * 之前皇后的左下对角线影响：leftDiaLimit<br>
+	 * 之前皇后的右下对角线影响：rightDiaLimit<br>
+	 * 
+	 * 总限制： colLimit | leftDiaLimit | rightDiaLimit <br>
+	 * e.g: <br>
+	 * col: 0001000<br>
+	 * leftD: 0010000<br>
+	 * rightD:0000100<br>
+	 * 总限制 | = 0011100 // 1的地方不可以放皇后<br>
+	 * ~总限制 = 1100011 // 1 所有可以尝试皇后的位置
+	 * 
+	 */
+	public int put(int limit, int colLimit, int leftDiaLimit, int rightDiaLimit) {
+		if (colLimit == limit) { // 列限制= limit = 发现了一种有效方法/base case
+			return 1;
+		}
+		// pos中所有是1的位置，是你可以去尝试皇后的位置
+		int pos = limit & (~(colLimit | leftDiaLimit | rightDiaLimit));
+		int mostRightOne = 0;
+		int res = 0;
+		while (pos != 0) {
+			mostRightOne = pos & (~pos + 1);
+			pos = pos - mostRightOne;
+			res += put(limit, colLimit | mostRightOne, (leftDiaLimit | mostRightOne) << 1,
+					(rightDiaLimit | mostRightOne) >>> 1);
+		}
+		return res;
 	}
 }

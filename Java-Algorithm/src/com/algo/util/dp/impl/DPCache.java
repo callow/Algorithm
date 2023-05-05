@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.algo.util.bit.BitUtil;
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
@@ -416,7 +417,9 @@ public class DPCache implements DPService {
 	 * leftD: 0010000<br>
 	 * rightD:0000100<br>
 	 * 总限制 | = 0011100 // 1的地方不可以放皇后<br>
-	 * ~总限制 = 1100011 // 1 所有可以尝试皇后的位置
+	 * limit & ~总限制 = 1100011 // 1是所有尝试可以放皇后的位置
+	 * 
+	 * 
 	 * 
 	 */
 	public int put(int limit, int colLimit, int leftDiaLimit, int rightDiaLimit) {
@@ -428,10 +431,13 @@ public class DPCache implements DPService {
 		int mostRightOne = 0;
 		int res = 0;
 		while (pos != 0) {
-			mostRightOne = pos & (~pos + 1);
-			pos = pos - mostRightOne;
-			res += put(limit, colLimit | mostRightOne, (leftDiaLimit | mostRightOne) << 1,
-					(rightDiaLimit | mostRightOne) >>> 1);
+			mostRightOne = BitUtil.rightMostOne(pos); // 把皇后提取出来
+			pos = pos - mostRightOne; // 把皇后从pos中去掉
+
+			// 后续是尝试所有可能的方法数
+			res += put(limit, colLimit | mostRightOne, // 调整列限制
+					(leftDiaLimit | mostRightOne) << 1, // 调整左对角线限制
+					(rightDiaLimit | mostRightOne) >>> 1);// 调整右对角线限制
 		}
 		return res;
 	}

@@ -3,7 +3,11 @@ package com.algo.util.datascale_guess;
 import com.algo.util.bit.BitUtil;
 
 /**
- * 打印一些结果，找规律来解题O(1)
+ * 1. 打印一些结果，找规律来解题O(1)<br>
+ * 2. C/C++ 每秒10^8指令O(1). Java - O(1)指令条数10^8需2-4s<br>
+ * - 若给arr长10^6,去用Java 2-4s解决一个问题W，则不可以超过O(N^2),因为O((10^6)^2) > 10^8<br>
+ * - 若给arr长10^3,去用Java 2-4s解决一个问题W，则O(N^2)就可以了,因为O((10^3)^2) < 10^8<br>
+ * 
  *
  */
 public class DPDataScaleUtil {

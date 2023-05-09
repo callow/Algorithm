@@ -252,4 +252,11 @@ public class DPUtil {
 		return new DPCache().nQueens(n);
 	}
 
+	/**
+	 * 贿赂怪兽问题：ability 怪兽能力，price 怪兽价格
+	 */
+	public static long bribeMonster(int[] ability, int[] price) {
+		return new DPCache().bribeMonster(ability, price);
+	}
+
 }

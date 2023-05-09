@@ -720,4 +720,28 @@ public class DPRecursive implements DPService {
 		return true;
 	}
 
+	@Override
+	public long bribeMonster(int[] ability, int[] price) {
+		return choose(ability, price, 0, 0);
+
+	}
+
+	/**
+	 * 目前，你的能力是ability，你来到了index号怪兽的面前，如果要通过后续所有的怪兽，请返回需要花的最少钱数
+	 */
+	public long choose(int[] ability, int[] price, int currentAbility, int index) {
+		if (index == ability.length) {
+			return 0;
+		}
+		if (currentAbility < ability[index]) { // 必须贿赂
+			return price[index] + choose(ability, price, currentAbility + ability[index], index + 1);
+		} else { // ability >= d[index] 可以贿赂，也可以不贿赂
+			return Math.min( // 哪个花钱最少
+
+					price[index] + choose(ability, price, currentAbility + ability[index], index + 1), // 贿赂
+
+					0 + choose(ability, price, currentAbility, index + 1)); // 不贿赂
+		}
+	}
+
 }

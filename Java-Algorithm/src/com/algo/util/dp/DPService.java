@@ -51,4 +51,6 @@ public interface DPService {
 	public int splitArrSumSizeHalf(int[] arr);
 
 	public int nQueens(int n);
+
+	public long bribeMonster(int[] ability, int[] price);
 }

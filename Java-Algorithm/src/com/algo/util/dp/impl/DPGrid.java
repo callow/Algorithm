@@ -518,4 +518,9 @@ public class DPGrid implements DPService {
 		return 0;
 	}
 
+	@Override
+	public long bribeMonster(int[] ability, int[] price) {
+		return 0;
+	}
+
 }

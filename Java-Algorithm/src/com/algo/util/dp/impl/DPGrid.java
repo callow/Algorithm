@@ -518,9 +518,39 @@ public class DPGrid implements DPService {
 		return 0;
 	}
 
+	/**
+	 * DPRecursive和DPCache是2种递归的方式：<br>
+	 * -DPRecursive : dp[i][j], i 是当前怪兽index，j已经形成的能力,如果想通过以后所有的怪兽最少花多少钱<br>
+	 * -DPCache : dp[i][j], i 是当前怪兽index，严格花j元所能形成的最大能力<br>
+	 * 
+	 * 根据能力和钱，谁的极限(规模)小选谁. <br>
+	 * - 如果贿赂怪兽的总钱额度很大，不可以用DPRecursive只能用DPCache，因为复杂度超过了10^8<br>
+	 * - 如果贿赂怪兽总钱额度不大 比如1-10以内，那么就可以用DPRecursive
+	 * 
+	 * 技巧：根据数据量猜解法
+	 */
 	@Override
-	public long bribeMonster(int[] ability, int[] price) {
-		return 0;
+	public long bribeMonster(int[] d, int[] p) {
+		int sum = 0;
+		for (int num : d) {
+			sum += num;
+		}
+		long[][] dp = new long[d.length + 1][sum + 1];
+		for (int cur = d.length - 1; cur >= 0; cur--) {
+			for (int hp = 0; hp <= sum; hp++) {
+				// 如果这种情况发生，那么这个hp必然是递归过程中不会出现的状态
+				// 既然动态规划是尝试过程的优化，尝试过程碰不到的状态，不必计算
+				if (hp + d[cur] > sum) {
+					continue;
+				}
+				if (hp < d[cur]) {
+					dp[cur][hp] = p[cur] + dp[cur + 1][hp + d[cur]];
+				} else {
+					dp[cur][hp] = Math.min(p[cur] + dp[cur + 1][hp + d[cur]], dp[cur + 1][hp]);
+				}
+			}
+		}
+		return dp[0][0];
 	}
 
 }

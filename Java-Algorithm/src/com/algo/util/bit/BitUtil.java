@@ -78,7 +78,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * 数 1 的数量(Hamming weight - 码重)
+	 * 数 1 的数量(Hamming weight - 码重)(pop count)
 	 */
 
 	public static int countOnes(int num) {
@@ -270,6 +270,33 @@ public class BitUtil {
 		// 这时的r < l了，然后我们使用& 来提取公共前缀
 		return l & r;
 
+	}
+
+	/**
+	 * 将最右侧最低位的1变成0：Last set bit
+	 */
+	public static int flipLastSetBit(int num) {
+		return num & (num - 1);
+	}
+
+	/**
+	 * 从0 ~ n 返回每个数1的数量放入int[]<br>
+	 * 
+	 * Most significant bit (最左侧位-最高有效位)<br>
+	 * Least significant bit (最右侧位-最低有效位)<br>
+	 * <b>解：每一个数1数量 都可以通过之前的某数将last set bit (最右set成1的位置-最低设置位)数量 + 1 来变得：<br>
+	 * 这个数字就是： 将数字x的.LSB的1变成0后的数字： x &= x - 1 // 1 变 0</b>
+	 * 
+	 * P(x) = P(x & (x−1)) + 1 <br>
+	 * 
+	 * O(n)
+	 */
+	public static int[] loopCountOnes(int num) {
+		int[] ans = new int[num + 1];
+		for (int x = 1; x <= num; ++x) { // x from 1 ~ num
+			ans[x] = ans[flipLastSetBit(x)] + 1; // 6 的1的数量 = 4的1的数量+1（很巧）
+		}
+		return ans;
 	}
 
 }

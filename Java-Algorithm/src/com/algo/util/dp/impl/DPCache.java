@@ -444,6 +444,42 @@ public class DPCache implements DPService {
 
 	@Override
 	public long bribeMonster(int[] ability, int[] price) {
-		return 0;
+
+		int allMoney = 0; // 贿赂所有怪兽需要花的钱
+		for (int i = 0; i < price.length; i++) {
+			allMoney += price[i];
+		}
+		int N = ability.length;
+		for (int money = 0; money < allMoney; money++) {
+			if (choose2(ability, price, N - 1, money) != -1) {
+				return money;
+			}
+		}
+		return allMoney;
+	}
+
+	/**
+	 * 从0....index号怪兽，花的钱，必须严格==money - 如果通过不了，返回-1 , 如果可以通过，返回能通过情况下的最大能力值
+	 */
+	private long choose2(int[] ability, int[] price, int index, int money) {
+		if (index == -1) { // 没有遇到怪兽，只能花0元
+			return money == 0 ? 0 : -1;
+		}
+
+		// index >= 0
+		// 不贿赂
+		long prevMaxAbility = choose2(ability, price, index - 1, money);
+		long p1 = -1;
+		if (prevMaxAbility != -1 && prevMaxAbility >= ability[index]) {
+			p1 = prevMaxAbility;
+		}
+
+		// 贿赂： 要花price[index]
+		long prevMaxAbility2 = choose2(ability, price, index - 1, money - price[index]);
+		long p2 = -1;
+		if (prevMaxAbility2 != -1) {
+			p2 = price[index] + prevMaxAbility2;
+		}
+		return Math.max(p1, p2);
 	}
 }

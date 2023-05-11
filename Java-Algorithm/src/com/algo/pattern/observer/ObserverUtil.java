@@ -23,7 +23,7 @@ public class ObserverUtil {
 		observable.addPropertyChangeListener(observerB);
 		observable.addPropertyChangeListener(observerA);
 		
-		// 被观察物状态该边
+		// 被观察物状态改变
 		observable.setNews("oh my god");
 		
 		// 观察者知晓

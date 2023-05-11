@@ -1,5 +1,7 @@
 package com.algo.util.catalan_number;
 
+import java.math.BigInteger;
+
 /**
  * 卡特兰数：组合数学种的数列<br>
  * 3个通项公式：已知 k(0) = 0, k(1) = 1<br>
@@ -40,4 +42,36 @@ public class CatalanUtil {
 	public static int bracketCombinationValidNum(String brackets) {
 		return 0;
 	}
+
+	/**
+	 * 
+	 * 求卡特兰数第n项
+	 */
+	public static BigInteger catalan(int n) {
+		// using BigInteger to calculate large factorials
+		BigInteger b = new BigInteger("1");
+
+		// calculating n!
+		for (int i = 1; i <= n; i++) {
+			b = b.multiply(BigInteger.valueOf(i));
+		}
+
+		// calculating n! * n!
+		b = b.multiply(b);
+
+		BigInteger d = new BigInteger("1");
+
+		// calculating (2n)!
+		for (int i = 1; i <= 2 * n; i++) {
+			d = d.multiply(BigInteger.valueOf(i));
+		}
+
+		// calculating (2n)! / (n! * n!)
+		BigInteger ans = d.divide(b);
+
+		// calculating (2n)! / ((n! * n!) * (n+1))
+		ans = ans.divide(BigInteger.valueOf(n + 1));
+		return ans;
+	}
+
 }

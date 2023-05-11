@@ -39,15 +39,15 @@ public class CatalanUtil {
 	 * A: ())(() -> B: ())))(
 	 * 
 	 */
-	public static int bracketCombinationValidNum(String brackets) {
-		return 0;
+	public static int bracketCombinationValidNum(int n) {
+		return findCatalan(n).intValue();
 	}
 
 	/**
 	 * 
 	 * 求卡特兰数第n项
 	 */
-	public static BigInteger catalan(int n) {
+	public static BigInteger findCatalan(int n) {
 		// using BigInteger to calculate large factorials
 		BigInteger b = new BigInteger("1");
 

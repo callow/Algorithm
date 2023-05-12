@@ -11,7 +11,7 @@ public class ArraySumUtil {
 
 	/**
 	 * 一个+数组，哪个子数组∑ = target且长度最长？<br>
-	 * 解：双指针： 必须以left为开头的子数组累加和是target
+	 * 解：每个位置开头怎样：双指针： 必须以left为开头的子数组累加和是target
 	 */
 	public static int findLongestSubArray(int[] arr, int target) {
 		if (CommonArrayUtil.isEmpty(arr) || target <= 0) {
@@ -40,6 +40,8 @@ public class ArraySumUtil {
 
 	/**
 	 * 一个+ - 0 数组，哪个子数组∑ = target且长度最长？<br>
+	 * 
+	 * 解： 每个位置结尾怎么样：
 	 * 
 	 */
 	public static int findLongestSubArray2(int[] arr, int target) {

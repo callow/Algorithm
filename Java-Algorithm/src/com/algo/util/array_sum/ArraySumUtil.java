@@ -10,8 +10,8 @@ import com.algo.util.common.CommonArrayUtil;
 public class ArraySumUtil {
 
 	/**
-	 * 哪个子数组∑ = target且长度最长？<br>
-	 * 解：双指针, R++, L++
+	 * 一个非负数组，哪个子数组∑ = target且长度最长？<br>
+	 * 解：双指针： 必须以left为开头的子数组累加和是target
 	 */
 	public static int findLongestSubArray(int[] arr, int target) {
 		if (CommonArrayUtil.isEmpty(arr) || target <= 0) {

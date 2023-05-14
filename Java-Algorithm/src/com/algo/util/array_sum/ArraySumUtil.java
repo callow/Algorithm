@@ -13,11 +13,11 @@ import com.algo.util.common.CommonArrayUtil;
 public class ArraySumUtil {
 
 	/**
-	 * 一个+数组，哪个子数组∑ = target且长度最长？<br>
+	 * 一个+数组，哪个子数组∑ = k且长度最长？<br>
 	 * 解：每个位置开头怎样：双指针： 必须以left为开头的子数组累加和是target
 	 */
-	public static int findLongestSubArray(int[] arr, int target) {
-		if (CommonArrayUtil.isEmpty(arr) || target <= 0) {
+	public static int findLongestSubArrayPositive(int[] arr, int k) {
+		if (CommonArrayUtil.isEmpty(arr) || k <= 0) {
 			return 0;
 		}
 		int left = 0;
@@ -25,10 +25,10 @@ public class ArraySumUtil {
 		int sum = arr[0];
 		int len = 0;
 		while (right < arr.length) {
-			if (sum == target) {
+			if (sum == k) {
 				len = Math.max(len, right - left + 1);
 				sum -= arr[left++];
-			} else if (sum < target) {
+			} else if (sum < k) {
 				right++;
 				if (right == arr.length) {
 					break;
@@ -42,7 +42,7 @@ public class ArraySumUtil {
 	}
 
 	/**
-	 * 一个+ - 0 数组，哪个子数组∑ = target且长度最长？<br>
+	 * 一个+ - 0 数组，哪个子数组∑ = k且长度最长？<br>
 	 * 
 	 * 解： 每个位置结尾怎么样：<br>
 	 * 
@@ -54,7 +54,7 @@ public class ArraySumUtil {
 	 * 注：变换，e.g: 求子数组-1和1的数量一样多的最长子数组 => 将不是-1 1的数字变成0，即求target=0的时候的本题
 	 * 
 	 */
-	public static int findLongestSubArray2(int[] arr, int target) {
+	public static int findLongestSubArrayAnySymbol(int[] arr, int k) {
 		if (arr == null || arr.length == 0) {
 			return 0;
 		}
@@ -67,8 +67,8 @@ public class ArraySumUtil {
 		int sum = 0;
 		for (int i = 0; i < arr.length; i++) { // 以i结尾的来审视
 			sum += arr[i];
-			if (map.containsKey(sum - target)) {
-				int prefixSumIndex = map.get(sum - target);
+			if (map.containsKey(sum - k)) {
+				int prefixSumIndex = map.get(sum - k);
 				maxLen = Math.max(i - prefixSumIndex, maxLen);
 			}
 			if (!map.containsKey(sum)) {
@@ -77,4 +77,5 @@ public class ArraySumUtil {
 		}
 		return maxLen;
 	}
+
 }

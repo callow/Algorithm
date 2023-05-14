@@ -78,4 +78,13 @@ public class ArraySumUtil {
 		return maxLen;
 	}
 
+	/**
+	 * 一个+ - 0 数组，哪个子数组∑ <= k且长度最长？
+	 *
+	 */
+	public static int findLongestSubArrayAnySymbolLessThanK(int[] arr, int k) {
+		return k;
+
+	}
+
 }

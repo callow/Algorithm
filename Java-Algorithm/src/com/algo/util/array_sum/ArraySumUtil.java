@@ -51,6 +51,8 @@ public class ArraySumUtil {
 	 * ∵ Σ(0~100) = 200, target = 30, then 某一个前缀和170出现在6位置 <br>
 	 * ∴ 从7 ~ 100就是能推的最长，即100结尾最长能向左推到7位置得到答案30
 	 * 
+	 * 注：变换，e.g: 求子数组-1和1的数量一样多的最长子数组 => 将不是-1 1的数字变成0，即求target=0的时候的本题
+	 * 
 	 */
 	public static int findLongestSubArray2(int[] arr, int target) {
 		if (arr == null || arr.length == 0) {

@@ -28,7 +28,8 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		for (int i = 1; i <= choose; i++) {
 			if (((1 << i) & status) == 0) { // i 这个数字，是此时先手的决定！先手选择了第i个数
 				int taken = (status | (1 << i)); // 拿走 = 将第i位标1
-				if (!pick(choose, taken, rest - i)) {
+				boolean next = pick(choose, taken, rest - i);
+				if (!next) {
 					return true;
 				}
 			}

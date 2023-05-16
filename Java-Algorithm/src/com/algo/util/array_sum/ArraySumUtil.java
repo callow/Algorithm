@@ -90,6 +90,14 @@ public class ArraySumUtil {
 	 * 1. 如果以i开头最小累加和都>k, 那么从0开头任何子数组累加和不可能<=k <br>
 	 * 2. 如果以i开头最小累加和<k, 则minSum继续右扩，直到>k停，存储答案<br>
 	 * e.g : 0 开头往右在minSum上扩，直到13位置超过K了停 长度14个，这时候换成1开头，看看14位置能不能进来，继续扩，然后2位置...
+	 * <br>
+	 * 
+	 * 窗口的右边界不回退O(N)：<br>
+	 * 0............13|14 // minSum从0开头扩到13不能扩了∑(0~13) = sum，这时候弹出0，看一下1开始可以扩到14吗,
+	 * 关注是否能把答案推高的可能性<br>
+	 * 0|1..........13|14 // ∑(1~13) = sum - minSum[0]<br>
+	 * 
+	 * Hard！
 	 * 
 	 *
 	 */
@@ -119,13 +127,14 @@ public class ArraySumUtil {
 			// while循环结束之后：
 			// 1) 如果以i开头的情况下，累加和<=k的最长子数组是arr[i..end-1]，看看这个子数组长度能不能更新res；
 			// 2) 如果以i开头的情况下，累加和<=k的最长子数组比arr[i..end-1]短，更新还是不更新res都不会影响最终结果；
+
 			while (end < arr.length && sum + minSums[end] <= k) {
 				sum += minSums[end];
 				end = minSumEnds[end] + 1;
 			}
 			ans = Math.max(ans, end - i); // end 是第一个进不来的位置 - i现在开头的位置
 			if (end > i) { // 还有窗口，哪怕窗口没有数字 [i~end) [4,4)
-				sum -= arr[i];
+				sum -= arr[i]; // i要出去了，sum-要出去的
 			} else { // i == end, 即将 i++, i > end, 此时窗口概念维持不住了，所以end跟着i一起走
 				end = i + 1;
 			}

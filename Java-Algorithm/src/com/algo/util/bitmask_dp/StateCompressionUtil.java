@@ -4,7 +4,7 @@ import com.algo.util.bitmask_dp.impl.DPStateCompression;
 
 /**
  * 
- * 状态压缩的动态规划: 利用位运算来压缩空间
+ * 状态压缩的动态规划: 利用位运算来压缩空间 = 利用位压缩的记忆化搜索
  *
  */
 public class StateCompressionUtil {

@@ -143,4 +143,21 @@ public class ArraySumUtil {
 
 	}
 
+	/**
+	 * 求子数组平均值<=k的最长子数组长度？<br>
+	 * 
+	 * 解：假设k=10， 数组所有数-10， => 求子数组累加和<= 0的最长子数组长度.
+	 */
+	public static int findLongestSubArrayAverageLessThanK(int[] arr, int k) {
+		if (arr == null || arr.length == 0) {
+			return 0;
+		}
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] -= k;
+		}
+
+		return findLongestSubArrayAnySymbolLessThanK(arr, 0);
+
+	}
+
 }

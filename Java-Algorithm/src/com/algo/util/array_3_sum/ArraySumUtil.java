@@ -1,4 +1,4 @@
-package com.algo.util.array_sum;
+package com.algo.util.array_3_sum;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -4,6 +4,9 @@ import com.algo.util.bitmask_dp.StateCompressionDPService;
 
 public class DPRecursive implements StateCompressionDPService {
 
+	/**
+	 * O(N*N!)
+	 */
 	@Override
 	public boolean canWin(int choose, int total) {
 		if (total == 0) {
@@ -24,7 +27,7 @@ public class DPRecursive implements StateCompressionDPService {
 
 	/**
 	 * 
-	 * 当前轮到先手拿，先手只能选择在arr中还存在的数字，还剩rest这么值，返回先手会不会赢
+	 * 当前轮到先手拿，先手只能选择在arr中还存在的数字，还剩rest这么值，返回先手会不会赢O(N!)
 	 */
 	public static boolean pick(int[] arr, int rest) {
 		if (rest <= 0) {

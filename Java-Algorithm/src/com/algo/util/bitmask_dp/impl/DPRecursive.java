@@ -5,7 +5,7 @@ import com.algo.util.bitmask_dp.StateCompressionDPService;
 public class DPRecursive implements StateCompressionDPService {
 
 	/**
-	 * O(N*N!)
+	 * O(N*N!) Ì«¸ßÁË
 	 */
 	@Override
 	public boolean canWin(int choose, int total) {

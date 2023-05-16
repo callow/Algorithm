@@ -7,7 +7,7 @@ import com.algo.util.common.CommonArrayUtil;
 
 /**
  * 
- * 数组累加和相关问题。= 数组3连问题
+ * 数组累加和相关问题。= 数组3连问题 = 最长子数组长度问题
  *
  */
 public class ArraySumUtil {

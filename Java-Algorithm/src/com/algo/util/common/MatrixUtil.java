@@ -227,4 +227,29 @@ public class MatrixUtil {
 	public static boolean isEmpty(int[][] matrix) {
 		return matrix == null || matrix.length == 0 || matrix[0].length == 0;
 	}
+
+	/**
+	 * 
+	 * 将一个正方形矩阵，沿着中心点旋转90度，返回旋转后的矩阵
+	 */
+	public static void rotate90Degree(int[][] matrix) {
+		int a = 0;
+		int b = 0;
+		int c = matrix.length - 1;
+		int d = matrix[0].length - 1;
+		while (a < c) {
+			rotateEdge(matrix, a++, b++, c--, d--); // 边一圈一圈的向内遍历变换 -> 剥洋葱
+		}
+	}
+
+	public static void rotateEdge(int[][] m, int a, int b, int c, int d) {
+		int tmp = 0;
+		for (int i = 0; i < d - b; i++) {
+			tmp = m[a][b + i];
+			m[a][b + i] = m[c - i][b];
+			m[c - i][b] = m[c][d - i];
+			m[c][d - i] = m[a + i][d];
+			m[a + i][d] = tmp;
+		}
+	}
 }

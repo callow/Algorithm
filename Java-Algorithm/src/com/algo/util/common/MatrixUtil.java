@@ -230,7 +230,18 @@ public class MatrixUtil {
 
 	/**
 	 * 
-	 * 将一个正方形矩阵，沿着中心点旋转90度，返回旋转后的矩阵
+	 * 将一个正方形矩阵，沿着中心点旋转90度，返回旋转后的矩阵<br>
+	 * 
+	 * 解：原位置和去的位置2个是一个组，一圈里面有d-b组 <br>
+	 * * b   d <br>
+	 * a ..... <br> 
+	 *   .
+	 *   .
+	 *   .
+	 * c .
+	 * 
+	 *
+	 * 
 	 */
 	public static void rotate90Degree(int[][] matrix) {
 		int a = 0;
@@ -244,7 +255,8 @@ public class MatrixUtil {
 
 	public static void rotateEdge(int[][] m, int a, int b, int c, int d) {
 		int tmp = 0;
-		for (int i = 0; i < d - b; i++) {
+		int groups = d - b;
+		for (int i = 0; i < groups; i++) {// 0,1,2,3 ..
 			tmp = m[a][b + i];
 			m[a][b + i] = m[c - i][b];
 			m[c - i][b] = m[c][d - i];

@@ -1,5 +1,8 @@
 package com.algo.util.bitmask_dp.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.algo.util.bitmask_dp.StateCompressionDPService;
 
 public class DPRecursive implements StateCompressionDPService {
@@ -46,6 +49,49 @@ public class DPRecursive implements StateCompressionDPService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public int tsp(int[][] distances) {
+		int cities = distances.length; // 0...N-1
+		
+		// set.get(i) != null i这座城市在集合里
+		// set.get(i) == null i这座城市不在集合里
+		List<Integer> set = new ArrayList<>();
+		for (int i = 0; i < cities; i++) {
+			set.add(1);
+		}
+		return go(distances, set, 0);
+	}
+	/**
+	 * 
+	  任何两座城市之间的距离，可以在matrix里面拿到
+	  set中表示着哪些城市的集合，
+	  start这座城一定在set里，
+	  从start出发，要把set中所有的城市过一遍，最终回到0这座城市，最小距离是多少
+	 */
+	public static int go(int[][] matrix, List<Integer> set, int start) {
+		int cityNum = 0;
+		for (int i = 0; i < set.size(); i++) {
+			if (set.get(i) != null) {
+				cityNum++;
+			}
+		}
+		if (cityNum == 1) {
+			return matrix[start][0];
+		}
+		// cityNum > 1  不只start这一座城
+		set.set(start, null);
+		int min = Integer.MAX_VALUE;
+		for (int i = 0; i < set.size(); i++) {
+			if (set.get(i) != null) {
+				// start -> i i... -> 0
+				int cur = matrix[start][i] + go(matrix, set, i);
+				min = Math.min(min, cur);
+			}
+		}
+		set.set(start, 1);
+		return min;
 	}
 
 }

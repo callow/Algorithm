@@ -37,4 +37,10 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		return false;
 	}
 
+	@Override
+	public int tsp(int[][] distances) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

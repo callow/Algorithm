@@ -1,6 +1,7 @@
 package com.algo.util.bitmask_dp;
 
 import com.algo.util.bitmask_dp.impl.DPStateCompressionCache;
+import com.algo.util.bitmask_dp.impl.DPStateCompressiondp;
 
 /**
  * 
@@ -22,4 +23,18 @@ public class StateCompressionUtil {
 	public static boolean canWin100Game(int maxChoosableInteger, int desiredTotal) {
 		return new DPStateCompressionCache().canWin(maxChoosableInteger, desiredTotal);
 	}
+	
+	/**
+	 * 
+	 * TSP问题：Travelling salesman problem <br>
+	 * 
+	 * N个城市无向图，城市点到点距离存在N*N矩阵中，选一个城市，走遍所有且总距离最小<br>
+	 * 
+	 * 最终答案是一个环，因此从什么城市出发不会影响最终的答案：强行把0作为开始/结束点
+	 */
+	public static int tsp(int[][] distances) {
+		return new DPStateCompressiondp().tsp(distances);
+	}
+	
+	
 }

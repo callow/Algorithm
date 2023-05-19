@@ -71,17 +71,20 @@ public class DPRecursive implements StateCompressionDPService {
 	  从start出发，要把set中所有的城市过一遍，最终回到0这座城市，最小距离是多少
 	 */
 	public static int go(int[][] matrix, List<Integer> set, int start) {
-		int cityNum = 0;
+		int cityNum = 0; 
+		// 看看还剩几座城市，set中还剩几座城市
 		for (int i = 0; i < set.size(); i++) {
 			if (set.get(i) != null) {
 				cityNum++;
 			}
 		}
+		
+		// 如果只剩1座城了= base case, 返回从当前start直接回归宿点0的距离
 		if (cityNum == 1) {
 			return matrix[start][0];
 		}
 		// cityNum > 1  不只start这一座城
-		set.set(start, null);
+		set.set(start, null); // 先把自己从集合中去掉
 		int min = Integer.MAX_VALUE;
 		for (int i = 0; i < set.size(); i++) {
 			if (set.get(i) != null) {
@@ -90,7 +93,7 @@ public class DPRecursive implements StateCompressionDPService {
 				min = Math.min(min, cur);
 			}
 		}
-		set.set(start, 1);
+		set.set(start, 1); // 恢复现场
 		return min;
 	}
 

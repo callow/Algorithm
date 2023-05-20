@@ -69,6 +69,9 @@ public class DPRecursive implements StateCompressionDPService {
 	  set中表示着哪些城市的集合，
 	  start这座城一定在set里，
 	  从start出发，要把set中所有的城市过一遍，最终回到0这座城市，最小距离是多少
+	  
+	  e.g: go(matrix, {null,1,null,1,1,null}, 3)
+	  	city:			0   1  2   3 4  5
 	 */
 	public static int go(int[][] matrix, List<Integer> set, int start) {
 		int cityNum = 0; 

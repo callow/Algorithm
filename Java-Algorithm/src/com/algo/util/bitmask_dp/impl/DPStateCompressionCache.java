@@ -1,5 +1,6 @@
 package com.algo.util.bitmask_dp.impl;
 
+import com.algo.util.bit.BitUtil;
 import com.algo.util.bitmask_dp.StateCompressionDPService;
 
 public class DPStateCompressionCache implements StateCompressionDPService {
@@ -39,8 +40,38 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 
 	@Override
 	public int tsp(int[][] distances) {
-		// TODO Auto-generated method stub
-		return 0;
+		int N = distances.length; // 0...N-1
+		// 7座城 1111111
+		int allCity = (1 << N) - 1;
+		return go(distances, allCity, 0);
+	}
+
+	// 任何两座城市之间的距离，可以在matrix里面拿到
+	// set中表示着哪些城市的集合，
+	// start这座城一定在set里，
+	// 从start出发，要把set中所有的城市过一遍，最终回到0这座城市，最小距离是多少
+	public static int go(int[][] matrix, int cityStatus, int start) {
+		
+		// 如果city中只有一个1了
+		if (cityStatus == BitUtil.rightMostOne(cityStatus)) {
+			return matrix[start][0];
+		}
+
+		// 把start位的1去掉， = set null
+		cityStatus = BitUtil.remove1AtIndex(cityStatus, start);
+		
+		int min = Integer.MAX_VALUE;
+		// 枚举所有的城市
+		for (int move = 0; move < matrix.length; move++) {
+			
+			if (BitUtil.has1AtIndex(cityStatus, move)) { // 在move位置存在1
+				
+				int cur = matrix[start][move] + go(matrix, cityStatus, move);
+				min = Math.min(min, cur);
+			}
+		}
+		cityStatus = BitUtil.make1AtIndex(cityStatus, start);
+		return min;
 	}
 
 }

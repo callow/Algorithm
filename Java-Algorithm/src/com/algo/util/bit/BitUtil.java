@@ -298,5 +298,27 @@ public class BitUtil {
 		}
 		return ans;
 	}
+	
+	/**
+	 * 从num的位中，将index位置的1去掉，变成 0 
+	 */
+	
+	public static int remove1AtIndex(int num, int index) {
+		return num &= (~(1 << index));
+	}
+	
+	/**
+	 * 在num的位中，index 位置是 1
+	 */
+	public static boolean has1AtIndex(int num, int index) {
+		return (num & (1 << index)) != 0;
+	}
+	
+	/**
+	 * 从num的位中，将index位置变成1
+	 */
+	public static int make1AtIndex(int num, int index) {
+		return num |= (1 << index);
+	}
 
 }

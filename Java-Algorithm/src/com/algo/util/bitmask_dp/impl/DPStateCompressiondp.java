@@ -1,5 +1,6 @@
 package com.algo.util.bitmask_dp.impl;
 
+import com.algo.util.bit.BitUtil;
 import com.algo.util.bitmask_dp.StateCompressionDPService;
 
 public class DPStateCompressiondp implements StateCompressionDPService {
@@ -46,7 +47,35 @@ public class DPStateCompressiondp implements StateCompressionDPService {
 
 	@Override
 	public int tsp(int[][] distances) {
-		return 0;
+		int N = distances.length; // 0...N-1
+		int statusNums = 1 << N;
+		int[][] dp = new int[statusNums][N];
+
+		for (int status = 0; status < statusNums; status++) {
+			for (int start = 0; start < N; start++) {
+				if (BitUtil.isOneAtIndex(status, start)) {
+					
+					if (status == BitUtil.rightMostOne(status)) {
+						
+						dp[status][start] = distances[start][0];
+					} else {
+						int min = Integer.MAX_VALUE;
+						// start 城市在status里去掉之后，的状态
+						int preStatus = BitUtil.remove1AtIndex(status, start);  
+						
+						// start -> i
+						for (int i = 0; i < N; i++) {
+							if (BitUtil.isOneAtIndex(preStatus, i)) {  
+								int cur = distances[start][i] + dp[preStatus][i];
+								min = Math.min(min, cur);
+							}
+						}
+						dp[status][start] = min;
+					}
+				}
+			}
+		}
+		return dp[statusNums - 1][0];
 	}
 
 }

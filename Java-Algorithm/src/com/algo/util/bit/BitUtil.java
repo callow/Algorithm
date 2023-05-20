@@ -308,7 +308,7 @@ public class BitUtil {
 	}
 	
 	/**
-	 * 在num的位中，index 位置是 1
+	 * 在num的位中，index 位置是 1 = isOneAtIndex
 	 */
 	public static boolean has1AtIndex(int num, int index) {
 		return (num & (1 << index)) != 0;

@@ -44,6 +44,8 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		// 7座城 1111111
 		int allCity = (1 << N) - 1;
 		return go(distances, allCity, 0);
+		
+		// return tspDpCache(distances);
 	}
 
 	public int go(int[][] matrix, int cityStatus, int start) {
@@ -70,7 +72,40 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		return min;
 	}
 	
+	public int tspDpCache(int[][] distances) {
+		int N = distances.length; // 0...N-1
+		// 7座城 1111111
+		int allCity = (1 << N) - 1;
+		int[][] dp = new int[1 << N][N];
+		for (int i = 0; i < (1 << N); i++) {
+			for (int j = 0; j < N; j++) {
+				dp[i][j] = -1;
+			}
+		}
+		return goDP(distances, allCity, 0, dp);
+	}
 	
-	
+	public int goDP(int[][] matrix, int cityStatus, int start, int[][] dp) {
+		if (dp[cityStatus][start] != -1) {
+			return dp[cityStatus][start];
+		}
+		if (cityStatus == BitUtil.rightMostOne(cityStatus)) { 
+			dp[cityStatus][start] = matrix[start][0];
+		} else {
+			// 把start位的1去掉，
+			cityStatus  = BitUtil.remove1AtIndex(cityStatus, start);;
+			int min = Integer.MAX_VALUE;
+			// 枚举所有的城市
+			for (int move = 0; move < matrix.length; move++) {
+				if (BitUtil.has1AtIndex(cityStatus, move)) {
+					int cur = matrix[start][move] + goDP(matrix, cityStatus, move, dp);
+					min = Math.min(min, cur);
+				}
+			}
+			cityStatus  = BitUtil.make1AtIndex(cityStatus, start);
+			dp[cityStatus][start] = min;
+		}
+		return dp[cityStatus][start];
+	}
 
 }

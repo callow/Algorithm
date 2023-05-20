@@ -45,6 +45,9 @@ public class DPStateCompressiondp implements StateCompressionDPService {
 		return ans;
 	}
 
+	/**
+	 * 比较难，只改到cache那个解就可以了
+	 */
 	@Override
 	public int tsp(int[][] distances) {
 		int N = distances.length; // 0...N-1

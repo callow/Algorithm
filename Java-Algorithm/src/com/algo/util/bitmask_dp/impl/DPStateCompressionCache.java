@@ -46,11 +46,7 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		return go(distances, allCity, 0);
 	}
 
-	// 任何两座城市之间的距离，可以在matrix里面拿到
-	// set中表示着哪些城市的集合，
-	// start这座城一定在set里，
-	// 从start出发，要把set中所有的城市过一遍，最终回到0这座城市，最小距离是多少
-	public static int go(int[][] matrix, int cityStatus, int start) {
+	public int go(int[][] matrix, int cityStatus, int start) {
 		
 		// 如果city中只有一个1了
 		if (cityStatus == BitUtil.rightMostOne(cityStatus)) {
@@ -73,5 +69,8 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		cityStatus = BitUtil.make1AtIndex(cityStatus, start);
 		return min;
 	}
+	
+	
+	
 
 }

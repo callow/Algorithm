@@ -28,12 +28,20 @@ public class DC3Util {
 			max = Math.max(max, cha);
 		}
 		
+		/**
+		 * 桶优化：
+		 * 原数组： min=17，max=103 则，没必要准备103个桶 只需要准备桶：1 ~ 86， 即：103-17个桶
+		 * 但是dc3的num 要同时变换成[1....86]
+		 * 
+		 */
 		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
 			arr[i] = str[i] - min + 1;
 		}
 		
 		DC3 dc3 = new DC3(arr, max - min + 1);
+		
+		
 		return s.substring(dc3.sa[n - 1]);
 	}
 	

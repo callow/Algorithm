@@ -9,7 +9,7 @@ import com.algo.util.common.CommonStringUtil;
  *
  *
  */
-public class DC3Util {
+public class SuffixUtil {
 
 	/**
 	 * 找出子数组/子串 中字典序最高的那个

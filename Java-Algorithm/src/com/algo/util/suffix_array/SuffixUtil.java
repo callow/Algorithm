@@ -41,8 +41,18 @@ public class SuffixUtil {
 		
 		DC3 dc3 = new DC3(arr, max - min + 1);
 		
-		
 		return s.substring(dc3.sa[n - 1]);
+	}
+	
+	/**
+	 * 将s1插入s2， 返回形成最大的字典序的串？<br>
+	 * N : s1长度
+	 * M : s2长度
+	 * O(N+M) + O(M^2) 
+	 */
+	public static String lexicographicalMaxInsert(String s1, String s2) {
+		return s2;
+		
 	}
 	
 }

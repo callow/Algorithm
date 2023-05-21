@@ -109,9 +109,51 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 	}
 
 	@Override
-	public int paveBricks(int n, int m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int paveBricks(int N, int M) {
+		if (N < 1 || M < 1 || ((N * M) & 1) != 0) {
+			return 0;
+		}
+		if (N == 1 || M == 1) {
+			return 1;
+		}
+		int max = Math.max(N, M);
+		int min = Math.min(N, M);
+		int pre = (1 << min) - 1;
+		int[][] dp = new int[1 << min][max + 1];
+		for (int i = 0; i < dp.length; i++) {
+			for (int j = 0; j < dp[0].length; j++) {
+				dp[i][j] = -1;
+			}
+		}
+		
+		return process(pre, 0, max, min, dp);
+	}
+	
+	public int process(int pre, int i, int N, int M, int[][] dp) {
+		if (dp[pre][i] != -1) {
+			return dp[pre][i];
+		}
+		int ans = 0;
+		if (i == N) {
+			ans = pre == ((1 << M) - 1) ? 1 : 0;
+		} else {
+			int op = ((~pre) & ((1 << M) - 1));
+			ans = dfs(op, M - 1, i, N, M, dp);
+		}
+		dp[pre][i] = ans;
+		return ans;
+	}
+
+	public int dfs(int op, int col, int level, int N, int M, int[][] dp) {
+		if (col == -1) {
+			return process(op, level + 1, N, M, dp);
+		}
+		int ans = 0;
+		ans += dfs(op, col - 1, level, N, M, dp);
+		if (col > 0 && (op & (3 << (col - 1))) == 0) {
+			ans += dfs((op | (3 << (col - 1))), col - 2, level, N, M, dp);
+		}
+		return ans;
 	}
 
 }

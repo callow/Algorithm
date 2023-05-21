@@ -82,9 +82,46 @@ public class DPStateCompressiondp implements StateCompressionDPService {
 	}
 
 	@Override
-	public int paveBricks(int n, int m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int paveBricks(int N, int M) {
+		if (N < 1 || M < 1 || ((N * M) & 1) != 0) {
+			return 0;
+		}
+		if (N == 1 || M == 1) {
+			return 1;
+		}
+		int big = N > M ? N : M;
+		int small = big == N ? M : N;
+		int sn = 1 << small;
+		int limit = sn - 1;
+		int[] dp = new int[sn];
+		dp[limit] = 1;
+		int[] cur = new int[sn];
+		for (int level = 0; level < big; level++) {
+			for (int status = 0; status < sn; status++) {
+				if (dp[status] != 0) {
+					int op = (~status) & limit;
+					dfs(dp[status], op, 0, small - 1, cur);
+				}
+			}
+			for (int i = 0; i < sn; i++) {
+				dp[i] = 0;
+			}
+			int[] tmp = dp;
+			dp = cur;
+			cur = tmp;
+		}
+		return dp[limit];
+	}
+	
+	public static void dfs(int way, int op, int index, int end, int[] cur) {
+		if (index == end) {
+			cur[op] += way;
+		} else {
+			dfs(way, op, index + 1, end, cur);
+			if (((3 << index) & op) == 0) { // 11 << index ©ирт╥ев╘
+				dfs(way, op | (3 << index), index + 1, end, cur);
+			}
+		}
 	}
 
 }

@@ -101,9 +101,78 @@ public class DPRecursive implements StateCompressionDPService {
 	}
 
 	@Override
-	public int paveBricks(int n, int m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int paveBricks(int N, int M) {
+		if (N < 1 || M < 1 || ((N * M) & 1) != 0) {
+			return 0;
+		}
+		if (N == 1 || M == 1) {
+			return 1;
+		}
+		int[] pre = new int[M]; // pre代表-1行的状况
+		for (int i = 0; i < pre.length; i++) {
+			pre[i] = 1;
+		}
+		return process(pre, 0, N);
 	}
+	
+	// pre 表示level-1行的状态
+	// level表示，正在level行做决定
+	// N 表示一共有多少行 固定的
+	// level-2行及其之上所有行，都摆满砖了
+	// level做决定，让所有区域都满，方法数返回
+	public int process(int[] pre, int level, int N) {
+		if (level == N) { // base case
+			for (int i = 0; i < pre.length; i++) {
+				if (pre[i] == 0) { // 已经来到Level层，只要上层瓷砖有一个不满 => 0种方法
+					return 0;
+				}
+			}
+			return 1;
+		}
+
+		// 没到终止行，可以选择在当前的level行摆瓷砖
+		int[] op = getOp(pre);
+		return dfs(op, 0, level, N);
+	}
+	
+	/**
+	 * 根据上一行的状态决定此时可以进行的操作 => 0变1， 1变0
+	 * pre: 0001100
+	 * op:  1110011
+	 */
+	private int[] getOp(int[] pre) {
+		int[] cur = new int[pre.length];
+		for (int i = 0; i < pre.length; i++) {
+			cur[i] = pre[i] ^ 1;
+		}
+		return cur;
+	}
+	
+
+	/**
+	 * op[i] == 0 可以考虑摆砖
+	   op[i] == 1 只能竖着向上
+	 */
+	private int dfs(int[] op, int col, int level, int N) {
+		// 在列上自由发挥，玩深度优先遍历，当col来到终止列，i行的决定做完了
+		// 轮到i+1行，做决定
+		if (col == op.length) { // 当前已来到最后一列，那么去下一行继续
+			return process(op, level + 1, N);
+		}
+		// 当前如果还没来到最后一列
+		int ans = 0;
+		// col位置不横摆
+		ans += dfs(op, col + 1, level, N); // col位置上不摆横转
+		// col位置横摆, 向右
+		if (col + 1 < op.length && op[col] == 0 && op[col + 1] == 0) {
+			op[col] = 1;
+			op[col + 1] = 1;
+			ans += dfs(op, col + 2, level, N);
+			op[col] = 0;
+			op[col + 1] = 0;
+		}
+		return ans;
+	}
+
 
 }

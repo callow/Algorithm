@@ -108,4 +108,10 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		return dp[cityStatus][start];
 	}
 
+	@Override
+	public int paveBricks(int n, int m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

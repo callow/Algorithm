@@ -26,7 +26,7 @@ public class StateCompressionUtil {
 	
 	/**
 	 * 
-	 * TSP问题：Travelling salesman problem <br>
+	 * TSP问题：Travelling salesman problem O（n*2^n）<br>
 	 * 
 	 * N个城市无向图，城市点到点距离存在N*N矩阵中，选一个城市，走遍所有且总距离最小<br>
 	 * 
@@ -34,6 +34,16 @@ public class StateCompressionUtil {
 	 */
 	public static int tsp(int[][] distances) {
 		return new DPStateCompressiondp().tsp(distances);
+	}
+	
+	/**
+	 * 铺瓷砖问题：有1*2的砖，铺满 M * N 区域，有几种不同铺法？<br>
+	 * 
+	 * 解：限制一下，瓷砖只能向上/向右铺瓷砖, 那么i-2行以上的行一定是塞满的
+	 * 
+	 */
+	public static int paveBricks(int n, int m) {
+		return new DPStateCompressiondp().paveBricks(n, m);
 	}
 	
 	

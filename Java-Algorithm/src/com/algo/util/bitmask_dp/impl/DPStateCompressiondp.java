@@ -81,4 +81,10 @@ public class DPStateCompressiondp implements StateCompressionDPService {
 		return dp[statusNums - 1][0];
 	}
 
+	@Override
+	public int paveBricks(int n, int m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -100,4 +100,10 @@ public class DPRecursive implements StateCompressionDPService {
 		return min;
 	}
 
+	@Override
+	public int paveBricks(int n, int m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

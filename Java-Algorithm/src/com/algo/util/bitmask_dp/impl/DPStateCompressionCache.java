@@ -119,6 +119,7 @@ public class DPStateCompressionCache implements StateCompressionDPService {
 		int max = Math.max(N, M);
 		int min = Math.min(N, M);
 		int pre = (1 << min) - 1;
+		
 		int[][] dp = new int[1 << min][max + 1];
 		for (int i = 0; i < dp.length; i++) {
 			for (int j = 0; j < dp[0].length; j++) {

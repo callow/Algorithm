@@ -110,7 +110,7 @@ public class SuffixUtil {
 		int comp = N + 1;
 		for (int i = 0; i < N; i++) { // loop s1的位置
 			if (rank[i] < rank[comp]) { // 找到s1中符合条件的最左位置l
-				int best = bestSplit(s1, s2, i); // 找到s1中符合条件的最左位置r,并找到s1中最好的插入位置
+				int best = CommonStringUtil.bestSplit(s1, s2, i); // 找到s1中符合条件的最左位置r,并找到s1中最好的插入位置
 				return s1.substring(0, best) + s2 + s1.substring(best);
 			}
 		}
@@ -118,26 +118,12 @@ public class SuffixUtil {
 		
 	}
 	
-	private static int bestSplit(String s1, String s2, int first) {
-		int N = s1.length();
-		int M = s2.length();
-		int end = N;
-		for (int i = first, j = 0; i < N && j < M; i++, j++) {
-			if (s1.charAt(i) < s2.charAt(j)) {
-				end = i;
-				break;
-			}
-		}
-		String bestPrefix = s2;
-		int bestSplit = first;
-		for (int i = first + 1, j = M - 1; i <= end; i++, j--) {
-			String curPrefix = s1.substring(first, i) + s2.substring(0, j);
-			if (curPrefix.compareTo(bestPrefix) >= 0) {
-				bestPrefix = curPrefix;
-				bestSplit = i;
-			}
-		}
-		return bestSplit;
+	/**
+	 * 
+	 */
+	public static int[] lexicographicalMaxCreation(int[] nums1, int[] nums2, int k) {
+		return nums2;
+		
 	}
 	
 }

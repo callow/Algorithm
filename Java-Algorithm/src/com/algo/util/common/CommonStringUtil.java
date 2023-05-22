@@ -73,4 +73,27 @@ public class CommonStringUtil {
 			}
 		}
 	}
+	
+	
+	public static int bestSplit(String s1, String s2, int first) {
+		int N = s1.length();
+		int M = s2.length();
+		int end = N;
+		for (int i = first, j = 0; i < N && j < M; i++, j++) {
+			if (s1.charAt(i) < s2.charAt(j)) {
+				end = i;
+				break;
+			}
+		}
+		String bestPrefix = s2;
+		int bestSplit = first;
+		for (int i = first + 1, j = M - 1; i <= end; i++, j--) {
+			String curPrefix = s1.substring(first, i) + s2.substring(0, j);
+			if (curPrefix.compareTo(bestPrefix) >= 0) {
+				bestPrefix = curPrefix;
+				bestSplit = i;
+			}
+		}
+		return bestSplit;
+	}
 }

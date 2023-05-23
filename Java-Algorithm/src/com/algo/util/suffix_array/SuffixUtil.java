@@ -121,7 +121,10 @@ public class SuffixUtil {
 	/**
 	 * num1 长M， num2 长N， 内元素<=9, 从2者中从左向右选K个数，返回代表最大数字的结果。<br>
 	 * 
-	 * e.g: [6,8,9,3], [9,6,4] -> 996,因为8在9左不可以选了
+	 * e.g: [6,8,9,3], [9,6,4] -> 996,因为8在9左不可以选了.<br>
+	 * 
+	 * 子问题1： 在一个数组中从左往右选M个数，怎么样尽量大？
+	 * 子问题2： 2个数组如何merge在一起尽量大？
 	 */
 	
 	public static int[] lexicographicalMaxCreation(int[] nums1, int[] nums2, int k) {

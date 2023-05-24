@@ -1,5 +1,6 @@
 package com.algo.util.suffix_array;
 
+import com.algo.util.common.CommonDPUtil;
 import com.algo.util.common.CommonStringUtil;
 
 /**
@@ -128,12 +129,76 @@ public class SuffixUtil {
 	 *  2. 将这个表填好-预处理结构，答案可以直接从表中拿出来. 
 	 *  3. 从数组中选2个怎么最好 = dp[0][2] + dp[1][1]
 	 * 
-	 * 子问题2： 2个数组如何merge在一起尽量大？
+	 * 子问题2： 2个数组如何merge在一起尽量大？ DC3
 	 */
 	
 	public static int[] lexicographicalMaxCreation(int[] nums1, int[] nums2, int k) {
-		return nums2;
+		int len1 = nums1.length;
+		int len2 = nums2.length;
+		if (k < 0 || k > len1 + len2) {
+			return null;
+		}
+		int[] result = new int[k];
+		int[][] dp1 = CommonDPUtil.getdp(nums1); // 生成dp1这个表，以后从nums1中，只要固定拿N个数，
+		int[][] dp2 = CommonDPUtil.getdp(nums2);
+		// get1 从arr1里拿的数量
+		// K - get1 从arr2里拿的数量
+		for (int get1 = Math.max(0, k - len2); get1 <= Math.min(k, len1); get1++) {
+			// arr1 挑 get1个，怎么得到一个最优结果
+			int[] pick1 = CommonDPUtil.maxPick(nums1, dp1, get1); // nums1中选get1个如何最好
+			int[] pick2 = CommonDPUtil.maxPick(nums2, dp2, k - get1); // nums1中选k - get1个如何最好
+			int[] merge = mergeBySuffixArray(pick1, pick2); // 2个合并在一起如何最好
+			result = preMoreThanLast(result, merge) ? result : merge; // 枚举所有答案，并用result抓住最好那个答案
+		}
+		return result;
+	}
+	
+	/**
+	 * 两个arr合并在一起，怎么尽量大？返回结果
+	 */
+	private static int[] mergeBySuffixArray(int[] nums1, int[] nums2) {
+		int size1 = nums1.length;
+		int size2 = nums2.length;
+		// 所有左右数字+2，中间用1隔断开
+		int[] nums = new int[size1 + 1 + size2];
+		for (int i = 0; i < size1; i++) {
+			nums[i] = nums1[i] + 2;
+		}
+		nums[size1] = 1;
+		for (int j = 0; j < size2; j++) {
+			nums[j + size1 + 1] = nums2[j] + 2;
+		}
 		
+		// 因为数字是0-9， 最大值是9，应该准备10个bucket, 但是多准备一个而已11
+		DC3 dc3 = new DC3(nums, 11);
+		int[] rank = dc3.rank;
+		int[] ans = new int[size1 + size2];
+		int i = 0;
+		int j = 0;
+		int r = 0;
+		while (i < size1 && j < size2) {
+			ans[r++] = rank[i] > rank[j + size1 + 1] ? nums1[i++] : nums2[j++];
+		}
+		while (i < size1) {
+			ans[r++] = nums1[i++];
+		}
+		while (j < size2) {
+			ans[r++] = nums2[j++];
+		}
+		return ans;
+	}
+	
+	/**
+	 * 判断
+	 */
+	private static boolean preMoreThanLast(int[] pre, int[] last) {
+		int i = 0;
+		int j = 0;
+		while (i < pre.length && j < last.length && pre[i] == last[j]) {
+			i++;
+			j++;
+		}
+		return j == last.length || (i < pre.length && pre[i] > last[j]);
 	}
 	
 }

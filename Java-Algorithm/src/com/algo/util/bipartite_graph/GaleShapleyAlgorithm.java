@@ -22,7 +22,12 @@ public class GaleShapleyAlgorithm {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * Prints stable matching for N boys and
+ 	   N girls. Boys are numbered as 0 to
+ 	   N-1. Girls are numbered as N to 2N-1.
+	 */
 	public void stableMarriage(int prefer[][]) {
 	    int wPartner[] = new int[n];
 	    boolean mFree[] = new boolean[n];

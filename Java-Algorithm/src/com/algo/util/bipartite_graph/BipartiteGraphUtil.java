@@ -52,10 +52,14 @@ public class BipartiteGraphUtil {
      */
      
     public static void stableMarriage() {
-    	int prefer[][] = new int[][]{{7, 5, 6, 4},
+    	// 前4个是男孩的喜欢排序，后4个是女孩的喜欢排序
+    	int prefer[][] = new int[][]{
+    		// boy
+    		{7, 5, 6, 4},
             {5, 4, 6, 7},
             {4, 5, 6, 7},
             {4, 5, 6, 7},
+            // girl
             {0, 1, 2, 3},
             {0, 1, 2, 3},
             {0, 1, 2, 3},

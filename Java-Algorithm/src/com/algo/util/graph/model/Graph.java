@@ -9,8 +9,8 @@ import java.util.Set;
  * 图： 很多边 + 很多点
  */
 public class Graph {
-	public Map<Integer, Node> nodes; 
-	public Set<Edge> edges;
+	public Map<Integer, Node> nodes; // 点 
+	public Set<Edge> edges; // 边
 	
 	public Graph() {
 		nodes = new HashMap<>();

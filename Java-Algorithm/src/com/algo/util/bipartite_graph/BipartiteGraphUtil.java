@@ -8,6 +8,8 @@ import java.util.Queue;
  * 
  * 二部图：
  * 
+ * 最大匹配问题：权重的量化
+ * 稳定婚配问题： 权重的排序
  *
  */
 public class BipartiteGraphUtil {

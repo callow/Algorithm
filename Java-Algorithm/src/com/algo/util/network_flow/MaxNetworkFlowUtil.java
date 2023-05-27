@@ -11,7 +11,7 @@ import com.algo.util.network_flow.model.Dinic;
 
 public class MaxNetworkFlowUtil {
 
-	public static void maxFlow() throws IOException {
+	public static void maxFlowByDinic() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StreamTokenizer in = new StreamTokenizer(br);
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));

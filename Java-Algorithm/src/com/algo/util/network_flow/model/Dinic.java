@@ -40,7 +40,14 @@ public class Dinic {
 		edges.add(new Edge(v, u, 0));
 		nexts.get(v).add(m + 1);
 	}
-
+	
+	/**
+	 * 从s到t的最大网络流是多少？
+	 * 
+	 * s: source : 出发点
+	 * t: target ： 目的地
+	 */
+	
 	public int maxFlow(int s, int t) {
 		int flow = 0;
 		while (bfs(s, t)) {

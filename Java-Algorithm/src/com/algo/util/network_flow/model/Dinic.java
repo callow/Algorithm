@@ -1,4 +1,4 @@
-package com.algo.util.network_flow;
+package com.algo.util.network_flow.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -3,6 +3,7 @@ package com.algo.util.slidingwindow;
 import java.util.LinkedList;
 
 import com.algo.util.common.CommonArrayUtil;
+import com.algo.util.common.CommonStringUtil;
 
 /**
  * 
@@ -141,6 +142,34 @@ public class SlidingWindowUtil {
 			max = Math.max(max, right - (left++));
 		}
 		return max;
+	}
+	
+	/**
+	 * 
+	 * 一个数组中只有两种字符'G'和'B',相邻才可交换，G要全在左B全在右 || 反之，返回最少的交换次数?
+	 * 
+	 * 解：双指针，向前移动 O(N)
+	 * 
+	 * e.g: B B G G B B G
+	 *      gi  i
+	 */
+	public static int swapGB(String s) {
+		if (CommonStringUtil.isEmpty(s)) { 
+			return 0;
+		}
+		char[] str = s.toCharArray();
+		int step1 = 0;
+		int step2 = 0;
+		int gi = 0;
+		int bi = 0;
+		for (int i = 0; i < str.length; i++) {
+			if (str[i] == 'G') { // 当前的G，去左边   方案1
+				step1 += i - (gi++);
+			} else {// 当前的B，去左边   方案2
+				step2 += i - (bi++);
+			}
+		}
+		return Math.min(step1, step2);
 	}
 	
 }

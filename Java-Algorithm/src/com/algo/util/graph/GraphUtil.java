@@ -1,9 +1,12 @@
 package com.algo.util.graph;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
@@ -100,5 +103,49 @@ public class GraphUtil {
 		// DijkstraAdaptor.dijkstraNative(head);
 		return DijkstraAdaptor.dijkstra(head, size);
 		
+	}
+	
+	/**
+	 * 统计一下一个文件夹下面的文件数，文件夹不算？
+	 * 解：bfs / dfs -> 找文件++
+	 * 
+	 */
+	public static int countFiles(String path) {
+		File root = new File(path);
+		if (!root.isDirectory() && !root.isFile()) {
+			return 0;
+		}
+		if (root.isFile()) {
+			return 1;
+		}
+		// 准备一个Map和小根堆，为了最后打印一下所有文件和大小
+		PriorityQueue<Long> minHeap = new PriorityQueue<>();
+		Map<Long,String> filename = new HashMap<>();
+		
+		Stack<File> stack = new Stack<>();
+		stack.add(root); // 只放文件夹，不放文件
+		int files = 0;
+		while (!stack.isEmpty()) {
+			File folder = stack.pop();
+			if (null != folder.listFiles()) {			
+				for (File next : folder.listFiles()) {
+					if (next.isFile()) {
+						files++;
+					}
+					if (next.isDirectory() && next != null) {
+						stack.push(next);
+						minHeap.add(next.getUsableSpace());
+						filename.put(next.getUsableSpace(), next.getName());
+					}
+				}
+			}
+		}
+		
+		// 用于打印(文件名 ： 大小) - 没用 
+		for (Long e : minHeap) {
+			System.out.println(filename.get(e) + ": " + e);
+		}
+		
+		return files;
 	}
 }

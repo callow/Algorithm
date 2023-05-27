@@ -124,5 +124,23 @@ public class SlidingWindowUtil {
 	}
 	
 	
+	/**
+	 * x轴上一些点，一个长k的绳子，求最多压中几个点？<br>
+	 * 
+	 * 解：利用双指针，R每次往右走到尽头到R-L<=4时候 收集答案,L向右移动 O(N),指针不回退
+	 */
+	public static int pointsCoveredByRape(int[] x, int k) {
+		int left = 0;
+		int right = 0;
+		int N = x.length;
+		int max = 0;
+		while (left < N) {
+			while (right < N && x[right] - x[left] <= k) {
+				right++;
+			}
+			max = Math.max(max, right - (left++));
+		}
+		return max;
+	}
 	
 }

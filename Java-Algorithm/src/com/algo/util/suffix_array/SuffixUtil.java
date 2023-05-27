@@ -154,6 +154,53 @@ public class SuffixUtil {
 	}
 	
 	/**
+	 * 最长公字串最长多长?
+	 * 
+	 * LCS: 必须连续
+	 */
+	public static int longestCommonSubstring(String s1, String s2) {
+		if (CommonStringUtil.isEmpty(s1) || CommonStringUtil.isEmpty(s2)) {
+			return 0;
+		}
+		char[] str1 = s1.toCharArray();
+		char[] str2 = s2.toCharArray();
+		int N = str1.length;
+		int M = str2.length;
+		int min = str1[0];
+		int max = str1[0];
+		for (int i = 1; i < N; i++) {
+			min = Math.min(min, str1[i]);
+			max = Math.max(max, str1[i]);
+		}
+		for (int i = 0; i < M; i++) {
+			min = Math.min(min, str2[i]);
+			max = Math.max(max, str2[i]);
+		}
+		int[] all = new int[N + M + 1];
+		int index = 0;
+		for (int i = 0; i < N; i++) {
+			all[index++] = str1[i] - min + 2;
+		}
+		all[index++] = 1;
+		for (int i = 0; i < M; i++) {
+			all[index++] = str2[i] - min + 2;
+		}
+		DC3 dc3 = new DC3(all, max - min + 2);
+		int n = all.length;
+		int[] sa = dc3.sa;
+		int[] height = dc3.height;
+		int ans = 0;
+		for (int i = 1; i < n; i++) {
+			int Y = sa[i - 1];
+			int X = sa[i];
+			if (Math.min(X, Y) < N && Math.max(X, Y) > N) {
+				ans = Math.max(ans, height[i]);
+			}
+		}
+		return ans;
+	}
+	
+	/**
 	 * 两个arr合并在一起，怎么尽量大？返回结果
 	 */
 	private static int[] mergeBySuffixArray(int[] nums1, int[] nums2) {

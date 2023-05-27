@@ -320,5 +320,20 @@ public class BitUtil {
 	public static int make1AtIndex(int num, int index) {
 		return num |= (1 << index);
 	}
+	
+	/**
+	 * 找 >=n 的 2的某次幂的一个最近的数字
+	 */
+	public static int biggerNum2Power(int n) {
+		n--;
+		// 将最高位的1后面全变成1: e.g: 00010010 => 00011111
+		n |= n >>> 1;
+		n |= n >>> 2;
+		n |= n >>> 4;
+		n |= n >>> 8;
+		n |= n >>> 16; // 整形只有32位，因此只需要做到16
+		
+		return (n < 0) ? 1 : n + 1;
+	}
 
 }

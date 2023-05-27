@@ -20,13 +20,13 @@ public class BipartiteGraphUtil {
 	 * 判断一个图是二部图：宽度优先便利染色法，相邻同色则不是二部图，相邻不同色则是二部图
 	 * 
 	 */
-     public boolean isBipartiteGraph(int[][] graph) {
+     public static boolean isBipartiteGraph(int[][] graph) {
     	 
     	 int n = graph.length; // n = node 的 数量
          int[] color = new int[n]; // node被染的颜色
          Arrays.fill(color, 0); // 全都没有被染色
          for (int i = 0; i < n; ++i) { // bfs
-             if (color[i] == 0) {
+             if (color[i] == 0){
                  Queue<Integer> queue = new LinkedList<Integer>();
                  queue.offer(i);
                  color[i] = 1; // 先任意染一个颜色
@@ -45,6 +45,27 @@ public class BipartiteGraphUtil {
              }
          }
          return true;
-    } 
+    }
+    
+    /**
+     * 稳定婚姻问题
+     */
+     
+    public static void stableMarriage() {
+    	// 前4个是男孩的喜欢排序，后4个是女孩的喜欢排序
+    	int prefer[][] = new int[][]{
+    		// boy
+    		{7, 5, 6, 4},
+            {5, 4, 6, 7},
+            {4, 5, 6, 7},
+            {4, 5, 6, 7},
+            // girl
+            {0, 1, 2, 3},
+            {0, 1, 2, 3},
+            {0, 1, 2, 3},
+            {0, 1, 2, 3}};
+        GaleShapleyAlgorithm gsa = new GaleShapleyAlgorithm();
+        gsa.stableMarriage(prefer);
+    }
 
 }

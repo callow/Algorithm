@@ -248,5 +248,46 @@ public class ArrayUtil {
 		return answer != Integer.MAX_VALUE ? answer : 0;
 
 	}
+	
+	/**
+	 * 让全部nums有序，找到最短需要排序的子数组？
+	 * 
+	 * 思路： 从左往右遍历一遍找到LeftMaxIndex, 从右往左遍历一遍找到rightMinIndex -> 答案：[rightMinIndex,LeftMaxIndex]
+	 * 
+	 * LeftMaxIndex: 左边部分的Max，遍历滑过部分的最大值, 如果左边部分Max > cur : x ， 反之 * ,最右的x的位置收集
+	 * 
+	 * -  1 2 6 5 4 3 8 9 
+	 *    0 1 2 3 4 5 6 7
+	 *    * * * x x x ..
+	 * 
+	 * rightMinIndex: 右边部分的Min，遍历滑过部分的最小值, 如果右边部分Min < cur ： x, 反之： *,最左x的位置收集
+	 * 
+	  * -  1 2 6 5 4 3 8 9 
+	 *     0 1 2 3 4 5 6 7
+	 *         x x x * * *
+	 */
+	public static int findUnsortedSubarray(int[] nums) {
+		if (nums == null || nums.length < 2) {
+			return 0;
+		}
+		int N = nums.length;
+		int right = -1;
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < N; i++) {
+			if (max > nums[i]) {
+				right = i;
+			}
+			max = Math.max(max, nums[i]);
+		}
+		int min = Integer.MAX_VALUE;
+		int left = N;
+		for (int i = N - 1; i >= 0; i--) {
+			if (min < nums[i]) {
+				left = i;
+			}
+			min = Math.min(min, nums[i]);
+		}
+		return Math.max(0, right - left + 1);
+	}
 
 }

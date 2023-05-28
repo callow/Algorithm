@@ -75,9 +75,10 @@ public class SumSegmentTree {
 		pushUp(rt); // 左右孩子一加就是父的
 	}
 
-	
-	// L~R  所有的值变成C
-	// l~r  rt
+	/**
+	 * L~R  所有的值变成C
+	 * l~r  rt
+	 */
 	public void update(int L, int R, int C, int l, int r, int rt) {
 		if (L <= l && r <= R) {
 			update[rt] = true;
@@ -98,8 +99,11 @@ public class SumSegmentTree {
 		pushUp(rt);
 	}
 
-	// L~R, C 任务！ e.g : 从L~R范围上每个元素+C.
-	// rt，l~r e.g: 1位置表示[1-1000], rt = 1， l = 1, r = 1000
+	/**
+	 * L~R, C 任务！ e.g : 从L~R范围上每个元素+C. 
+	 * 
+	 * rt，l~r e.g: 1位置表示[1-1000], rt = 1， l = 1, r = 1000
+	 */
 	public void add(int L, int R, int C, int l, int r, int rt) {
 		
 		// 任务如果把此时的范围全包了！ => 懒更新

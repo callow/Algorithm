@@ -130,6 +130,46 @@ public class SegmentTreeUtil {
 		System.out.println(sum);
 	}
 	
-	
+	/**
+	 * 2个数组x[]和hp[]:
+	 * 	x[]一定是有序的，x[i]表示i号怪兽在x轴上的位置
+	 * 	hp[]不要求有序，hp[i]表示i号怪兽的血量
+	 *  range, 法师释放AOE技能的范围长度,被打到的每只怪兽损失1点血量
+	 *  
+	 *  返回要把所有怪兽血量清空，至少需要释放多少次AOE技能？
+	 *  
+	 *  思路： 
+	 *  
+	 *  1) 线段树
+	 	2) 总是用技能的最左边缘刮死当前最左侧的没死的怪物
+	 	3) 然后向右找下一个没死的怪物，重复步骤2)
+	 * 
+	 */
+	public static int AOE(int[] hp, int[] x, int range) {
+		int n = x.length;
+		int[] cover = new int[n];
+		int r = 0;
+		// cover[i] : 如果i位置是技能的最左侧，技能往右的range范围内，最右影响到哪
+		for (int i = 0; i < n; i++) {
+			while (r < n && x[r] - x[i] <= range) {
+				r++;
+			}
+			cover[i] = r - 1;
+		}
+		
+		// 创建线段树
+		com.algo.util.segmenttree.model.SumSegmentTree st = new com.algo.util.segmenttree.model.SumSegmentTree(hp);
+		st.build(1, n, 1);
+		
+		int ans = 0;
+		for (int i = 1; i <= n; i++) {
+			int  leftestHpEdge = (int) st.query(i, i, 1, n, 1);
+			if (leftestHpEdge > 0) {
+				ans +=  leftestHpEdge;
+				st.add(i, cover[i - 1] + 1, -leftestHpEdge, 1, n, 1); // 从i~cover[i - 1] + 1 统一 -leftestHpEdge
+			}
+		}
+		return ans;
+	}
 	
 }

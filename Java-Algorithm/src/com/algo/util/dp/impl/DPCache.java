@@ -485,7 +485,36 @@ public class DPCache implements DPService {
 
 	@Override
 	public int assembleTargetSum(int[] arr, int sum) {
-		// TODO Auto-generated method stub
-		return 0;
+		return assemble(arr, 0, sum, new HashMap<>());
+	}
+	
+	/**
+	 * index = 7, rest = 13 , 的方法数： 256
+	 * Map: {
+	 * 	7 : {13,256}
+	 * }
+	 */
+	private int assemble(int[] arr, int index, int rest, Map<Integer,Map<Integer,Integer>> dp) {
+		
+		// 缓存命中
+		if (dp.containsKey(index) && dp.get(index).containsKey(rest)) {
+			return dp.get(index).get(rest);
+		}
+		
+		//缓存没命中
+		int ans = 0;
+		if (index == arr.length) {
+			return rest == 0 ? 1 : 0;
+		} else {
+			int plus = assemble(arr,index + 1, rest + arr[index], dp);
+			int minus = assemble(arr,index + 1, rest - arr[index], dp);
+			ans = plus + minus;
+		}
+		
+		if (!dp.containsKey(index)) {
+			dp.put(index, new HashMap<>());
+		}
+		dp.get(index).put(rest, ans);
+		return rest;
 	}
 }

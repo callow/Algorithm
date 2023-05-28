@@ -763,4 +763,10 @@ public class DPRecursive implements DPService {
 		return plus + minus; 
 	}
 
+	@Override
+	public int longestIncreasingPath(int[][] matrix) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

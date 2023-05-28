@@ -267,5 +267,13 @@ public class DPUtil {
 	public static int assembleTargetSum(int[] arr, int sum) {
 		return new DPGrid().assembleTargetSum(arr, sum);
 	}
+	
+	/**
+	 * 二维数组，从任意点出发，求最长递增连的长度？
+	 * 
+	 */
+	public static int longestIncreasingPath(int[][] matrix) {
+		return new DPGrid().longestIncreasingPath(matrix);
+	}
 
 }

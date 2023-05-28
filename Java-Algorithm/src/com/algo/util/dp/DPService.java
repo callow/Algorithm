@@ -55,4 +55,6 @@ public interface DPService {
 	public long bribeMonster(int[] ability, int[] price);
 	
 	public int assembleTargetSum(int[] arr, int sum);
+	
+	public int longestIncreasingPath(int[][] matrix);
 }

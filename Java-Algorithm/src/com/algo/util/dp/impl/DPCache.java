@@ -517,4 +517,10 @@ public class DPCache implements DPService {
 		dp.get(index).put(rest, ans);
 		return rest;
 	}
+
+	@Override
+	public int longestIncreasingPath(int[][] matrix) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

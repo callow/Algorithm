@@ -620,4 +620,10 @@ public class DPGrid implements DPService {
 		return dp[s];
 	}
 
+	@Override
+	public int longestIncreasingPath(int[][] matrix) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

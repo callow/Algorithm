@@ -765,8 +765,32 @@ public class DPRecursive implements DPService {
 
 	@Override
 	public int longestIncreasingPath(int[][] matrix) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ans = 0;
+		int N = matrix.length;
+		int M = matrix[0].length;
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < M; j++) {
+				ans = Math.max(ans, walk(matrix, i, j));
+			}
+		}
+		return ans;
+	}
+	
+	// 从m[i][j]开始走，走出来的最长递增链，返回！
+	public int walk(int[][] m, int i, int j) {
+		boolean canWalkUp = i > 0 && m[i][j] < m[i - 1][j];
+		int up = canWalkUp ? walk(m, i - 1, j) : 0;
+		
+		boolean canWalkDown = i < (m.length - 1) && m[i][j] < m[i + 1][j];
+		int down = canWalkDown ? walk(m, i + 1, j) : 0;
+		
+		boolean canWalkLeft = j > 0 && m[i][j] < m[i][j - 1];
+		int left = canWalkLeft ? walk(m, i, j - 1) : 0;
+		
+		boolean canWalkright = j < (m[0].length - 1) && m[i][j] < m[i][j + 1];
+		int right = canWalkright ? walk(m, i, j + 1) : 0;
+		
+		return Math.max(Math.max(up, down), Math.max(left, right)) + 1;
 	}
 
 }

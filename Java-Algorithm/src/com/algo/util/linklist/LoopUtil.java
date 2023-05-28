@@ -7,7 +7,7 @@ import com.algo.util.common.model.Node;
  * 环形链表工具类
  *
  */
-
+@SuppressWarnings("rawtypes")
 public class LoopUtil {
 
 	/**

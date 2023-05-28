@@ -335,5 +335,14 @@ public class BitUtil {
 		
 		return (n < 0) ? 1 : n + 1;
 	}
+	
+	/**
+	 * 验证2数是否有相同奇偶性(Parity), Odd, Even
+	 * 
+	 * 只要看最后一位是否是2的倍数
+	 */
+	public static boolean isSameParity(int num1, int num2) {
+		return  ((num1 & 1) ^ (num2 & 1)) != 0;
+	}
 
 }

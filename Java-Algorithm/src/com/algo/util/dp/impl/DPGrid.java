@@ -3,6 +3,7 @@ package com.algo.util.dp.impl;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import com.algo.util.bit.BitUtil;
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonStringUtil;
 import com.algo.util.dp.DPService;
@@ -553,10 +554,69 @@ public class DPGrid implements DPService {
 		return dp[0][0];
 	}
 
+	/**
+	 * 此题是经典背包动态规划，有如下优化点：
+	 * 
+	 * 优化点1： 你可以认为arr中都是非负数,因为即便是arr中有负数，比如[3,-4,2]
+	 * 	因为你能在每个数前面用+或者-号,所以[3,-4,2]其实和[3,4,2]达成一样的效果,那么我们就全把arr变成非负数，不会影响结果的.
+	 * 
+	 * 优化点2：如果arr都是非负数，并且所有数的累加和是sum,那么如果target<sum，很明显没有任何方法可以达到target，可以直接返回0
+	 * 
+	 * 优化点3：arr内部的数组，不管怎么+和-，最终的结果都一定不会改变奇偶性,所以，如果所有数的累加和是sum，
+	 * 	并且与target的奇偶性不一样，没有任何方法可以达到target，可以直接返回0
+	 * 
+	 * 优化点4：偏理论
+	 * 	// 比如说给定一个数组, arr = [1, 2, 3, 4, 5] 并且 target = 3
+		 其中一个方案是 : +1 -2 +3 -4 +5 = 3
+		 该方案中取了正的集合为P = {1，3，5}
+		 该方案中取了负的集合为N = {2，4}
+		 所以任何一种方案，都一定有 sum(P) - sum(N) = target
+		 现在我们来处理一下这个等式，把左右两边都加上sum(P) + sum(N)，那么就会变成如下：
+		 sum(P) - sum(N) + sum(P) + sum(N) = target + sum(P) + sum(N)
+		 2 * sum(P) = target + 数组所有数的累加和
+		 sum(P) = (target + 数组所有数的累加和) / 2
+		 也就是说，任何一个集合，只要累加和是(target + 数组所有数的累加和) / 2
+		 那么就一定对应一种target的方式
+		 也就是说，比如非负数组arr，target = 7, 而所有数累加和是11
+		 求有多少方法组成7，其实就是求有多少种达到累加和(7+11)/2=9的方法
+	 * 
+	 * 优化点5：二维动态规划空间压缩技巧，一个一维数组滚过去
+	 * 
+	 */
 	@Override
-	public int assembleTargetSum(int[] arr, int sum) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int assembleTargetSum(int[] arr, int target) {
+		int sum = 0;
+		// 此题已知全是正整数，因此可以直接加出sum，否则要负变正- 优化点1
+		for (int n : arr) {
+			sum += n; 
+		}
+		
+		return sum < target // 优化点2
+				||  BitUtil.isSameParity(target, sum) ? 0 : // 优化点3
+				assemble(arr, (target + sum) >> 1); // 优化点4，5
+	}
+	
+	/**
+	 * 求非负数组nums有多少个子集，累加和是s
+	 * 二维动态规划用空间压缩:
+	 * 	核心就是for循环里面的：for (int i = s; i >= n; i--) {
+		 为啥不枚举所有可能的累加和？只枚举 n...s 这些累加和？
+		 因为如果 i - n < 0，dp[i]怎么更新？和上一步的dp[i]一样！所以不用更新
+		 如果 i - n >= 0，dp[i]怎么更新？上一步的dp[i] + 上一步dp[i - n]的值，这才需要更新
+	 * 
+	 */
+	private  int assemble(int[] nums, int s) {
+		if (s < 0) {
+			return 0;
+		}
+		int[] dp = new int[s + 1];
+		dp[0] = 1;
+		for (int n : nums) {
+			for (int i = s; i >= n; i--) {
+				dp[i] += dp[i - n];
+			}
+		}
+		return dp[s];
 	}
 
 }

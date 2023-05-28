@@ -273,7 +273,7 @@ public class DPUtil {
 	 * 
 	 */
 	public static int longestIncreasingPath(int[][] matrix) {
-		return new DPGrid().longestIncreasingPath(matrix);
+		return new DPCache().longestIncreasingPath(matrix);
 	}
 
 }

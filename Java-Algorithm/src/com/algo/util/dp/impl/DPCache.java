@@ -482,4 +482,10 @@ public class DPCache implements DPService {
 		}
 		return Math.max(p1, p2);
 	}
+
+	@Override
+	public int assembleTargetSum(int[] arr, int sum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

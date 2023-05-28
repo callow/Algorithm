@@ -553,4 +553,10 @@ public class DPGrid implements DPService {
 		return dp[0][0];
 	}
 
+	@Override
+	public int assembleTargetSum(int[] arr, int sum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

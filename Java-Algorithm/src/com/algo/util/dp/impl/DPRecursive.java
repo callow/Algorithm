@@ -744,4 +744,23 @@ public class DPRecursive implements DPService {
 		}
 	}
 
+	@Override
+	public int assembleTargetSum(int[] arr, int sum) {
+		return assemble(arr, 0, sum);
+	}
+	
+	/**
+	 * 可以使用arr[index...]往后所有数字,加出rest，方法数多少
+	 */
+	private int assemble(int[] arr, int index, int rest) {
+		if (index == arr.length) { // 没数了
+			return rest == 0 ? 1 : 0;
+		}
+		
+		int plus = process(arr,index + 1, rest + arr[index]);
+		int minus = process(arr,index + 1, rest - arr[index]);
+		
+		return plus + minus; 
+	}
+
 }

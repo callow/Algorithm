@@ -258,5 +258,14 @@ public class DPUtil {
 	public static long bribeMonster(int[] ability, int[] price) {
 		return new DPCache().bribeMonster(ability, price);
 	}
+	
+	/**
+	 * 一个数组，给每个数前加+ - 符号，要求和= sum 
+	 * 
+	 */
+	
+	public static int assembleTargetSum(int[] arr, int sum) {
+		return new DPGrid().assembleTargetSum(arr, sum);
+	}
 
 }

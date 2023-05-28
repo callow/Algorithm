@@ -597,7 +597,8 @@ public class DPGrid implements DPService {
 	}
 	
 	/**
-	 * 求非负数组nums有多少个子集，累加和是s
+	 * 求非负数组nums有多少个子集，累加和是s => 背包问题 
+	 * 		=> dp[i][j] // 0~i上自由选择，搞出累加和j的方法数
 	 * 二维动态规划用空间压缩:
 	 * 	核心就是for循环里面的：for (int i = s; i >= n; i--) {
 		 为啥不枚举所有可能的累加和？只枚举 n...s 这些累加和？

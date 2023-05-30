@@ -626,4 +626,25 @@ public class DPGrid implements DPService {
 		return 0;
 	}
 
+	@Override
+	public int maxDriverIncome(int[][] income) {
+		int n = income.length;
+		int m = n >> 1;
+		int[][] dp = new int[n + 1][m + 1];
+		for (int i = n - 1; i >= 0; i--) {
+			for (int j = 0; j <= m; j++) {
+				if (n - i == j) {
+					dp[i][j] = income[i][0] + dp[i + 1][j - 1];
+				} else if (j == 0) {
+					dp[i][j] = income[i][1] + dp[i + 1][j];
+				} else {
+					int p1 = income[i][0] + dp[i + 1][j - 1];
+					int p2 = income[i][1] + dp[i + 1][j];
+					dp[i][j] = Math.max(p1, p2);
+				}
+			}
+		}
+		return dp[0][m];
+	}
+
 }

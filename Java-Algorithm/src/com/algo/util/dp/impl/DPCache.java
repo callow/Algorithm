@@ -554,4 +554,10 @@ public class DPCache implements DPService {
 		dp[i][j] = ans;
 		return ans;
 	}
+
+	@Override
+	public int maxDriverIncome(int[][] income) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

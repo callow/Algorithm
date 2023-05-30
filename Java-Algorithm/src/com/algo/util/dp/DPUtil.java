@@ -276,5 +276,15 @@ public class DPUtil {
 		return new DPCache().longestIncreasingPath(matrix);
 	}
 	
+	/**
+	 * 偶数个司机，平均分去A,B 2个区域，i司机收入：A：income[i][0],B:income[i][1],司机整体收入最大多少钱？
+	 * 
+	 * 0： [9,13]
+	 * 1: [26,14]
+	 */
+	public static int maxDriverIncome(int[][] income) {
+		return new DPRecursive().maxDriverIncome(income);
+	}
+	
 
 }

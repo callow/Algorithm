@@ -11,7 +11,7 @@ import com.algo.util.dp.DPService;
 import com.algo.util.dp.model.Info;
 
 /**
- * 傻缓存 = 记忆化搜索 = 从顶向下的动态规划
+ * 傻缓存 = 记忆化搜索 memoization  = 从顶向下的动态规划
  */
 
 public class DPCache implements DPService {

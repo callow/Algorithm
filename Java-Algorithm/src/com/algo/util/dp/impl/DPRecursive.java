@@ -793,4 +793,44 @@ public class DPRecursive implements DPService {
 		return Math.max(Math.max(up, down), Math.max(left, right)) + 1;
 	}
 
+	@Override
+	public int maxDriverIncome(int[][] income) {
+		
+		if (income == null || income.length < 2 || (income.length & 1) != 0) {
+			return 0;
+		}
+		
+		int drivers = income.length; // 司机总数
+		int A = drivers / 2; // 要去A的
+		
+		return go(income,0,A);
+	}
+	
+	/**
+	 * index..往后所有司机往A,B分配，A区域还有rest个名额
+	 * 返回把index...	司机分配完，且A和B同样多时，index..司机整体收入最大多少
+	 */
+	private int go(int[][] income, int index, int ARest) {
+		
+		if (income.length == index) {
+			return 0;
+		}
+		
+		 // (剩下的司机数 = A的名额) => 必须全去A，B已满
+		if (income.length - index  == ARest) {
+			return income[index][0] + go(income,index+1,ARest-1);
+		}
+		
+		// A没有名额了 => 必须全去B，A已满
+		if (ARest == 0) {
+			return income[index][1] + go(income,index+1,ARest);
+		}
+		
+		// 可以去A也可以去B
+		int p1 = income[index][0] + go(income,index+1,ARest-1);
+		int p2 = income[index][1] + go(income,index+1,ARest);
+		
+		return Math.max(p1, p2);
+	}
+
 }

@@ -57,4 +57,6 @@ public interface DPService {
 	public int assembleTargetSum(int[] arr, int sum);
 	
 	public int longestIncreasingPath(int[][] matrix);
+	
+	public int maxDriverIncome(int[][] income);
 }

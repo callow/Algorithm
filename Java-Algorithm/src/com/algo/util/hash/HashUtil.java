@@ -38,6 +38,13 @@ public class HashUtil {
 		MessageDigest hash = MessageDigest.getInstance(algorithm);
 		return DatatypeConverter.printHexBinary(hash.digest(input.getBytes())).toUpperCase();
 	}
+	
+	/**
+	 * 将UUID转成Int uuid其实就是hashcode中间加了-， 本质是16进制数字,因此直接去掉 “-” 转即可
+	 */
+	public static BigInteger uuidToInt(String uuid) {
+		return new BigInteger(uuid.replace("-", ""), 16);
+	}
 
 	/**
 	 * 使用特定算法获取某个字符串的HashValue, e.g: getHashValue('MD5','SONGLEI')

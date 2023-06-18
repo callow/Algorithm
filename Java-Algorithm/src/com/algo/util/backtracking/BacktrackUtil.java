@@ -23,7 +23,7 @@ public class BacktrackUtil {
 		}
 		int mid = L + (L+R) / 2;
 		
-		// 左侧的Max
+		// 左侧的Max -> 创建系统栈压入
 		int leftMax = f(arr,  L,  mid);
 		// 右侧的Max
 		int rightMax = f(arr,  mid,  R);

@@ -60,13 +60,13 @@ public class GraphUtil {
 		System.out.println(node.value);
 		while (!stack.isEmpty()) {
 			Node cur = stack.pop();
-			for (Node next : cur.nexts) {
-				if (!set.contains(next)) {
-					stack.push(cur);
-					stack.push(next);
+			for (Node next : cur.nexts) { // 遍历所有邻居
+				if (!set.contains(next)) { // 不走环路
+					stack.push(cur); // 原节点压回去
+					stack.push(next); // 邻居节点压回去
 					set.add(next);
 					System.out.println(next.value);
-					break;
+					break; // 结束遍历
 				}
 			}
 		}

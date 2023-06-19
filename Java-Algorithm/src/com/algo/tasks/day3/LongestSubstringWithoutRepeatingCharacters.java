@@ -32,7 +32,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 			int p1 = i - map[str[i]]; // case 1: 上次出现此字符的位置能推多远
 			int p2 = pre + 1; // case 2: 上一个位置 + 1
 			int cur = Math.min(p1, p2);
-			ans = Math.max(ans, pre);
+			ans = Math.max(ans, cur);
 			pre = cur;
 			map[str[i]] = i;
 		}

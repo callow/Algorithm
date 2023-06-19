@@ -77,7 +77,7 @@ public class BinarySearchUtil {
 
 	/**
 	 * 二分查找： 无序数组中找一个局部最小 e.g （19,1,4） -> 1. O(Log(N))<br>
-	 * - 先去2头找局部最小， 2头没有再去中间找 <br>
+	 * - 先去两头找局部最小， 两头没有再去中间找 <br>
 	 */
 
 	public static int localMinimum(int[] unsortArr) {

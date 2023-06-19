@@ -22,7 +22,7 @@ import com.algo.util.graph.model.Node;
 public class GraphUtil {
 
 	/**
-	 * 图的宽度优先遍历/打印： Queue + Set <br><br>
+	 * BFS 图的宽度优先遍历/打印： Queue + Set <br><br>
 	 * 每弹出一个元素，就把它直接邻居放入队列
 	 */
 	public static void bfs(Node start) {
@@ -46,7 +46,7 @@ public class GraphUtil {
 	}
 	
 	/**
-	 * 图的深度优先遍历/打印： Stack + Set <br><br>
+	 * DFS 图的深度优先遍历/打印： Stack + Set <br><br>
 	 * 一条路走到死为止(即，走到了环路/走过的节点)，走完了就回头看看有没有岔路再走到死
 	 */
 	public static void dfs(Node node) {

@@ -42,9 +42,9 @@ public class GraphTopologyAdaptor {
 			Node cur = zeroInQueue.poll();
 			result.add(cur);
 			for (Node next : cur.nexts) {
-				inMap.put(next, inMap.get(next) - 1);
+				inMap.put(next, inMap.get(next) - 1); // 消除的节点的邻居节点的入度统一-1
 				if (inMap.get(next) == 0) {
-					zeroInQueue.add(next);
+					zeroInQueue.add(next); // 若-1后入度是0，继续放入队列
 				}
 			}
 		}

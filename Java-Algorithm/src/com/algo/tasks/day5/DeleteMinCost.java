@@ -2,6 +2,8 @@ package com.algo.tasks.day5;
 /**
  * 
  * 两个字符串str1和str2, str2最少删几个字符可以变成str1?
+ * 
+ * Note: 简易看一下视频 因为评论里面还有一个同学的最优解
  *
  */
 public class DeleteMinCost {

@@ -32,7 +32,7 @@ public class DeleteMinCost {
 		// 普遍位置依赖：dp[i][j]
 		for (int xlen = 1; xlen <= N; xlen++) {
 			for (int ylen = 1; ylen <= Math.min(M, xlen); ylen++) {
-				if (dp[xlen - 1][ylen] != Integer.MAX_VALUE) { // 如果x除去最后一个字符，前面一坨是一个有效解
+				if (dp[xlen - 1][ylen] != Integer.MAX_VALUE) { // 如果x除去最后一个字符，前面一坨是一个有效解,即：x[0~i-1]可以通过删除拼出y
 					dp[xlen][ylen] = dp[xlen - 1][ylen] + 1;
 				}
 				if (x[xlen - 1] == y[ylen - 1] // 最后字符相等

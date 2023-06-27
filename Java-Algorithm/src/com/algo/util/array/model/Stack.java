@@ -16,14 +16,21 @@ public class Stack {
         arr = new int[initSize];
         size = 0;
     }
-
+    
+    /**
+     * 
+     * ²é¿´Õ»¶¥ÔªËØ
+     */
     public Integer peek() {
         if (size == 0) {
             return null;
         }
         return arr[size - 1];
     }
-
+    /**
+     * 
+     * Ñ¹Õ»
+     */
     public void push(int obj) {
         if (size == arr.length) {
             throw new ArrayIndexOutOfBoundsException("The queue is full");
@@ -31,6 +38,10 @@ public class Stack {
         arr[size++] = obj;
     }
 
+    /**
+     * 
+     * µ¯³öÕ»¶¥ÔªËØ
+     */
     public Integer pop() {
         if (size == 0) {
             throw new ArrayIndexOutOfBoundsException("The queue is empty");

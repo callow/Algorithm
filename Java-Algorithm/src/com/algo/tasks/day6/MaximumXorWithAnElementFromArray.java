@@ -47,9 +47,14 @@ public class MaximumXorWithAnElementFromArray {
 			int ans = 0;
 			for (int i = 30; i >= 0; i--) {
 				int path = BitUtil.retrieveBit(x, i); 
-				// 期待遇到的东西
+				// 期待遇到的东西:0期待遇到1，1期待遇到0
 				int best = (path ^ 1);
+				
+				// best ^= 1 -- 变回去
+				// best ^= 0 -- 遇到了期待的，继续走
+				
 				best ^= (cur.nexts[best] == null || cur.nexts[best].min > m) ? 1 : 0;
+				
 				// best变成了实际遇到的
 				ans |=  BitUtil.retrieveBit((path ^ best), i); 
 				cur = cur.nexts[best];

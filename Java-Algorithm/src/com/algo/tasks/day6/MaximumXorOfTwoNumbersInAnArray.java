@@ -2,7 +2,7 @@ package com.algo.tasks.day6;
 /**
  * 数组中随意找2个数异或，求最大的异或值? 
  * 
- * 异或和题目的小弟弟.
+ * 异或和题目MaxXOR的小弟弟.
  * 
  * https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
  *

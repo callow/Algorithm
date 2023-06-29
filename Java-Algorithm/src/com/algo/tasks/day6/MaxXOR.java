@@ -2,6 +2,9 @@ package com.algo.tasks.day6;
 
 import com.algo.util.bit.BitUtil;
 /**
+ * 求数组中最大的异或和？
+ * 
+ * 技巧：
  * 前缀树此题要从32分位，高位 -> 低位 挂，因为，高位决定树的大小. 
  * 紧着高位变1 最后结果才是最大值
  *

@@ -39,7 +39,7 @@ public class MaximumXorWithAnElementFromArray {
 		// 请返回哪个数字与X异或的结果最大，返回最大结果
 		// 但是，只有<=m的数字，可以被考虑
 		public int maxXorWithXBehindM(int x, int m) {
-			if (head.min > m) {
+			if (head.min > m) { // 如果头节点的最小值都>m, 那么肯定没结果，不用往下走了
 				return -1;
 			}
 			// 一定存在某个数可以和x结合

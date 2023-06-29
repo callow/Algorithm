@@ -11,6 +11,7 @@ public class GameUtil {
 	 * 
 	 * 解：谁先面对0，0，0，0... 谁输 若先手面对 ^和 != 0， 先手赢，因为他可以轻易移动石子让后手面对全0<br>
 	 * 
+	 * 是否先手会赢？
 	 */
 	public static boolean nim(List<Integer> stones) {
 		int first = stones.get(0);

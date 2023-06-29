@@ -57,6 +57,15 @@ public class BitUtil {
 		arr[j] = arr[i] ^ arr[j];
 		arr[i] = arr[i] ^ arr[j];
 	}
+	
+	/**
+	 * 
+	 * 提取 num 的第 i 位. 只会返回 0/1
+	 */
+	
+	public static int retrieveBit(int num, int i) {
+		return ((num >> i) & 1);
+	}
 
 	/**
 	 * 

@@ -353,5 +353,13 @@ public class BitUtil {
 	public static boolean isSameParity(int num1, int num2) {
 		return  ((num1 & 1) ^ (num2 & 1)) != 0;
 	}
+	
+	/**
+	 * 一个数字一共32位，将数字的第Index位设置为1
+	 */
+	public static int set1AtIndex(int num, int index) {
+		num |= (1 << index);
+		return num;
+	}
 
 }

@@ -4,7 +4,7 @@ import com.algo.util.common.CommonArrayUtil;
 
 /**
  * 
- * 使用循环数组实现Queue
+ * 使用循环数组实现Queue : ringArray
  */
 public class Queue<T> {
 

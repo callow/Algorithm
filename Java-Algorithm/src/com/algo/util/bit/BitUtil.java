@@ -38,10 +38,10 @@ import java.util.List;
  * 
  * Idempotent law: a & a = a, a | a = a <br>
  * De Morgan's Law: ~(a & b) = (~a) | (~b), ~(a | b) = (~a) & (~b) <br>
- * Negative operation properties: -1 = ~0, -a = ~(a−1) <br>
- * AND operation properties: a & 0 = 0, a & (-1) = a, a & ( ∼a)=0 <br>
- * OR operation properties: a | 0 = a, a | (∼a) = −1<br>
- * XOR operation properties: a ^ 0 = a, a ^ a = 0 <br>
+ * 反: -1 = ~0, -a = ~(a−1) <br>
+ * 与 : a & 0 = 0, a & (-1) = a, a & ( ∼a)=0 <br>
+ * 或: a | 0 = a, a | (∼a) = −1<br>
+ * 异或: a ^ 0 = a, a ^ a = 0 <br>
  * a & (a−1) = 将最后的1变为0 <br>
  * a & (-a) = a & (∼(a−1)) = 只保留最右侧的1 <br>
  * 

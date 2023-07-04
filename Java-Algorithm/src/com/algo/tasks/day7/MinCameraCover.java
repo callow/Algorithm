@@ -66,4 +66,52 @@ public class MinCameraCover {
 
 		return new Info(uncovered, coveredNoCamera, coveredHasCamera);
 	}
+	
+	
+	
+	/**
+	 * 最优解,贪心，三种情况 优化成 一种情况
+	 */
+	public static int minCameraCover(BTNode root) {
+		Data data = process2(root);
+		return data.cameras + (data.status == Status.UNCOVERED ? 1 : 0);
+	}
+
+	// 以x为头，x下方的节点都是被covered，x自己的状况，分三种
+	public static enum Status {
+		UNCOVERED, COVERED_NO_CAMERA, COVERED_HAS_CAMERA
+	}
+
+	// 以x为头，x下方的节点都是被covered，得到的最优解中：
+	// x是什么状态，在这种状态下，需要至少几个相机
+	public static class Data {
+		public Status status;
+		public int cameras;
+
+		public Data(Status status, int cameras) {
+			this.status = status;
+			this.cameras = cameras;
+		}
+	}
+
+	public static Data process2(BTNode X) {
+		if (X == null) {
+			return new Data(Status.COVERED_NO_CAMERA, 0);
+		}
+		Data left = process2(X.left);
+		Data right = process2(X.right);
+		int cameras = left.cameras + right.cameras;
+		
+		// 左、或右，哪怕有一个没覆盖
+		if (left.status == Status.UNCOVERED || right.status == Status.UNCOVERED) {
+			return new Data(Status.COVERED_HAS_CAMERA, cameras + 1);
+		}
+
+		// 左右孩子，不存在没被覆盖的情况
+		if (left.status == Status.COVERED_HAS_CAMERA || right.status == Status.COVERED_HAS_CAMERA) {
+			return new Data(Status.COVERED_NO_CAMERA, cameras);
+		}
+		// 左右孩子，不存在没被覆盖的情况，也都没有相机
+		return new Data(Status.UNCOVERED, cameras);
+	}
 }

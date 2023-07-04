@@ -32,12 +32,14 @@ public class MinCameraCover {
 	
 	// 所有可能性都穷尽了
 	public static Info process1(BTNode X) {
-		if (X == null) { // base case
+		if (X == null) { // base case: 空树
 			return new Info(Integer.MAX_VALUE, 0, Integer.MAX_VALUE);
 		}
 
-		Info left = process1(X.left);
-		Info right = process1(X.right);
+		Info left = process1(X.left); // 向我的左树要3个信息
+		Info right = process1(X.right); // 向我的右树要3个信息
+		// 我自己X也要这3个信息：
+		
 		// x uncovered x自己不被覆盖，x下方所有节点，都被覆盖
 		// 左孩子： 左孩子没被覆盖，左孩子以下的点都被覆盖
 		// 左孩子被覆盖但没相机，左孩子以下的点都被覆盖

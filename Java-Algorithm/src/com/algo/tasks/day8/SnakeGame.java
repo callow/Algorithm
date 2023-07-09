@@ -1,5 +1,9 @@
 package com.algo.tasks.day8;
 
+import java.util.Arrays;
+
+import com.algo.util.common.CommonArrayUtil;
+
 public class SnakeGame {
 
 	public static class Info {
@@ -134,5 +138,28 @@ public class SnakeGame {
 			}
 		}
 		return max;
+	}
+	
+	
+	public static void main(String[] args) {
+		int N = 7;
+		int M = 7;
+		int V = 10;
+		int times = 1000000;
+		for (int i = 0; i < times; i++) {
+			int r = (int) (Math.random() * (N + 1));
+			int c = (int) (Math.random() * (M + 1));
+			int[][] matrix = CommonArrayUtil.generateRandomArray(r, c, V);
+			int ans1 = snakeWalk(matrix);
+			int ans2 = snakeWalk2(matrix);
+			if (ans1 != ans2) {
+				for (int j = 0; j < matrix.length; j++) {
+					System.out.println(Arrays.toString(matrix[j]));
+				}
+				System.out.println("Oops   ans1: " + ans1 + "   ans2:" + ans2);
+				break;
+			}
+		}
+		System.out.println("finish");
 	}
 }

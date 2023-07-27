@@ -12,5 +12,8 @@ public class Example {
 		
 		Supplier<String> supplier = () -> "Hello Jack!";
 		System.out.println(supplier.get()); // Hello Jack!
+		
+		
+		
 	}
 }

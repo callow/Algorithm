@@ -106,6 +106,16 @@ public class CommonArrayUtil {
 		}
 		return result;
 	}
+	
+	public static int[][] generateRandomArray(int row, int col, int value) {
+		int[][] arr = new int[row][col];
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length; j++) {
+				arr[i][j] = (int) (Math.random() * value) * (Math.random() > 0.5 ? -1 : 1);
+			}
+		}
+		return arr;
+	}
 
 	/**
 	 * 比较2个数组是否相等

@@ -11,7 +11,7 @@ import com.algo.util.common.CommonArrayUtil;
  */
 public class MaxAndValue {
 
-	public static int maxAndValue2(int[] arr) {
+	public static int maxAndValue(int[] arr) {
 		// arr[0...M-1]  arr[M....]
 		int M = arr.length;
 		int ans = 0;

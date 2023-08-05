@@ -1,4 +1,4 @@
-package com.algo.tasks.Task10;
+package com.algo.tasks.day10;
 
 import java.util.ArrayList;
 import java.util.Comparator;

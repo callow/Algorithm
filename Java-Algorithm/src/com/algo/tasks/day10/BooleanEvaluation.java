@@ -1,4 +1,4 @@
-package com.algo.tasks.Task10;
+package com.algo.tasks.day10;
 /**
  * Boolean ÔËËã·û£ºhttps://leetcode-cn.com/problems/boolean-evaluation-lcci/
  * 

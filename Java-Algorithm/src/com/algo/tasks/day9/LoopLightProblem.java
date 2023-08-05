@@ -1,4 +1,4 @@
-package com.algo.tasks.Task9;
+package com.algo.tasks.day9;
 
 public class LoopLightProblem {
 	

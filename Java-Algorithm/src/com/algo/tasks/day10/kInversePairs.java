@@ -1,4 +1,4 @@
-package com.algo.tasks.Task10;
+package com.algo.tasks.day10;
 /**
  * 
  * N K 逆序对问题。N个数里面排列组合 形成K个逆序对的有几个？

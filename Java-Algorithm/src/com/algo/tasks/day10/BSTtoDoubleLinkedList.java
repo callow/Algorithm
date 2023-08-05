@@ -1,4 +1,4 @@
-package com.algo.tasks.Task10;
+package com.algo.tasks.day10;
 /**
  * 将一个搜索二叉树，转成首尾相连的有序双向链表。
  * 

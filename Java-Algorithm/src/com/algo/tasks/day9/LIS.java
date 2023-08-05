@@ -1,4 +1,4 @@
-package com.algo.tasks.Task9;
+package com.algo.tasks.day9;
 /**
  * 最长递增子序列长度：最优解O(nlogn)
  * 

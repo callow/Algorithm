@@ -1,4 +1,4 @@
-package com.algo.tasks.Task9;
+package com.algo.tasks.day9;
 
 import java.util.ArrayList;
 import java.util.List;

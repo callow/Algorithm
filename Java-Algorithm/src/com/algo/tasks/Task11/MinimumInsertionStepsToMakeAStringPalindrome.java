@@ -2,7 +2,11 @@ package com.algo.tasks.Task11;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 插入字符形成回文问题
+ * 
+ *
+ */
 public class MinimumInsertionStepsToMakeAStringPalindrome {
 
 	/**

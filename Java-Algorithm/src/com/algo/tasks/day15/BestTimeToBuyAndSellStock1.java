@@ -5,7 +5,7 @@ package com.algo.tasks.day15;
  *  https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
  * 
  */
-public class BestTimeToBuyAndSellStock {
+public class BestTimeToBuyAndSellStock1 {
 
 	public static int maxProfit(int[] prices) {
 		if (prices == null || prices.length == 0) {

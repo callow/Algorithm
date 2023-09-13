@@ -5,7 +5,7 @@ package com.algo.tasks.day15;
  * 一个人智能有一股，想买下一个必须卖掉手中股票才可以
  *
  */
-public class BestTimeToBuyAndSellStockII {
+public class BestTimeToBuyAndSellStock2 {
 
 	public static int maxProfit(int[] prices) {
 		if (prices == null || prices.length == 0) {

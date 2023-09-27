@@ -21,9 +21,10 @@ public class FindKthMinNumber {
 				// 两个中点一定不等！
 				if (((e1 - s1 + 1) & 1) == 1) { // 奇数长度
 					if (A[mid1] > B[mid2]) {
-						if (B[mid2] >= A[mid1 - 1]) {
+						if (B[mid2] >= A[mid1 - 1]) { // 不等长，单独拎出来3‘
 							return B[mid2];
 						}
+						// 开始递归
 						e1 = mid1 - 1;
 						s2 = mid2 + 1;
 					} else { // A[mid1] < B[mid2]

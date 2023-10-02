@@ -3,6 +3,8 @@ package com.algo.tasks.day12;
 /**
  * 正则表达式匹配： https://leetcode.com/problems/regular-expression-matching/
  * 
+ * 斜率优化+记忆话搜索
+ * 
  */
 public class RegularExpressionMatch {
 	

@@ -34,10 +34,7 @@ public class VersionHelper {
 	public boolean equals(Object o) {
         if (o != null && (o instanceof VersionHelper)) {
             VersionHelper ver = (VersionHelper) o;
-            return this.major == ver.major
-                    && this.minor == ver.minor
-                    && this.release == ver.release;
-
+            return this.major == ver.major && this.minor == ver.minor && this.release == ver.release;
         } else {
             return false;
         }

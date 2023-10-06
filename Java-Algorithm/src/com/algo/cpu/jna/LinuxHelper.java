@@ -77,7 +77,7 @@ public class LinuxHelper {
     }
 	
 	/**
-	 * 执行Linux系统方法调用
+	 * 执行Linux系统方法调用，number = linux kernel command number
 	 */
     public static int syscall(int number, Object... args) {
         CLibrary lib = CLibrary.INSTANCE;

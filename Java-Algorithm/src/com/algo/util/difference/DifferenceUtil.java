@@ -1,9 +1,15 @@
 package com.algo.util.difference;
 
+/**
+ * 
+ * 一维拆分：
+ * 等差数列拆分：
+ *
+ */
 public class DifferenceUtil {
 
 	/**
-	 *  一纬差分：https://leetcode.cn/problems/corporate-flight-bookings/
+	 *  一维差分：https://leetcode.cn/problems/corporate-flight-bookings/
 	 *  [L] += v
 	 *  [R+1] -= v
 	 *  最后求前缀和数组！

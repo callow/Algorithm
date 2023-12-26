@@ -281,6 +281,13 @@ public class BitUtil {
 		return l & r;
 
 	}
+	
+	public static int rangeBitwiseAnd2(int l, int r) {
+		while(l < r) {
+			r -= rightMostOne(r);
+		}
+		return r;
+	}
 
 	/**
 	 * 将最右侧最低位的1变成0：Last set bit
@@ -375,6 +382,22 @@ public class BitUtil {
 	 */
 	public static int flip(int n) {
 		return n ^ 1;
+	}
+	
+	/**
+	 * n是否是2的幂?
+	 */
+	public static boolean isPowerOf2(int n ) {
+		return n > 0 && n == rightMostOne(n);
+	}
+	
+	/**
+	 * n是否是3的幂?
+	 * 
+	 * 1162261467 = 3^19 , 整数内最大的3的幂
+	 */
+	public static boolean isPowerOf3(int n ) {
+		return n > 0 && 1162261467 % n  == 0;
 	}
 
 }

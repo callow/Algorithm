@@ -77,6 +77,7 @@ public class BitUtil {
 	}
 
 	/**
+	 * Brain Kernighan算法
 	 * 提取二进制中最右侧的1： num & (-num) 或 num & (~num +1)
 	 * 
 	 * e.g: 0101000 -> 0001000

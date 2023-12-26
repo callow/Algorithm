@@ -215,7 +215,7 @@ public class BitUtil {
 	}
 
 	/**
-	 * 反转bits
+	 * 反转bits,reverse
 	 */
 
 	public static int reverseBits(int n) {

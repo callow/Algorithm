@@ -79,7 +79,7 @@ public class BitUtil {
 	/**
 	 * 提取二进制中最右侧的1： num & (-num) 或 num & (~num +1)
 	 * 
-	 * e.g: 0001000
+	 * e.g: 0101000 -> 0001000
 	 */
 
 	public static int rightMostOne(int num) {
@@ -360,6 +360,20 @@ public class BitUtil {
 	public static int set1AtIndex(int num, int index) {
 		num |= (1 << index);
 		return num;
+	}
+	
+	/**
+	 *  获取符号位：非负返回1， 负数返回0
+	 */
+	public static int sign(int n) {
+		return flip(n >>> 31);
+	}
+	
+	/**
+	 * n 一定是0/1 -> 0变1， 1变0
+	 */
+	public static int flip(int n) {
+		return n ^ 1;
 	}
 
 }

@@ -44,7 +44,7 @@ public class LinklistUtil {
 	}
 	
 	/**
-	 * 删除元素
+	 * 单链表，把给定值给删掉
 	 */
 	
 	public static Node<Integer> removeValue(Node<Integer> head, int num) {

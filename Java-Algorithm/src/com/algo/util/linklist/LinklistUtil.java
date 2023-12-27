@@ -44,7 +44,10 @@ public class LinklistUtil {
 	}
 	
 	/**
-	 * 单链表，把给定值给删掉
+	 * 单链表，把所有=给定值的节点给删掉, 返回新的头节点
+	 * 
+	 * 2 -> 3 -> 1 -> 3 ->2 ->4 -> null , remove 3 then
+	 * 2 -> 1 ->2 -> 4 -> null
 	 */
 	
 	public static Node<Integer> removeValue(Node<Integer> head, int num) {
@@ -57,8 +60,10 @@ public class LinklistUtil {
 		Node<Integer> pre = head;
 		Node<Integer> cur = head;
 		while(cur != null) {
+		// 若当前节点val == 要删除的val, 之前节点next指针指向我下一个节点（cur.next), 然后cur右移，pre来到我下一个节点
+		// 3334358 => 4 -> 5, 然后 pre从4来到5
 			if (cur.value == num) {
-				pre.next = cur.next;
+				pre.next = cur.next; 
 			} else {
 				pre = cur;
 			}
@@ -66,6 +71,7 @@ public class LinklistUtil {
 		}
 		return head;
 	}
+	
 	
 	/**
 	 * 生成一个链表写的Queue

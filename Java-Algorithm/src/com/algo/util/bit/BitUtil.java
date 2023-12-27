@@ -100,6 +100,15 @@ public class BitUtil {
 		}
 		return counter;
 	}
+	
+	public static int countOnes2(int n) {
+		n = (n & 0x55555555) + ((n >>> 1) & 0x55555555);
+		n = (n & 0x33333333) + ((n >>> 2) & 0x33333333);
+		n = (n & 0x0f0f0f0f) + ((n >>> 4) & 0x0f0f0f0f);
+		n = (n & 0x00ff00ff) + ((n >>> 8) & 0x00ff00ff);
+		n = (n & 0x0000ffff) + ((n >>> 16) & 0x0000ffff);
+		return n;
+	}
 
 	/**
 	 * 打印二进制
@@ -216,6 +225,8 @@ public class BitUtil {
 
 	/**
 	 * 反转bits,reverse
+	 * 
+	 * https://leetcode.cn/problems/reverse-bits/
 	 */
 
 	public static int reverseBits(int n) {
@@ -230,6 +241,19 @@ public class BitUtil {
 			power--;
 		}
 		return result;
+	}
+	// 
+	/**
+	 * 
+	 * 1v1 交换， 2v2交换 3v3交换 .....16v16交换
+	 */
+	public static int reverseBits2(int n) {
+		n = ((n & 0xaaaaaaaa) >>> 1) | ((n & 0x55555555) << 1); // 1v1交换
+		n = ((n & 0xcccccccc) >>> 2) | ((n & 0x33333333) << 2);
+		n = ((n & 0xf0f0f0f0) >>> 4) | ((n & 0x0f0f0f0f) << 4);
+		n = ((n & 0xff00ff00) >>> 8) | ((n & 0x00ff00ff) << 8);
+		n = (n >>> 16) | (n << 16);
+		return n;
 	}
 
 	/**

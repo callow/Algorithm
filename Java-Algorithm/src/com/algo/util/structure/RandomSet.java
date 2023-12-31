@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * 一个set, 插入，删除，获取 = o（1）
+ * 一个set, 插入，删除，获取 = o（1），且getRandom是等概率随机获取
  * 
  * https://leetcode.cn/problems/insert-delete-getrandom-o1/
  */

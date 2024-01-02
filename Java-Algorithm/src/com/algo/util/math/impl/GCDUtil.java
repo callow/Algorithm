@@ -36,7 +36,30 @@ public class GCDUtil {
 		return b == 0 ? a : gcd(b, a % b);
 	}
 	
+	// 最大公约数
 	public static long lcm(long a, long b) {
 		return (long) a / gcd(a, b) * b;
 	}
+	
+	// 二分 + 容斥原理
+	public static int nthMagicalNumber(int n, int a, int b) {
+		long lcm = lcm(a, b);
+		long ans = 0;
+		// l = 0
+		// r = (long) n * Math.min(a, b)
+		// l......r
+		for (long l = 0, r = (long) n * Math.min(a, b), m = 0; l <= r;) {
+			m = (l + r) / 2;
+			// 1....m
+			if (m / a + m / b - m / lcm >= n) {
+				ans = m;
+				r = m - 1;
+			} else {
+				l = m + 1;
+			}
+		}
+		return (int) (ans % 1000000007);
+	}
+	
+	
 }

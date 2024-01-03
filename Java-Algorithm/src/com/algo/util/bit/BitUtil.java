@@ -395,6 +395,14 @@ public class BitUtil {
 	}
 	
 	/**
+	 * 将status： 0/1 设置到answer第i位上去
+	 * 
+	 */
+	public static int setStatusAtIndex(int answer, int status, int i) {
+		return answer |= status << i;
+	}
+	
+	/**
 	 *  获取符号位：非负返回1， 负数返回0
 	 */
 	public static int sign(int n) {

@@ -10,6 +10,7 @@ import java.util.List;
 import com.algo.util.trie.model.PrefixTree;
 import com.algo.util.trie.model.PrefixTree3;
 import com.algo.util.trie.model.PrefixTree4;
+import com.algo.util.trie.model.PrefixTree5;
 
 /**
  * 以**开头 / 以**结尾 出现几次
@@ -141,6 +142,23 @@ public class TrieUtil {
 		PrefixTree4.clear();
 		return ans;
 	}
+	
+	/**
+	 *  求数组中，2数最大的异或和？
+	 *  如果一个数字确定，则找另一个数就是紧着高位变1，这个找高位变1的过程就是在前缀树上搜索的过程
+	 *  
+	 *  https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
+	 */
+	public static int findMaximumXOR(int[] nums) {
+		PrefixTree5.build(nums);
+		int ans = 0;
+		for (int num : nums) {
+			ans = Math.max(ans, PrefixTree5.maxXor(num));
+		}
+		PrefixTree5.clear();
+		return ans;
+	}
+	
 	
 	
 }

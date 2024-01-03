@@ -9,8 +9,12 @@ import java.util.List;
 
 import com.algo.util.trie.model.PrefixTree;
 import com.algo.util.trie.model.PrefixTree3;
+import com.algo.util.trie.model.PrefixTree4;
 
-public class StringUtil {
+/**
+ * 以**开头 / 以**结尾 出现几次
+ */
+public class TrieUtil {
 
 	public static final String EMPTY = "";
 
@@ -108,6 +112,35 @@ public class StringUtil {
 		out.close();
 	}
 	
+	/**
+	 * 2套密钥，比对前缀 来确认匹配次数
+	 * 
+	 * https://www.nowcoder.com/practice/c552d3b4dfda49ccb883a6371d9a6932
+	 * 
+	 */
+	public static int[] countConsistentKeys(int[][] b, int[][] a) {
+		PrefixTree4.build(); 
+		StringBuilder builder = new StringBuilder();
+		// [3,6,50,10] -> "3#44#-40#"
+		for (int[] nums : a) {
+			builder.setLength(0);
+			for (int i = 1; i < nums.length; i++) {
+				builder.append(String.valueOf(nums[i] - nums[i - 1]) + "#");
+			}
+			PrefixTree4.insert(builder.toString());
+		}
+		int[] ans = new int[b.length];
+		for (int i = 0; i < b.length; i++) {
+			builder.setLength(0);
+			int[] nums = b[i];
+			for (int j = 1; j < nums.length; j++) {
+				builder.append(String.valueOf(nums[j] - nums[j - 1]) + "#");
+			}
+			ans[i] = PrefixTree4.count(builder.toString());
+		}
+		PrefixTree4.clear();
+		return ans;
+	}
 	
 	
 }

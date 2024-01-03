@@ -3,7 +3,9 @@ package com.algo.util.trie.model;
 import java.util.Arrays;
 
 /**
- * 使用静态数组实现：推荐，根据数据量估计出空间，因为动态创建节点的方式在每个测试用例是重复计算的。浪费大量空间
+ * 使用静态数组实现：推荐，根据数据量估计出空间，因为动态创建节点的方式在每个测试用例是重复计算的。浪费大量空间的方式，
+ * 
+ * 此前缀树支持的path = a - z
  * 	
  * 	tree[n][m]: 
  *    n 随便估一个量,try and error
@@ -25,12 +27,19 @@ public class PrefixTree3 {
 	public static void build() {
 		cnt = 1;
 	}
+	
+	/**
+	 *  支持路的种类 / 找路的方式, 路只支持 a ~ z
+	 */
+	public static int path(char cha) {
+		return cha - 'a';
+	}
 
 	public static void insert(String word) {
 		int cur = 1;
 		pass[cur]++;
 		for (int i = 0, path; i < word.length(); i++) {
-			path = word.charAt(i) - 'a';
+			path = path(word.charAt(i));
 			if (tree[cur][path] == 0) {
 				tree[cur][path] = ++cnt;
 			}
@@ -43,7 +52,7 @@ public class PrefixTree3 {
 	public static int search(String word) {
 		int cur = 1;
 		for (int i = 0, path; i < word.length(); i++) {
-			path = word.charAt(i) - 'a';
+			path = path(word.charAt(i));
 			if (tree[cur][path] == 0) {
 				return 0;
 			}
@@ -55,7 +64,7 @@ public class PrefixTree3 {
 	public static int prefixNumber(String pre) {
 		int cur = 1;
 		for (int i = 0, path; i < pre.length(); i++) {
-			path = pre.charAt(i) - 'a';
+			path = path(pre.charAt(i));
 			if (tree[cur][path] == 0) {
 				return 0;
 			}
@@ -68,7 +77,7 @@ public class PrefixTree3 {
 		if (search(word) > 0) {
 			int cur = 1;
 			for (int i = 0, path; i < word.length(); i++) {
-				path = word.charAt(i) - 'a';
+				path = path(word.charAt(i));
 				if (--pass[tree[cur][path]] == 0) {
 					tree[cur][path] = 0;
 					return;

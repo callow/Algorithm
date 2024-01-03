@@ -9,13 +9,14 @@ package com.algo.util.trie.model;
  *  有多少字符串以ab*做 前缀的<br>
  *  有多少字符串以*cd做 后缀的<br>
  *
+ * 使用map的方式实现前缀树
  */
 public class PrefixTree {
 
-	private Node root;
+	private MapNode root;
 
 	public PrefixTree() {
-		root = new Node();
+		root = new MapNode();
 	}
 	
 	/**
@@ -30,13 +31,13 @@ public class PrefixTree {
 			return;
 		}
 		char[] chs = word.toCharArray(); // ['a','b','c']
-		Node node = root;
+		MapNode node = root;
 		node.pass++;
 		int index = 0;
 		for (int i = 0; i < chs.length; i++) {
 			index = chs[i];
 			if (!node.paths.containsKey(index)) {
-				node.paths.put(index, new Node());
+				node.paths.put(index, new MapNode());
 			}
 			node = node.paths.get(index);
 			node.pass++;
@@ -52,7 +53,7 @@ public class PrefixTree {
 	public void delete(String word) {
 		if (count(word) != 0) { // 检查一下在Tree中有没有
 			char[] chs = word.toCharArray();
-			Node node = root;
+			MapNode node = root;
 			node.pass--; // 沿途p--
 			int index = 0;
 			for (int i = 0; i < chs.length; i++) {
@@ -76,7 +77,7 @@ public class PrefixTree {
 			return 0;
 		}
 		char[] chs = word.toCharArray();
-		Node node = root;
+		MapNode node = root;
 		int index = 0;
 		for (int i = 0; i < chs.length; i++) {
 			index = chs[i];
@@ -97,7 +98,7 @@ public class PrefixTree {
 			return 0;
 		}
 		char[] chs = pre.toCharArray();
-		Node node = root;
+		MapNode node = root;
 		int index = 0;
 		for (int i = 0; i < chs.length; i++) {
 			index = chs[i];

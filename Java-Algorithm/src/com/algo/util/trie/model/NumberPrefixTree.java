@@ -18,7 +18,7 @@ import java.util.Arrays;
  *  /#  
  * o     
  */			 
-public class PrefixTree4 {
+public class NumberPrefixTree {
 
 	    // 如果将来增加了数据量，就改大这个值
 		public static int MAXN = 2000001;

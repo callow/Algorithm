@@ -6,11 +6,11 @@ package com.algo.util.trie.model;
 // 用类描述实现前缀树- 不推荐
 
 //https://leetcode.cn/problems/implement-trie-ii-prefix-tree/
-public class PrefixTree2 {
+public class ArrayLetterPrefixTree {
 
 		private ArrayNode root;
 
-		public PrefixTree2() {
+		public ArrayLetterPrefixTree() {
 			root = new ArrayNode();
 		}
 

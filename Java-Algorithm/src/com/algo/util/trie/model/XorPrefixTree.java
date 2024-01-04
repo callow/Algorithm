@@ -10,7 +10,7 @@ import com.algo.util.bit.BitUtil;
  * 都不需要节点信息
  * 
  */			 
-public class PrefixTree5 {
+public class XorPrefixTree {
 
 	    // 准备这么多静态空间就够了，实验出来的
 		// 如果测试数据升级了规模，就改大这个值

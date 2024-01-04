@@ -13,7 +13,7 @@ import java.util.Arrays;
  *    n 随便估一个量,try and error
  * 	  m 字符种类
  */
-public class PrefixTree3 {
+public class StaticLetterPrefixTree {
 
 	// 如果将来增加了数据量，就改大这个值
 	public static int MAXN = 150001;

@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.algo.util.trie.model.PrefixTree;
-import com.algo.util.trie.model.PrefixTree3;
-import com.algo.util.trie.model.PrefixTree4;
-import com.algo.util.trie.model.PrefixTree5;
+import com.algo.util.trie.model.DfsPrefixTree;
+import com.algo.util.trie.model.MapLetterPrefixTree;
+import com.algo.util.trie.model.StaticLetterPrefixTree;
+import com.algo.util.trie.model.NumberPrefixTree;
+import com.algo.util.trie.model.XorPrefixTree;
 
 /**
  * 以**开头 / 以**结尾 出现几次
@@ -23,7 +25,7 @@ public class TrieUtil {
 	 * 数一下Prefix开头字符串个数
 	 */
 	public static int countPrefixStr(List<String> strs, String prefix) {
-		PrefixTree tree = new PrefixTree();
+		MapLetterPrefixTree tree = new MapLetterPrefixTree();
 		for (String s : strs) {
 			tree.insert(s);
 		}
@@ -91,22 +93,22 @@ public class TrieUtil {
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
 		String line = null;
 		while ((line = in.readLine()) != null) {
-			PrefixTree3.build();
+			StaticLetterPrefixTree.build();
 			m = Integer.valueOf(line);
 			for (int i = 1; i <= m; i++) {
 				splits = in.readLine().split(" ");
 				op = Integer.valueOf(splits[0]);
 				if (op == 1) {
-					PrefixTree3.insert(splits[1]);
+					StaticLetterPrefixTree.insert(splits[1]);
 				} else if (op == 2) {
-					PrefixTree3.delete(splits[1]);
+					StaticLetterPrefixTree.delete(splits[1]);
 				} else if (op == 3) {
-					out.println(PrefixTree3.search(splits[1]) > 0 ? "YES" : "NO");
+					out.println(StaticLetterPrefixTree.search(splits[1]) > 0 ? "YES" : "NO");
 				} else if (op == 4) {
-					out.println(PrefixTree3.prefixNumber(splits[1]));
+					out.println(StaticLetterPrefixTree.prefixNumber(splits[1]));
 				}
 			}
-			PrefixTree3.clear(); // 一个test case完成，全部清空
+			StaticLetterPrefixTree.clear(); // 一个test case完成，全部清空
 		}
 		out.flush();
 		in.close();
@@ -120,7 +122,7 @@ public class TrieUtil {
 	 * 
 	 */
 	public static int[] countConsistentKeys(int[][] b, int[][] a) {
-		PrefixTree4.build(); 
+		NumberPrefixTree.build(); 
 		StringBuilder builder = new StringBuilder();
 		// [3,6,50,10] -> "3#44#-40#"
 		for (int[] nums : a) {
@@ -128,7 +130,7 @@ public class TrieUtil {
 			for (int i = 1; i < nums.length; i++) {
 				builder.append(String.valueOf(nums[i] - nums[i - 1]) + "#");
 			}
-			PrefixTree4.insert(builder.toString());
+			NumberPrefixTree.insert(builder.toString());
 		}
 		int[] ans = new int[b.length];
 		for (int i = 0; i < b.length; i++) {
@@ -137,9 +139,9 @@ public class TrieUtil {
 			for (int j = 1; j < nums.length; j++) {
 				builder.append(String.valueOf(nums[j] - nums[j - 1]) + "#");
 			}
-			ans[i] = PrefixTree4.count(builder.toString());
+			ans[i] = NumberPrefixTree.count(builder.toString());
 		}
-		PrefixTree4.clear();
+		NumberPrefixTree.clear();
 		return ans;
 	}
 	
@@ -149,16 +151,47 @@ public class TrieUtil {
 	 *  
 	 *  https://leetcode.cn/problems/maximum-xor-of-two-numbers-in-an-array/
 	 */
-	public static int findMaximumXOR(int[] nums) {
-		PrefixTree5.build(nums);
+	public static int findMaximumXOR(int[] nums) { 
+		XorPrefixTree.build(nums);
 		int ans = 0;
 		for (int num : nums) {
-			ans = Math.max(ans, PrefixTree5.maxXor(num));
+			ans = Math.max(ans, XorPrefixTree.maxXor(num));
 		}
-		PrefixTree5.clear();
+		XorPrefixTree.clear();
 		return ans;
 	}
 	
+	/**
+	 * 在一个2维矩阵中，搜索字典中的单词
+	 * 
+	 * https://leetcode.cn/problems/word-search-ii/
+	 * 
+	 * DFS: 一条路走到黑 = 递归
+	 * BFS: 探寻一下周围有多少路
+	 * 
+	 * 剪枝1: matrix走过的cell标记为0，如果确确实实搜到一个结果后则恢复现场，防止走重复/回头路
+	 * 剪枝2: 将字典建成前缀树，可以在matrix走格子时候避免没用的path/cell（以...开头）
+	 * 技巧：word - 收集的单词直接同 pass, end一起放入前缀树节点，可以直接收集答案，无需再回溯收集单词 e.g “ab”
+	 * 		o word = null, pass = 1, end = 0
+	 * 	   /a
+	 *    o  word = null, pass = 1, end = 0
+	 *     \b
+	 *      o word = 'ab', pass = 1, end = 1
+	 * 剪枝3: 前缀树search时候 每搜到一个单词，pass - 1, 当当前节点下面所有叶节点都是0时，自己也变0. 当下一次搜别的词时，直接跳过pass = 0 的路，直接返回
+	 * 	（因为pass = 0 说明下面的词已经被用过了，要不就搜出重复答案）
+	 * 
+	 */
+	public List<String> findWords(char[][] board, String[] words) {
+		DfsPrefixTree.build(words);
+		List<String> ans = new ArrayList<>();
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[0].length; j++) {
+				DfsPrefixTree.dfs(board, i, j, 1, ans);
+			}
+		}
+		DfsPrefixTree.clear();
+		return ans;
+    }
 	
 	
 }

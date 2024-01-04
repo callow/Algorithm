@@ -11,11 +11,11 @@ package com.algo.util.trie.model;
  *
  * 使用map的方式实现前缀树
  */
-public class PrefixTree {
+public class MapLetterPrefixTree {
 
 	private MapNode root;
 
-	public PrefixTree() {
+	public MapLetterPrefixTree() {
 		root = new MapNode();
 	}
 	

@@ -12,7 +12,8 @@ public class DfsPrefixTree {
 		// 返回值 : 收集到了几个字符串
 		public static int dfs(char[][] board, int i, int j, int t, List<String> ans) {
 			// 越界 或者 走了回头路，直接返回0
-			if (i < 0 || i == board.length || j < 0 || j == board[0].length || board[i][j] == 0) {
+			if (i < 0 || i == board.length || j < 0 || j == board[0].length // 越界
+					|| board[i][j] == 0) { // 回头路
 				return 0;
 			}
 			// 不越界 且 不是回头路
@@ -23,27 +24,27 @@ public class DfsPrefixTree {
 			// b -> 1
 			// ...
 			// z -> 25
-			int road = tmp - 'a';
-			t = tree[t][road];
-			if (pass[t] == 0) {
+			int road = path(tmp);
+			t = tree[t][road]; //  t = 前缀树编号，建树的时候时候 n * 26
+			if (pass[t] == 0) { // t = 0 // 树上没有路 || pass[t] == 0 // 树上有路，但是结果已经收集全了
 				return 0;
 			}
 			// i，j位置有必要来
 			// fix ：从当前i，j位置出发，一共收集到了几个字符串
 			int fix = 0;
-			if (end[t] != null) {
-				fix++;
+			if (end[t] != null) { // 收集到字符串了
+				fix++; // 我自己
 				ans.add(end[t]);
-				end[t] = null;
+				end[t] = null; // 收集过了，你再也没用了
 			}
-			// 把i，j位置的字符，改成0，后续的过程，是不可以再来到i，j位置的！
-			board[i][j] = 0;
-			fix += dfs(board, i - 1, j, t, ans);
-			fix += dfs(board, i + 1, j, t, ans);
-			fix += dfs(board, i, j - 1, t, ans);
-			fix += dfs(board, i, j + 1, t, ans);
-			pass[t] -= fix;
-			board[i][j] = tmp;
+			// 把i，j位置的字符，改成0，因为后续的过程，是不可以再来到i，j位置的！
+			board[i][j] = 0; // 　dfs一进来有判断
+			fix += dfs(board, i - 1, j, t, ans); // 我左边
+			fix += dfs(board, i + 1, j, t, ans); // 我右边
+			fix += dfs(board, i, j - 1, t, ans); // 我下边
+			fix += dfs(board, i, j + 1, t, ans); // 我上边
+			pass[t] -= fix; // 剪枝3，29行有判断
+			board[i][j] = tmp; // 恢复现场
 			return fix;
 		}
 
@@ -57,6 +58,10 @@ public class DfsPrefixTree {
 
 		public static int cnt;
 		
+		public static int path(char tmp) {
+			return tmp - 'a';
+		}
+		
 		/**
 		 * 
 		 * 建树
@@ -67,7 +72,7 @@ public class DfsPrefixTree {
 				int cur = 1;
 				pass[cur]++;
 				for (int i = 0, path; i < word.length(); i++) {
-					path = word.charAt(i) - 'a';
+					path = path(word.charAt(i));
 					if (tree[cur][path] == 0) {
 						tree[cur][path] = ++cnt;
 					}

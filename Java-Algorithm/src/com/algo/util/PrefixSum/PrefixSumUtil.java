@@ -43,7 +43,40 @@ public class PrefixSumUtil {
 			}
 		}
 		return longestLength;
-		
-		
+	}
+	
+	
+	/**
+	 * 最长良好数组： https://leetcode.cn/problems/longest-well-performing-interval/
+	 * 
+	 * 转化： >8 变 1， <= 8 变 -1，然后求每个位置结尾的情况，整体就个最大值 和上题一样
+	 * 若0～i 累加和> 0 ,直接达标。 若累加和sum <= 0, 则只需要找sum -1 最早出现在哪即可
+	 * 
+	 * 因为累加和增加和减少都是一点一点来的，
+	 * 
+	 * if 0~i sum = -3, then we need to find a prefixsum = -4 so that prefixsum + 1 ~ i > 0 
+	 * why we ignore - 5 -6 -7 ..., as -5 is increased from -4, and -4 must be "left" than -5
+	 */
+	public static int longestWPI(int[] hours) {
+		// 某个前缀和，最早出现的位置
+		HashMap<Integer, Integer> map = new HashMap<>();
+		// 0这个前缀和，最早出现在-1，一个数也没有的时候
+		map.put(0, -1);
+		int ans = 0;
+		for (int i = 0, sum = 0; i < hours.length; i++) {
+			sum += hours[i] > 8 ? 1 : -1;
+			if (sum > 0) {
+				ans = i + 1;
+			} else {
+				// sum <= 0
+				if (map.containsKey(sum - 1)) {
+					ans = Math.max(ans, i - map.get(sum - 1));
+				}
+			}
+			if (!map.containsKey(sum)) {
+				map.put(sum, i);
+			}
+		}
+		return ans;
 	}
 }

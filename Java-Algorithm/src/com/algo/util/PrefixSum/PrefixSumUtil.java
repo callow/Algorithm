@@ -73,7 +73,7 @@ public class PrefixSumUtil {
 					ans = Math.max(ans, i - map.get(sum - 1));
 				}
 			}
-			if (!map.containsKey(sum)) {
+			if (!map.containsKey(sum)) { // if sum not appeared before, note down the earliest location
 				map.put(sum, i);
 			}
 		}

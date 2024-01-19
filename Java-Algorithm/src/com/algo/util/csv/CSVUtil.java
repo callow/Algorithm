@@ -20,18 +20,35 @@ import com.algo.util.csv.model.Tick;
 @SuppressWarnings("deprecation")
 public class CSVUtil {
 	
-	
+	public static String COMMA = ",";
 	public static final String[] HEADERS = {"close", "high", "low", "open","symbol","timestamp","volume"};
 	
-	
+	static String inputPath = "src/com/algo/util/csv/tb_chart_W1.csv";
+	static String outputPath = "src/com/algo/util/csv/tb_chart_W1.sql";
 	public static void main(String[] args) {
-		writeCSV(readCSV("src/com/algo/util/csv/live_tb_chart_D1.csv"),"src/com/algo/util/csv/ticks-out.csv");
+		try {
+			int total = count(inputPath);
+			System.out.println("total count:" + total);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		readCSV(inputPath);
+//		writeCSV(readCSV("src/com/algo/util/csv/tb_chart_D1.csv"),"src/com/algo/util/csv/ticks-out.csv");
 	}
 	
-	
+	/**
+	 * 
+		读了csv文件后 再写出到sql文件
+	 */
 	public static List<Tick> readCSV(String filePath) {
 		List<Tick> ticks = new ArrayList<>();
+		
+		
 		try(Reader in = new FileReader(filePath)) {
+			int success = 1; // header
+			int fail = 0;
+			FileWriter writer  = new FileWriter(outputPath);
 			Iterable<CSVRecord> records = CSVFormat.DEFAULT.withHeader(HEADERS).withFirstRecordAsHeader().parse(in);
 			for (CSVRecord record : records) {
 				Tick tick = new Tick();
@@ -40,10 +57,27 @@ public class CSVUtil {
 				tick.setLow(new BigDecimal(record.get("low")));
 				tick.setOpen(new BigDecimal(record.get("open")));
 				tick.setSymbol(record.get("symbol"));
-				tick.setTimestamp(Long.valueOf(record.get("timestamp")));
+				tick.setTimestamp(Long.valueOf(record.get("timestamp")) * 1000 - 7200000 + 86400000);
 				tick.setVolume(Long.valueOf(record.get("volume")));
-				ticks.add(tick);
+				if (tick.getVolume() < Integer.MAX_VALUE) {
+					StringBuilder builder = new StringBuilder();
+					builder.append("replace into _1week_kline(symbol,timestamp,open,high,low,close,volume) values (");
+					builder.append("'").append(tick.getSymbol()).append("'");
+			        builder.append(tick.getTimestamp()).append(COMMA);
+			        builder.append(tick.getOpen()).append(COMMA);
+			        builder.append(tick.getHigh()).append(COMMA);
+			        builder.append(tick.getLow()).append(COMMA);
+			        builder.append(tick.getClose()).append(COMMA);
+			        builder.append(tick.getVolume()).append(");");
+			        writer.write(builder + System.lineSeparator());
+			        success++;
+				} else {
+					fail++;
+				}
 			}
+			int total = success+ fail;
+			System.out.println("success : " + success  + " fail: " + fail + " total:" + total);
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

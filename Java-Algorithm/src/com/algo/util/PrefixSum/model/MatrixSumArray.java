@@ -25,4 +25,25 @@ public class MatrixSumArray {
 		d++;
 		return sum[c][d] - sum[c][b] - sum[a][d] + sum[a][b];
 	}
+	
+	// ---------------------------------------------------------------------------------
+	
+	/**
+	 *  构建前缀和数组，复用自己，没有申请额外空间sum
+	 */
+	public static void build(int n, int m, int[][] g) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				g[i][j] += get(g, i, j - 1) + get(g, i - 1, j) - get(g, i - 1, j - 1);
+			}
+		}
+	}
+
+	public static int sum(int[][] g, int a, int b, int c, int d) {
+		return a > c ? 0 : (g[c][d] - get(g, c, b - 1) - get(g, a - 1, d) + get(g, a - 1, b - 1));
+	}
+
+	public static int get(int[][] g, int i, int j) {
+		return (i < 0 || j < 0) ? 0 : g[i][j];
+	}
 }

@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
 /**
- * Matrix Difference Template:
+ * Matrix Difference Template: 二维铺地毯问题
  * 
  * https://www.luogu.com.cn/problem/P3397
  */

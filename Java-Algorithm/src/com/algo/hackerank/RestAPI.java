@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class RestTemplate {
+public class RestAPI {
 
 	/**
 	 * 发起http 请求，返回json 

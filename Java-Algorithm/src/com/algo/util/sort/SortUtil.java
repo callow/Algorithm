@@ -6,7 +6,7 @@ import com.algo.util.common.CommonNumberUtil;
 public class SortUtil {
 	
 	/**
-	 * 选择排序 O（N^2），每次找到最小那个放到前面去 <br>
+	 * 选择排序 O（N^2），每次找到最小那个放到前面去(交换) <br>
 	 *   - 0 ~ N-1  选择到最小值，在哪，swap放到0位置上  <br>
 	 *   - 1 ~ n-1  找到最小值，在哪，swap放到1 位置上  <br>
 	 *   - 2 ~ n-1  找到最小值，在哪，swap放到2 位置上  <br>
@@ -25,7 +25,10 @@ public class SortUtil {
 	}
 	
 	/**
-	 * 冒泡排序 O（N^2）
+	 * 冒泡排序 O（N^2）: 滑动步长为2的窗口，谁大谁往后(交换)，每轮将最大的数放最后，然后再i-1继续
+	 *   - 0 ~ N-1滑步, 最大的放在最后了
+	 *   - 0 ~ N-2滑步， 倒数第2大的数放在最后了
+	 *   - 0 ~ N-3滑步， 倒数第3大的数放在最后了
 	 */
 	
 	public static void bubbleSort(int[] arr) {

@@ -45,7 +45,11 @@ public class SortUtil {
 		}
 	}
 	/**
-	 * 插入排序 O（N^2）
+	 * 插入排序 O（N^2）: 只要当前数比他的左边小就一直交换
+	 *  0 ~ 1 让其有序
+	 *  0 ~ 2 让其有序
+	 *  0 ~ 3 让其有序
+	 *  0 ~ n-1 让其有序
 	 */
 	public static void insertSort(int[] arr) {
 		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {

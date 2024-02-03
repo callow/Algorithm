@@ -56,8 +56,8 @@ public class SortUtil {
 			return;
 		}
 		for (int i = 1; i < arr.length; i++) {
-			for (int j = i-1; j>=0 && arr[j] >arr[j+1]; j--) {
-				CommonArrayUtil.swap(arr, i, j+1);
+			for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
+				CommonArrayUtil.swap(arr, j, j + 1);
 			}
 		}
 	}

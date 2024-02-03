@@ -50,7 +50,7 @@ public class CommonArrayUtil {
 	}
 
 	/**
-	 * 拷贝，产生一个新数组
+	 * 拷贝数组，产生一个新数组
 	 */
 
 	public static int[] copyArray(int[] arr) {

@@ -7,11 +7,23 @@ import com.algo.util.common.model.RandomNode;
 import com.algo.util.linklist.model.DoubleEndsQueue;
 import com.algo.util.linklist.model.Queue;
 import com.algo.util.linklist.model.Stack;
-
+/**
+ * 反转单链表
+ * 反转双链表
+ * 单链表删除节点
+ * 判断链表是不是回文结构
+ * 找到链表中点位置
+ * 生成一个链表写的Queue
+ * 生成一个链表写的Stack
+ * 
+ */
 public class LinklistUtil {
 
 	/**
-	 * 反转单链表
+	 * 反转单链表：
+	 * 
+	 * 1 -> 3 -> 4 -> null
+	 * null <- 1 <- 3 <- 4
 	 */
 	
 	public static Node<Integer> reverse(Node<Integer> head) {
@@ -19,7 +31,7 @@ public class LinklistUtil {
 		Node<Integer> next = null;
 		while(head != null) {
 			next = head.next;
-			head.next = pre;
+			head.next = pre; // 反转指针
 			pre = head;
 			head = next;
 		}

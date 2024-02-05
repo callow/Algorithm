@@ -51,7 +51,7 @@ public class BinarySearchUtil {
 			if (sortArr[mid] >= num) { // 记录答案，然后往左
 				answer = mid;
 				r = mid - 1;
-			} else { // 不录答案，然后往左
+			} else { // 不录答案，然后往右
 				l = mid + 1;
 			}
 		}
@@ -76,10 +76,10 @@ public class BinarySearchUtil {
 		int answer = -1;
 		while (l <= r) {
 			mid = l + ((r - l) / 2);
-			if (sortArr[mid] <= num) {
+			if (sortArr[mid] <= num) {  // 记录答案，然后往右
 				answer = mid;
 				l = mid + 1;
-			} else {
+			} else {  // 不记答案，然后往左
 				r = mid - 1;
 			}
 		}

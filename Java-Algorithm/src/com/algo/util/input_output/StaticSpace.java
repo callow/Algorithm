@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 /**
  * acm 计算空间是累加的，因此局部数组空间申请尽量避免
- *   - 使用public static, 全局静态空间 
+ *   - 使用public static, 全局静态空间 是推荐的方法
  */
 public class StaticSpace {
 

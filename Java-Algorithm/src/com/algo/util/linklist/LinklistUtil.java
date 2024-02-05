@@ -56,6 +56,38 @@ public class LinklistUtil {
 	}
 	
 	/**
+	 * 合并2个有序链表，组成一个大的有序链表
+	 * 
+	 *  https://leetcode.cn/problems/merge-two-sorted-lists/
+	 */
+	public static Node<Integer> merge2LinkedList(Node<Integer> head1, Node<Integer> head2) {
+		if (head1 ==null || head2 == null) {
+			return head1 == null ? head2 : head1;
+		}
+		// 谁小谁做头
+		Node<Integer> head = head1.value <= head2.value ? head1: head2;
+		Node<Integer> cur1 = head.next; // 头的下一个节点
+		Node<Integer> cur2 = head == head1 ? head2 : head1; // 头的下一个节点的对手节点
+		Node<Integer> pre = head; // 挂好的节点
+		
+		// 2个链表都不空，就PK看看谁小谁就挂在pre下一个上
+		while (cur1 != null && cur2 != null) {
+			if (cur1.value <= cur2.value) {
+				pre.next = cur1; 
+				cur1 = cur1.next;
+			} else {
+				pre.next = cur2;
+				cur2 = cur2.next;
+			}
+			pre = pre.next;
+		}
+		
+		// 一个跳没了，另一个没跳没，最后做收尾工作
+		pre.next = cur1 != null ? cur1 : cur2;
+		return head; // 因为pre是head的引用，所以pre改的值会影响head
+	}
+	
+	/**
 	 * 单链表，把所有=给定值的节点给删掉, 返回新的头节点
 	 * 
 	 * 2 -> 3 -> 1 -> 3 ->2 ->4 -> null , remove 3 then

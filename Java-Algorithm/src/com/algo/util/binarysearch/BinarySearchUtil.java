@@ -33,6 +33,11 @@ public class BinarySearchUtil {
 
 	/**
 	 * 二分查找 >= num 最左位置. O(Log(N))
+	 * 
+	 *  [3， 5， 6， 9， 13 , 17,, 24, 36] num = 15
+	 *  
+	 *  return arr[5] = 17
+	 * 	
 	 */
 
 	public static int nearestLeftIndex(int[] sortArr, int num) {
@@ -43,10 +48,10 @@ public class BinarySearchUtil {
 		int answer = -1;
 		while (l <= r) {
 			mid = l + ((r - l) / 2);
-			if (sortArr[mid] >= num) {
+			if (sortArr[mid] >= num) { // 记录答案，然后往左
 				answer = mid;
 				r = mid - 1;
-			} else {
+			} else { // 不录答案，然后往左
 				l = mid + 1;
 			}
 		}
@@ -55,6 +60,12 @@ public class BinarySearchUtil {
 
 	/**
 	 * 二分查找 <= num 最右位置. O(Log(N))
+	 * 
+	 * [3， 5， 6， 9， 13 , 17,, 24, 36] num = 15
+	 * 
+	 * return: arr[4] = 13
+	 * 
+	 * 
 	 */
 
 	public static int nearestRightIndex(int[] sortArr, int num) {

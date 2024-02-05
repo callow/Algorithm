@@ -123,7 +123,7 @@ public class BinarySearchUtil {
 	}
 
 	/**
-	 * 局部最大
+	 * 局部最大, 左上扬，右下降，中间必然有峰值
 	 */
 	public static int localMaximum(int[] unsortArr) { // leecode 162
 		if (CommonArrayUtil.isEmpty(unsortArr)) {

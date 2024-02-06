@@ -7,6 +7,7 @@ import com.algo.util.common.model.RandomNode;
 import com.algo.util.linklist.model.DoubleEndsQueue;
 import com.algo.util.linklist.model.Queue;
 import com.algo.util.linklist.model.Stack;
+
 /**
  * 反转单链表
  * 反转双链表
@@ -209,6 +210,11 @@ public class LinklistUtil {
 	/**
 	 *  将单链表按照某个num组织成 左边小， 中间相等， 右边大 <br><br>
 	 *  思路： 将链表放入数组中，然后在数组上做partition
+	 *  
+	 *  左边小 ： 小头，小尾
+	 *  右边大 ： 大头， 大尾
+	 *  
+	 *  最后小尾 连到大头
 	 */
 	
 	public static Node<Integer> sort(Node<Integer> head, int num) {
@@ -235,6 +241,46 @@ public class LinklistUtil {
 		}
 		nodeArr[i - 1].next = null;
 		return nodeArr[0];
+	}
+	
+	/**
+	 * 给你一个链表的头节点 head 和一个特定值 x 请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
+		https://leetcode.cn/problems/partition-list/
+	 *  左边小 ： 小头，小尾
+	 *  右边大 ： 大头， 大尾
+	 *  
+	 *  最后小尾 连到大头
+	 */
+	public static Node<Integer>  partition(Node<Integer> head, int x) {
+		Node<Integer>  leftHead = null, leftTail = null; // < x的区域
+		Node<Integer>  rightHead = null, rightTail = null; // >=x的区域
+		Node<Integer>  next = null;
+		while (head != null) {
+			next = head.next;
+			head.next = null;
+			if (head.value < x) {
+				if (leftHead == null) {
+					leftHead = head;
+				} else {
+					leftTail.next = head;
+				}
+				leftTail = head;
+			} else {
+				if (rightHead == null) {
+					rightHead = head;
+				} else {
+					rightTail.next = head;
+				}
+				rightTail = head;
+			}
+			head = next;
+		}
+		if (leftHead == null) {
+			return rightHead;
+		}
+		// < x的区域有内容！
+		leftTail.next = rightHead;
+		return leftHead;
 	}
 	
 	/**
@@ -316,7 +362,7 @@ public class LinklistUtil {
 	}
 	
 	/**
-	 * 链表相加：984 + 9762 = ？  进位问题 
+	 * 链表相加：984 + 9762 = ？  进位问题思路 https://leetcode.cn/problems/add-two-numbers/
 	 * 
 	 * 4 -》 8 -》 9
 	 * 2 -》 6 -》 7 -》 9

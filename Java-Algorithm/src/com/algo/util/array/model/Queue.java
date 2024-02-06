@@ -4,7 +4,13 @@ import com.algo.util.common.CommonArrayUtil;
 
 /**
  * 
- * 使用循环数组实现Queue : ringArray
+ * 使用循环数组实现Queue : ringArray， 如果L == R, 表示队列为Empty
+ * 
+ * [a,b,c,d....]
+ *  L     R
+ *  头     尾 
+ * 加入： 放在R位置R++
+ * 弹出： 拿出L位置L++
  */
 public class Queue<T> {
 

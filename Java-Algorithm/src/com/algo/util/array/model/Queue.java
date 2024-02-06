@@ -12,8 +12,11 @@ import com.algo.util.common.CommonArrayUtil;
  * 加入： 放在R位置R++
  * 弹出： 拿出L位置L++
  * 
+ * 头就是先进的，所以头也先出
  * 
  * 循环队列： 头在追尾，尾也追头，加入x,若尾++结束了重新回到0，弹出头，拿头 头++，结束（使用一个变量Size控制队列元素个数）
+ *  * 
+ * https://leetcode.cn/problems/design-circular-queue/
  */
 public class Queue<T> {
 

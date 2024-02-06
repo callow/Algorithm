@@ -315,4 +315,38 @@ public class LinklistUtil {
         return slow;
 	}
 	
+	/**
+	 * 链表相加：984 + 9762 = ？  进位问题 
+	 * 
+	 * 4 -》 8 -》 9
+	 * 2 -》 6 -》 7 -》 9
+	 */
+	public static Node<Integer> add2Number(Node<Integer> h1, Node<Integer> h2) {
+		Node<Integer> ans = null, cur = null;
+		int carry = 0;
+		for (int sum, val; // 声明变量 
+				h1 != null && h2 != null; // 终止条件
+				h1 = h1 == null ? null : h1.next, // h1往下跳，到空就不跳了
+				h2 = h2 == null ? null : h2.next //  h2往下跳，到空就不跳了
+				) {
+			
+			// 6 = 4 + 2
+			sum = (h1 == null ? 0 : h1.value) + (h2 == null ? 0 : h2.value) + carry;
+			val = sum % 10; // 当前数字 e.g sum = 14, val = 4, carry = 1
+			carry = sum / 10; // 当前进位
+			
+			if (ans == null) {
+				ans = new Node<Integer>(val); // ans 就是头节点 永远不动了
+				cur  = ans;
+			} else {
+				cur.next = new Node<Integer>(val);
+				cur = cur.next;
+			}
+		}
+		if (carry == 1) {
+			cur.next = new Node<Integer>(1);
+		}
+		return ans;
+	} 
+	
 }

@@ -13,6 +13,8 @@ import java.util.Stack;
  * stackData    stackMin
  * 
  * 弹出的时候，2个栈同步弹出
+ * 
+ * https://leetcode.com/problems/min-stack/submissions/1168892637/
  */
 public class GetMinStack {
 

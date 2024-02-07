@@ -3,8 +3,8 @@ package com.algo.util.linklist.model;
 import com.algo.util.common.model.DoubleNode;
 
 /**
- * 
- * 使用双链表实现双端队列，前后都可以进出
+ * = deque
+ * 使用双链表实现双端队列，前后都可以进出 
  *
  */
 public class DoubleEndsQueue<T> {

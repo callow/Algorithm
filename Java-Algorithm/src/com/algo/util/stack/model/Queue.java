@@ -6,6 +6,8 @@ import java.util.Stack;
  * 使用Stack实现Queue O(1)
  * 
  * (2个栈互相倒) out空了才能往里倒，如果倒 in必须都倒完
+ * 
+ * https://leetcode.cn/problems/implement-queue-using-stacks/
  */
 public class Queue<T> {
 

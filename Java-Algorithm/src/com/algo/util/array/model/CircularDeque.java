@@ -18,7 +18,7 @@ public class CircularDeque {
 	public int l, r, size, limit;
 	
 	
-	public CircularDeque (int k){
+	public CircularDeque(int k){
 		deque = new int[k];
 		l = r = size = 0;
 		limit = k;

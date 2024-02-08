@@ -16,7 +16,38 @@ import com.algo.util.common.model.BTNode;
 public class BinaryTreeIterateUtil {
 	
 	/**
-	 * 先序遍历打印
+	 * 
+	 * 二叉树构建
+	 */
+	public static void main(String[] args) {
+		BTNode head = new BTNode(1);
+		head.left = new BTNode(2);
+		head.right = new BTNode(3);
+		head.left.left = new BTNode(4);
+		head.left.right = new BTNode(5);
+		head.right.left = new BTNode(6);
+		head.right.right = new BTNode(7);
+
+		preOrder(head);
+		System.out.println();
+		System.out.println("先序遍历递归版");
+
+		inOrder(head);
+		System.out.println();
+		System.out.println("中序遍历递归版");
+
+		posOrder(head);
+		System.out.println();
+		System.out.println("后序遍历递归版");
+
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 先序遍历打印：头 左 右
 	 */
 	
 	public static void preOrder(BTNode head) {
@@ -80,7 +111,7 @@ public class BinaryTreeIterateUtil {
 	//------------------------------------------------------------------------------------------------------
 	
 	/**
-	 * 中序遍历打印
+	 * 中序遍历打印： 左 头 右
 	 */
 	
 	public static void inOrder(BTNode head) {
@@ -107,7 +138,7 @@ public class BinaryTreeIterateUtil {
 	//-------------------------------------------------------------------------------------------------
 	
 	/**
-	 * 后序遍历打印
+	 * 后序遍历打印： 左 右 头
 	 */
 	
 	public static void posOrder(BTNode head) {

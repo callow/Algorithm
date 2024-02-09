@@ -48,15 +48,21 @@ public class BinaryTreeIterateUtil {
 	
 	/**
 	 * 先序遍历打印：头 左 右
+	 * 
+	 * 每个头节点访问3次
 	 */
 	
 	public static void preOrder(BTNode head) {
 		if (head == null) {
 			return;
 		}
-		System.out.println(head.value);
+		System.out.println(head.value); // 来到头
 		preOrder(head.left);
+		
+		// 又来到头
 		preOrder(head.right);
+		
+		// 又来到头
 	}
 	
 	public static void preOrderMorris(BTNode head) { // O(1) - Space

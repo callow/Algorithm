@@ -65,6 +65,22 @@ public class BinaryTreeIterateUtil {
 		// 又来到头
 	}
 	
+	/**
+	 * 非递归实现先序遍历
+	 * 
+	 * 先序遍历打印：头(中) 左 右, 栈：先弹出，先压右 再压左， 之所有先压右是因为先弹出左，先压的后弹出.
+	 * 
+	 * 左弹出后会处理自己的孩子，因此左的后续不完是不会处理压入的右的。所以肯定是 先处理中间，再处理左树，再处理右树
+	 * 
+	 * 		1
+	 * 	  2   3
+	 *  4   5 6 7
+	 * 
+	 */
+	public static void preOrderStack(BTNode head) {
+		
+	}
+	
 	public static void preOrderMorris(BTNode head) { // O(1) - Space
 		if (head == null) {
 			return;

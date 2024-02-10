@@ -95,6 +95,10 @@ public class BinaryTreeIterateUtil {
 		}
 	}
 	
+	
+	
+	
+	
 	public static void preOrderMorris(BTNode head) { // O(1) - Space
 		if (head == null) {
 			return;
@@ -157,6 +161,31 @@ public class BinaryTreeIterateUtil {
 		inOrder(head.left);
 		System.out.println(head.value);
 		inOrder(head.right);
+	}
+	
+	/**
+	 * 
+	 * 不用递归实现中序遍历: 所有子树顺序，左子树，头，右子树
+	 * 
+	 * 弹出就打印
+	 *  
+	 * 
+	 */
+	public static void inOrderStack(BTNode head) {
+		if (head != null) {
+			Stack<BTNode> stack = new Stack<>();
+			while (!stack.isEmpty() || head != null) {
+				if (head != null) {
+					stack.push(head);
+					head = head.left;
+				} else {
+					head = stack.pop();
+					System.out.print(head.value + " ");
+					head = head.right;
+				}
+			}
+			System.out.println();
+		}
 	}
 	
 	public static void inOrderMorris(BTNode head) {

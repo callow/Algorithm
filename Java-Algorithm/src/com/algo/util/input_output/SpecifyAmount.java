@@ -25,7 +25,7 @@ public class SpecifyAmount {
 	public static void main(String[] args) throws IOException {
 		// 把文件里的内容，load进来，保存在内存里，很高效，很经济，托管的很好
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		// 一个一个读数字
+		// 一个一个读数字, 忽略空格和回车
 		StreamTokenizer in = new StreamTokenizer(br);
 		// 提交答案的时候用的，也是一个内存托管区
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));

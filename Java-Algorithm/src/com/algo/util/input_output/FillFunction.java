@@ -30,7 +30,14 @@ public class FillFunction {
 		return max;
 	}
 
-	// 求子数组的最大累加和，后面的课会讲
+	/**
+	 * 每个矩阵全看一遍
+	 * for(0 ~ n) {
+	 * 	for(0 ~ m) {
+	 * 		// 这块子矩阵按行累加压缩成一维，然后处理简单的一维（横向选定）
+	 * 	}
+	 * }
+	 */
 	public static int maxSumSubarray(int[] arr, int m) {
 		int max = Integer.MIN_VALUE;
 		int cur = 0;

@@ -9,8 +9,19 @@ import java.io.StreamTokenizer;
 import java.util.Arrays;
 
 /**
- * acm 计算空间是累加的，因此局部数组空间申请尽量避免
- *   - 使用public static, 全局静态空间 是推荐的方法
+ * ACM-Scanner风格： 子矩阵的最大累加和问题(静态空间)
+ * 
+ * 解释： ACM计算空间是累加的，因此局部数组空间申请尽量避免 - 使用public static, 全局静态空间 是推荐的方法, 每一组测试都给定数据规模 任何空间都提前生成好，一律都是静态空间，然后自己去复用
+ * 
+ * 输入：
+	3 3
+	-90 48 78
+	64 -40 64
+	-81 -7 66 
+	
+   输出：209
+ * 
+ * https://www.nowcoder.com/practice/cb82a97dcd0d48a7b1f4ee917e2c0409?
  */
 public class StaticSpace {
 
@@ -31,7 +42,8 @@ public class StaticSpace {
 		// 当前测试数据行的数量是n
 		// 当前测试数据列的数量是m
 		// 这两个变量可以把代码运行的边界规定下来
-		public static int n, m;
+		public static int n; // 行
+		public static int m; // 列
 
 		public static void main(String[] args) throws IOException {
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -60,7 +72,7 @@ public class StaticSpace {
 			for (int i = 0; i < n; i++) {
 				// 因为之前的过程可能用过辅助数组
 				// 为了让之前结果不干扰到这次运行，需要自己清空辅助数组需要用到的部分
-				Arrays.fill(arr, 0, m, 0); // 0 - (m-1) 都填 0 = [0,m)
+				Arrays.fill(arr, 0, m, 0); // 0 ~ (m-1) 都填 0 => [0,m)
 				for (int j = i; j < n; j++) {
 					for (int k = 0; k < m; k++) {
 						arr[k] += mat[j][k];

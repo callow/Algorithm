@@ -8,7 +8,6 @@ import java.util.Scanner;
  * ע�⣺ 
  * 
  * nextLine() returns the entire text up to the return line
- * 
  * next() reads a tokenized text based on a given delimiter
  */
 public class ScannerRead {

@@ -8,21 +8,18 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 
 /**
+ * ACM-Scanner风格： 子矩阵的最大累加和问题(无静态空间)
  * 
- *  acm风格：规定好数据量
+ * 注： 需要任何空间都动态生成，在大厂笔试或者比赛中，这种方式并不推荐
+ * 
+ *  ACM风格：规定好数据量
  * 	- 使用BufferReader + StreamTokenizer,不要使用Scanner
  *  - 使用PrinterWriter + flush ,不要使用system.out.println
+ *  
+ *  https://www.nowcoder.com/practice/cb82a97dcd0d48a7b1f4ee917e2c0409?
  * 
  */
 
-//展示acm风格的测试方式
-//子矩阵的最大累加和问题，不要求会解题思路，后面的课会讲
-//每一组测试都给定数据规模
-//需要任何空间都动态生成，在大厂笔试或者比赛中，这种方式并不推荐
-//测试链接 : https://www.nowcoder.com/practice/cb82a97dcd0d48a7b1f4ee917e2c0409?
-//请同学们务必参考如下代码中关于输入、输出的处理
-//这是输入输出处理效率很高的写法
-//提交以下的code，提交时请把类名改成"Main"，可以直接通过
 public class SpecifyAmount {
 
 	public static void main(String[] args) throws IOException {
@@ -39,7 +36,7 @@ public class SpecifyAmount {
 			// m，二维数组的列
 			int m = (int) in.nval;
 			// 装数字的矩阵，临时动态生成
-			int[][] mat = new int[n][m];
+			int[][] mat = new int[n][m];  // 直接new出来2维数组动态生成，不太好，后面会推荐使用全局静态空间
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < m; j++) {
 					in.nextToken();

@@ -7,16 +7,13 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 /**
- * acm: 没有给定数据格式，智能一行一行读，但是依然可以使用buffer + static
+ * ACM-Scanner风格: 没有给定数据格式/规模，没办法只能一行一行读，但是依然可以使用buffer + static
+ * 
+ * 求任意长度数组累加和？
+ * 
+ * 没办法使用StringTokenizer,因为它不会去区分 空格/回车
  */
 
-//展示acm风格的测试方式
-//测试链接 : https://www.nowcoder.com/exam/test/70070648/detail?pid=27976983
-//其中，7.A+B(7)，就是一个没有给定数据规模，只能按行读数据的例子
-//此时需要自己切分出数据来计算
-//请同学们务必参考如下代码中关于输入、输出的处理
-//这是输入输出处理效率很高的写法
-//提交以下的code，提交时请把类名改成"Main"，可以直接通过
 public class ReadLineByLine {
 
 	public static String line;
@@ -34,9 +31,9 @@ public class ReadLineByLine {
 			for (String num : parts) {
 				sum += Integer.valueOf(num);
 			}
-			out.println(sum);
+			out.println(sum); // 放到内存托托管区 暂时不提交
 		}
-		out.flush();
+		out.flush(); // 最后刷一下 提交一次
 		in.close();
 		out.close();
 	}

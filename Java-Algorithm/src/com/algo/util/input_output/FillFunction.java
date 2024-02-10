@@ -14,29 +14,38 @@ public class FillFunction {
 		return maxSumSubmatrix(mat, n, n);
 	}
 
-	// 求子矩阵的最大累加和
+	/**
+	 * 压缩数组技巧：压缩数据，可以是滚动相加。 块子矩阵按行累加压缩成一维，然后处理简单的一维（横向选定）
+	 * 
+	 * 0~0行 哪个子矩阵最大累加和最大？
+	 * 0~1行 哪个子矩阵最大累加和最大？
+	 * 0~2行 哪个子矩阵最大累加和最大？
+	 * ...
+	  *1~1行 哪个子矩阵最大累加和最大？
+	 * 1~2行 哪个子矩阵最大累加和最大？
+	 * 1~3行 哪个子矩阵最大累加和最大？ 
+	 * ...
+	 * 
+	 * 
+	 */
+	
 	public static int maxSumSubmatrix(int[][] mat, int n, int m) {
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < n; i++) {
-			// 需要的辅助数组，临时动态生成就可以
+			// 需要的辅助数组，临时动态生成就可以,用于压缩的数组，数量和列等同
 			int[] arr = new int[m];
-			for (int j = i; j < n; j++) {
-				for (int k = 0; k < m; k++) {
-					arr[k] += mat[j][k];
+			for (int j = i; j < n; j++) { // 行向下递推：0~0, 0~1,0~2... 1~1, 1~2,1~3
+				for (int k = 0; k < m; k++) { 
+					arr[k] += mat[j][k]; // 列平移：填充压缩数组
 				}
-				max = Math.max(max, maxSumSubarray(arr, m));
+				max = Math.max(max, maxSumSubarray(arr, m)); // 
 			}
 		}
 		return max;
 	}
 
 	/**
-	 * 每个矩阵全看一遍
-	 * for(0 ~ n) {
-	 * 	for(0 ~ m) {
-	 * 		// 这块子矩阵按行累加压缩成一维，然后处理简单的一维（横向选定）
-	 * 	}
-	 * }
+	 *  0~1 ： 求每个压缩数组(1维)的最大累加和（看70）
 	 */
 	public static int maxSumSubarray(int[] arr, int m) {
 		int max = Integer.MIN_VALUE;

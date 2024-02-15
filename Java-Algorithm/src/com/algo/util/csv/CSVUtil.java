@@ -23,25 +23,29 @@ public class CSVUtil {
 	public static String COMMA = ",";
 	public static final String[] HEADERS = {"close", "high", "low", "open","symbol","timestamp","volume"};
 	
-	static String inputPath = "src/com/algo/util/csv/tb_chart_W1.csv";
-	static String outputPath = "src/com/algo/util/csv/tb_chart_W1.sql";
-	public static void main(String[] args) {
-		try {
-			int total = count(inputPath);
-			System.out.println("total count:" + total);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		readCSV(inputPath);
+	public static void main(String[] args) throws IOException {
+		long start = System.currentTimeMillis();
+		
+		int total = count("src/com/algo/util/csv/tb_chart_D1.csv");
+		System.out.println(total);
+//		readCSV("src/com/algo/util/csv/tb_chart_D1.csv","src/com/algo/util/csv/tb_chart_D1.sql",false,"_1day_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_H1.csv","src/com/algo/util/csv/tb_chart_H1.sql",false,"_1hour_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_H4.csv","src/com/algo/util/csv/tb_chart_H4.sql",false,"_4hrs_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_M1.csv","src/com/algo/util/csv/tb_chart_M1.sql",false,"_1min_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_M15.csv","src/com/algo/util/csv/tb_chart_M15.sql",false,"_15mins_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_M30.csv","src/com/algo/util/csv/tb_chart_M30.sql",false,"_30mins_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_M5.csv","src/com/algo/util/csv/tb_chart_M5.sql",false,"_5mins_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_MN1.csv","src/com/algo/util/csv/tb_chart_MN1.sql",false,"_1mth_kline");
+//		readCSV("src/com/algo/util/csv/tb_chart_W1.csv","src/com/algo/util/csv/tb_chart_W1.sql",true,"_1week_kline");
 //		writeCSV(readCSV("src/com/algo/util/csv/tb_chart_D1.csv"),"src/com/algo/util/csv/ticks-out.csv");
+		System.out.println("used:" + (System.currentTimeMillis() - start));
 	}
 	
 	/**
 	 * 
 		读了csv文件后 再写出到sql文件
 	 */
-	public static List<Tick> readCSV(String filePath) {
+	public static List<Tick> readCSV(String filePath, String outputPath, boolean isWeek, String table) {
 		List<Tick> ticks = new ArrayList<>();
 		
 		
@@ -57,12 +61,14 @@ public class CSVUtil {
 				tick.setLow(new BigDecimal(record.get("low")));
 				tick.setOpen(new BigDecimal(record.get("open")));
 				tick.setSymbol(record.get("symbol"));
-				tick.setTimestamp(Long.valueOf(record.get("timestamp")) * 1000 - 7200000 + 86400000);
+				tick.setTimestamp(Long.valueOf(record.get("timestamp")) * 1000 - 7200000 + (isWeek ? 86400000 : 0));
 				tick.setVolume(Long.valueOf(record.get("volume")));
 				if (tick.getVolume() < Integer.MAX_VALUE) {
 					StringBuilder builder = new StringBuilder();
-					builder.append("replace into _1week_kline(symbol,timestamp,open,high,low,close,volume) values (");
-					builder.append("'").append(tick.getSymbol()).append("'");
+					builder.append("replace into ");
+					builder.append(table);
+					builder.append("(symbol,timestamp,open,high,low,close,volume) values (");
+					builder.append("'").append(tick.getSymbol()).append("'").append(COMMA);
 			        builder.append(tick.getTimestamp()).append(COMMA);
 			        builder.append(tick.getOpen()).append(COMMA);
 			        builder.append(tick.getHigh()).append(COMMA);

@@ -1,6 +1,7 @@
 package com.algo.util.sort;
 
 import com.algo.util.common.CommonArrayUtil;
+import com.algo.util.sort.model.MergeSort;
 
 /**
  * 
@@ -47,7 +48,7 @@ public class MergeSortUtil {
 		int mid = l + ((r - l) / 2);
 		// 最终的量 = 左边排序时产生的小合总量 + 右边排序时产生的小合总量 + Merge时产生的小合总量
 		return processSmallSum(arr, l, mid) 
-			 + processSmallSum(arr, mid, r) 
+			 + processSmallSum(arr, mid + 1, r) 
 			 + mergeSmallSum(arr, l, mid, r);
 	}
 	private static int mergeSmallSum(int[] arr, int l, int m, int r) {
@@ -56,6 +57,9 @@ public class MergeSortUtil {
 		int p1 = l;
 		int p2 = m + 1;
 		int smallSum = 0;
+
+		MergeSort.print(arr, l, m, r);
+		
 		while (p1 <= m && p2 <= r) {
 			// 左边 < 右边 时， 产生小合 (r - p2 + 1) * 左边那个数
 			// (r - p2 + 1) 右组中有几个数比当前数大
@@ -98,7 +102,7 @@ public class MergeSortUtil {
 		int mid = l + ((r - l) / 2);
 		// 左边你给我你的count + 右边你给我你的count + 合并起来给我一下count
 		return processCountRevPair(arr, l, mid) 
-			 + processCountRevPair(arr, mid, r) 
+			 + processCountRevPair(arr, mid + 1, r) 
 			 + mergeCountRevPair(arr, l, mid, r);
 	}
 	
@@ -145,7 +149,7 @@ public class MergeSortUtil {
 		}
 		int mid = l + ((r - l) / 2);
 		return processCountGreatNum(arr, l, mid) 
-		     + processCountGreatNum(arr, mid, r) 
+		     + processCountGreatNum(arr, mid + 1, r) 
 		     + mergeCountGreatNum(arr, l, mid, r);
 	}
 	

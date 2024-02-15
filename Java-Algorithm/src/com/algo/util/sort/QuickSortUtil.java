@@ -7,6 +7,10 @@ import java.util.Stack;
 import com.algo.util.common.CommonArrayUtil;
 /**
  * n*log(n)
+ * 
+ * https://leetcode.cn/problems/sort-an-array/
+ * 
+ * 
  */
 public class QuickSortUtil {
 	/**
@@ -28,14 +32,14 @@ public class QuickSortUtil {
 		}
 		int less = L - 1; // < 区 右边界
 		int more = R; // > 区 左边界
-		int index = L; 
-		while (index < more) { // 当前位置index，不能和 >区的左边界撞上
-			if (arr[index] == arr[R]) {
-				index++;
-			} else if (arr[index] < arr[R]) {
-				CommonArrayUtil.swap(arr, index++, ++less);
+		int i = L; 
+		while (i < more) { // 当前位置index，不能和 >区的左边界撞上
+			if (arr[i] == arr[R]) {
+				i++;
+			} else if (arr[i] < arr[R]) {
+				CommonArrayUtil.swap(arr, i++, ++less); // ++less = 小于区域右扩
 			} else {
-				CommonArrayUtil.swap(arr, index, --more);
+				CommonArrayUtil.swap(arr, i, --more); // --more = 大于区域左扩
 			}
 		}
 		CommonArrayUtil.swap(arr, more, R);  // <[R]   =[R]   >[R]

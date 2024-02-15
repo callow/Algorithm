@@ -3,6 +3,9 @@ package com.algo.util.sort;
 import com.algo.util.common.CommonArrayUtil;
 
 /**
+ * 
+ * 归并分治： 大范围上的问题是否等于 左侧产生的答案 + 右侧产品的答案 + 合并左右产生的答案，排序是否产生便利性 代码都写在Merge里面
+ * 
  * MergeSort 是分而治之思路， 砍一半， （左边总个数 + 右边总个数 + Merge过程中的总个数） O(NLogn)
  * 
  * 关键代码都是在Merge，它把很多东西变成有序的，间接结出很多题目,反正Merge的过程也要左右两边的数都看一遍，且左右2边必须有序，因此利用了一下 <br>
@@ -18,6 +21,12 @@ public class MergeSortUtil {
 	 * 数组每个位置左边只要比它小的数累加，不停合并，最终形成的Sum O（nLog(n)）<br>
 	 *  - 每一个数左边有多少个数比它小 = 每一个数右边多少个数比它大
 	 *  - 从左往右Merge
+	 *  
+	 *  https://www.nowcoder.com/practice/edfe05a1d45c4ea89101d936cac32469
+	 *  
+	 *  思路： 
+	 *  	1. 0~4范围上小和 = 0~1上的小和 + 3~4上小和 + 跨左右的小和
+	 *  	2. 排序产生了便利 
 	 */
 	
 	public static int smallSum(int[] arr) {
@@ -116,9 +125,12 @@ public class MergeSortUtil {
 	}
 	
 	/**
-	 * Great num => 它 右边有几个数 * 2 都没有它大。 数一下总数？ <br>
+	 * Great num => 它 右边有几个数 * 2 都没有它大。 数一下总数？ <br>  
 	 *  - 如果左右都是有序的，则指针可以不回退
 	 *  - https://leetcode.com/problems/reverse-pairs/
+	 *  
+	 *  
+	 *  思路： 0~4范围上反转对的数量 = 0~1上的数量 + 3~4上数量 + 跨左右的答案  2. 排序产生了便利 
 	 */
 	public static int countGreatNum (int[] arr) {
 		if (CommonArrayUtil.isEmpty(arr) || CommonArrayUtil.hasOne(arr)) {

@@ -57,7 +57,7 @@ public class QuickSortUtil {
 			return;
 		}
 		CommonArrayUtil.swap(arr, L + (int) (Math.random() * (R - L + 1)), R);
-		int[] equalArea = netherlandsFlag(arr, L, R); // ºÉÀ¼¹úÆìÀ´ËõĞ¡×óÓÒ·¶Î§
+		int[] equalArea = netherlandsFlag(arr, L, R); // ºÉÀ¼¹úÆìÀ´ËõĞ¡×óÓÒ·¶Î§ = partition
 		process(arr, L, equalArea[0] - 1); // È¥×ó±ßÅÅ
 		process(arr, equalArea[1] + 1, R); // È¥ÓÒ±ßÅÅ
 	}

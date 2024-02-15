@@ -124,4 +124,18 @@ public class MergeSort {
 		}
 	}
 	
+	
+	public static void print(int[] arr, int l, int m, int r) {
+		StringBuilder builderLeft = new StringBuilder();
+		for(int i = l; i < m; i++) {
+			builderLeft.append(arr[i]).append(" ");
+		}
+		StringBuilder builderRight = new StringBuilder();
+		for(int i = m+1; i < r; i++) {
+			builderRight.append(arr[i]).append(" ");
+		}
+		System.out.println("×ó£º " + builderLeft + " ÓÒ£º " + builderRight);
+	}
+	
+	
 }

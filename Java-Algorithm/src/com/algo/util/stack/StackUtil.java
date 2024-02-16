@@ -1,8 +1,10 @@
 package com.algo.util.stack;
 
+import java.io.IOException;
 import java.util.Stack;
 
 import com.algo.util.stack.model.Queue;
+import com.algo.util.stack.model.ValidParenthese;
 
 public class StackUtil {
 
@@ -28,5 +30,18 @@ public class StackUtil {
 			stack.push(result);
 			return last;
 		}
+	}
+	
+	/**
+	 * 判断括号是否有效： 
+	 * 	有效： "{}()", "[{()}]", "({()})"
+	 * 	无效： "{}(", "({)}", "[[", "}{"
+	 * 
+	 * 	解决： 遇到左括号就压栈，遇到右括号就弹出来看看是不是配对的左括号
+	 * 
+	 */
+	
+	public static boolean isValidParentheses (String line) throws IOException {
+		return ValidParenthese.isValid(line);
 	}
 }

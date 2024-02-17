@@ -11,14 +11,20 @@ import com.algo.util.common.model.Line;
  *    它左孩子的位置 2i+1 <br> 
  *    它右孩子的位置 2i+2 <br>
  *    它父亲的位置 (i -1) /2
- *
+ *    
+ *    0 1 2 3 4 5 6 (size = 7)
+ *    
+ *    0
+ *   / \
+ *  1   2
+ * ....
  */
 public class HeapUtil {
 
 	/**
 	 * 上移过程 - O（Logn）: <br>
-	 * 	不停插入节点时候，仍然维持大根堆，每次与父节点PK，若比父大则swap(上移)  <br>
-	 *  用于堆的Push操作，即插入元素
+	 * 	不停插入节点时候，仍然维持大根堆，每次与父节点PK，若比父大则swap(上移) 这个上移的过程叫做Heap Insert <br>
+	 *  用于堆的Push操作，即插入元素 ， 怎么看 找父亲：(i -1) /2
 	 */
 	public static void heapInsert(int[] arr, int i) {
 		int parent = (i - 1) / 2;
@@ -30,7 +36,7 @@ public class HeapUtil {
 	
 	/**
 	 * 下沉过程 - O（Logn）: <br>
-	 * 首先头首交换， 然后HeapSize - 1， 然后头不停与较大孩子比，然后swap（下沉） <br>
+	 * 首先头首交换， 然后HeapSize - 1， 然后头不停与较大孩子比，然后swap（下沉） 这个下移的过程叫做heapify <br>
 	 * 用于堆的pop操作，即删除最大元素
 	 */
 	public static void heapify(int[] arr, int i, int heapSize) {

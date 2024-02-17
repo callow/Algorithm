@@ -1,6 +1,7 @@
 package com.algo.util.common;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 import com.algo.util.common.model.Node;
 
@@ -214,6 +215,14 @@ public class CommonArrayUtil {
 			sums[i] = sums[i - 1] + arr[i];
 		}
 		return sums;
+	}
+	
+	/**
+	 * 
+	 * ½«List of List ×ª³É2D array
+	 */
+	public static int[][] convert(List<List<Integer>> list) {
+		return list.stream().map(l -> l.stream().mapToInt(Integer::intValue).toArray()).toArray(int[][]::new);
 	}
 
 }

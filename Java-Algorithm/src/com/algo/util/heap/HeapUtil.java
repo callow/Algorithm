@@ -86,7 +86,9 @@ public class HeapUtil {
 	/**
 	 * 最大线段重合问题 有n个[start,end], 哪个区域是重写最多区域，返回重叠数 O(nLogn)<br><br>
 	 * 
+	 * 先根据每条线段的 start 进行从小到大的排序，然后准备一个小根堆，用于存放每条线段的 end。 【重合线段一定是以某条线段的 start 为左边界的
 	 * 
+	 * https://blog.csdn.net/u011386173/article/details/124945154
 	 */
 	
 	public static int getMaxDuplicates(int[][] m) {

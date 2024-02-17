@@ -307,5 +307,39 @@ public class MatrixUtil {
 			m[row][leftUp + 1] = '*';
 		}
 	}
+	
+	/**
+	 * 3* 3 magic matrix： https://www.hackerrank.com/challenges/magic-square-forming/problem
+	 * 
+	 * 思路：其实 3 * 3 magic matrix总共就只有8种组合可能 ： https://www.geeksforgeeks.org/minimum-changes-needed-to-make-a-33-matrix-magic-square/
+	 * 	   每个数字都枚举一遍和标准中的8个比一比然后求最小cost
+	 */
+	public static int  magicMatrixCost(int[][] arr) {
+		
+		int[][][] standard = {{{4,3,8},{9,5,1},{2,7,6}},
+								  {{2,9,4},{7,5,3},{6,1,8}},
+								  {{6,7,2},{1,5,9},{8,3,4}},
+								  {{8,1,6},{3,5,7},{4,9,2}},
+								  {{8,3,4},{1,5,9},{6,7,2}},
+								  {{4,9,2},{3,5,7},{8,1,6}},
+								  {{2,7,6},{9,5,1},{4,3,8}},
+								  {{6,1,8},{7,5,3},{2,9,4}}
+								};
+		int tmp;
+		int min = Integer.MAX_VALUE;
+        for(int i = 0; i < 8; i++) { // standard中有7个元素
+            tmp = 0;
+            for(int j = 0; j < 3; j++) { // 3 行
+                for(int k = 0; k < 3; k++) { // 3 列
+                	int cost = standard[i][j][k] - arr[j][k];
+                    tmp += Math.abs(cost);        
+                }
+            }
+            if(tmp < min) { 
+                min = tmp;
+            }
+        }
+        return min;
+	}
 
 }

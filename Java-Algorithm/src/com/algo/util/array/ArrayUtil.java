@@ -362,5 +362,39 @@ public class ArrayUtil {
 			oneTimeRest %= qian[i];
 		}
 	}
+	
+	/**
+	 * 扔色子，n个忘记了，但是知道一部分和一个平均数,推导出忘记的n个色子
+	 * 
+	 * https://leetcode.com/problems/find-missing-observations/
+	 * 
+	 *  curSum = sum(rolls)
+		(curSum + missingSum) / (n + m) == mean
+		curSum + missingSum = mean * (n+m)
+		missingSum = mean * (n+m) - curSum
+		
+		for (int i = 0; i < remainder; ++i) {
+        	ans[i]++;
+        }
+        这里很炫，根据余数逐个分配到ans[]里面去，每个分1点：
+        e.g 如果需要9， [2,2,2,2] ， 9%4 mod 1 则把这1点分配到ansp[] 第1个 => [3,2,2,2]
+	 */
+	public static int[] solution(int[] rolls, int n, int mean) {
+		int curSum = Arrays.stream(rolls).sum(), m = rolls.length;
+        int missingSum = mean * (n + m) - curSum;
+        
+        // 因为色子最小为1
+        if (missingSum < n || missingSum > 6 * n) {
+        	return new int[0];
+        }
+        //开始分配	
+        int part = missingSum / n, remainder = missingSum % n;
+        int[] ans = new int[n];
+        Arrays.fill(ans, part); // 先填充上可以整除的
+        for (int i = 0; i < remainder; ++i) {
+        	ans[i]++;
+        }
+        return ans;
+	}
 
 }

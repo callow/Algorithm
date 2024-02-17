@@ -272,7 +272,12 @@ public class BinaryTreeIterateUtil {
 	// --------------------------------------------------------------------------------------
 	
 	/**
-	 * 按层遍历打印 : = Q宽
+	 * 按层遍历打印 : = Q宽： 
+	 * 
+	 * 	abcdef
+	 * 
+	 * 1. 队列弹出cur， 打印
+	 * 2. cur有左入左，有右入右
 	 */
 	
 	public static void level(BTNode head) {

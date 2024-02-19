@@ -8,8 +8,24 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Scanner;
+
+class MyRegex {
+	public String pattern =  "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$";
+}
 
 public class Test {
+	
+	public static void main(String[] args) {
+		try (Scanner in = new Scanner(System.in)) {
+			while(in.hasNext()) {
+				String IP = in.next();
+				System.out.println(IP.matches(new MyRegex().pattern));
+			}
+		}
+	}
+	
+		
 	
 	public static int total;
 	public static int window;

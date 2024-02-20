@@ -7,31 +7,18 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import java.util.Deque;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.Scanner;
-
-class MyRegex {
-	public String pattern =  "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$";
-}
+import java.util.Set;
 
 public class Test {
-	
-	public static void main(String[] args) {
-		try (Scanner in = new Scanner(System.in)) {
-			while(in.hasNext()) {
-				String IP = in.next();
-				System.out.println(IP.matches(new MyRegex().pattern));
-			}
-		}
-	}
-	
-		
 	
 	public static int total;
 	public static int window;
 	public static Deque<Integer> deque = new LinkedList<>();
 	public static int maxUnique;
-	public static void main2(String[] args) throws IOException {
+	public static Set<Integer> set = new LinkedHashSet<>();
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StreamTokenizer in = new StreamTokenizer(br);
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
@@ -42,13 +29,21 @@ public class Test {
 			for (int i = 0; i < total; i++) {
 				in.nextToken();
 				int val = (int) in.nval;
-				if (deque.size() < 3) {
-					deque.addFirst(val);
+				if (deque.size() < window) {
+					deque.add(val);
+					set.add(val);
 				} else {
-					deque.pollLast();
-					deque.addFirst(val);
+					deque.poll();
+					deque.add(val);
+					set.remove(val);
+					set.add(val);
+					
+					if (set.size() > window) {
+						int first = set.stream().findFirst().get();
+						set.remove(first);
+					}
 				}
-				int curSize = (int) deque.stream().distinct().count();
+				int curSize = set.size();
 				maxUnique = Math.max(maxUnique, curSize);
 			}
 			out.println(maxUnique);

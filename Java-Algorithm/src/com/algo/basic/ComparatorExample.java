@@ -1,4 +1,4 @@
-package com.algo;
+package com.algo.basic;
 
 import java.util.Arrays;
 import java.util.Comparator;

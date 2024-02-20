@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 /**
- * 
+ * sort:
+ * - score descending
+ * - if score =, algabatic order based on name
  *
  */
 class Checker implements Comparator<Player>{
@@ -28,7 +30,7 @@ class Player {
 }
 
 
-public class ComparatorSS {
+public class ComparatorExample {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);

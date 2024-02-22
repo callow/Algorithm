@@ -4,7 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 返回字符串的全部子序列 ： 
+ * 返回字符串的全部子序列 ：  https://www.nowcoder.com/practice/92e6247998294f2c933906fdedbc6e6a
+ * 
+ * https://leetcode.com/problems/subsets/
  */
 public class FullSubsequencePermutation {
 	

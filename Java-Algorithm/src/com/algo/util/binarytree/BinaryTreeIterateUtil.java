@@ -68,6 +68,8 @@ public class BinaryTreeIterateUtil {
 	/**
 	 * 非递归实现先序遍历
 	 * 
+	 * 所谓先序 = 先处理头
+	 * 
 	 * 先序遍历打印：头(中) 左 右, 栈：先弹出（打印），先压右 再压左， 之所有先压右是因为先弹出左，先压的后弹出.
 	 * 
 	 * 左弹出后会处理自己的孩子，因此左的后续不完是不会处理压入的右的。所以肯定是 先处理中间，再处理左树，再处理右树
@@ -152,6 +154,8 @@ public class BinaryTreeIterateUtil {
 	
 	/**
 	 * 中序遍历打印： 左 头 右
+	 * 
+	 * 所谓中序 = 在中间处理头
 	 */
 	
 	public static void inOrder(BTNode head) {
@@ -168,7 +172,7 @@ public class BinaryTreeIterateUtil {
 	 * 不用递归实现中序遍历: 所有子树顺序，左子树，头，右子树
 	 * 
 	 * 弹出就打印
-	 *  
+	 *  https://leetcode.com/problems/binary-tree-inorder-traversal/
 	 * 
 	 */
 	public static void inOrderStack(BTNode head) {
@@ -204,6 +208,8 @@ public class BinaryTreeIterateUtil {
 	
 	/**
 	 * 后序遍历打印： 左 右 头
+	 * 
+	 * 所谓后续 = 在最后处理头
 	 */
 	
 	public static void posOrder(BTNode head) {

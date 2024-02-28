@@ -117,6 +117,30 @@ public class LinklistUtil {
 		return head;
 	}
 	
+	/**
+	 * 有序单链表删除重复元素，结果依然有序
+	 * 1 -> 1- >2 ->6 -> 9 -> 9
+	 * 1 -> 2 ->6 ->9
+	 * 
+	 * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+	 */
+	
+	public Node<Integer> removeDuplicate(Node<Integer> head) {
+		Node<Integer> current = head;
+		
+		while(current != null && current.next != null) {
+			// 删除next
+			if (current.value == current.next.value) {
+				current.next = current.next.next;
+			} else {
+				current = current.next;
+			}
+		}
+		
+		return head;
+		
+	}
+	
 	
 	/**
 	 * 生成一个链表写的Queue

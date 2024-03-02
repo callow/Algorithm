@@ -193,6 +193,9 @@ public class SortUtil {
 	 * 	个位先进桶 再倒出 -> 个位数字已经有序
 	 * 	十位先进桶 再倒出 -> 十位数字已经有序
 	 *  百位先进桶 再倒出 -> 百位数字已经有序
+	 *  
+	 *  * 前缀数量分区的技巧
+		* 数字提取某一位的技巧
 	 * 		
 	 */
 	private static void radix(int[] arr, int L, int R, int digit) {
@@ -223,6 +226,8 @@ public class SortUtil {
 			// 从右往左遍历， = 出桶：
 				// e.g: 514 当处理十位时， <=10 的count[] = 4 则 4 -1 = 3, 则结果放在help[]的3位置
 			for (i = R; i >= L; i--) {
+				//  前缀数量分区的技巧
+				//  数字提取某一位的技巧
 				j = CommonNumberUtil.getDigit(arr[i], d);
 				help[count[j] - 1] = arr[i];
 				count[j]--;

@@ -8,6 +8,10 @@ public class CommonNumberUtil {
 	 * @param x
 	 * @param d
 	 * @return
+	 * 
+	 * 17293 -> offset = 1 -> (17293 / offset) % 10 = 3
+	 * 17293 -> offset = 10 -> (17293 / offset) % 10 = 9
+	 * 17293 -> offset = 100 -> (17293 / offset) % 10 = 2
 	 */
 	public static int getDigit(int x, int d) {
 		return ((x / ((int) Math.pow(10, d - 1))) % 10);

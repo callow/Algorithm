@@ -188,6 +188,12 @@ public class SortUtil {
 	/**
 	 * 在L ~ R 范围上排序
 	 * @param digit 最大值的位数，e.g 3位 ，个位 十位 百位
+	 * 
+	 * 过程：
+	 * 	个位先进桶 再倒出 -> 个位数字已经有序
+	 * 	十位先进桶 再倒出 -> 十位数字已经有序
+	 *  百位先进桶 再倒出 -> 百位数字已经有序
+	 * 		
 	 */
 	private static void radix(int[] arr, int L, int R, int digit) {
 		final int radix = 10;

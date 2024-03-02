@@ -207,6 +207,8 @@ public class SortUtil {
 			// count[2] 当前位(d位)是(0、1和2)的数字有多少个
 			// count[i] 当前位(d位)是(0~i)的数字有多少个
 			int[] count = new int[radix]; // count[0..9]
+			
+			// offset提取数位技巧，获得每一位的词频count[]
 			for (i = L; i <= R; i++) {
 				// 103  1   3
 				// 209  1   9  
@@ -214,10 +216,12 @@ public class SortUtil {
 				
 				count[j]++;
 			}
+			// <= 2的有 a个， 则 <=4的就有a+b个
 			for (i = 1; i < radix; i++) {
 				count[i] = count[i] + count[i - 1];
 			}
-			// 从右往左遍历， = 出桶
+			// 从右往左遍历， = 出桶：
+				// e.g: 514 当处理十位时， <=10 的count[] = 4 则 4 -1 = 3, 则结果放在help[]的3位置
 			for (i = R; i >= L; i--) {
 				j = CommonNumberUtil.getDigit(arr[i], d);
 				help[count[j] - 1] = arr[i];

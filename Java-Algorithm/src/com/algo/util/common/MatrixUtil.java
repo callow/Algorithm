@@ -1,12 +1,20 @@
 package com.algo.util.common;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import com.algo.util.Monostack.MonotonicStackUtil;
 
 public class MatrixUtil {
+	
+	public static void print(int[][] mat) {
+		int m = mat.length;
+		for (int i = 0; i < m; i++) {
+			System.out.println(Arrays.toString(mat[i]));
+		}
+	}
 
 	/**
 	 * 将矩阵压缩成直方图数组,并在压缩过程中，求出里面最大面积的矩形<br>

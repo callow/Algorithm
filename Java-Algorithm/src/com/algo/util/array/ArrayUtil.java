@@ -7,6 +7,28 @@ import java.util.List;
 import com.algo.util.array.model.Queue;
 
 public class ArrayUtil {
+	
+	/**
+	 * reverse an array
+	 */
+	public static int[] reverse(int[] arr) {
+		for(int i = 0; i < arr.length / 2; i++) {
+		    int temp = arr[i];
+		    arr[i] = arr[arr.length - i - 1];
+		    arr[arr.length - i - 1] = temp;
+		}
+		return arr;
+	}
+	
+	/**
+	 * flip an array
+	 */
+	public static int[] flip(int[] arr) {
+	    for (int i = 0; i < arr.length; i++) {
+	        arr[i] = arr[i] ^ 1;
+	      }
+	    return arr;
+	}
 
 	/**
 	 * 生成一个数组实现的Queue

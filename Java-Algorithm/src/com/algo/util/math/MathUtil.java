@@ -27,5 +27,23 @@ public class MathUtil {
 	}
 	
 	
+	 /**
+	  * 矩形是否相交：rec1 or rec2 给出左下 和 右上坐标 -> rec1 = [0,0,2,2], rec2 = [1,1,3,3]
+	  * 
+	  * 思路：如果有交集，则交集也一定是矩形，即：交集存在向x轴的投影 和 向y轴的投影。 = 一维线段是否有交集的问题 
+	  * 	# rec1 和 rec2 的水平边投影到 x 轴上的线段分别为 (rec1[0], rec1[2]) 和 (rec2[0], rec2[2])
+	  * 	  当 min(rec1[2], rec2[2]) > max(rec1[0], rec2[0]) 时，这两条线段有交集
+	  *     # y轴同理
+	  * 
+	  * https://leetcode.cn/problems/rectangle-overlap/description/
+	  */
+	 public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
+		 return (Math.min(rec1[2], rec2[2]) > Math.max(rec1[0], rec2[0])  // x 轴存在投影
+				 && 
+	             Math.min(rec1[3], rec2[3]) > Math.max(rec1[1], rec2[1])); // y 轴存在投影
+
+	 }
+	
+	
 	
 }

@@ -19,6 +19,21 @@ import com.algo.util.linklist.model.Stack;
  * 
  */
 public class LinklistUtil {
+	
+	
+	/**
+	 * 将Array转成link list
+	 */
+	public static Node<Integer> parse(int[]head){
+		Node<Integer> dummy= new Node<Integer>(-1);
+		Node<Integer> cur= dummy;
+	    for (int i = 0; i <head.length ; i++) {
+	    	Node<Integer> node=new Node<>(head[i]);
+	        cur.next=node;
+	        cur=cur.next;
+	    }
+	    return dummy.next;
+	}
 
 	/**
 	 * 反转单链表：

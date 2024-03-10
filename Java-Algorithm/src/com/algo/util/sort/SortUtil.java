@@ -1,9 +1,23 @@
 package com.algo.util.sort;
 
+import java.util.Arrays;
+
+import com.algo.util.array.ArrayUtil;
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonNumberUtil;
 
 public class SortUtil {
+	
+	
+	/**
+	 * Sort an array in descending order 
+	 */
+	
+	public static int[] descendingSort(int[] arr) {
+		Arrays.sort(arr);
+		ArrayUtil.reverse(arr);
+		return arr;
+	}
 	
 	/**
 	 * 选择排序 O（N^2），每次找到最小那个放到前面去(交换) <br>

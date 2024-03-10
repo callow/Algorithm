@@ -24,13 +24,13 @@ public class LinklistUtil {
 	/**
 	 * ½«Array×ª³Élink list
 	 */
-	public static Node<Integer> parse(int[]head){
-		Node<Integer> dummy= new Node<Integer>(-1);
+	public static Node<Integer> convert(int[]head){
+		Node<Integer> dummy = new Node<Integer>(-1);
 		Node<Integer> cur= dummy;
 	    for (int i = 0; i <head.length ; i++) {
 	    	Node<Integer> node=new Node<>(head[i]);
-	        cur.next=node;
-	        cur=cur.next;
+	        cur.next = node;
+	        cur = cur.next;
 	    }
 	    return dummy.next;
 	}

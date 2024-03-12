@@ -1,6 +1,7 @@
 package com.algo.util.PrefixSum;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.algo.util.PrefixSum.model.PrefixSumArray;
 
@@ -80,5 +81,29 @@ public class PrefixSumUtil {
 		return ans;
 	}
 	
-	// 继续未完 @TODO
+	 /**
+		子数组累加和=k的个数
+		
+	    1.前缀和转换： sum(a ~ b) = k  => prefix[b] - prefix[a-1] = k or prefix[a-1] = prefix[b] - k
+	    2. Map(prefix,no.of occurrences of prefix)
+	    
+	 */
+	public int subarraySum(int[] nums, int k) {
+	    
+	    Map<Integer,Integer> map = new HashMap<>();
+	    int sum = 0;
+	    int ans = 0;
+	    map.put(0,1); // 处理边界： prefix[b] - k = 0 (之前全部数字的前缀和=0) , 而我们前缀和又没有0，因此要加1个
+	    for(int i = 0; i < nums.length; i++) {
+	        sum += nums[i];
+	
+	        if(map.containsKey(sum - k)) { // 是否之前出现过prefix[a-1]
+	            ans += map.get(sum-k);  // 出现了几次就+几次
+	        }
+	
+	        map.put(sum, map.getOrDefault(sum,0) + 1);
+	    }
+	
+	    return ans;
+	}
 }

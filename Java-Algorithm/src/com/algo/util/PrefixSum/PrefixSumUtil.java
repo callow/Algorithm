@@ -82,7 +82,7 @@ public class PrefixSumUtil {
 	}
 	
 	 /**
-		子数组累加和=k的个数
+		子数组累加和=k的个数 : https://leetcode.com/problems/subarray-sum-equals-k/
 		
 	    1.前缀和转换： sum(a ~ b) = k  => prefix[b] - prefix[a-1] = k or prefix[a-1] = prefix[b] - k
 	    2. Map(prefix,no.of occurrences of prefix)

@@ -1,5 +1,8 @@
 package com.algo.util.linklist;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.model.DoubleNode;
 import com.algo.util.common.model.Node;
@@ -432,6 +435,48 @@ public class LinklistUtil {
 			cur.next = new Node<Integer>(1);
 		}
 		return ans;
-	} 
+	}
+	
+	
+	
+	
+	/**
+	    删除和 = 0 的节点. 
+	
+	    - Prefix Sum + Hash Map
+	        ~ 前缀和数组中preSum[a] = preSum[b], 则原数组中 a.next ~ b 为0和子数组
+	        ~ HashMap: 将preSum存进key，node存进value
+	    - 只有+-都有才满足
+	    
+	    https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/description/
+	 */
+	public Node<Integer> removeZeroSumSublists(Node<Integer> head) {
+	    
+		Node<Integer> front = new Node<>(0);
+		front.next = head;
+	
+	    // 计算前缀和，并保存 last occurrence of each sum in a HashMap
+		Node<Integer> cur = front;
+	    int preSum = 0;
+	    Map<Integer, Node<Integer>> preSumMap = new HashMap<>();
+	    while(cur != null) {
+	        preSum += cur.value;
+	        preSumMap.put(preSum,cur);
+	        cur = cur.next;
+	    }
+	
+	    // 重置
+	    preSum = 0;
+	    cur = front;
+	
+	    // 再遍历一遍，开始删除(next指针移动)
+	    while(cur != null) {
+	        preSum += cur.value;
+	        cur.next = preSumMap.get(preSum).next; // If we have seen this sum before, it means the sublist between the previous occurrence and this one sums to zero.
+	        cur = cur.next;
+	    }
+	
+	    return front.next;
+	}
 	
 }

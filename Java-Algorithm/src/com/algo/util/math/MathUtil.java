@@ -43,6 +43,25 @@ public class MathUtil {
 	             Math.min(rec1[3], rec2[3]) > Math.max(rec1[1], rec2[1])); // y 轴存在投影
 
 	 }
+	 
+	 
+	 
+	   /**
+	    * 求支点： 连续数列： ∑(1-x) = ∑(x~n), 求x? https://leetcode.com/problems/find-the-pivot-integer/description/
+	     sum(1~x) = sum(x~n)
+	
+	     连续数列 用等差数列求和公式 ：n(a1+an) / 2
+	         sum(1~x) = x(x+1) / 2
+	         sum(x~n) = (x+n)(n-x+1) / 2 where 项数n= n-x+1
+	
+	         x = (n^2 + n) / 2
+	  */
+	 public int pivotInteger(int n) {
+	     
+	     int sum = (n * (n + 1) / 2);
+	     int pivot = (int) Math.sqrt(sum);
+	     return pivot * pivot == sum ? pivot : -1;
+	 }
 	
 	
 	

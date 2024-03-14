@@ -13,6 +13,7 @@ public class ArrayUtil {
 	
 	/**
 	 * 子数组和=K的个数
+	 * https://leetcode.com/problems/binary-subarrays-with-sum/description/
 	 */
 	public static int subarraySum(int[] nums, int aim) {
 		return PrefixSumUtil.subarraySum(nums, aim);

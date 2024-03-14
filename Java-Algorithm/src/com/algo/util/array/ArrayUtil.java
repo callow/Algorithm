@@ -2,11 +2,21 @@ package com.algo.util.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
+import com.algo.util.PrefixSum.PrefixSumUtil;
 import com.algo.util.array.model.Queue;
 
 public class ArrayUtil {
+	
+	
+	/**
+	 * 子数组和=K的个数
+	 */
+	public static int subarraySum(int[] nums, int aim) {
+		return PrefixSumUtil.subarraySum(nums, aim);
+	}
 	
 	/**
 	 * reverse an array

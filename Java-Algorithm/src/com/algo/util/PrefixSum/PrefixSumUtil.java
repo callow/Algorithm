@@ -88,7 +88,7 @@ public class PrefixSumUtil {
 	    2. Map(prefix,no.of occurrences of prefix)
 	    
 	 */
-	public int subarraySum(int[] nums, int k) {
+	public static int subarraySum(int[] nums, int k) {
 	    
 	    Map<Integer,Integer> map = new HashMap<>();
 	    int sum = 0;

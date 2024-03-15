@@ -3,7 +3,30 @@ package com.algo.util.PrefixSum.model;
 public class MatrixSumArray {
 
 	public int[][] sum;
-
+	
+	/**
+	 * Matrix前缀和公式sum[][]：
+	 * 顺序：从左到右一行一行处理
+	 * 	当前cell的 : 左 + 上 - 左上 + 自己
+	 * e.g:
+	 * [3,1,-2]
+	 * [5,-3,4]  => sum[][] =
+	 * [3,6,-2]
+	 * 
+	 * [3,4,2]
+	 * [8,6,8]     所以 6  = 3+1+5+-3
+	 * [11,15,15]
+	 * 
+	 * 如果求子矩阵，不是以[0][0]为基点，只需要使用容斥原理求即可。 
+	 * 
+	 * 实际过程中，要补第0行，和 第0列 减少边界判断
+	 * e.g:
+	 * [0,0,0, 0]
+	 * [0,3,1,-2]
+	 * [0,5,-3,4]
+	 * [0,3,6,-2]
+	 * 
+	 */
 	public MatrixSumArray(int[][] matrix) {
 		int n = matrix.length;
 		int m = matrix[0].length;

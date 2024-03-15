@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.algo.util.Monostack.MonotonicStackUtil;
+import com.algo.util.PrefixSum.PrefixSum2DUtil;
 
 public class MatrixUtil {
 	
@@ -348,6 +349,16 @@ public class MatrixUtil {
             }
         }
         return min;
+	}
+	
+	
+	
+	/**
+	 * 
+	 * 二维Matrix中，子矩阵累加和
+	 */
+	public static int sum(int[][] matrix, int a, int b, int c, int d) {
+		return PrefixSum2DUtil.sumRegion(matrix, a, b, c, d);
 	}
 
 }

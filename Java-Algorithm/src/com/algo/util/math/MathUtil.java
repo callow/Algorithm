@@ -62,6 +62,31 @@ public class MathUtil {
 	     int pivot = (int) Math.sqrt(sum);
 	     return pivot * pivot == sum ? pivot : -1;
 	 }
+	 
+	 
+	 /**
+	  * 快乐数： https://leetcode.com/problems/happy-number/
+	  * 
+	  * 解： 通过穷举观察到，十进制中非快乐数是处于一个循环中：4→16→37→58→89→145→42→20→4 所以在替换过程中遇到任意一个就直接return false
+	  */
+	 public static boolean isHappy(int n) {
+	      while(n != 1) {
+	    	  if (n == 4|| n == 16 || n ==37|| n==58 || n==89 || n == 145 || n == 42 || n ==20) {
+	    		  return false;
+	    	  }
+	    	  n = split(n);
+	      }
+	      return true;
+	 }
+	 private static int split(int n) {
+        int totalSum = 0;
+        while (n > 0) {
+            int d = n % 10;
+            n = n / 10;
+            totalSum += d * d;
+        }
+	     return totalSum;
+	 }
 	
 	
 	

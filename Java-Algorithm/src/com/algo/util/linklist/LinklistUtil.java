@@ -111,6 +111,8 @@ public class LinklistUtil {
 	 * 
 	 * 2 -> 3 -> 1 -> 3 ->2 ->4 -> null , remove 3 then
 	 * 2 -> 1 ->2 -> 4 -> null
+	 * 
+	 * https://leetcode.com/problems/remove-linked-list-elements/
 	 */
 	
 	public static Node<Integer> removeValue(Node<Integer> head, int num) {

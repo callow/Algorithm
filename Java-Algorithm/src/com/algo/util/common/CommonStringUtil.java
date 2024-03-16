@@ -96,4 +96,59 @@ public class CommonStringUtil {
 		}
 		return bestSplit;
 	}
+	
+	/**
+	 * 判断char是0~9的数字 
+	 * 
+	 */
+    public static boolean isDigit(char ch){
+        return ch >= '0' && ch <= '9';
+    }
+	
+	/**
+	 * 字符串提取数字: https://leetcode.com/problems/string-to-integer-atoi/description/
+	 * 	4193 with words -> 4193 
+	 */
+    public static int myAtoi(String str) {
+        final int len = str.length();
+         
+         if(len == 0){
+             return 0;
+         }
+         
+         // index = 数字起始位置
+         int index = 0;
+         while(index < len && str.charAt(index) == ' '){
+             index++;
+         }
+         
+         if(index == len){
+             return 0;
+         }
+         
+         char ch;
+         boolean isNegative = (ch = str.charAt(index)) ==  '-';
+         
+         // 如果发现+、- ， 数字起始位置+1
+         if(isNegative || ch == '+'){
+             ++index;
+         }
+             
+         final int maxLimit = Integer.MAX_VALUE / 10;
+         int result = 0;
+         while(index < len && isDigit(ch = str.charAt(index))){
+             
+             int digit = ch - '0';
+             
+             if(result > maxLimit || (result == maxLimit && digit > 7)){
+                 return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+             }
+             
+             result = (result * 10) + digit;
+             
+             ++index;
+         }
+         
+         return isNegative ? -result : result;
+     }
 }

@@ -111,7 +111,7 @@ public class PrefixSumUtil {
 	
 	
     /**
-     * 	累加平衡原理：
+     * 	累加平衡原理：https://leetcode.com/problems/contiguous-array
      * 
 	    最长子数组，其中0和1的数量相同.
 	    思路： 1s = 0s => 1s - 0s = 0

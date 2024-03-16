@@ -7,7 +7,7 @@ public class MatrixSumArray {
 	/**
 	 * Matrix前缀和公式sum[][]：
 	 * 顺序：从左到右一行一行处理
-	 * 	当前cell的 : 左 + 上 - 左上 + 自己
+	 * 	当前cell的 : 左 + 上 - 左上 + 自己 => sum[i][j] += sum[i][j-1] + sum[i-1][j] - sum[i-1][j-1]
 	 * e.g:
 	 * [3,1,-2]
 	 * [5,-3,4]  => sum[][] =
@@ -42,7 +42,10 @@ public class MatrixSumArray {
 			}
 		}
 	}
-
+	
+	/**
+	 * 左上角点：(a,b), 到右下角点(c,d) 的累加和公式： sum[c][d] - sum[c][b-1] - sum[a-1][d] + sum[a-1][b-1]
+	 */
 	public int sumRegion(int a, int b, int c, int d) {
 		c++;
 		d++;

@@ -360,5 +360,51 @@ public class MatrixUtil {
 	public static int sum(int[][] matrix, int a, int b, int c, int d) {
 		return PrefixSum2DUtil.sumRegion(matrix, a, b, c, d);
 	}
+	
+	/**
+	 * 1 1 1 1
+	 * 1     1 
+	 * 1     1
+	 * 1 1 1 1
+	 * 判断矩阵是否边框全是1：
+	 * 	思路： prefixSum1（外侧） - prefixSum1（内侧） = 周长
+	 * 		  k = 当前尝试的边长
+	 */
+	public static boolean isBorderAllOnes(int[][] prefixSumArray, int a, int b, int c, int d, int k) {
+		int outerArea = innerSum(prefixSumArray, a, b, c, d);
+		int innerArea = innerSum(prefixSumArray, a + 1, b + 1, c - 1, d - 1);
+		int circumference =  (k - 1) * 4;
+		return outerArea - innerArea == circumference;
+	}
+	
+	/**
+	 * 通过2D前缀和数组，直接获取内部矩形 ∑
+	 */
+	
+	public static int innerSum(int[][] prefixSumArray, int a, int b, int c, int d) {
+		return a > c ? 0 : (prefixSumArray[c][d] - get(prefixSumArray, c, b - 1) 
+				- get(prefixSumArray, a - 1, d) + get(prefixSumArray, a - 1, b - 1));
+	}
+	
+	/***
+	 * 获取matrix中(i,j)位置的值
+	 */
+	public static int get(int[][] matrix, int i, int j) {
+		return (i < 0 || j < 0) ? 0 : matrix[i][j];
+	}
+	
+	
+	
+	/**
+	 *  构建前缀和数组，复用自己，没有申请额外空间sum
+	 */
+	public static int[][] build(int n, int m, int[][] g) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				g[i][j] += get(g, i, j - 1) + get(g, i - 1, j) - get(g, i - 1, j - 1);
+			}
+		}
+		return g; // 此时g[][] 就是前缀和数组prefixSumArray
+	}
 
 }

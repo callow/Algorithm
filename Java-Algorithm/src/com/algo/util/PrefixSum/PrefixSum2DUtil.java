@@ -48,7 +48,10 @@ public class PrefixSum2DUtil {
 				//     枚举所有(c,d)更大边长的右下角点，k是当前尝试的边长
 				// e.g： （5，7） 则2 * 2的 右下角 （6，8）
 				// k 是边长
-				for (int c = a + ans, d = b + ans, k = ans + 1; c < n && d < m; c++, d++, k++) {
+				for (int c = a + ans, d = b + ans, k = ans + 1;   
+						c < n && d < m;      
+						c++, d++, k++) {
+					
 					if (MatrixSumArray.sum(g, a, b, c, d) // 整个正方形
 							- MatrixSumArray.sum(g, a + 1, b + 1, c - 1, d - 1) //内侧正方形
 							== (k - 1) << 2) { // 周长

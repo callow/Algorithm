@@ -1,5 +1,7 @@
 package com.algo.util.PrefixSum.model;
 
+import com.algo.util.common.MatrixUtil;
+
 public class MatrixSumArray {
 
 	public int[][] sum;
@@ -60,16 +62,13 @@ public class MatrixSumArray {
 	public static void build(int n, int m, int[][] g) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				g[i][j] += get(g, i, j - 1) + get(g, i - 1, j) - get(g, i - 1, j - 1);
+				g[i][j] += MatrixUtil.get(g, i, j - 1) + MatrixUtil.get(g, i - 1, j) - MatrixUtil.get(g, i - 1, j - 1);
 			}
 		}
 	}
 
 	public static int sum(int[][] g, int a, int b, int c, int d) {
-		return a > c ? 0 : (g[c][d] - get(g, c, b - 1) - get(g, a - 1, d) + get(g, a - 1, b - 1));
+		return a > c ? 0 : (g[c][d] - MatrixUtil.get(g, c, b - 1) - MatrixUtil.get(g, a - 1, d) + MatrixUtil.get(g, a - 1, b - 1));
 	}
 
-	public static int get(int[][] g, int i, int j) {
-		return (i < 0 || j < 0) ? 0 : g[i][j];
-	}
 }

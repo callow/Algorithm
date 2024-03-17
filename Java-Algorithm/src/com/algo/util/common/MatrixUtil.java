@@ -180,7 +180,7 @@ public class MatrixUtil {
 
 	/**
 	 * 生成 Pascal's triangle -> 杨辉三角 <br>
-	 * 
+	 *  https://leetcode.com/problems/pascals-triangle/description/
 	 * 严格表结构填充
 	 */
 

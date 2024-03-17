@@ -373,6 +373,7 @@ public class BinaryTreeIterateUtil {
 
 		/**
 		 * 二叉树是否是对称的？
+		 * https://leetcode.com/problems/symmetric-tree
 		    symmetric:
 		        1. left head val = right head val
 		        2. left.left.val = right.right.val && left.right.val = right.left.val
@@ -414,6 +415,39 @@ public class BinaryTreeIterateUtil {
 	        return targetSum == 0;
 	    }
 	    return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
+	}
+	
+	
+	/**
+	 * 是否是平衡二叉树？
+	 * 
+	 * 左树高度 - 右树高度 <= 1
+	 * 
+	 * https://leetcode.com/problems/balanced-binary-tree/
+	 */
+    public static boolean balance;
+
+	public  static boolean isBalanced(BTNode root) {
+		// balance是全局变量，所有调用过程共享
+		// 所以每次判断开始时，设置为true
+		balance = true;
+		height(root);
+		return balance;
+	}
+
+	/**
+	 * 返回树的高度。
+	 */
+	public static int height(BTNode cur) {
+		if (!balance || cur == null) {
+			return 0;
+		}
+		int lh = height(cur.left);
+		int rh = height(cur.right);
+		if (Math.abs(lh - rh) > 1) {
+			balance = false;
+		}
+		return Math.max(lh, rh) + 1;
 	}
 	
 }

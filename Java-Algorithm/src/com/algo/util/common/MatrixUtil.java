@@ -208,7 +208,7 @@ public class MatrixUtil {
 
 	/**
 	 * 提取 Pascal's triangle -> 杨辉三角 的第nth行<br>
-	 * 
+	 * https://leetcode.com/problems/pascals-triangle-ii
 	 */
 	public static List<Integer> getRow(int rowIndex) {
 		List<Integer> pre = new ArrayList<>();

@@ -1,6 +1,25 @@
 package com.algo.util.common;
 
 public class CommonStringUtil {
+	
+	
+	/**
+	 * 是否是回文串 palindrome： https://leetcode.com/problems/valid-palindrome
+	 */
+	
+	public static boolean isPalindrome(String s) {
+		StringBuilder str1 = new StringBuilder(s);
+        str1.reverse();
+        return s.equals(str1.toString());
+	}
+	
+	
+	/**
+	 * 移除所有非字母字符 
+	 */
+	public static String removeAllNonAlphanumeric(String s) {
+		return s.replaceAll("[^a-zA-Z0-9]", "");
+	}
 
 	/**
 	 * 生成大量空格

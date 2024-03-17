@@ -106,4 +106,36 @@ public class PrefixSumUtil {
 	
 	    return ans;
 	}
+	
+	
+	
+	
+    /**
+     * 	累加平衡原理：https://leetcode.com/problems/contiguous-array
+     * 
+	    最长子数组，其中0和1的数量相同.
+	    思路： 1s = 0s => 1s - 0s = 0
+	          0 => -1, 1 => +1, = 求最长的连续子数组，其元素和为 0
+	    则是求+1/-1累加数组相同元素最长的部分：
+	    e.g： [1,0, 0, 0  0,  1,  1, 1]
+	    sum:  [1,0,-1,-2,-3, -2, -1, 0]
+	    其中balanced数组就首尾相同的数组：0~0, -1~-1, -2~-2, 最长的就是0～0
+	
+	    利用map记录counter和首次出现的位置。
+
+	 */
+	public static int findMaxLength(int[] nums) {
+	    Map<Integer,Integer> map = new HashMap<>(); // 第一次出现的位置：count: index
+	    map.put(0,-1);
+	    int maxLen = 0, count = 0;
+	    for (int i =0; i < nums.length; i++) {
+	        count += (nums[i] == 1 ? 1 : -1);
+	        if (map.containsKey(count)) { // 遇到相同的了，结算最长位置
+	            maxLen = Math.max(maxLen, i - map.get(count));
+	        } else {
+	            map.put(count,i);
+	        }
+	    }
+	    return maxLen;
+	}
 }

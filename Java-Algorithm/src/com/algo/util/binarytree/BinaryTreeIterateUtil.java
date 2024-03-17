@@ -370,4 +370,25 @@ public class BinaryTreeIterateUtil {
 		return new BTNode(Integer.valueOf(val));
 	}
 	
+	
+	
+	 /**
+	  * 是否存在一条Path到叶节点的和 = targetSum  
+	  * https://leetcode.com/problems/path-sum/
+	  * 
+	  * 
+	    dfs = recursive
+	    如果不是叶节点：检查是否左边有路径和==sum 或者 检查是否右边有路径和==sum
+	 */
+	public boolean hasPathSum(BTNode root, int targetSum) {
+	    if (root == null) {
+	        return false;
+	    }
+	    targetSum -= root.value;
+	    if (root.left == null && root.right == null) {
+	        return targetSum == 0;
+	    }
+	    return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
+	}
+	
 }

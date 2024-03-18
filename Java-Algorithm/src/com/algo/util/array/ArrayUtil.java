@@ -51,6 +51,8 @@ public class ArrayUtil {
 	/**
 	 * 合并互相覆盖的区间<br>
 	 * intervals = [[1,3],[2,6],[8,10],[15,18]] -> [[1,6],[8,10],[15,18]]
+	 * 
+	 * https://leetcode.com/problems/merge-intervals/description/
 	 */
 	public static int[][] mergeOverlaps(int[][] intervals) {
 		List<int[]> result = new ArrayList<>();
@@ -427,6 +429,34 @@ public class ArrayUtil {
         	ans[i]++;
         }
         return ans;
+	}
+	
+	
+	  /**
+	   * https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
+	    最少几次打爆所有气球： find non overlapping intervals
+	
+	    1. sort by end points
+	    2. use a variable to count arrows
+	    3. loop, cur.start > pre.end = they're not overlapped'
+	    4, then increase arrow count ,update pre.end
+	    5. return arrow + 1, as we need at least 1 arrow 
+	 */
+	public int countNonOverlappingIntervals(int[][] points) {
+	    Arrays.sort(points, (a,b) -> Integer.compare(a[1], b[1]));
+	    
+	    int arrow = 0 ;
+	    int prev = points[0][1];
+	
+	    for(int i = 1; i < points.length; i++) {
+	        
+	        if(points[i][0] > prev) { // non-overlapping interval
+	            arrow++;
+	            prev = points[i][1];
+	        }
+	    }
+	
+	    return arrow + 1;
 	}
 
 }

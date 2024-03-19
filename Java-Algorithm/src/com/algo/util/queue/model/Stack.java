@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 使用Queue实现Stack
+ * 使用Queue实现Stack : https://leetcode.com/problems/implement-stack-using-queues/
  */
 public class Stack<T> {
 

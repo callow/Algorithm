@@ -113,4 +113,30 @@ public class CommonLinklistUtil {
 		return true;
 	}
 	
+	/**
+	 * 单链表是否完全一样
+	 */
+	public static boolean equals(Node<Integer> head1, Node<Integer> head2) {
+	    while(head1 != null && head2 != null && head1.value == head2.value) {
+	        head1 = head1.next;
+	        head2 = head2.next;
+	    }
+
+	    return head1 == head2;
+	}
+	
+	/**
+	 * print single list
+	 */
+	public static void print(Node<Integer> head) {
+	    List<String> result = new ArrayList<>();
+		Node<Integer> cur = head;
+	    while (cur != null) {
+	    	result.add(String.valueOf(cur.value)); 
+	    	cur = cur.next;
+	    }
+	    System.out.println(String.join(",", result));
+	   
+	}
+	
 }

@@ -189,6 +189,8 @@ public class LinklistUtil {
 	 *  判断链表是不是回文结构<br><br>
 	 *   方法1： 找到中点后，后半部分反转 Space: O(1)<br>
 	 *   方法2： 用栈，顺序加入，然后再遍历一遍弹出 Space: O(N)
+	 *   
+	 *   https://leetcode.com/problems/palindrome-linked-list/
 	 */
 	
 	public static boolean isPalindrome(Node head, String method) {

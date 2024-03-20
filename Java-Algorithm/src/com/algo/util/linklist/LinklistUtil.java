@@ -376,6 +376,7 @@ public class LinklistUtil {
 	
 	/**
 	 * 2个可能有环可能无环的链表，如果相交，返回第一个相交节点 Space: O(1)
+	 * https://leetcode.com/problems/intersection-of-two-linked-lists/
 	 */
 	
 	public static Node getIntersectNode(Node head1, Node head2) {

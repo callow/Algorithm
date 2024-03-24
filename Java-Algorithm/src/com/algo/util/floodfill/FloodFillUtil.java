@@ -96,7 +96,7 @@ public class FloodFillUtil {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				if (grid[i][j] == 1) {
-					Util.floodFill3(grid, id, j, id++);
+					Util.floodFill3(grid, i, j, id++);
 				}
 			}
 		}

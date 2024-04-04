@@ -53,4 +53,17 @@ public class Fibonacci {
 		return Fn(n+2) - 1;
 	}
 	
+	
+	/**
+	 * F(n) : 求Fib第n项? 暴力解
+	 */
+	public static int Fn2(int num) {
+        if(num==1 || num== 2){
+            return 1;
+        }else{
+            return Fn2(num-1)+ Fn2(num-2);
+        }
+    }
+
+	
 }

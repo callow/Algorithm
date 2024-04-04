@@ -16,8 +16,7 @@ public class BitSetUtil {
 	}
 	
 	/**
-	 * 
-	 *  自定义超级bitset，
+	 * 自定义超级 bitset
 	 */
 	public static boolean superBitSet() {
 		SuperBitset set = new SuperBitset(10000);

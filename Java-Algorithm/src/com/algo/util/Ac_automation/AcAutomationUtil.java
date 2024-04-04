@@ -18,7 +18,7 @@ import com.algo.util.Ac_automation.model.ACAutomation;
 public class AcAutomationUtil {
 	
 	
-	public static void example() {
+	public static void main(String[] arr) {
 		ACAutomation ac = new ACAutomation();
 		ac.insertSensitiveWord("dhe");
 		ac.insertSensitiveWord("he");

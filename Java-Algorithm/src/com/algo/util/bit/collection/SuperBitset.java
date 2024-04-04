@@ -70,7 +70,8 @@ public class SuperBitset {
 		ones = tmp;
 	}
 
-	//  是否全是1
+
+	// 是否全是1
 	public boolean all() {
 		return ones == size;
 	}
@@ -85,6 +86,7 @@ public class SuperBitset {
 		return ones;
 	}
 
+	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0, k = 0, number, status; i < size; k++) {

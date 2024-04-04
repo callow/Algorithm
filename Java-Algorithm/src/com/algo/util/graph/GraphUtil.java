@@ -89,6 +89,8 @@ public class GraphUtil {
 	
 	/**
 	 * 最小生成树 => MST
+	 * 
+	 * 连接所有的点 且边的权重和最小。
 	 */
 	public static Set<Edge> minimumSpanningTree(Graph graph) {
 		// MinimumSpanningTreeAdpator.prim(graph);

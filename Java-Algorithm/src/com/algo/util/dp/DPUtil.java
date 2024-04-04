@@ -164,6 +164,8 @@ public class DPUtil {
 	 * <br>
 	 * 数组压缩的dp[]选择： 谁短选谁 -> 100W行4列准备dp[4]从上往下更新， 4行100W列准备dp[4]从左往右更新
 	 * 
+	 * https://leetcode.com/problems/minimum-path-sum/
+	 * 
 	 */
 
 	public static int minPathSum(int[][] matrix) {

@@ -9,6 +9,8 @@ import com.algo.util.common.CommonStringUtil;
 	
 	1. 看到字串：立马想到以i结尾，答案是什么(向左/向右推多远)
 	2. 因为是从做往右求，i结尾答案是否可以用i-1的答案加速
+	
+	如果16位置向左推最远能推到12， 则17位置向左推肯定也推不到12. 因此i-1可以给i加速
  *
  */
 public class LongestSubstringWithoutRepeatingCharacters {
@@ -29,7 +31,15 @@ public class LongestSubstringWithoutRepeatingCharacters {
 		int pre = 1; // 上一个位置i-1向左推多长
 		for (int i = 1; i < N; i++) {
 			
-			int p1 = i - map[str[i]]; // case 1: 上次出现此字符的位置能推多远
+			/**
+			 * a  s  k  b  c   b  a
+			 * 11 12 13 14 15 16 17
+			 * p			      i
+			 * 
+			 * i= 17， i的 pre = 11, i-1= 16位置只能向左推到15位置，则我也只能推到15位置，谁距离i近我就只能推到哪里				  
+			 */
+			
+			int p1 = i - map[str[i]]; // case 1: 上次出现此字符的位置能推多远： a(13)......a(17) = 17-13 = 4
 			int p2 = pre + 1; // case 2: 上一个位置 + 1
 			int cur = Math.min(p1, p2);
 			ans = Math.max(ans, cur);

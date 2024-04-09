@@ -28,7 +28,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 		map[str[0]] = 0; 
 		int N = str.length;
 		int ans = 1;
-		int pre = 1; // 上一个位置i-1向左推多长
+		int pre = 1; // 上一个位置，即i-1位置 向左推了多长
 		for (int i = 1; i < N; i++) {
 			
 			/**
@@ -40,7 +40,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 			 */
 			
 			int p1 = i - map[str[i]]; // case 1: 上次出现此字符的位置能推多远： a(13)......a(17) = 17-13 = 4
-			int p2 = pre + 1; // case 2: 上一个位置 + 1
+			int p2 = pre + 1; // case 2: 上一个位置 + 1, 当前是17位置，但是16位置能向左推8的长度，则8+1就是17位置向左推的极限
 			int cur = Math.min(p1, p2);
 			ans = Math.max(ans, cur);
 			pre = cur;

@@ -14,6 +14,7 @@ public class UTC3 {
     }
 
     public static final DateTimeFormatter ZONE_FORMAT = DateTimeFormatter.ISO_ZONED_DATE_TIME;
+    private static final DateTimeFormatter MT5_HOLIDAY_FORMAT = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
     
     public static final int TIME_ZONE = 3;
     public static final ZoneId TIMEZONE = ZoneId.of("GMT+" + TIME_ZONE);
@@ -74,6 +75,10 @@ public class UTC3 {
 
     public static ZonedDateTime fromUtc3Second(long utc3Second) {
         return ZonedDateTime.ofInstant(Instant.ofEpochMilli((utc3Second - SYSTIMEZONE_UTC_DIFF_SECONDS) * 1000 + 999), TIMEZONE);
+    }
+    
+    public static ZonedDateTime assemble(String yyyyMMdd, String clock) {
+        return LocalDateTime.parse(yyyyMMdd + " " + clock, MT5_HOLIDAY_FORMAT).atZone(TIMEZONE);
     }
 
 }

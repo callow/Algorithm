@@ -406,5 +406,25 @@ public class MatrixUtil {
 		}
 		return g; // 此时g[][] 就是前缀和数组prefixSumArray
 	}
+	
+	
+	/**
+	 * 随机生成一张0/1二维矩阵图
+	 */
+	public static int[][] randomGrid(int n) {
+		int[][] grid = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (Math.random() < 0.3) {
+					// 每个格子有30%概率是0
+					grid[i][j] = 0;
+				} else {
+					// 每个格子有70%概率是1
+					grid[i][j] = 1;
+				}
+			}
+		}
+		return grid;
+	}
 
 }

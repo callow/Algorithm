@@ -11,4 +11,7 @@ public class ComlexGraphUtil {
 	public static int minDistance(int[][] grid, int x, int y,  int tx, int ty) {
 		return AStar.minDistanceAStar(grid, x, y, tx, ty);
 	}
+	
+	
+	
 }

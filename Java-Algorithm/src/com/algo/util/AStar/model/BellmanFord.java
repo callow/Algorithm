@@ -17,7 +17,8 @@ import java.util.Arrays;
  *   - 更新过程:[0, ∞, 8,6]
  *            a  b c d
  *  
- *  重要推广： 判断是否有负环，若从A出发到第N轮松弛还存在，说明A出发能够到达一个负环
+ *  重要推广： 
+ *   - 是否有负环： 若从A出发到第N轮松弛还存在，说明A出发能够到达一个负环
  *  
  *  https://leetcode.cn/problems/cheapest-flights-within-k-stops/
  *   - 松弛轮数固定：K轮

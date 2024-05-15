@@ -65,6 +65,19 @@ public class PrimeUtil {
 	}
 	
 	
+	/**
+	 * 质数筛：统计0~n范围上质数个数/收集
+	 * - 欧拉筛
+	 * - 埃式筛
+	 * 
+	 * https://leetcode.cn/problems/count-primes/
+	 */
+	public static int primeCount(int n) {
+//		Ehrlich.count(n);
+		return Euler.count(n);
+	}
+	
+	
 	
 	
 }

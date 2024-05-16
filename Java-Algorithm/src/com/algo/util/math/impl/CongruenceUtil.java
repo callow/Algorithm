@@ -6,7 +6,17 @@ package com.algo.util.math.impl;
  * 加法同余 : ((a+b) + (b+c)) % m = ((a+b) % m + (b+c) % m ) % m
  * 乘法同余 : ((a*b) + (b*c)) % m = ((a*b) % m + (b*c) % m ) % m
  * 减法同余 ：（a%m -b%m + m）% m
- *  
+ * 除法同余 ： (a / b) % m 
+ *  逆元=倒数前提：
+ *  - a / b 能整除 
+ *  - m的数字必须是质数
+ *  - b 于 m 最大公约数为1 => b 与 m 互质
+ *  过程： 
+ *   - b的逆元 = b^(m-2) % m 
+ *   - 10/5 % 3 => 
+ *      10 % 3 = 1
+ *      5^(3-2) % 3 = 2 （5的逆元）
+ *      (1 * 2) % 3 = 2
  */
 public class CongruenceUtil {
 
@@ -27,4 +37,9 @@ public class CongruenceUtil {
 		int ans = (o9 + o10) % mod; // ((a + b) * (c - d) + (a * c - b * d)) % mod
 		return ans;
 	}
+	
+	
+	
+	
+	
 }

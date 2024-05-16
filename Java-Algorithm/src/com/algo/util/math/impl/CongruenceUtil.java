@@ -7,7 +7,7 @@ package com.algo.util.math.impl;
  * 乘法同余 : ((a*b) + (b*c)) % m = ((a*b) % m + (b*c) % m ) % m
  * 减法同余 ：（a%m -b%m + m）% m
  * 除法同余 ： (a / b) % m  = ((a % m) * b的逆元) % m
- *  逆元=倒数前提：
+ *  逆元=倒数=Inverse 前提：
  *  - a / b 能整除 
  *  - m的数字必须是质数
  *  - b 于 m 最大公约数为1 => b 与 m 互质
@@ -18,6 +18,8 @@ package com.algo.util.math.impl;
  *      10 % 3 = 1
  *      5^(3-2) % 3 = 2 （5的逆元）
  *      (1 * 2) % 3 = 2
+ *  
+ *  线性逆元： 1~n每一个数字的逆元 InverseSerial
  */
 public class CongruenceUtil {
 
@@ -39,7 +41,32 @@ public class CongruenceUtil {
 		return ans;
 	}
 	
-	
+	/**
+	 * 除法同余:
+	 *     1) 必须保证a/b可以整除
+		   2) 必须保证mod是质数
+		   3) 必须保证b和mod的最大公约数为1
+	 *  e.g : 3671613 / 67312  % 41
+	 */
+	public static int divMod(long a, long b, int mod) {
+		long inv = fastPow(b, mod - 2, mod);
+		return (int) (((a % mod) * inv) % mod);
+	}
+
+	/**
+	 * 乘法快速幂 : b的n次方的结果%mod
+	 */
+	public static long fastPow(long b, int n, int mod) {
+		long ans = 1;
+		while (n > 0) {
+			if ((n & 1) == 1) {
+				ans = (ans * b) % mod;
+			}
+			b = (b * b) % mod;
+			n >>= 1;
+		}
+		return ans;
+	}
 	
 	
 	

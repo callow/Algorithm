@@ -12,7 +12,8 @@ import java.io.Writer;
 import java.util.InputMismatchException;
 
 /**
- * 连续逆元递推： 
+ * 连续逆元递推： 1,2,3,4,5...n 求每个数字的逆元
+ * 
  *  - 公式： inv[i] = (int) (p - (long) inv[p % i] * (p / i) % p)
  *  
  *  https://www.luogu.com.cn/problem/P3811

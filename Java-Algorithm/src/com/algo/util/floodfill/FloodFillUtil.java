@@ -8,7 +8,7 @@ public class FloodFillUtil {
 	
 	/**
 	 * 1的岛屿数量问题
-	 *  flood fill = dfs = 感染 = 是1就上线左右感染（1-> 2）
+	 *  flood fill = dfs = 感染 = 是1就上下左右感染（1-> 2）
 	 *  
 	 *  https://leetcode.com/problems/number-of-islands/description/
 	 */

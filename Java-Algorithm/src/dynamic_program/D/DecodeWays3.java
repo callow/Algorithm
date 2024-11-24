@@ -3,7 +3,7 @@ package dynamic_program.D;
 import java.util.Arrays;
 
 /**
- * 数字转化方式： https://leetcode.cn/problems/decode-ways/
+ * 解码方法 I： https://leetcode.cn/problems/decode-ways/
  * 
  * 递归含义：从i位置出发往后有部分多少有效的转换方案
  * 来到i位置都有3个方案：
@@ -25,10 +25,10 @@ public class DecodeWays3 {
 		if (s[i]  == '0') {
 			ans = 0;
 		} else {
-			ans = f1(s, i+1);
+			ans = 1 * f1(s, i+1);
 			// '1' - '0' = 1
 			if (i + 1 < s.length && ((s[i] - '0') * 10 + s[i + 1] - '0') <= 26) {
-				ans += f1(s, i + 2);
+				ans += 1 * f1(s, i + 2);
 			}
 		}
 		return ans;
@@ -53,9 +53,9 @@ public class DecodeWays3 {
 		if (s[i] == '0') {
 			ans = 0;
 		} else {
-			ans = f2(s, i + 1, dp);
+			ans = 1 * f2(s, i + 1, dp);
 			if (i + 1 < s.length && ((s[i] - '0') * 10 + s[i + 1] - '0') <= 26) {
-				ans += f2(s, i + 2, dp);
+				ans += 1 * f2(s, i + 2, dp);
 			}
 		}
 		dp[i] = ans;

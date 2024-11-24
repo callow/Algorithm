@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * 最低票价问题： https://leetcode.cn/problems/minimum-cost-for-tickets/
  * 
+ * 递归含义： 
  * 来到任何i位置都有3种方案：
  * 	1天（a元） + f(1...)从下标1开始往后所有旅行至少花多少元
  *  7天（b元） + f(3...)从下标3开始往后所有旅行至少花多少元

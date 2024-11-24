@@ -4,6 +4,8 @@ package dynamic_program;
  * 0 1 1 2 3 5 8
  * 
  * 求斐波那契数列第n项？
+ * 
+ * 递归含义： i位置的数字
  */
 public class Fibonacci1 {
 	

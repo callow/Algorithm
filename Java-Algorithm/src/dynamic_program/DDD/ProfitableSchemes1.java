@@ -1,7 +1,7 @@
 package dynamic_program.DDD;
 /**
  * 
- * 盈利计划(多维费用背包)： 集团里有 n 名员工，他们可以完成各种各样的工作创造利润. 第 i 种工作会产生 profit[i] 的利润，它要求 group[i] 名成员共同参与.
+ * 盈利计划(多维费用背包：0/1背包)： 集团里有 n 名员工，他们可以完成各种各样的工作创造利润. 第 i 种工作会产生 profit[i] 的利润，它要求 group[i] 名成员共同参与.
  *  如果成员参与了其中一项工作，就不能参与另一项工作， 利润>=minProfit, 工人总数为n，有多少种计划组合可以选择？
  *  
  *  https://leetcode.cn/problems/profitable-schemes/

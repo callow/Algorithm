@@ -1,6 +1,6 @@
 package dynamic_program.SubarrayMaxSum;
 /**
- * 不能选相邻元素的最大累加和问题：给定一个数组num，可以随意选择数字 但是不能选择相邻的数字，返回能得到的最大累加和
+ * 不能选相邻元素的最大累加和问题：给定一个数组nums，可以随意选择数字 但是不能选择相邻的数字，返回能得到的最大累加和
  * 
  * https://leetcode.cn/problems/house-robber/
  * 

@@ -10,6 +10,7 @@ package dynamic_program.SubarrayMaxSum;
  */
 public class HouseRobberIV5 {
 
+	// O(log(max - min + 1))
 	public static int minCapability(int[] nums, int k) {
 		int n = nums.length, l = nums[0], r = nums[0];
 		for (int i = 1; i < n; i++) {

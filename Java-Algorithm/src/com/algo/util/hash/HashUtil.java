@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.xml.bind.DatatypeConverter;
 
+import com.algo.util.common.CommonStringUtil;
 import com.google.common.hash.Hashing;
 
 /**
@@ -67,4 +68,21 @@ public class HashUtil {
 		}
 		return hashValues;
 	}
+	
+	/**
+	 * 自己实现的Hash值计算,得到整个字符串的hash值
+	 */
+	public static long hashValue(char[] s) { 
+		int base = 499;
+		long ans = CommonStringUtil.convert(s[0]);
+		for (int i = 1; i < s.length; i++) {
+			ans = ans * base + CommonStringUtil.convert(s[i]);
+		}
+		return ans;
+	}
+	
+	
+	
+	
+	
 }

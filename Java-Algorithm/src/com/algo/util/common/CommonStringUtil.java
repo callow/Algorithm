@@ -193,8 +193,9 @@ public class CommonStringUtil {
             p2--;    
         }
         
-        if (carry != 0)
-            res.append(carry);
+        if (carry != 0) {
+			res.append(carry);
+		}
         
         return res.reverse().toString();
     }
@@ -209,14 +210,42 @@ public class CommonStringUtil {
         HashMap<Character, Character> map = new HashMap<>();
             for (int i = 0; i < s.length(); i++) {
                 if (map.containsKey(s.charAt(i))) {
-                    if (t.charAt(i) != map.get(s.charAt(i)))
-                        return false;
+                    if (t.charAt(i) != map.get(s.charAt(i))) {
+						return false;
+					}
                 } else {
-                    if (map.containsValue(t.charAt(i)))
-                        return false;
+                    if (map.containsValue(t.charAt(i))) {
+						return false;
+					}
                     map.put(s.charAt(i), t.charAt(i));
                 }
             }
             return true;
     }
+    
+    /**
+     *  给一个字符，返回其对应的数字（数字 + 大写 + 小写）
+     *  	 '0' -> 1
+	 '1' -> 2
+	 ...
+	 '9' -> 10
+	 'A' -> 11
+	 'B' -> 12
+	 ...
+	 'Z' -> 36
+	 'a' -> 37
+	 ...
+	 'z' -> 62
+     */
+	public static int convert(char c) {
+		if (c >= '0' && c <= '9') {
+			return c - '0' + 1;
+		} else if (c >= 'A' && c <= 'Z') {
+			return c - 'A' + 11;
+		} else {
+			return c - 'a' + 37;
+		}
+	}
+    
+    
 }

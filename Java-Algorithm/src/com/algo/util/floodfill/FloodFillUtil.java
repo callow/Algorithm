@@ -147,8 +147,57 @@ public class FloodFillUtil {
 		return ans;
 	}
 	
-	
-	
+	/**
+	 * 落砖块问题： 砖块通过1(砖)粘在天花板上，我们打，看几个砖能掉下来
+	 * 
+	 * https://leetcode.cn/problems/bricks-falling-when-hit/
+	 * 
+	 * 技巧： 时光倒流：
+	 *  1. 全部炮弹位置-1
+	 *  2. floodfill天花板=> 2
+	 *  3. 时光倒流: 每个炮弹从后往前顺序+1回来，然后看看上下左右是否有2/是否是天花板，如果有则floodfill 看看念在天花板上的砖块数量是否有新增，比如新增4个2，则打下3个砖
+	 *  	即：答案就是新增2的数量-1
+	 */
+
+	public static int[] hitBricks(int[][] grid, int[][] hits) {
+		int n = grid.length; // 行
+		int m = grid[0].length;
+		
+		int[] ans = new int[hits.length];
+		if (n == 1) { // 只有1行，没回砖块掉落
+			return ans;
+		}
+		
+		// 1. 全部炮弹位置-1
+		for (int[] hit : hits) {
+			grid[hit[0]][hit[1]]--;
+		}
+		// floodfill天花板=> 2
+		for (int i = 0; i < m; i++) {
+			Util.floodFill4(grid,0, i);
+		}
+		
+		// 时光倒流的顺序去处理炮弹
+		for (int i = hits.length - 1, row, col; i >= 0; i--) {
+			row = hits[i][0];
+			col = hits[i][1];
+			grid[row][col]++; // 恢复炮弹
+			if (worth(grid, row, col, n, m)) { // 判断是否值得去判断
+				ans[i] = Util.floodFill4(grid, row, col) - 1;
+			}
+		}
+		return ans;
+	}
+	public static boolean worth(int[][] grid, int i, int j, int n, int m) {
+		return grid[i][j] == 1 // 现在是1
+				&&
+				(i == 0 // 如果处于天花板位置
+				// 如果上下左右位置存在2
+				|| (i > 0 && grid[i - 1][j] == 2)
+				|| (i < n - 1 && grid[i + 1][j] == 2)
+				|| (j > 0 && grid[i][j - 1] == 2)
+				|| (j < m - 1 && grid[i][j + 1] == 2));
+	}
 	
 	
 	

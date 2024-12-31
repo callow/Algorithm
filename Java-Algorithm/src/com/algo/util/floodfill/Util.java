@@ -51,4 +51,19 @@ public class Util {
 		floodFill3(board,  i, j - 1,id); // 左
 		floodFill3(board, i, j + 1,id); // 右
 	}
+	
+	// 从(i,j)格子出发，遇到1就感染成2, 统计新增了几个2！
+	public static int floodFill4(int[][] grid, int i, int j) {
+		int n = grid.length;
+		int m = grid[0].length;
+		if (i < 0 || i == n || j < 0 || j == m || grid[i][j] != 1) {
+			return 0;
+		}
+		grid[i][j] = 2;
+		return 1 + floodFill4(grid,i + 1, j) 
+		+ floodFill4(grid,i, j + 1) 
+		+ floodFill4(grid,i - 1, j) 
+		+ floodFill4(grid,i, j - 1);
+	}
+
 }

@@ -2,6 +2,7 @@ package com.algo.util.recursive;
 
 import java.util.List;
 
+import com.algo.util.recursive.model.Combinations;
 import com.algo.util.recursive.model.FullSubsequencePermutation;
 
 /**
@@ -23,4 +24,17 @@ public class RecursionUtil {
 		return FullSubsequencePermutation.permutation(s);
 				
 	}
+	
+	/**
+	 * 返回数组所有的组合： nums = [1,2,2] => 输出 [[],[1],[1,2],[1,2,2],[2],[2,2]]
+	 * 
+	 */
+	public List<List<Integer>> getAllCombinations(int[] nums){
+		return Combinations.subsetsWithDup(nums);
+	}
+	
+	
+	
+	
+	
 }

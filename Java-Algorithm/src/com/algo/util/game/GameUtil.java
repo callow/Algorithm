@@ -1,5 +1,6 @@
 package com.algo.util.game;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * ICG(公平组合游戏)
@@ -14,7 +15,10 @@ public class GameUtil {
 	 */
 	public static String whoWin(int a, int b, int m) {
 		if (m > Math.max(a, b)) { // nim = 自由拿
-			return Nim.whoWin(List.of(a, b));
+			List<Integer> list = new ArrayList<>();
+			list.add(a);
+			list.add(b);
+			return Nim.whoWin(list);
 		}
 
 		if (a == b) { // 再另一堆上做copycat strategy

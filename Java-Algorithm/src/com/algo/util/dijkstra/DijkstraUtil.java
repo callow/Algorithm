@@ -16,9 +16,13 @@ public class DijkstraUtil {
 	
 	/**
 	 * 
+	 * DJ模板：
+	 * 
 		所有点最大接受信号的延迟时间： https://leetcode.com/problems/network-delay-time
 		
 		Input: times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
+		
+		即：求source到最远点花费多长时间
 		
 	 */
 	public static int networkDelayTime(int[][] times, int n, int source) {
@@ -29,15 +33,19 @@ public class DijkstraUtil {
 			nexts.add(new ArrayList<>());
 		}
 		for (int[] delay : times) {
-			nexts.get(delay[0]).add(new int[] { delay[1], delay[2] });
+			int fromPoint = delay[0];
+			int toPoint = delay[1];
+			int weight = delay[2];
+			nexts.get(fromPoint).add(new int[] { toPoint, weight });
 		}
 		
-		int[] distance = new int[n + 1];
-		Arrays.fill(distance, Integer.MAX_VALUE);
+		// 开始DJ算法
+		int[] distance = new int[n + 1]; 
+		Arrays.fill(distance, Integer.MAX_VALUE); // distance[∞,∞,∞,∞,..]
 		distance[source] = 0;
-		boolean[] visited = new boolean[n + 1];
-		// 0: current node, 1: source to current node distance
-		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+		boolean[] visited = new boolean[n + 1]; // false false false ...
+		// 0: 当前节点, 1: 原点到当前节点距离
+		PriorityQueue<int[]> heap = new PriorityQueue<>((a, b) -> a[1] - b[1]); // 小根堆，小的在堆顶
 		heap.add(new int[] { source, 0 }); // source到自己距离为0
 		
 		/**
@@ -52,11 +60,11 @@ public class DijkstraUtil {
 		 */
 		while(!heap.isEmpty()) {
 			int u = heap.poll()[0];
-			if (visited[u]) { // 弹出过，skip
+			if (visited[u]) { // 如果u弹出过，skip
 				continue;
 			}
-			visited[u] = true; // 弹出
-			for (int[] edge : nexts.get(u)) { // 考察从u出发的每一条边，to v , weight: w
+			visited[u] = true; // 首次弹出
+			for (int[] edge : nexts.get(u)) { // 考察从u出发的每一条边，去往 v , 权重: w
 				int v = edge[0];
 				int w = edge[1];
 				if (!visited[v] && distance[u] + w < distance[v]) {
@@ -66,7 +74,7 @@ public class DijkstraUtil {
 			}
 		}
 		
-		// 题目专属，如果还是max，则信号没有传输到每个点 -1， 反之有，求一个最大值
+		// 题目专属小尾巴，如果还是max，则信号没有传输到每个点 -1， 反之有，求一个最大值
 		int ans = Integer.MIN_VALUE;
 		for (int i = 1; i <= n; i++) {
 			if (distance[i] == Integer.MAX_VALUE) { // 如果有点信号依然没有传到， 返回 -1
@@ -93,7 +101,7 @@ public class DijkstraUtil {
 		int[][] distance = new int[n][m];
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				distance[i][j] = Integer.MAX_VALUE;
+				distance[i][j] = Integer.MAX_VALUE; // distance[∞,∞,∞,∞,..]
 			}
 		}
 		distance[0][0] = 0;
@@ -110,8 +118,11 @@ public class DijkstraUtil {
 		
 		while(!heap.isEmpty()) {
 			int[] record = heap.poll();
-			int x = record[0], y = record[1], cost = record[2];
-			if (visited[x][y]) {
+			int x = record[0];
+			int	y = record[1]; 
+			int	cost = record[2];
+			
+			if (visited[x][y]) { // 之前弹出过，忽略
 				continue;
 			}
 			if (x == n - 1 && y == m - 1) {
@@ -122,10 +133,12 @@ public class DijkstraUtil {
 			}
 			visited[x][y] = true;
 			
-			for (int i = 0; i < 4; i++) {
-				int nx = x + move[i], ny = y + move[i + 1]; // 即将要去的[x][y]
+			for (int i = 0; i < 4; i++) { // 上下左右移动，四向图
+				int nx = x + move[i];
+				int	ny = y + move[i + 1]; // 即将要去的[nx][ny]
+				
 				if (nx >= 0 && nx < n && ny >= 0 && ny < m && !visited[nx][ny]) {
-					int newCost = Math.max(cost, Math.abs(matrix[x][y] - matrix[nx][ny]));
+					int newCost = Math.max(cost, Math.abs(matrix[x][y] - matrix[nx][ny])); // 计算要去往格子的代价，过往cost和新cost比较取最大值
 					if (newCost < distance[nx][ny]) { // 更新小根堆
 						distance[nx][ny] = newCost;
 						heap.add(new int[] { nx, ny, newCost });
@@ -163,7 +176,7 @@ public class DijkstraUtil {
 		while (!heap.isEmpty()) {
 			int x = heap.peek()[0];
 			int y = heap.peek()[1];
-			int c = heap.peek()[2];
+			int c = heap.peek()[2]; // 过往代价 = 沿途路径的最大高度
 			heap.poll();
 			if (visited[x][y]) {
 				continue;

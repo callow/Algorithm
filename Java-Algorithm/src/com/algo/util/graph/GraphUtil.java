@@ -150,4 +150,105 @@ public class GraphUtil {
 		
 		return files;
 	}
+	
+	/**
+	 * 使用BFS扩点，分层图最短路： https://leetcode.com/problems/shortest-path-to-get-all-keys/description/
+	 * 
+	 * 。 -> 房间
+	 * # -> 墙
+	 * @ -> 起点
+	 * a钥匙 -> A锁
+	 * b钥匙 -> B锁
+	 * 
+	 *  00 01 10 11
+	 *  ab ab ab ab
+	 * 
+	 * 扩点： 一个点（0，0）， 扩成4个点 （0，0，00）,（0，0，01）,（0，0，10）,（0，0，11）
+	 * 层数 = 步数
+	 * 
+	 */
+	static int N = 31, M = 31, K = 6;
+	static boolean[][][] visited = new boolean[N][M][1 << K];
+	static int[] move = new int[] {-1,0,1,0,-1};
+	static char[][] grid = new char[N][];
+	static int[][] queue = new int[N * M * (1 << K)][3]; // 0 = 行， 1 = 列， 2 =  收集钥匙的状态 
+	static int l, r, n, m, key; // 从l拿，从r加
+	public static int shortestPathAllKeys(String[] graph) {
+		build(graph);
+		int level = 1;
+		// 开始逐层bfs
+		while(l < r) { 
+			int size = r - l; // 这层的Size
+			for (int k = 0; k < size; k++) { // 第1层
+				int x = queue[l][0];
+				int y = queue[l][1];
+				int s = queue[l++][2];
+				for (int i = 0; i < 4; i++) { // 上下左右移动
+					int nx = x + move[i];
+					int ny = y + move[i + 1];
+					int ns = s;
+					if (nx < 0 || nx == n || ny < 0 || ny == m || grid[nx][ny] == '#') {
+						// 越界或者障碍
+						continue;
+					}
+					if (grid[nx][ny] >= 'A' && grid[nx][ny] <= 'F' && ((ns & (1 << (grid[nx][ny] - 'A'))) == 0)) {
+						// 是锁，又没有对应的钥匙
+						continue;
+					}
+					if (grid[nx][ny] >= 'a' && grid[nx][ny] <= 'f') {
+						// 是某一把钥匙
+						ns |= (1 << (grid[nx][ny] - 'a'));
+					}
+					if (grid[nx][ny] >= 'a' && grid[nx][ny] <= 'f') {
+						// 是某一把钥匙
+						ns |= (1 << (grid[nx][ny] - 'a'));
+					}
+					if (ns == key) {
+						// 常见剪枝
+						// 发现终点直接返回
+						// 不用等都结束
+						return level;
+					}
+					if (!visited[nx][ny][ns]) {
+						visited[nx][ny][ns] = true;
+						queue[r][0] = nx;
+						queue[r][1] = ny;
+						queue[r++][2] = ns;
+					}
+					
+				}
+			}
+			level++;
+		}
+		return -1;		
+	}
+	static void build(String[] g) {
+		l = r = key = 0;
+		n = g.length;
+		m = g[0].length();
+		for (int i = 0; i < n; i++) {
+			grid[i] = g[i].toCharArray();
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (grid[i][j] == '@') { // 把起点加入queue，准备BFS
+					queue[r][0] = i;
+					queue[r][1] = j;
+					// 0 : 000000
+					queue[r++][2] = 0; // 啥钥匙都没有 一开始
+				}
+				if (grid[i][j] >= 'a' && grid[i][j] <= 'f') {
+					key |= 1 << (grid[i][j] - 'a');
+				}
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				for (int s = 0; s <= key; s++) {
+					visited[i][j][s] = false; // {false,false,false,false}
+				}
+			}
+		}
+	}
+	
 }

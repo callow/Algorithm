@@ -218,7 +218,92 @@ public class DijkstraUtil {
 	 * 从@开始，什么时候有了11状态什么时候结束 参考： GraphUtil.shortestPathAllKeys 并自己写
 	 */
 	
-	 	
+	 //-------------------------------------------------------------------------------------------
+	
+	/**
+	 * 电动车游城市: https://leetcode.cn/problems/DFPeFJ/
+	 * 
+	 * 小明的电动车电量充满时可行驶距离为 cnt，每行驶 1 单位距离消耗 1 单位电量，且花费 1 单位时间, 地图上共有 N 个景点，景点编号为 0 ~ N-1
+	 * 他将地图信息以 [城市 A 编号,城市 B 编号,两城市间距离] 格式整理在在二维数组 paths 表示城市 A、B 间存在双向通路
+	 * 初始状态，电动车电量为 0。每个城市都设有充电桩 charge[i] 表示第 i 个城市每充 1 单位电量需要花费的单位时间
+	 * paths = [[1,3,3],[3,2,1],[2,1,3],[0,1,4],[3,0,5]], cnt = 6, start = 1, end = 0, charge = [2,10,4,1]
+	 * 
+	 * 比如： 在A点，充满6格电需要 3 * 2 = 6 的时间
+	 * 
+	 * 请返回小明最少需要花费多少单位时间从起点城市 start 抵达终点城市 end
+	 * 
+	 * 思路： 无向图 = 双向有向图
+	 * 扩点： (城市，来到当前城市电动车剩几格电)
+	 * 
+	 */
+	public static int electricCarPlan(int[][] paths, int cnt, int start, int end, int[] charge) {
+		
+		// 建图
+		int n = charge.length;
+		ArrayList<ArrayList<int[]>> graph = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			graph.add(new ArrayList<>());
+		}
+		for (int[] path : paths) {
+			int from = path[0], to = path[1], weight = path[2];
+			graph.get(from).add(new int[] { to, weight });
+			graph.get(from).add(new int[] { to, weight });
+		}
+		// 开始扩点
+		// 城市数量 n : 0 ~ n-1，不代表图上的点
+		// (点，到达这个点的电量)图上的点！
+		int[][] distance = new int[n][cnt + 1];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j <= cnt; j++) {
+				distance[i][j] = Integer.MAX_VALUE; // distance[∞,∞,∞,∞,..]
+			}
+		}
+		distance[start][0] = 0;
+		boolean[][] visited = new boolean[n][cnt + 1];
+		// 0 : 当前点
+		// 1 : 来到当前点的电量
+		// 2 : 花费时间
+		PriorityQueue<int[]> heap = new PriorityQueue<int[]>((a, b) -> (a[2] - b[2]));
+		heap.add(new int[] { start, 0, 0 }); 
+		while (!heap.isEmpty()) {
+			int[] record = heap.poll();
+			int cur = record[0];
+			int power = record[1];
+			int cost = record[2];
+			if (visited[cur][power]) {
+				continue;
+			}
+			// 在最短路算法中 我竟然遇到了终点，直接就是答案
+			if (cur == end) {
+				// 常见剪枝
+				// 发现终点直接返回
+				// 不用等都结束
+				return cost;
+			}
+			visited[cur][power] = true;
+			if (power < cnt) { // 还没有到电动车电量上限 则
+				// 充一格电，还在原来城市，但是电量+1
+				// 当前状态： cur, power+1
+				if (!visited[cur][power + 1]  // 没有被弹出过
+						&& cost + charge[cur] < distance[cur][power + 1]) { // 
+					distance[cur][power + 1] = cost + charge[cur];
+					heap.add(new int[] { cur, power + 1, cost + charge[cur] });
+				}
+			}
+			for (int[] edge : graph.get(cur)) {
+				// 不充电去别的城市
+				int nextCity = edge[0];
+				int restPower = power - edge[1];
+				int nextCost = cost + edge[1]; // 要去下一个城市的总代价
+				if (restPower >= 0 && !visited[nextCity][restPower] && nextCost < distance[nextCity][restPower]) {
+					distance[nextCity][restPower] = nextCost;
+					heap.add(new int[] { nextCity, restPower, nextCost });
+				}
+			}
+		}
+		return -1;
+				
+	}
 	
 	
 

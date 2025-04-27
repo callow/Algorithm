@@ -247,7 +247,7 @@ public class DijkstraUtil {
 		for (int[] path : paths) {
 			int from = path[0], to = path[1], weight = path[2];
 			graph.get(from).add(new int[] { to, weight });
-			graph.get(from).add(new int[] { to, weight });
+			graph.get(to).add(new int[] { from, weight });
 		}
 		// 开始扩点
 		// 城市数量 n : 0 ~ n-1，不代表图上的点

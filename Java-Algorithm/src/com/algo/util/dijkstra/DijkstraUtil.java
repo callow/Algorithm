@@ -262,14 +262,14 @@ public class DijkstraUtil {
 		boolean[][] visited = new boolean[n][cnt + 1];
 		// 0 : 当前点
 		// 1 : 来到当前点的电量
-		// 2 : 花费时间
+		// 2 : 来到当前点花了多少时间（充电时间+开车时间）
 		PriorityQueue<int[]> heap = new PriorityQueue<int[]>((a, b) -> (a[2] - b[2]));
 		heap.add(new int[] { start, 0, 0 }); 
 		while (!heap.isEmpty()) {
 			int[] record = heap.poll();
 			int cur = record[0];
 			int power = record[1];
-			int cost = record[2];
+			int cost = record[2]; 
 			if (visited[cur][power]) {
 				continue;
 			}

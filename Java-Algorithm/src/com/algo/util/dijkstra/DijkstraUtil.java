@@ -8,6 +8,8 @@ import java.util.PriorityQueue;
  * 图上单源 -> 所有节点的最短路径
  * 
  * 很多题目distance的定义不同所以略做调整, 有些是最小代价cost
+ * 
+ * 遇到下面这些题目，都能用这个套路: 电动车充电最短时间, 加油站加油最少钱, 血量/魔法消耗求最短时间, 染色需要油漆，油漆量有限问题, 体力/步数有限的路径问题
  */
 public class DijkstraUtil {
 	
@@ -304,6 +306,9 @@ public class DijkstraUtil {
 		return -1;
 				
 	}
+	
+	
+	
 	
 	
 

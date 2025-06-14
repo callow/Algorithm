@@ -1,6 +1,10 @@
 package com.algo.util.dp;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.psjava.util.Pair;
 
 public interface DPService {
 
@@ -51,6 +55,8 @@ public interface DPService {
 	public int splitArrSumSizeHalf(int[] arr);
 
 	public int nQueens(int n);
+	
+	public List<int[]> nQueensLocation(Map<Integer, Integer> fixedQueens,Set<Pair<Integer,Integer>> forbiddenPositions);
 
 	public long bribeMonster(int[] ability, int[] price);
 	

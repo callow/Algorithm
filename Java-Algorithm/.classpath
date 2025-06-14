@@ -15,5 +15,7 @@
 	<classpathentry kind="lib" path="lib/jna-5.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/jna-platform-5.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.10.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.17.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-math3-3.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,7 +1,11 @@
 package com.algo.util.dp;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
+
+import org.psjava.util.Pair;
 
 import com.algo.util.dp.impl.DPCache;
 import com.algo.util.dp.impl.DPGrid;
@@ -252,6 +256,17 @@ public class DPUtil {
 	 */
 	public static int nQueens(int n) {
 		return new DPCache().nQueens(n);
+	}
+	
+	/**
+	 * 已知 一个 8 * 8的网格， 且已知第1个皇后的位置，同样的规则，横竖不能有2个皇后 总共需要摆放8个皇后， 给我一个算法 找出剩下7个皇后摆放的位置？
+	 * 
+	 * 输入：固定的皇后位置 (fixedRow, fixedCol)
+       输出：所有满足条件的解（每个解用 int[8] 表示，result[i] = j 表示第 i 行的皇后在第 j 列）
+	 * 
+	 */
+	public static List<int[]> nQueensLocation(Map<Integer, Integer> fixedQueens, Set<Pair<Integer,Integer>> forbiddenPositions) {
+		return new DPRecursive().nQueensLocation(fixedQueens, forbiddenPositions);
 	}
 
 	/**

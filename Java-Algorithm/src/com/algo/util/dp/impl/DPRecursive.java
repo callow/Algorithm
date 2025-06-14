@@ -1,8 +1,13 @@
 package com.algo.util.dp.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
+
+import org.psjava.util.Pair;
 
 import com.algo.util.common.CommonArrayUtil;
 import com.algo.util.common.CommonStringUtil;
@@ -682,12 +687,6 @@ public class DPRecursive implements DPService {
 		return put(0, record, n);
 	}
 
-	/**
-	 * 共N-1行,当前来到i行,在此行尝试所有列放quene保证所有皇后不打架。<br>
-	 * 之前的皇后存在record, record[x] = y // 之前的第x行的皇后放在y列<br>
-	 * 返回：不关心i行以上，i..后续有多少合理的方法数
-	 */
-
 	public int put(int i, int[] record, int n) {
 		if (i == n) { // 终止了，之前做过的决定 就发现了一个有效方法
 			return 1;
@@ -833,4 +832,93 @@ public class DPRecursive implements DPService {
 		return Math.max(p1, p2);
 	}
 
+	@Override
+	public List<int[]> nQueensLocation(Map<Integer, Integer> fixedQueens, Set<Pair<Integer,Integer>> forbiddenPositions) {
+		List<int[]> solutions = new ArrayList<>();
+		int[] result = new int[8];
+		Arrays.fill(result, -1); // 初始化为 -1，表示未放置
+		for (Map.Entry<Integer, Integer> entry : fixedQueens.entrySet()) {
+            result[entry.getKey()] = entry.getValue();
+        }
+		dfs(0, result, fixedQueens.keySet(),forbiddenPositions,solutions);
+		if (!solutions.isEmpty()) {
+			printBoard(solutions.get(0));
+		}
+		return solutions;
+	}
+	
+	
+	public static void printBoard(int[] result) {
+	    for (int row = 0; row < result.length; row++) {
+	        for (int col = 0; col < result.length; col++) {
+	            if (result[row] == col) {
+	                System.out.print("Q ");
+	            } else {
+	                System.out.print(". ");
+	            }
+	        }
+	        System.out.println();
+	    }
+	    System.out.println(); // 空行分隔不同解
+	}
+	
+    private void dfs(int row, int[] result, Set<Integer> fixedRows, Set<Pair<Integer,Integer>> forbiddenPositions, List<int[]> solutions) {
+        if (row == 8) {
+            solutions.add(result.clone());
+            return;
+        }
+
+        if (fixedRows.contains(row)) {
+            // 当前行已固定，跳到下一行
+            dfs(row + 1, result, fixedRows, forbiddenPositions,solutions);
+            return;
+        }
+        // 回溯精华： 试探 → 递归 → 撤销
+        for (int col = 0; col < 8; col++) {
+        	if (forbiddenPositions.contains(new Pair<>(row, col))) {
+                continue;
+            }
+            if (isValid(row, col, result)) {
+                result[row] = col; // 我决定把当前这一行的皇后放在第 col 列,  这个赋值是试探的一步。相当于你往棋盘上放了一颗皇后
+                dfs(row + 1, result, fixedRows, forbiddenPositions, solutions); // 进入下一行，继续放皇后, 这是回溯的递归核心！每次放一个皇后 → 尝试下一行 → 一直放到 row == 8（全部放完，找到一个解）
+                result[row] = -1; // 回溯的“撤销”动作, 程序是在尝试所有可能的路径 撤销这个选择，回到上一步，准备尝试别的列
+            }
+        }
+    }
+    
+    private boolean isValid(int row, int col, int[] result) {
+        for (int i = 0; i < 8; i++) {
+        	int c = result[i];
+            if (c == -1) {
+				continue;
+			}
+            int rowDiff = Math.abs(i - row);
+            int colDiff = Math.abs(c - col);
+            
+            // 1. 不能同行
+            if (row == i) {
+				return false;
+			}
+
+            // 2. 不能同列
+            if (col == c) {
+				return false;
+			}
+            
+            if (rowDiff == colDiff) {
+                if (rowDiff == 1) {  // 相邻斜线距离1格，不允许
+                    return false;
+                }
+                // rowDiff>=2时允许，不冲突
+            }
+            // 4. 不允许相邻（上下左右和对角线）
+            // 这里排除所有相邻，不管是否同斜线
+            if (rowDiff <= 1 && colDiff <= 1) {
+                return false;
+            }
+            
+        }
+        return true;
+    }
+	
 }

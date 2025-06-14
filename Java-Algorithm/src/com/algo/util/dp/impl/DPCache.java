@@ -3,6 +3,9 @@ package com.algo.util.dp.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import org.psjava.util.Pair;
 
 import com.algo.util.bit.BitUtil;
 import com.algo.util.common.CommonArrayUtil;
@@ -559,5 +562,10 @@ public class DPCache implements DPService {
 	public int maxDriverIncome(int[][] income) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<int[]> nQueensLocation(Map<Integer, Integer> fixedQueens, Set<Pair<Integer,Integer>> forbiddenPositions) {
+		return null;
 	}
 }

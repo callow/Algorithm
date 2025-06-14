@@ -1,7 +1,11 @@
 package com.algo.util.dp.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
+
+import org.psjava.util.Pair;
 
 import com.algo.util.bit.BitUtil;
 import com.algo.util.common.CommonArrayUtil;
@@ -645,6 +649,12 @@ public class DPGrid implements DPService {
 			}
 		}
 		return dp[0][m];
+	}
+
+	@Override
+	public List<int[]> nQueensLocation(Map<Integer, Integer> fixedQueens, Set<Pair<Integer,Integer>> forbiddenPositions) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

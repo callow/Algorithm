@@ -21,11 +21,13 @@ public class NQueensWithRegion {
 	
 	public static void main(String[] args) throws IOException {
 		
-        String imagePath = "E:\\microservices\\Algorithm\\Java-Algorithm\\src\\linkedin\\queen.PNG"; // image
-        int[][] regionMap = NQueensWithRegion.generateRegionMapByReferenceColors(ImageIO.read(new File(imagePath))); 
+        String imagePath = "E:\\microservices\\Algorithm\\Java-Algorithm\\src\\linkedin\\queen2.PNG"; // image
+        int[][] regionMap = NQueensWithRegion.generateRegionMapByReferenceColors(ImageIO.read(new File(imagePath)),9); 
         
         
 //      regionMap[0][0] = regionMap[0][1];
+//        regionMap[6][2] = 2;
+//        regionMap[2][3] = 0;
         
         // print region map
 //      NQueensWithRegion.printRegionMap(regionMap);
@@ -34,7 +36,7 @@ public class NQueensWithRegion {
 
         // some queens are already exist in the map
         Map<Integer,Integer> fixedQueens = new HashMap<>();
-        fixedQueens.put(0, 0); 
+//        fixedQueens.put(0, 0); 
 //        fixedQueens.put(7, 4);
 
         // exclude some places that can't put queens
@@ -42,7 +44,7 @@ public class NQueensWithRegion {
 //        forbiddenPositions.add(new Pair<>(1,1)); 
 //        forbiddenPositions.add(new Pair<>(1,2)); 
 
-        List<int[]> solutions = solver.nQueensLocation(fixedQueens, forbiddenPositions);
+        List<int[]> solutions = solver.nQueensLocation(fixedQueens, forbiddenPositions, 9);
 
         System.out.println("Find " + solutions.size() + " Solution");
 
@@ -54,14 +56,14 @@ public class NQueensWithRegion {
         this.regionMap = regionMap;
     }
 		
-	public List<int[]> nQueensLocation(Map<Integer, Integer> fixedQueens, Set<Pair<Integer,Integer>> forbiddenPositions) {
+	public List<int[]> nQueensLocation(Map<Integer, Integer> fixedQueens, Set<Pair<Integer,Integer>> forbiddenPositions, int answers) {
         List<int[]> solutions = new ArrayList<>();
-        int[] result = new int[8];
+        int[] result = new int[answers];
         Arrays.fill(result, -1); //  -1£¬no queen
         for (Map.Entry<Integer, Integer> entry : fixedQueens.entrySet()) {
             result[entry.getKey()] = entry.getValue();
         }
-        boolean[] usedRegion = new boolean[8]; // whether the region has queen
+        boolean[] usedRegion = new boolean[answers]; // whether the region has queen
 
         // mark used region which has a queen
         for (Map.Entry<Integer, Integer> entry : fixedQueens.entrySet()) {
@@ -70,26 +72,26 @@ public class NQueensWithRegion {
             usedRegion[regionMap[r][c]] = true;
         }
 
-        dfs(0, result, fixedQueens.keySet(), forbiddenPositions, usedRegion, solutions);
+        dfs(0, result, fixedQueens.keySet(), forbiddenPositions, usedRegion, solutions,  answers);
         if (!solutions.isEmpty()) {
             printBoard(solutions.get(0));
         }
         return solutions;
 	}
 	
-	private void dfs(int row, int[] result, Set<Integer> fixedRows, Set<Pair<Integer,Integer>> forbiddenPositions, boolean[] usedRegion, List<int[]> solutions) { 
-		 if (row == 8) {
+	private void dfs(int row, int[] result, Set<Integer> fixedRows, Set<Pair<Integer,Integer>> forbiddenPositions, boolean[] usedRegion, List<int[]> solutions, int answers) { 
+		 if (row == answers) {
               solutions.add(result.clone());
               return;
           }
 
           if (fixedRows.contains(row)) {
               // next
-              dfs(row + 1, result, fixedRows, forbiddenPositions, usedRegion, solutions);
+              dfs(row + 1, result, fixedRows, forbiddenPositions, usedRegion, solutions,answers);
               return;
           }
 
-          for (int col = 0; col < 8; col++) {
+          for (int col = 0; col < answers; col++) {
               if (forbiddenPositions.contains(new Pair<>(row, col))) {
                   continue;
               }
@@ -99,11 +101,11 @@ public class NQueensWithRegion {
                   continue; // has queen , skip
               }
 
-              if (isValid(row, col, result)) {
+              if (isValid(row, col, result,answers)) {
                   result[row] = col;
                   usedRegion[region] = true;
 
-                  dfs(row + 1, result, fixedRows, forbiddenPositions, usedRegion, solutions);
+                  dfs(row + 1, result, fixedRows, forbiddenPositions, usedRegion, solutions,answers);
 
                   usedRegion[region] = false;
                   result[row] = -1;
@@ -111,8 +113,8 @@ public class NQueensWithRegion {
           }
     }
     
-    private boolean isValid(int row, int col, int[] result) {
-        for (int i = 0; i < 8; i++) {
+    private boolean isValid(int row, int col, int[] result, int answers) {
+        for (int i = 0; i < answers; i++) {
         	int c = result[i];
             if (c == -1) {
 				continue;
@@ -171,11 +173,12 @@ public class NQueensWithRegion {
             new int[]{255,123,98},  // ºì
             new int[]{224,224,224}, // »Ò
             new int[]{184,179,159}, // ×Ø
-            new int[]{230,243,137}  // »Æ
+            new int[]{230,243,137},  // »Æ
+            new int[]{223,160,191,255}  // ·Û
     );
 
 
-    public static int[][] generateRegionMapByReferenceColors(BufferedImage image) {
+    public static int[][] generateRegionMapByReferenceColors(BufferedImage image, int resize) {
         int height = image.getHeight();
         int width = image.getWidth();
 
@@ -212,22 +215,22 @@ public class NQueensWithRegion {
         }
 
         // Step 2: shrink 8x8
-        return resizeTo8x8(fullRegionMap);
+        return resizeTo8x8(fullRegionMap,resize);
     }
 
     private static int colorDistance(int r1, int g1, int b1, int r2, int g2, int b2) {
         return (r1 - r2) * (r1 - r2) + (g1 - g2) * (g1 - g2) + (b1 - b2) * (b1 - b2);
     }
 
-    private static int[][] resizeTo8x8(int[][] fullMap) {
+    private static int[][] resizeTo8x8(int[][] fullMap, int resize) {
         int height = fullMap.length;
         int width = fullMap[0].length;
-        int blockHeight = height / 8;
-        int blockWidth = width / 8;
+        int blockHeight = height / resize;
+        int blockWidth = width / resize;
 
-        int[][] result = new int[8][8];
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
+        int[][] result = new int[resize][resize];
+        for (int row = 0; row < resize; row++) {
+            for (int col = 0; col < resize; col++) {
                 Map<Integer, Integer> counter = new HashMap<>();
 
                 for (int y = row * blockHeight; y < Math.min((row + 1) * blockHeight, height); y++) {

@@ -16,7 +16,7 @@ public class FullSubsequencePermutation {
 	
 	public static String[] permutation(String str) {
 		dfs(str.toCharArray(), 0);
-		return result.toArray(String[]::new);
+		return result.stream().toArray(String[]::new);
 		
 	}
 	// 当前来到a[i]位置，之前收集的路径path

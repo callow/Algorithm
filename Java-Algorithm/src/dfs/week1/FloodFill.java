@@ -4,6 +4,8 @@ package dfs.week1;
  */
 public class FloodFill {
 	
+	static int[] directionMatrix = {-1, 0, 1, 0, -1};
+	
 	public static void main(String[] args) {
 		char[][] image = {
 	            {'1', '1', '0', '0', '0'},
@@ -12,7 +14,8 @@ public class FloodFill {
 	            {'0', '0', '1', '1', '0'},
 	            {'0', '0', '0', '0', '0'}
 	        };
-		floodFill(image, 2, 1);
+//		floodFill(image, 2, 1);
+		floodFill2(image, 2, 1);
 		
 		// 打印最终结果：
 		for (char[] row : image) {
@@ -40,6 +43,28 @@ public class FloodFill {
 		floodFill(board, i + 1, j); // 下
 		floodFill(board,  i, j - 1); // 左
 		floodFill(board, i, j + 1); // 右
+	}
+	
+	/**
+	 * 利用方向矩阵 + 1个dfs
+	 */
+	public static void floodFill2(char[][] board, int i, int j) {
+		int n = board.length;
+		int m = board[0].length;
+		
+		if (board[i][j] != '0') {
+			return;
+		}
+		System.out.println("Filling2: " + i + ", " + j);
+		board[i][j] = 'Z'; // 感染标记
+		for (int d = 0; d < 4; d++) {
+			int ii = i + directionMatrix[d];
+	        int jj = j + directionMatrix[d + 1];
+	        
+	        if(ii >= 0 && ii < n && jj >= 0 && jj < m && board[ii][jj] == '0') {
+	        	floodFill2(board, ii, jj);
+	        }
+		}
 	}
 	
 }

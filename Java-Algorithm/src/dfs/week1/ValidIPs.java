@@ -2,7 +2,10 @@ package dfs.week1;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-
+/**
+ * 类型： 回溯， 因为要回头恢复 然后尝试其他分支
+ * 
+ */
 public class ValidIPs {
 
 	public static void main(String[] args) {

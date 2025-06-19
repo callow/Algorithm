@@ -1,8 +1,10 @@
 package dfs.week1;
 
+/**
+ * 类型： 连通块面积
+ */
 public class MaxAreaOfIsland {
 
-	
 	public static void main(String[] args) {
 		char[][] grid = {
 	            {'1', '1', '0', '0', '0'},

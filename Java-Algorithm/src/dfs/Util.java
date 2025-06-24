@@ -1,0 +1,9 @@
+package dfs;
+
+public class Util {
+
+	// 0:ÉÏ£¬1:ÓÒ£¬2:ÏÂ£¬3:×ó
+	public static final int[] DIRECTION_MATRIX = {-1, 0, 1, 0, -1};
+	
+	
+}

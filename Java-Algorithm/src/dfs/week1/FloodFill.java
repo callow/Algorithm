@@ -1,10 +1,11 @@
 package dfs.week1;
+
+import dfs.Util;
+
 /**
  * 类型: 网格遍历
  */
 public class FloodFill {
-	
-	static int[] directionMatrix = {-1, 0, 1, 0, -1};
 	
 	public static void main(String[] args) {
 		char[][] image = {
@@ -58,8 +59,8 @@ public class FloodFill {
 		System.out.println("Filling2: " + i + ", " + j);
 		board[i][j] = 'Z'; // 感染标记
 		for (int d = 0; d < 4; d++) {
-			int ii = i + directionMatrix[d];
-	        int jj = j + directionMatrix[d + 1];
+			int ii = i + Util.DIRECTION_MATRIX[d];
+	        int jj = j + Util.DIRECTION_MATRIX[d + 1];
 	        
 	        if(ii >= 0 && ii < n && jj >= 0 && jj < m && board[ii][jj] == '0') {
 	        	dfs2(board, ii, jj);

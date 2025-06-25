@@ -55,8 +55,8 @@ public class WordSearch {
         board[i][j] = '#';  // 用特殊字符标记,但是这样就修改了原本的board[][], 可以用visited[][]替代
 		
 		for(int d =0; d < 4; d++) {
-			int ii = i + Util.DIRECTION_MATRIX[d];
-			int jj = j + Util.DIRECTION_MATRIX[d + 1];
+			int ii = i + Util.DIRECTION_MATRIX_4[d];
+			int jj = j + Util.DIRECTION_MATRIX_4[d + 1];
 			boolean found = dfs(board, word, ii, jj, index + 1); // 短路退出机制，节省遍历、避免误判
 			if (found) {
 	            return true;

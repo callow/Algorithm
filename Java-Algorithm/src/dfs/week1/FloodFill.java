@@ -59,8 +59,8 @@ public class FloodFill {
 		System.out.println("Filling2: " + i + ", " + j);
 		board[i][j] = 'Z'; // ¸ÐÈ¾±ê¼Ç
 		for (int d = 0; d < 4; d++) {
-			int ii = i + Util.DIRECTION_MATRIX[d];
-	        int jj = j + Util.DIRECTION_MATRIX[d + 1];
+			int ii = i + Util.DIRECTION_MATRIX_4[d];
+	        int jj = j + Util.DIRECTION_MATRIX_4[d + 1];
 	        
 	        if(ii >= 0 && ii < n && jj >= 0 && jj < m && board[ii][jj] == '0') {
 	        	dfs2(board, ii, jj);

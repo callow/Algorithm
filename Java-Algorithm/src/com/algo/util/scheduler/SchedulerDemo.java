@@ -32,6 +32,7 @@ public class SchedulerDemo {
 		if (future != null && !future.isCancelled()) {
 			future.cancel(false);
 			System.out.println("Job is cancelled successfully.");
+			System.exit(0);
 		} else {
 			System.out.println("Job is not running");
 		}
